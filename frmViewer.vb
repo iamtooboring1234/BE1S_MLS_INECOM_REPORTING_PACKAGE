@@ -1662,6 +1662,223 @@ Public Class Hydac_FormViewer
             crViewer.Show()
         End If
     End Sub
+    Friend Sub OPEN_AGEING_REPORT_6_AND_7_BUCKETS()
+        Dim subreport As ReportDocument
+        Dim rpt As ReportDocument
+
+        If g_bIsShared Then
+            rpt = New ReportDocument
+            rpt.Load(g_sSharedReportName)
+        Else
+            Select Case ReportName
+                Case ReportName.ARAging7B_Details
+                    Select Case cReportType
+                        Case AgeingType.ARAgeing
+                            rpt = New rptARAgeing7B_HANADS
+                        Case AgeingType.ARAgeingSummary
+                            rpt = New rptARAgeingSummary7B_HANADS
+                    End Select
+
+                Case ReportName.ARAging6B_Details
+                    Select Case cReportType
+                        Case AgeingType.ARAgeing
+                            rpt = New rptARAgeing6B_HANADS
+                        Case AgeingType.ARAgeingSummary
+                            rpt = New rptARAgeingSummary6B_HANADS
+                    End Select
+                Case Else
+                    Select Case cReportType
+                        Case AgeingType.ARAgeing
+                            rpt = New rptARAgeing_HANADS
+                        Case AgeingType.APAgeing
+                            rpt = New rptAPAgeing_HANADS
+                        Case AgeingType.ARAgeingSummary
+                            rpt = New rptARAgeingSummary_HANADS
+                        Case AgeingType.APAgeingSummary
+                            rpt = New rptAPAgeingSummary_HANADS
+                    End Select
+            End Select
+        End If
+
+        With rpt
+            Dim bIsUserDefinedRange As Boolean = False
+            Dim iCount As Integer = 1
+            Dim sFormat As String = "Bucket{0}Text"
+            Dim sTemp As String = String.Format(sFormat, 1)
+
+            Try
+                .SetDataSource(cDataset)
+                .DataDefinition.FormulaFields.Item(sTemp).Text = SetStringIntoCrystalFormula(sBucketText(iCount - 1))
+                bIsUserDefinedRange = True
+            Catch ex As Exception
+                bIsUserDefinedRange = False
+            End Try
+
+            ' ===================================================================================
+
+            If bIsUserDefinedRange Then
+                Select Case ReportName
+                    Case ReportName.ARAging6B_Details, ReportName.ARAging6B_Summary
+                        sFormat = "Bucket{0}Text"
+                        For iCount = 1 To 6 Step 1
+                            sTemp = String.Format(sFormat, iCount)
+                            .DataDefinition.FormulaFields.Item(sTemp).Text = SetStringIntoCrystalFormula(sBucketText(iCount - 1))
+                        Next
+
+                        sFormat = "Bucket{0}Val"
+                        For iCount = 1 To 6 Step 1
+                            sTemp = String.Format(sFormat, iCount)
+                            .DataDefinition.FormulaFields.Item(sTemp).Text = sBucketVal(iCount - 1)
+                        Next
+
+                    Case ReportName.ARAging7B_Details, ReportName.ARAging7B_Summary
+                        sFormat = "Bucket{0}Text"
+                        For iCount = 1 To 7 Step 1
+                            sTemp = String.Format(sFormat, iCount)
+                            .DataDefinition.FormulaFields.Item(sTemp).Text = SetStringIntoCrystalFormula(sBucketText(iCount - 1))
+                        Next
+
+                        sFormat = "Bucket{0}Val"
+                        For iCount = 1 To 7 Step 1
+                            sTemp = String.Format(sFormat, iCount)
+                            .DataDefinition.FormulaFields.Item(sTemp).Text = sBucketVal(iCount - 1)
+                        Next
+
+                    Case Else
+                        sFormat = "Bucket{0}Text"
+                        For iCount = 1 To 5 Step 1
+                            sTemp = String.Format(sFormat, iCount)
+                            .DataDefinition.FormulaFields.Item(sTemp).Text = SetStringIntoCrystalFormula(sBucketText(iCount - 1))
+                        Next
+
+                        sFormat = "Bucket{0}Val"
+                        For iCount = 1 To 5 Step 1
+                            sTemp = String.Format(sFormat, iCount)
+                            .DataDefinition.FormulaFields.Item(sTemp).Text = sBucketVal(iCount - 1)
+                        Next
+                End Select
+            End If
+
+            ' Sub Report (Only for AP Summary and AR Summary) --------------------------------------------
+            If cReportType = AgeingType.APAgeingSummary Or cReportType = AgeingType.ARAgeingSummary Then
+                subreport = .OpenSubreport("Summary")
+                subreport.DataDefinition.FormulaFields.Item("AgeingBy").Text = cAgeBy
+                subreport.DataDefinition.FormulaFields.Item("LocalCurr").Text = SetStringIntoCrystalFormula(sLocalCurr)
+
+                If bIsUserDefinedRange Then
+                    sFormat = "Bucket{0}Val"
+                    Select Case ReportName
+                        Case ReportName.ARAging6B_Details, ReportName.ARAging6B_Summary
+                            For iCount = 1 To 6 Step 1
+                                sTemp = String.Format(sFormat, iCount)
+                                subreport.DataDefinition.FormulaFields.Item(sTemp).Text = sBucketVal(iCount - 1)
+                            Next
+                        Case ReportName.ARAging7B_Details, ReportName.ARAging7B_Summary
+                            For iCount = 1 To 7 Step 1
+                                sTemp = String.Format(sFormat, iCount)
+                                subreport.DataDefinition.FormulaFields.Item(sTemp).Text = sBucketVal(iCount - 1)
+                            Next
+                        Case Else
+                            For iCount = 1 To 5 Step 1
+                                sTemp = String.Format(sFormat, iCount)
+                                subreport.DataDefinition.FormulaFields.Item(sTemp).Text = sBucketVal(iCount - 1)
+                            Next
+                    End Select
+                End If
+            End If
+
+            ' Sub Report Company Details -----------------------------------------------------------------
+            Dim StatementDate As String = "DateValue(" & cAsAtDate.Substring(0, 4) & "," & cAsAtDate.Substring(4, 2) & "," & cAsAtDate.Substring(6, 2) & ")"
+
+            subreport = .OpenSubreport("PageHeader.rpt")
+            subreport.DataDefinition.FormulaFields.Item("CompanyId").Text = SetStringIntoCrystalFormula(oCompany.CompanyName)
+            subreport.DataDefinition.FormulaFields.Item("BPCode").Text = SetStringIntoCrystalFormula(sBPCode)
+            subreport.DataDefinition.FormulaFields.Item("BPCodeFr").Text = SetStringIntoCrystalFormula(sBPCodeFr)
+            subreport.DataDefinition.FormulaFields.Item("BPCodeTo").Text = SetStringIntoCrystalFormula(sBPCodeTo)
+            subreport.DataDefinition.FormulaFields.Item("BPGrpFr").Text = SetStringIntoCrystalFormula(sBPGrpFr)
+            subreport.DataDefinition.FormulaFields.Item("BPGrpTo").Text = SetStringIntoCrystalFormula(sBPGrpTo)
+            subreport.DataDefinition.FormulaFields.Item("SlsFr").Text = SetStringIntoCrystalFormula(sSlsFr)
+            subreport.DataDefinition.FormulaFields.Item("SlsTo").Text = SetStringIntoCrystalFormula(sSlsTo)
+            subreport.DataDefinition.FormulaFields.Item("AsAtDate").Text = StatementDate
+            subreport.DataDefinition.FormulaFields.Item("AgingBy").Text = SetStringIntoCrystalFormula(sAgingBy)
+            If (iSectionPageBreak = 0) Then
+                subreport.DataDefinition.FormulaFields.Item("PageBreak").Text = SetStringIntoCrystalFormula("No")
+            Else
+                subreport.DataDefinition.FormulaFields.Item("PageBreak").Text = SetStringIntoCrystalFormula("Yes")
+            End If
+
+            Select Case cReportType
+                Case AgeingType.APAgeing
+                    subreport.DataDefinition.FormulaFields.Item("ReportTitle").Text = SetStringIntoCrystalFormula("AP Ageing Details")
+                Case AgeingType.APAgeingSummary
+                    subreport.DataDefinition.FormulaFields.Item("ReportTitle").Text = SetStringIntoCrystalFormula("AP Ageing Summary")
+                Case AgeingType.ARAgeing
+                    subreport.DataDefinition.FormulaFields.Item("ReportTitle").Text = SetStringIntoCrystalFormula("AR Ageing Details")
+                Case AgeingType.ARAgeingSummary
+                    subreport.DataDefinition.FormulaFields.Item("ReportTitle").Text = SetStringIntoCrystalFormula("AR Ageing Summary")
+            End Select
+
+            ' Main Report Parameter ----------------------------------------------------------------------
+            .DataDefinition.FormulaFields.Item("statementDate").Text = StatementDate
+            .DataDefinition.FormulaFields.Item("AgeingBy").Text = cAgeBy
+            .DataDefinition.FormulaFields.Item("LocalCurr").Text = "'" & sLocalCurr & "'"
+            .DataDefinition.FormulaFields.Item("PageBreak").Text = iSectionPageBreak
+
+            If ReportName = ReportName.ARAging6B_Details Then
+                Try
+                    .DataDefinition.FormulaFields.Item("IsLocalCurr").Text = 1
+                Catch ex As Exception
+
+                End Try
+            End If
+
+            Select Case cReportType
+                Case AgeingType.ARAgeing
+                    .RecordSelectionFormula = "{_NCM_AR_AGEING.USERNAME}='" & sARAGERunningDate & "'"
+                Case AgeingType.ARAgeingSummary
+                    .RecordSelectionFormula = "{_NCM_AR_AGEING.USERNAME}='" & sARAGERunningDate & "'"
+                Case AgeingType.APAgeing
+                    .RecordSelectionFormula = "{_NCM_AP_AGEING.USERNAME}='" & sAPAGERunningDate & "'"
+                Case AgeingType.APAgeingSummary
+                    .RecordSelectionFormula = "{_NCM_AP_AGEING.USERNAME}='" & sAPAGERunningDate & "'"
+            End Select
+            .Refresh()
+        End With
+
+        If cClientType = "S" Then
+            ' Web Browser
+            ' generate pdf, put to a standard local folder, with specific name.
+            ' call the pdf out.
+
+            rpt.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
+            rpt.ExportOptions.ExportFormatType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
+
+            Dim objOptions As New CrystalDecisions.Shared.DiskFileDestinationOptions
+            objOptions.DiskFileName = g_sExportPath
+            rpt.ExportOptions.DestinationOptions = objOptions
+            rpt.Export()
+        Else
+            'Desktop
+            If (bIsExcel) Then
+                Dim sPath As String = String.Empty
+                sPath = sExcelFilePath
+                rpt.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
+                rpt.ExportOptions.ExportFormatType = ExportFormatType.Excel
+                Dim objExcelOptions As New CrystalDecisions.Shared.ExcelFormatOptions
+                objExcelOptions.ExcelUseConstantColumnWidth = False
+                rpt.ExportOptions.FormatOptions = objExcelOptions
+                Dim objOptions As New CrystalDecisions.Shared.DiskFileDestinationOptions
+                objOptions.DiskFileName = sPath
+                rpt.ExportOptions.DestinationOptions = objOptions
+                rpt.Export()
+                System.Diagnostics.Process.Start(sPath)
+            Else
+                crViewer.ReportSource = rpt
+                crViewer.Show()
+            End If
+        End If
+ 
+    End Sub
     Friend Sub OPEN_HANADS_AGEING_5BUCKETS()
         Dim rpt As ReportDocument
         Dim subreport As ReportDocument
@@ -1674,17 +1891,17 @@ Public Class Hydac_FormViewer
                 Case ReportName.ARAging7B_Details
                     Select Case cReportType
                         Case AgeingType.ARAgeing
-                            rpt = New rptARAgeing7B_HANA
+                            rpt = New rptARAgeing7B_HANADS
                         Case AgeingType.ARAgeingSummary
-                            rpt = New rptARAgeingSummary7B_HANA
+                            rpt = New rptARAgeingSummary7B_HANADS
                     End Select
 
                 Case ReportName.ARAging6B_Details
                     Select Case cReportType
                         Case AgeingType.ARAgeing
-                            rpt = New rptARAgeing6B_HANA
+                            rpt = New rptARAgeing6B_HANADS
                         Case AgeingType.ARAgeingSummary
-                            rpt = New rptARAgeingSummary6B_HANA
+                            rpt = New rptARAgeingSummary6B_HANADS
                     End Select
                 Case Else
                     Select Case cReportType
@@ -1870,9 +2087,6 @@ Public Class Hydac_FormViewer
                 crViewer.Show()
             End If
         End If
-
-
-
     End Sub
     Friend Sub OPEN_HANADS_ARSOA()
         Dim subreport As ReportDocument
@@ -2560,7 +2774,6 @@ Public Class Hydac_FormViewer
             crViewer.Show()
         End If
     End Sub
-
     Friend Sub OPEN_HANADS_CHANGE_LOG()
         Dim subreport As ReportDocument
         Dim rpt As ReportDocument
@@ -2610,7 +2823,6 @@ Public Class Hydac_FormViewer
         End If
 
     End Sub
-
 
     Private Sub frmViewer_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
@@ -2662,10 +2874,10 @@ Public Class Hydac_FormViewer
                     OpenAgingReportProject_HANA()
 
                 Case ReportName.ARAging6B_Details
-                    OpenAgingReport()
+                    OPEN_AGEING_REPORT_6_AND_7_BUCKETS()
 
                 Case ReportName.ARAging7B_Details
-                    OpenAgingReport()
+                    OPEN_AGEING_REPORT_6_AND_7_BUCKETS()
 
                 Case ReportName.ARSoa
                     OPEN_HANADS_ARSOA()

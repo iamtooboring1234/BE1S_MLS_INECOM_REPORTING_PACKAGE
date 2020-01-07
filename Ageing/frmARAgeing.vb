@@ -563,11 +563,8 @@ Public Class frmARAgeing
             Dim sQuery As String = ""
             Dim dbConn As DbConnection = Nothing
             Dim _DbProviderFactoryObject As DbProviderFactory
-
             Dim dtAGE As System.Data.DataTable
             Dim dtOCRD As System.Data.DataTable
-            'Dim dtOCLG As System.Data.DataTable
-            'Dim dtOCLT As System.Data.DataTable
 
             _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
             dbConn = _DbProviderFactoryObject.CreateConnection()
@@ -591,28 +588,6 @@ Public Class frmARAgeing
             HANAcmd.ExecuteNonQuery()
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtOCRD)
-
-            ''--------------------------------------------------------
-            ''OCLT
-            ''--------------------------------------------------------
-            'sQuery = "SELECT ""Code"", ""Name"" FROM """ & oCompany.CompanyDB & """.""OCLT"" "
-            'dtOCLT = ds.Tables("OCLT")
-            'HANAcmd = dbConn.CreateCommand()
-            'HANAcmd.CommandText = sQuery
-            'HANAcmd.ExecuteNonQuery()
-            'HANAda.SelectCommand = HANAcmd
-            'HANAda.Fill(dtOCLT)
-
-            ''--------------------------------------------------------
-            ''OCLG
-            ''--------------------------------------------------------
-            'sQuery = "SELECT ""ClgCode"", ""CardCode"", ""CntctDate"", ""CntctType"", ""Notes"" FROM """ & oCompany.CompanyDB & """.""OCLG"" "
-            'dtOCLG = ds.Tables("OCLG")
-            'HANAcmd = dbConn.CreateCommand()
-            'HANAcmd.CommandText = sQuery
-            'HANAcmd.ExecuteNonQuery()
-            'HANAda.SelectCommand = HANAcmd
-            'HANAda.Fill(dtOCLG)
 
             '--------------------------------------------------------
             'NCM_AR_AGEING

@@ -1,4 +1,8 @@
 Imports System.IO
+Imports System.Threading
+Imports System.Data.Common
+Imports System.Globalization
+Imports System.xml
 
 Public Class frmARAgeing7B
 
@@ -9,31 +13,33 @@ Public Class frmARAgeing7B
     Private oItem As SAPbouiCOM.Item
     Private oStatic As SAPbouiCOM.StaticText
     Private oPictureBox As SAPbouiCOM.PictureBox
-    Private g_sReportFilename As String = String.Empty
+    Private oCheck As SAPbouiCOM.CheckBox
+
     Private g_bIsShared As Boolean = False
-    Dim oCheck As SAPbouiCOM.CheckBox
+    Private g_sReportFilename As String = String.Empty
+    Private g_StructureFilename As String = ""
+    Private ds As DataSet
 
-    Dim sTxtFormat As String = "txtB{0}txt"
-    Dim sValFormat As String = "txtB{0}Val"
-    Dim sFTxtFormat As String = "U_Bucket{0}Txt"
-    Dim sFValFormat As String = "U_Bucket{0}Val"
+    Private sTxtFormat As String = "txtB{0}txt"
+    Private sValFormat As String = "txtB{0}Val"
+    Private sFTxtFormat As String = "U_Bucket{0}Txt"
+    Private sFValFormat As String = "U_Bucket{0}Val"
 
-    Dim iCount As Integer = 1
+    Private iCount As Integer = 1
+    Private sTxtBTxt As String() = New String(10) {}
+    Private sTxtBVal As Integer() = New Integer(10) {}
 
-    Dim sTxtBTxt As String() = New String(10) {}
-    Dim sTxtBVal As Integer() = New Integer(10) {}
+    Private sExcelPath As String = String.Empty
+    Private bIsSaveRunning As Boolean = True
+    Private bIsCancel As Boolean = False
 
-    Dim sExcelPath As String = String.Empty
-    Dim bIsSaveRunning As Boolean = True
-    Dim bIsCancel As Boolean = False
-
-    Dim bIsExportToExcel As Boolean = False
-    Dim sRptType As String = String.Empty
+    Private bIsExportToExcel As Boolean = False
+    Private sRptType As String = String.Empty
     Private g_sARAGERunningDate As String = ""
 
 #End Region
 
- #Region "Initialization"
+#Region "Initialization"
     Public Sub ShowForm()
         If LoadFromXML("Inecom_SDK_Reporting_Package.NCM_ARAGEING_7B.srf") Then
 
@@ -41,7 +47,7 @@ Public Class frmARAgeing7B
             oForm.Title = "AR Ageing (7 Buckets) Report"
             oPictureBox = oForm.Items.Item("pbInecom").Specific
             oPictureBox.Picture = Application.StartupPath.ToString & "\ncmInecom.bmp"
-           
+
             oForm.Items.Item("lbStyleOpt").TextStyle = 4
             oForm.Items.Item("lbStatus").FontSize = 10
 
@@ -168,7 +174,7 @@ Public Class frmARAgeing7B
             sTxtBTxt(3) = "91-120"
             sTxtBTxt(4) = "120-150"
             sTxtBTxt(5) = "151-180"
-            sTxtBTxt(5) = ">180"
+            sTxtBTxt(6) = ">180"
 
             sTxtBVal(0) = 30
             sTxtBVal(1) = 60
@@ -357,30 +363,128 @@ Public Class frmARAgeing7B
             oCombo = oForm.Items.Item("cboRptType").Specific
             RptType = oCombo.Selected.Value
             g_sReportFilename = ""
+            g_StructureFilename = ""
+
+            Select Case RptType
+                Case 0
+                    sQuery = " SELECT IFNULL(""STRUCTUREPATH"",'') FROM ""@NCM_RPT_STRUCTURE"" "
+                    sQuery &= " WHERE ""RPTCODE"" ='" & GetReportCode(ReportName.ARAging7B_Details) & "'"
+                Case 1
+                    sQuery = " SELECT IFNULL(""STRUCTUREPATH"",'') FROM ""@NCM_RPT_STRUCTURE"" "
+                    sQuery &= " WHERE ""RPTCODE"" ='" & GetReportCode(ReportName.ARAging7B_Summary) & "'"
+            End Select
+
+            Dim sCheck As String = ""
+            Dim oCheck As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+
+            sCheck = "  SELECT ""OBJECT_NAME"" FROM SYS.OBJECTS  "
+            sCheck &= " WHERE ""SCHEMA_NAME"" = '" & oCompany.CompanyDB & "' "
+            sCheck &= " AND ""OBJECT_TYPE"" = 'TABLE' "
+            sCheck &= " AND ""OBJECT_NAME"" ='@NCM_RPT_STRUCTURE' "
+            oCheck.DoQuery(sCheck)
+            If oCheck.RecordCount > 0 Then
+                oCheck = Nothing
+                oRecord.DoQuery(sQuery)
+                If oRecord.RecordCount > 0 Then
+                    oRecord.MoveFirst()
+                    g_StructureFilename = oRecord.Fields.Item(0).Value.ToString
+                    If File.Exists(g_StructureFilename) = False Then
+                        g_StructureFilename = ""
+                    End If
+                End If
+            Else
+                oCheck = Nothing
+            End If
 
             Select Case RptType
                 Case 0
                     g_sReportFilename = GetSharedFilePath(ReportName.ARAging7B_Details)
                     If g_sReportFilename <> "" Then
-                        If IsSharedFilePathExists(g_sReportFilename) Then
-                            Return True
+                        If Not IsSharedFilePathExists(g_sReportFilename) Then
+                            Return False
                         End If
+                    Else
+                        Return False
                     End If
+
                 Case 1
                     g_sReportFilename = GetSharedFilePath(ReportName.ARAging7B_Summary)
                     If g_sReportFilename <> "" Then
-                        If IsSharedFilePathExists(g_sReportFilename) Then
-                            Return True
+                        If Not IsSharedFilePathExists(g_sReportFilename) Then
+                            Return False
                         End If
+                    Else
+                        Return False
                     End If
             End Select
-            Return False
+
+            Return True
         Catch ex As Exception
             g_sReportFilename = " "
             SBO_Application.StatusBar.SetText("[A/R AGEING].[GetPath] :" & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
             Return False
         End Try
     End Function
+    Private Function PrepareDataset() As Boolean
+        Try
+            If g_StructureFilename.Length <= 0 Then
+                ds = New DS_AGEING
+            Else
+                ds = New DataSet
+                ds.ReadXml(g_StructureFilename)
+            End If
+
+            Dim ProviderName As String = "System.Data.Odbc"
+            Dim sQuery As String = ""
+            Dim dbConn As DbConnection = Nothing
+            Dim _DbProviderFactoryObject As DbProviderFactory
+            Dim dtAGE As System.Data.DataTable
+            Dim dtOCRD As System.Data.DataTable
+
+            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+            dbConn = _DbProviderFactoryObject.CreateConnection()
+            dbConn.ConnectionString = connStr
+            dbConn.Open()
+
+            Dim HANAda As DbDataAdapter = _DbProviderFactoryObject.CreateDataAdapter()
+            Dim HANAcmd As DbCommand
+
+            '--------------------------------------------------------
+            'OCRD
+            '--------------------------------------------------------
+            sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T2 "
+            sQuery &= " ON T1.""GroupCode"" = T2.""GroupCode"" "
+            sQuery &= " WHERE T1.""CardType"" = 'C' "
+            dtOCRD = ds.Tables("OCRD")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtOCRD)
+
+            '--------------------------------------------------------
+            'NCM_AR_AGEING
+            '--------------------------------------------------------
+            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""@NCM_AR_AGEING"" "
+            sQuery &= " WHERE ""USERNAME"" = '" & g_sARAGERunningDate & oCompany.UserName & "' "
+            dtAGE = ds.Tables("@NCM_AR_AGEING")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtAGE)
+
+            dbConn.Close()
+
+            Return True
+        Catch ex As Exception
+            SBO_Application.StatusBar.SetText("[PrepareDataset] : " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            Return False
+        End Try
+    End Function
+
     Private Function GetLocalCurrency() As String
         Try
             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
@@ -396,7 +500,6 @@ Public Class frmARAgeing7B
     Private Function ExecuteProcedure() As Boolean
         Dim sBPCode As String = ""
         Dim sAsAtDate As String = ""
-        Dim dtAsAtDate As DateTime
         Dim sBPCodeFr As String = String.Empty
         Dim sBPCodeTo As String = String.Empty
         Dim sBPGrpFr As String = String.Empty
@@ -567,143 +670,177 @@ Public Class frmARAgeing7B
         Try
             Dim frm As New Hydac_FormViewer
             Dim bIsContinue As Boolean = False
-            Dim oTest As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-            oTest.DoQuery("SELECT CAST(current_timestamp AS NVARCHAR(24)) FROM DUMMY")
-            If oTest.RecordCount > 0 Then
-                oTest.MoveFirst()
-                g_sARAGERunningDate = Convert.ToString(oTest.Fields.Item(0).Value)
-            End If
-            oTest = Nothing
 
             Try
+
+                Dim oTest As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                Dim sTempDirectory As String = ""
+                Dim sPathFormat As String = "{0}\ARAGEING7B_{1}.pdf"
+                Dim sCurrDate As String = ""
+                Dim sFinalExportPath As String = ""
+                Dim sFinalFileName As String = ""
+                Dim sCurrTime As String = DateTime.Now.ToString("HHMMss")
+
+                oTest.DoQuery("SELECT CAST(current_timestamp AS NVARCHAR(24)), TO_CHAR(current_timestamp, 'YYYYMMDD') FROM DUMMY")
+                If oTest.RecordCount > 0 Then
+                    oTest.MoveFirst()
+                    g_sARAGERunningDate = Convert.ToString(oTest.Fields.Item(0).Value).Trim
+                    sCurrDate = Convert.ToString(oTest.Fields.Item(1).Value).Trim
+                End If
+                oTest = Nothing
+
+                ' g_sARAGERunningDate = "2016-01-14 16:02:55.8120"
+                ' ===============================================================================
+                ' get the folder of AR SOA of the current DB Name
+                ' set to local
+                sTempDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\ARAGEING7B\" & oCompany.CompanyDB
+                Dim di As New System.IO.DirectoryInfo(sTempDirectory)
+                If Not di.Exists Then
+                    di.Create()
+                End If
+                sFinalExportPath = String.Format(sPathFormat, di.FullName, sCurrDate & "_" & sCurrTime)
+                sFinalFileName = di.FullName & "\ARAGEING7B_" & sCurrDate & "_" & sCurrTime & ".pdf"
+                ' ==================================================================================
+
                 If (ExecuteProcedure()) Then
-                    bIsContinue = True
-                    oEdit = oForm.Items.Item("txtDate").Specific
-                    Dim AsAtDate As String = oEdit.Value
-                    oCombo = oForm.Items.Item("cboAgeBy").Specific
-                    Dim AgeingBy As String = oCombo.Selected.Value
-                    Dim sAgeingBy As String = oCombo.Selected.Description
+                    If PrepareDataset() Then
+                        bIsContinue = True
+                        oEdit = oForm.Items.Item("txtDate").Specific
+                        Dim AsAtDate As String = oEdit.Value
+                        oCombo = oForm.Items.Item("cboAgeBy").Specific
+                        Dim AgeingBy As String = oCombo.Selected.Value
+                        Dim sAgeingBy As String = oCombo.Selected.Description
 
-                    oCombo = oForm.Items.Item("cboRptType").Specific
-                    Dim RptType As String = oCombo.Selected.Value
+                        oCombo = oForm.Items.Item("cboRptType").Specific
+                        Dim RptType As String = oCombo.Selected.Value
 
-                    Dim sSplitReval As String = "N"
-                    Dim sBPCodeFr As String = String.Empty
-                    Dim sBPCodeTo As String = String.Empty
-                    Dim sBPGrpFr As String = String.Empty
-                    Dim sBPGrpTo As String = String.Empty
-                    Dim sSlsFr As String = String.Empty
-                    Dim sSlsTo As String = String.Empty
-                    Dim sLocalCurr As String = String.Empty
-                    Dim iPageBreak As Integer = 0
+                        Dim sSplitReval As String = "N"
+                        Dim sBPCodeFr As String = String.Empty
+                        Dim sBPCodeTo As String = String.Empty
+                        Dim sBPGrpFr As String = String.Empty
+                        Dim sBPGrpTo As String = String.Empty
+                        Dim sSlsFr As String = String.Empty
+                        Dim sSlsTo As String = String.Empty
+                        Dim sLocalCurr As String = String.Empty
+                        Dim iPageBreak As Integer = 0
 
-                    'Get Parameter Value
-                    oEdit = oForm.Items.Item("txtBPFr").Specific
-                    sBPCodeFr = oEdit.Value
-                    oEdit = oForm.Items.Item("txtBPTo").Specific
-                    sBPCodeTo = oEdit.Value
-                    oEdit = oForm.Items.Item("txtBPGFr").Specific
-                    sBPGrpFr = oEdit.Value
-                    oEdit = oForm.Items.Item("txtBPGTo").Specific
-                    sBPGrpTo = oEdit.Value
-                    oEdit = oForm.Items.Item("txtSlsFr").Specific
-                    sSlsFr = oEdit.Value
-                    oEdit = oForm.Items.Item("txtSlsTo").Specific
-                    sSlsTo = oEdit.Value
-                    sLocalCurr = GetLocalCurrency()
-                    oEdit = oForm.Items.Item("txtBPCode").Specific
-                    Dim sBPCode As String = oEdit.Value
-                    oCheck = DirectCast(oForm.Items.Item("chkPage").Specific, SAPbouiCOM.CheckBox)
-                    If (oCheck.Checked) Then
-                        iPageBreak = 1
-                    End If
+                        'Get Parameter Value
+                        oEdit = oForm.Items.Item("txtBPFr").Specific
+                        sBPCodeFr = oEdit.Value
+                        oEdit = oForm.Items.Item("txtBPTo").Specific
+                        sBPCodeTo = oEdit.Value
+                        oEdit = oForm.Items.Item("txtBPGFr").Specific
+                        sBPGrpFr = oEdit.Value
+                        oEdit = oForm.Items.Item("txtBPGTo").Specific
+                        sBPGrpTo = oEdit.Value
+                        oEdit = oForm.Items.Item("txtSlsFr").Specific
+                        sSlsFr = oEdit.Value
+                        oEdit = oForm.Items.Item("txtSlsTo").Specific
+                        sSlsTo = oEdit.Value
+                        sLocalCurr = GetLocalCurrency()
+                        oEdit = oForm.Items.Item("txtBPCode").Specific
+                        Dim sBPCode As String = oEdit.Value
+                        oCheck = DirectCast(oForm.Items.Item("chkPage").Specific, SAPbouiCOM.CheckBox)
+                        If (oCheck.Checked) Then
+                            iPageBreak = 1
+                        End If
 
-                    oCheck = DirectCast(oForm.Items.Item("ckReval").Specific, SAPbouiCOM.CheckBox)
-                    If (oCheck.Checked) Then
-                        sSplitReval = "Y"
-                    Else
-                        sSplitReval = "N"
-                    End If
+                        oCheck = DirectCast(oForm.Items.Item("ckReval").Specific, SAPbouiCOM.CheckBox)
+                        If (oCheck.Checked) Then
+                            sSplitReval = "Y"
+                        Else
+                            sSplitReval = "N"
+                        End If
 
-                    SBO_Application.StatusBar.SetText("Opening Report. Please Wait...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
-                    Select Case RptType
-                        Case 0
-                            frm.Text = "AR Ageing 7 Buckets Report [Detail]"
-                            frm.ReportType = AgeingType.ARAgeing
-                        Case 1
-                            frm.Text = "AR Ageing 7 Buckets Report [Summary]"
-                            frm.ReportType = AgeingType.ARAgeingSummary
-                            If sSplitReval = "N" Then
-                                ' update [@ncm_arageing]
-                                SBO_Application.StatusBar.SetText("Opening Report. Please Wait...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                        SBO_Application.StatusBar.SetText("Opening Report. Please Wait...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                        Select Case RptType
+                            Case 0
+                                frm.Text = "AR Ageing 7 Buckets Report [Detail]"
+                                frm.ReportType = AgeingType.ARAgeing
+                            Case 1
+                                frm.Text = "AR Ageing 7 Buckets Report [Summary]"
+                                frm.ReportType = AgeingType.ARAgeingSummary
+                                If sSplitReval = "N" Then
+                                    ' update [@ncm_arageing]
+                                    SBO_Application.StatusBar.SetText("Opening Report. Please Wait...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
 
-                                Dim sLoop As String = ""
-                                Dim sSelect As String = ""
-                                Dim sUpdate As String = ""
-                                Dim sCurrency As String = ""
-                                Dim oSelect As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                                Dim oUpdate As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                                Dim oLoop As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                                    Dim sLoop As String = ""
+                                    Dim sSelect As String = ""
+                                    Dim sUpdate As String = ""
+                                    Dim sCurrency As String = ""
+                                    Dim oSelect As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                                    Dim oUpdate As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                                    Dim oLoop As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
 
-                                sSelect = " select A.""CARDCODE"", COUNT(A.""DOCCUR"") AS ""CountTotal"" FROM "
-                                sSelect &= " (select T1.""CARDCODE"", T1.""DOCCUR"" "
-                                sSelect &= "  from " & oCompany.CompanyDB & ".""@NCM_AR_AGEING"" T1 "
-                                sSelect &= "  where T1.""USERNAME"" = '" & g_sARAGERunningDate & oCompany.UserName.Trim & "'"
-                                sSelect &= "  group by T1.""CARDCODE"", T1.""DOCCUR"" ) A"
-                                sSelect &= " GROUP BY A.""CARDCODE"" HAVING COUNT(A.""DOCCUR"") > 1"
-                                sSelect &= " ORDER BY A.""CARDCODE"" "
-                                oSelect.DoQuery(sSelect)
-                                If oSelect.RecordCount > 0 Then
-                                    oSelect.MoveFirst()
-                                    While Not oSelect.EoF
-                                        sLoop = "  SELECT CASE WHEN ""Currency"" = '##' THEN '" & sLocalCurr & "' ELSE ""Currency"" END "
-                                        sLoop &= " FROM " & oCompany.CompanyDB & ".""OCRD"" "
-                                        sLoop &= " WHERE ""CardCode"" = '" & oSelect.Fields.Item(0).Value & "'"
-                                        oLoop = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                                        oLoop.DoQuery(sLoop)
-                                        If oLoop.RecordCount > 0 Then
-                                            oLoop.MoveFirst()
-                                            sCurrency = oLoop.Fields.Item(0).Value
+                                    sSelect = "  select A.""CARDCODE"", COUNT(A.""DOCCUR"") AS ""CountTotal"" FROM "
+                                    sSelect &= " (select T1.""CARDCODE"", T1.""DOCCUR"" "
+                                    sSelect &= "  from " & oCompany.CompanyDB & ".""@NCM_AR_AGEING"" T1 "
+                                    sSelect &= "  where T1.""USERNAME"" = '" & g_sARAGERunningDate & oCompany.UserName.Trim & "'"
+                                    sSelect &= "  group by T1.""CARDCODE"", T1.""DOCCUR"" ) A"
+                                    sSelect &= "  GROUP BY A.""CARDCODE"" HAVING COUNT(A.""DOCCUR"") > 1"
+                                    sSelect &= "  ORDER BY A.""CARDCODE"" "
+                                    oSelect.DoQuery(sSelect)
+                                    If oSelect.RecordCount > 0 Then
+                                        oSelect.MoveFirst()
+                                        While Not oSelect.EoF
+                                            sLoop = "  SELECT CASE WHEN ""Currency"" = '##' THEN '" & sLocalCurr & "' ELSE ""Currency"" END "
+                                            sLoop &= " FROM " & oCompany.CompanyDB & ".""OCRD"" "
+                                            sLoop &= " WHERE ""CardCode"" = '" & oSelect.Fields.Item(0).Value & "'"
+                                            oLoop = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                                            oLoop.DoQuery(sLoop)
+                                            If oLoop.RecordCount > 0 Then
+                                                oLoop.MoveFirst()
+                                                sCurrency = oLoop.Fields.Item(0).Value
 
-                                            sUpdate = " UPDATE " & oCompany.CompanyDB & ".""@NCM_AR_AGEING"" "
-                                            sUpdate &= " SET ""DOCCUR"" = '" & sCurrency & "' "
-                                            sUpdate &= " WHERE ""USERNAME"" = '" & g_sARAGERunningDate & oCompany.UserName.Trim & "'"
-                                            sUpdate &= " AND ""CARDCODE"" = '" & oSelect.Fields.Item(0).Value & "'"
-                                            oUpdate = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                                            oUpdate.DoQuery(sUpdate)
+                                                sUpdate = "  UPDATE " & oCompany.CompanyDB & ".""@NCM_AR_AGEING"" "
+                                                sUpdate &= " SET ""DOCCUR"" = '" & sCurrency & "' "
+                                                sUpdate &= " WHERE ""USERNAME"" = '" & g_sARAGERunningDate & oCompany.UserName.Trim & "'"
+                                                sUpdate &= " AND ""CARDCODE"" = '" & oSelect.Fields.Item(0).Value & "'"
+                                                oUpdate = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                                                oUpdate.DoQuery(sUpdate)
 
-                                        End If
-                                        oSelect.MoveNext()
-                                    End While
+                                            End If
+                                            oSelect.MoveNext()
+                                        End While
+                                    End If
+                                    oSelect = Nothing
+                                    oUpdate = Nothing
+                                    oLoop = Nothing
                                 End If
-                                oSelect = Nothing
-                                oUpdate = Nothing
-                                oLoop = Nothing
-                            End If
-                    End Select
+                        End Select
 
-                    frm.IsShared = g_bIsShared
-                    frm.SharedReportName = g_sReportFilename
-                    frm.ReportName = ReportName.ARAging7B_Details
-                    frm.ARAGERunningDate = g_sARAGERunningDate & oCompany.UserName
-                    frm.DBPasswordViewer = DBPassword
-                    frm.DBUsernameViewer = DBUsername
-                    frm.Username = oCompany.UserName
-                    frm.AsAtDate = AsAtDate
-                    frm.AgeBy = AgeingBy
-                    frm.BPCode = sBPCode
-                    frm.BPCodeFr = sBPCodeFr
-                    frm.BPCodeTo = sBPCodeTo
-                    frm.BPGroupFr = sBPGrpFr
-                    frm.BPGroupTo = sBPGrpTo
-                    frm.SalesEmployeeFr = sSlsFr
-                    frm.SalesEmployeeTo = sSlsTo
-                    frm.AgingBy = sAgeingBy
-                    frm.LocalCurrency = sLocalCurr
-                    frm.SectionPageBreak = iPageBreak
-                    frm.BucketText = sTxtBTxt
-                    frm.BucketValue = sTxtBVal
-                    frm.IsExcel = bIsExportToExcel
+                        frm.IsShared = g_bIsShared
+                        frm.SharedReportName = g_sReportFilename
+                        frm.ReportName = ReportName.ARAging7B_Details
+                        frm.ARAGERunningDate = g_sARAGERunningDate & oCompany.UserName
+                        frm.DatabaseName = oCompany.CompanyDB
+                        frm.DBPasswordViewer = DBPassword
+                        frm.DBUsernameViewer = DBUsername
+                        frm.Username = oCompany.UserName
+                        frm.AsAtDate = AsAtDate
+                        frm.Dataset = ds
+                        frm.AgeBy = AgeingBy
+                        frm.BPCode = sBPCode
+                        frm.BPCodeFr = sBPCodeFr
+                        frm.BPCodeTo = sBPCodeTo
+                        frm.BPGroupFr = sBPGrpFr
+                        frm.BPGroupTo = sBPGrpTo
+                        frm.SalesEmployeeFr = sSlsFr
+                        frm.SalesEmployeeTo = sSlsTo
+                        frm.AgingBy = sAgeingBy
+                        frm.LocalCurrency = sLocalCurr
+                        frm.SectionPageBreak = iPageBreak
+                        frm.BucketText = sTxtBTxt
+                        frm.BucketValue = sTxtBVal
+                        frm.IsExcel = bIsExportToExcel
+                        frm.ExportPath = sFinalFileName
+                        Select Case SBO_Application.ClientType
+                            Case SAPbouiCOM.BoClientType.ct_Desktop
+                                frm.ClientType = "D"
+                            Case SAPbouiCOM.BoClientType.ct_Browser
+                                frm.ClientType = "S"
+                        End Select
+                    End If
                 End If
             Catch ex As Exception
                 Throw ex
@@ -714,7 +851,7 @@ Public Class frmARAgeing7B
                 If (bIsExportToExcel) Then
                     'Export To Excel
                     '--------------------------------------------------------------------------------
-                    frm.OpenAgingReport()
+                    frm.OPEN_AGEING_REPORT_6_AND_7_BUCKETS()
                 Else
                     'Not Export To Excel
                     '--------------------------------------------------------------------------------

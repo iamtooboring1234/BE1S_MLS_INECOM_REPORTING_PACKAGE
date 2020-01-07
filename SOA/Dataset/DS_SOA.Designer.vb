@@ -1851,6 +1851,10 @@ Partial Public Class DS_SOA
         
         Private columnUSERNAME As Global.System.Data.DataColumn
         
+        Private columnBRANCH As Global.System.Data.DataColumn
+        
+        Private columnOFFICE As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub New()
             MyBase.New
@@ -2219,6 +2223,20 @@ Partial Public Class DS_SOA
             End Get
         End Property
         
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property BRANCHColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBRANCH
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property OFFICEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOFFICE
+            End Get
+        End Property
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2296,9 +2314,11 @@ Partial Public Class DS_SOA
                     ByVal SERIESNAME As String,  _
                     ByVal SLPCODE As Integer,  _
                     ByVal TRANSID As String,  _
-                    ByVal USERNAME As String) As __NCM_SOCRow
+                    ByVal USERNAME As String,  _
+                    ByVal BRANCH As String,  _
+                    ByVal OFFICE As String) As __NCM_SOCRow
             Dim row__NCM_SOCRow As __NCM_SOCRow = CType(Me.NewRow,__NCM_SOCRow)
-            Dim columnValuesArray() As Object = New Object() {BALDUECP, BALDUEOP, BASEDOCDATE, BASEENTRY, BASEPOSDATE, BASEREF, BASETRANSID, BASETYPE, CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, COUNTRY, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, EXTRACTBY, INSTL_ID, INSTLMNTID, INTRNMATCH, JN_REMARKS, LINE_ID, NUMATCARD, OPENPAID, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SERIES, SERIESNAME, SLPCODE, TRANSID, USERNAME}
+            Dim columnValuesArray() As Object = New Object() {BALDUECP, BALDUEOP, BASEDOCDATE, BASEENTRY, BASEPOSDATE, BASEREF, BASETRANSID, BASETYPE, CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, COUNTRY, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, EXTRACTBY, INSTL_ID, INSTLMNTID, INTRNMATCH, JN_REMARKS, LINE_ID, NUMATCARD, OPENPAID, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SERIES, SERIESNAME, SLPCODE, TRANSID, USERNAME, BRANCH, OFFICE}
             row__NCM_SOCRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_SOCRow)
             Return row__NCM_SOCRow
@@ -2371,6 +2391,8 @@ Partial Public Class DS_SOA
             Me.columnSLPCODE = MyBase.Columns("SLPCODE")
             Me.columnTRANSID = MyBase.Columns("TRANSID")
             Me.columnUSERNAME = MyBase.Columns("USERNAME")
+            Me.columnBRANCH = MyBase.Columns("BRANCH")
+            Me.columnOFFICE = MyBase.Columns("OFFICE")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -2471,6 +2493,10 @@ Partial Public Class DS_SOA
             MyBase.Columns.Add(Me.columnTRANSID)
             Me.columnUSERNAME = New Global.System.Data.DataColumn("USERNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUSERNAME)
+            Me.columnBRANCH = New Global.System.Data.DataColumn("BRANCH", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBRANCH)
+            Me.columnOFFICE = New Global.System.Data.DataColumn("OFFICE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOFFICE)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_SOC")
             Me.ExtendedProperties.Add("Generator_UserTableName", "@NCM_SOC")
         End Sub
@@ -2698,6 +2724,10 @@ Partial Public Class DS_SOA
         Private columnTRANSID As Global.System.Data.DataColumn
         
         Private columnUSERNAME As Global.System.Data.DataColumn
+        
+        Private columnBRANCH As Global.System.Data.DataColumn
+        
+        Private columnOFFICE As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub New()
@@ -3067,6 +3097,20 @@ Partial Public Class DS_SOA
             End Get
         End Property
         
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property BRANCHColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBRANCH
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property OFFICEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOFFICE
+            End Get
+        End Property
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -3144,9 +3188,11 @@ Partial Public Class DS_SOA
                     ByVal SERIESNAME As String,  _
                     ByVal SLPCODE As Integer,  _
                     ByVal TRANSID As String,  _
-                    ByVal USERNAME As String) As __NCM_SOC_APRow
+                    ByVal USERNAME As String,  _
+                    ByVal BRANCH As String,  _
+                    ByVal OFFICE As String) As __NCM_SOC_APRow
             Dim row__NCM_SOC_APRow As __NCM_SOC_APRow = CType(Me.NewRow,__NCM_SOC_APRow)
-            Dim columnValuesArray() As Object = New Object() {BALDUECP, BALDUEOP, BASEDOCDATE, BASEENTRY, BASEPOSDATE, BASEREF, BASETRANSID, BASETYPE, CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, COUNTRY, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, EXTRACTBY, INSTL_ID, INSTLMNTID, INTRNMATCH, JN_REMARKS, LINE_ID, NUMATCARD, OPENPAID, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SERIES, SERIESNAME, SLPCODE, TRANSID, USERNAME}
+            Dim columnValuesArray() As Object = New Object() {BALDUECP, BALDUEOP, BASEDOCDATE, BASEENTRY, BASEPOSDATE, BASEREF, BASETRANSID, BASETYPE, CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, COUNTRY, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, EXTRACTBY, INSTL_ID, INSTLMNTID, INTRNMATCH, JN_REMARKS, LINE_ID, NUMATCARD, OPENPAID, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SERIES, SERIESNAME, SLPCODE, TRANSID, USERNAME, BRANCH, OFFICE}
             row__NCM_SOC_APRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_SOC_APRow)
             Return row__NCM_SOC_APRow
@@ -3219,6 +3265,8 @@ Partial Public Class DS_SOA
             Me.columnSLPCODE = MyBase.Columns("SLPCODE")
             Me.columnTRANSID = MyBase.Columns("TRANSID")
             Me.columnUSERNAME = MyBase.Columns("USERNAME")
+            Me.columnBRANCH = MyBase.Columns("BRANCH")
+            Me.columnOFFICE = MyBase.Columns("OFFICE")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -3319,6 +3367,10 @@ Partial Public Class DS_SOA
             MyBase.Columns.Add(Me.columnTRANSID)
             Me.columnUSERNAME = New Global.System.Data.DataColumn("USERNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUSERNAME)
+            Me.columnBRANCH = New Global.System.Data.DataColumn("BRANCH", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBRANCH)
+            Me.columnOFFICE = New Global.System.Data.DataColumn("OFFICE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOFFICE)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_SOC_AP")
             Me.ExtendedProperties.Add("Generator_UserTableName", "@NCM_SOC_AP")
         End Sub
@@ -6467,6 +6519,34 @@ Partial Public Class DS_SOA
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property BRANCH() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC.BRANCHColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BRANCH' in table '@NCM_SOC' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC.BRANCHColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property OFFICE() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC.OFFICEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OFFICE' in table '@NCM_SOC' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC.OFFICEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsBALDUECPNull() As Boolean
             Return Me.IsNull(Me._table_NCM_SOC.BALDUECPColumn)
         End Function
@@ -6944,6 +7024,26 @@ Partial Public Class DS_SOA
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetUSERNAMENull()
             Me(Me._table_NCM_SOC.USERNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsBRANCHNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC.BRANCHColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetBRANCHNull()
+            Me(Me._table_NCM_SOC.BRANCHColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsOFFICENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC.OFFICEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetOFFICENull()
+            Me(Me._table_NCM_SOC.OFFICEColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -7635,6 +7735,34 @@ Partial Public Class DS_SOA
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property BRANCH() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC_AP.BRANCHColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BRANCH' in table '@NCM_SOC_AP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC_AP.BRANCHColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property OFFICE() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC_AP.OFFICEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OFFICE' in table '@NCM_SOC_AP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC_AP.OFFICEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsBALDUECPNull() As Boolean
             Return Me.IsNull(Me._table_NCM_SOC_AP.BALDUECPColumn)
         End Function
@@ -8112,6 +8240,26 @@ Partial Public Class DS_SOA
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetUSERNAMENull()
             Me(Me._table_NCM_SOC_AP.USERNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsBRANCHNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC_AP.BRANCHColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetBRANCHNull()
+            Me(Me._table_NCM_SOC_AP.BRANCHColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsOFFICENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC_AP.OFFICEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetOFFICENull()
+            Me(Me._table_NCM_SOC_AP.OFFICEColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

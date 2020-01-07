@@ -65,6 +65,11 @@
               <xs:element name="SLPCODE" msprop:Generator_UserColumnName="SLPCODE" msprop:Generator_ColumnPropNameInRow="SLPCODE" msprop:Generator_ColumnVarNameInTable="columnSLPCODE" msprop:Generator_ColumnPropNameInTable="SLPCODEColumn" type="xs:int" minOccurs="0" />
               <xs:element name="TRANSID" msprop:Generator_UserColumnName="TRANSID" msprop:Generator_ColumnPropNameInRow="TRANSID" msprop:Generator_ColumnVarNameInTable="columnTRANSID" msprop:Generator_ColumnPropNameInTable="TRANSIDColumn" type="xs:string" minOccurs="0" />
               <xs:element name="USERNAME" msprop:Generator_UserColumnName="USERNAME" msprop:Generator_ColumnPropNameInRow="USERNAME" msprop:Generator_ColumnVarNameInTable="columnUSERNAME" msprop:Generator_ColumnPropNameInTable="USERNAMEColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCH" msprop:Generator_UserColumnName="BRANCH" msprop:Generator_ColumnVarNameInTable="columnBRANCH" msprop:Generator_ColumnPropNameInRow="BRANCH" msprop:Generator_ColumnPropNameInTable="BRANCHColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="OFFICE" msprop:Generator_UserColumnName="OFFICE" msprop:Generator_ColumnVarNameInTable="columnOFFICE" msprop:Generator_ColumnPropNameInRow="OFFICE" msprop:Generator_ColumnPropNameInTable="OFFICEColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="PAYMENTCUR" msprop:Generator_UserColumnName="PAYMENTCUR" msprop:Generator_ColumnPropNameInRow="PAYMENTCUR" msprop:Generator_ColumnVarNameInTable="columnPAYMENTCUR" msprop:Generator_ColumnPropNameInTable="PAYMENTCURColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="PAYMENTAMT" msprop:Generator_UserColumnName="PAYMENTAMT" msprop:Generator_ColumnPropNameInRow="PAYMENTAMT" msprop:Generator_ColumnVarNameInTable="columnPAYMENTAMT" msprop:Generator_ColumnPropNameInTable="PAYMENTAMTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PAYMENTDATE" msprop:Generator_UserColumnName="PAYMENTDATE" msprop:Generator_ColumnPropNameInRow="PAYMENTDATE" msprop:Generator_ColumnVarNameInTable="columnPAYMENTDATE" msprop:Generator_ColumnPropNameInTable="PAYMENTDATEColumn" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -107,6 +112,8 @@
               <xs:element name="TRANSID" msprop:Generator_UserColumnName="TRANSID" msprop:Generator_ColumnVarNameInTable="columnTRANSID" msprop:Generator_ColumnPropNameInRow="TRANSID" msprop:Generator_ColumnPropNameInTable="TRANSIDColumn" type="xs:string" minOccurs="0" />
               <xs:element name="USERNAME" msprop:Generator_UserColumnName="USERNAME" msprop:Generator_ColumnVarNameInTable="columnUSERNAME" msprop:Generator_ColumnPropNameInRow="USERNAME" msprop:Generator_ColumnPropNameInTable="USERNAMEColumn" type="xs:string" minOccurs="0" />
               <xs:element name="VENDORREF" msprop:Generator_UserColumnName="VENDORREF" msprop:Generator_ColumnVarNameInTable="columnVENDORREF" msprop:Generator_ColumnPropNameInRow="VENDORREF" msprop:Generator_ColumnPropNameInTable="VENDORREFColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCH" msprop:Generator_UserColumnName="BRANCH" msprop:Generator_ColumnVarNameInTable="columnBRANCH" msprop:Generator_ColumnPropNameInRow="BRANCH" msprop:Generator_ColumnPropNameInTable="BRANCHColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="OFFICE" msprop:Generator_UserColumnName="OFFICE" msprop:Generator_ColumnVarNameInTable="columnOFFICE" msprop:Generator_ColumnPropNameInRow="OFFICE" msprop:Generator_ColumnPropNameInTable="OFFICEColumn" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

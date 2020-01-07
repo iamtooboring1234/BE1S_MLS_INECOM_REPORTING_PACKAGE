@@ -612,7 +612,6 @@ Public Class frmArSOA
             SBO_Application.MessageBox("[ARSOA].[LoadViewer] : " & ex.Message)
         End Try
     End Sub
-
     Private Sub LoadViewer2()
         oFormARSOA.Items.Item("btnExecute").Enabled = False
         Try
@@ -1599,6 +1598,7 @@ Public Class frmArSOA
                                             Dim myThread As New System.Threading.Thread(AddressOf LoadViewer)
                                             myThread.SetApartmentState(Threading.ApartmentState.STA)
                                             myThread.Start()
+
                                         Case Else
                                             If Not IsIncludeModule(ReportName.SOA_Email_Config) Then
                                                 If oFormARSOA.DataSources.UserDataSources.Item("cbSOAPrt").ValueEx = "1" Then 'email

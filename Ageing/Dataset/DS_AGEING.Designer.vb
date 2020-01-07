@@ -739,6 +739,16 @@ Partial Public Class DS_AGEING
         
         Private columnUSERNAME As Global.System.Data.DataColumn
         
+        Private columnBRANCH As Global.System.Data.DataColumn
+        
+        Private columnOFFICE As Global.System.Data.DataColumn
+        
+        Private columnPAYMENTCUR As Global.System.Data.DataColumn
+        
+        Private columnPAYMENTAMT As Global.System.Data.DataColumn
+        
+        Private columnPAYMENTDATE As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub New()
             MyBase.New
@@ -1030,6 +1040,41 @@ Partial Public Class DS_AGEING
             End Get
         End Property
         
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property BRANCHColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBRANCH
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property OFFICEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOFFICE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property PAYMENTCURColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPAYMENTCUR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property PAYMENTAMTColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPAYMENTAMT
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property PAYMENTDATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPAYMENTDATE
+            End Get
+        End Property
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1096,9 +1141,14 @@ Partial Public Class DS_AGEING
                     ByVal REF4 As String,  _
                     ByVal SLPCODE As Integer,  _
                     ByVal TRANSID As String,  _
-                    ByVal USERNAME As String) As __NCM_AR_AGEINGRow
+                    ByVal USERNAME As String,  _
+                    ByVal BRANCH As String,  _
+                    ByVal OFFICE As String,  _
+                    ByVal PAYMENTCUR As String,  _
+                    ByVal PAYMENTAMT As Decimal,  _
+                    ByVal PAYMENTDATE As Date) As __NCM_AR_AGEINGRow
             Dim row__NCM_AR_AGEINGRow As __NCM_AR_AGEINGRow = CType(Me.NewRow,__NCM_AR_AGEINGRow)
-            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, REF3, REF4, SLPCODE, TRANSID, USERNAME}
+            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, REF3, REF4, SLPCODE, TRANSID, USERNAME, BRANCH, OFFICE, PAYMENTCUR, PAYMENTAMT, PAYMENTDATE}
             row__NCM_AR_AGEINGRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_AR_AGEINGRow)
             Return row__NCM_AR_AGEINGRow
@@ -1160,6 +1210,11 @@ Partial Public Class DS_AGEING
             Me.columnSLPCODE = MyBase.Columns("SLPCODE")
             Me.columnTRANSID = MyBase.Columns("TRANSID")
             Me.columnUSERNAME = MyBase.Columns("USERNAME")
+            Me.columnBRANCH = MyBase.Columns("BRANCH")
+            Me.columnOFFICE = MyBase.Columns("OFFICE")
+            Me.columnPAYMENTCUR = MyBase.Columns("PAYMENTCUR")
+            Me.columnPAYMENTAMT = MyBase.Columns("PAYMENTAMT")
+            Me.columnPAYMENTDATE = MyBase.Columns("PAYMENTDATE")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -1238,6 +1293,16 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnTRANSID)
             Me.columnUSERNAME = New Global.System.Data.DataColumn("USERNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUSERNAME)
+            Me.columnBRANCH = New Global.System.Data.DataColumn("BRANCH", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBRANCH)
+            Me.columnOFFICE = New Global.System.Data.DataColumn("OFFICE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOFFICE)
+            Me.columnPAYMENTCUR = New Global.System.Data.DataColumn("PAYMENTCUR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPAYMENTCUR)
+            Me.columnPAYMENTAMT = New Global.System.Data.DataColumn("PAYMENTAMT", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPAYMENTAMT)
+            Me.columnPAYMENTDATE = New Global.System.Data.DataColumn("PAYMENTDATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPAYMENTDATE)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_AR_AGEING")
             Me.ExtendedProperties.Add("Generator_UserTableName", "@NCM_AR_AGEING")
         End Sub
@@ -1441,6 +1506,10 @@ Partial Public Class DS_AGEING
         Private columnUSERNAME As Global.System.Data.DataColumn
         
         Private columnVENDORREF As Global.System.Data.DataColumn
+        
+        Private columnBRANCH As Global.System.Data.DataColumn
+        
+        Private columnOFFICE As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub New()
@@ -1726,6 +1795,20 @@ Partial Public Class DS_AGEING
             End Get
         End Property
         
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property BRANCHColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBRANCH
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property OFFICEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOFFICE
+            End Get
+        End Property
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1791,9 +1874,11 @@ Partial Public Class DS_AGEING
                     ByVal SLPCODE As Integer,  _
                     ByVal TRANSID As String,  _
                     ByVal USERNAME As String,  _
-                    ByVal VENDORREF As String) As __NCM_AP_AGEINGRow
+                    ByVal VENDORREF As String,  _
+                    ByVal BRANCH As String,  _
+                    ByVal OFFICE As String) As __NCM_AP_AGEINGRow
             Dim row__NCM_AP_AGEINGRow As __NCM_AP_AGEINGRow = CType(Me.NewRow,__NCM_AP_AGEINGRow)
-            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SLPCODE, TRANSID, USERNAME, VENDORREF}
+            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SLPCODE, TRANSID, USERNAME, VENDORREF, BRANCH, OFFICE}
             row__NCM_AP_AGEINGRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_AP_AGEINGRow)
             Return row__NCM_AP_AGEINGRow
@@ -1854,6 +1939,8 @@ Partial Public Class DS_AGEING
             Me.columnTRANSID = MyBase.Columns("TRANSID")
             Me.columnUSERNAME = MyBase.Columns("USERNAME")
             Me.columnVENDORREF = MyBase.Columns("VENDORREF")
+            Me.columnBRANCH = MyBase.Columns("BRANCH")
+            Me.columnOFFICE = MyBase.Columns("OFFICE")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -1930,6 +2017,10 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnUSERNAME)
             Me.columnVENDORREF = New Global.System.Data.DataColumn("VENDORREF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnVENDORREF)
+            Me.columnBRANCH = New Global.System.Data.DataColumn("BRANCH", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBRANCH)
+            Me.columnOFFICE = New Global.System.Data.DataColumn("OFFICE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOFFICE)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_AP_AGEING")
             Me.ExtendedProperties.Add("Generator_UserTableName", "@NCM_AP_AGEING")
         End Sub
@@ -3226,6 +3317,76 @@ Partial Public Class DS_AGEING
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property BRANCH() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.BRANCHColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BRANCH' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.BRANCHColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property OFFICE() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.OFFICEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OFFICE' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.OFFICEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property PAYMENTCUR() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.PAYMENTCURColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PAYMENTCUR' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.PAYMENTCURColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property PAYMENTAMT() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.PAYMENTAMTColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PAYMENTAMT' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.PAYMENTAMTColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property PAYMENTDATE() As Date
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.PAYMENTDATEColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PAYMENTDATE' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.PAYMENTDATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsCANCELLEDNull() As Boolean
             Return Me.IsNull(Me._table_NCM_AR_AGEING.CANCELLEDColumn)
         End Function
@@ -3593,6 +3754,56 @@ Partial Public Class DS_AGEING
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetUSERNAMENull()
             Me(Me._table_NCM_AR_AGEING.USERNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsBRANCHNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.BRANCHColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetBRANCHNull()
+            Me(Me._table_NCM_AR_AGEING.BRANCHColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsOFFICENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.OFFICEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetOFFICENull()
+            Me(Me._table_NCM_AR_AGEING.OFFICEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsPAYMENTCURNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.PAYMENTCURColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetPAYMENTCURNull()
+            Me(Me._table_NCM_AR_AGEING.PAYMENTCURColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsPAYMENTAMTNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.PAYMENTAMTColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetPAYMENTAMTNull()
+            Me(Me._table_NCM_AR_AGEING.PAYMENTAMTColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsPAYMENTDATENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.PAYMENTDATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetPAYMENTDATENull()
+            Me(Me._table_NCM_AR_AGEING.PAYMENTDATEColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -4116,6 +4327,34 @@ Partial Public Class DS_AGEING
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property BRANCH() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.BRANCHColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BRANCH' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.BRANCHColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property OFFICE() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.OFFICEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OFFICE' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.OFFICEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsCANCELLEDNull() As Boolean
             Return Me.IsNull(Me._table_NCM_AP_AGEING.CANCELLEDColumn)
         End Function
@@ -4473,6 +4712,26 @@ Partial Public Class DS_AGEING
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetVENDORREFNull()
             Me(Me._table_NCM_AP_AGEING.VENDORREFColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsBRANCHNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.BRANCHColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetBRANCHNull()
+            Me(Me._table_NCM_AP_AGEING.BRANCHColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsOFFICENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.OFFICEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetOFFICENull()
+            Me(Me._table_NCM_AP_AGEING.OFFICEColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
