@@ -1,3 +1,6 @@
+'' © Copyright © 2007-2019, Inecom Pte Ltd, All rights reserved.
+'' =============================================================
+
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 Imports System.IO
@@ -150,6 +153,60 @@ Public Class Hydac_FormViewer
     Private cDataset As DataSet
     Private g_sExportPath As String = ""
     Private cClientType As String = ""
+
+
+    Private CLOG_UserId As String = ""
+    Private CLOG_CompanyName As String = ""
+    Private CLOG_GenBy As String = ""
+    Private CLOG_dtFrom As Date
+    Private CLOG_dtTo As Date
+
+
+#Region "Property Change Log"
+    Public Property CL_CompanyNm() As String
+        Get
+            Return CLOG_CompanyName
+        End Get
+        Set(ByVal Value As String)
+            CLOG_CompanyName = Value
+        End Set
+    End Property
+
+    Public Property CL_UserID() As String
+        Get
+            Return CLOG_UserId
+        End Get
+        Set(ByVal Value As String)
+            CLOG_UserId = Value
+        End Set
+    End Property
+
+    Public Property CL_DateFrom() As Date
+        Get
+            Return CLOG_dtFrom
+        End Get
+        Set(ByVal Value As Date)
+            CLOG_dtFrom = Value
+        End Set
+    End Property
+
+    Public Property CL_DateTo() As Date
+        Get
+            Return CLOG_dtTo
+        End Get
+        Set(ByVal Value As Date)
+            CLOG_dtTo = Value
+        End Set
+    End Property
+    Public Property CL_GenBy() As String
+        Get
+            Return CLOG_GenBy
+        End Get
+        Set(ByVal Value As String)
+            CLOG_GenBy = Value
+        End Set
+    End Property
+#End Region
 
     Friend Property ExportPath() As String
         Get
@@ -2504,6 +2561,57 @@ Public Class Hydac_FormViewer
         End If
     End Sub
 
+    Friend Sub OPEN_HANADS_CHANGE_LOG()
+        Dim subreport As ReportDocument
+        Dim rpt As ReportDocument
+
+        If g_bIsShared Then
+            rpt = New ReportDocument
+            rpt.Load(g_sSharedReportName)
+        Else
+            rpt = New rptChgLogAudit
+        End If
+
+        With rpt
+            Me.Text = "Change Log Audit Report"
+            .SetDataSource(cDataset)
+            .DataDefinition.FormulaFields.Item("CompanyName").Text = "'" & CLOG_CompanyName.ToUpper & "'"
+            .DataDefinition.FormulaFields.Item("UserID").Text = "'" & CLOG_UserId & "'"
+            .DataDefinition.FormulaFields.Item("GenBy").Text = "'" & CLOG_GenBy & "'"
+
+            If CLOG_dtFrom <> Nothing Then
+                .DataDefinition.FormulaFields.Item("DtFrom").Text = String.Format("'{0}'", CLOG_dtFrom.ToShortDateString())
+            End If
+
+            If CLOG_dtTo <> Nothing Then
+                .DataDefinition.FormulaFields.Item("DtTo").Text = String.Format("'{0}'", CLOG_dtTo.ToShortDateString())
+            End If
+            .Refresh()
+        End With
+
+        If cClientType = "S" Then
+            ' Web Browser
+            ' generate pdf, put to a standard local folder, with specific name.
+            ' call the pdf out.
+
+            rpt.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
+            rpt.ExportOptions.ExportFormatType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
+
+            Dim objOptions As New CrystalDecisions.Shared.DiskFileDestinationOptions
+            objOptions.DiskFileName = g_sExportPath
+            rpt.ExportOptions.DestinationOptions = objOptions
+            rpt.Export()
+        Else
+            'Desktop
+            crViewer.ReportSource = rpt
+            crViewer.DisplayGroupTree = False
+            crViewer.PerformAutoScale()
+            crViewer.Show()
+        End If
+
+    End Sub
+
+
     Private Sub frmViewer_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim crtableLogoninfos As New TableLogOnInfos
@@ -2520,6 +2628,9 @@ Public Class Hydac_FormViewer
             crConnectionInfo.Password = global_DBPassword
 
             Select Case ReportName
+                Case ReportName.CHANGE_LOG_AUDIT
+                    OPEN_HANADS_CHANGE_LOG()
+
                 Case ReportName.ARAging_Details, ReportName.ARAging_Summary
                     OPEN_HANADS_AGEING_5BUCKETS()
 

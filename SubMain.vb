@@ -1,3 +1,6 @@
+'' © Copyright © 2007-2019, Inecom Pte Ltd, All rights reserved.
+'' =============================================================
+
 Option Strict Off
 Option Explicit On 
 
@@ -86,8 +89,9 @@ Public Enum ReportName
     ARAgeingDetailsCRM = 49
     BankReconciliation = 50
     ARSOA_BY_PROJECT = 51
-    PV_Email_Config = 52 'AT added on 04.05.2019
-    PV_Mass_Email = 53 'AT added on 04.05.2019
+    PV_Email_Config = 52    'AT added on 04.05.2019
+    PV_Mass_Email = 53      'AT added on 04.05.2019
+    CHANGE_LOG_AUDIT = 55         'ES added on 03.10.2019
 End Enum
 Public Enum CompanyCode
     General = 0
@@ -148,9 +152,10 @@ Module SubMain
     Friend oStockAudit_Out As NCM_StockAuditTrail_Out
     Friend oFrmSendEmail As frmSendEmail
     Friend oFrmSendEmailProj As frmSendEmailProj
-    Friend oNCM_IAR As CLS_NCM_IAR  'ES added on 10.11.2011
-    Friend oNCM_RLR As CLS_NCM_RLR  'ES added on 10.11.2011
-    Friend oNCM_WAR As CLS_NCM_WAR  'ES added on 10.11.2011
+    Friend oNCM_IAR As CLS_NCM_IAR                  'ES added on 10.11.2011
+    Friend oNCM_RLR As CLS_NCM_RLR                  'ES added on 10.11.2011
+    Friend oNCM_WAR As CLS_NCM_WAR                  'ES added on 10.11.2011
+    Friend oNCM_CHG_LOG_AUDIT As NCM_CHG_LOG_AUDIT  'ES added on 03.10.2019
     Friend oFrmPVSendEmail As frmPVSendEmail
 
     Public SQLDbConnection As System.Data.SqlClient.SqlConnection
@@ -197,6 +202,11 @@ Module SubMain
     Friend Const MNU_ARAGEING_PROJ As String = "MNU_ARAGEING_PROJ"
     Friend Const FRM_APAGEING_PROJ As String = "NCM_APAGEING_PROJ"
     Friend Const FRM_ARAGEING_PROJ As String = "NCM_ARAGEING_PROJ"
+
+    Friend Const ACTIONS_ITEM_UID As String = "btnInecom"
+    Friend Const MNU_CHG_LOG_AUDIT As String = "MNU_CHG_LOG_AUDIT"
+    Friend Const FRM_CHG_LOG_AUDIT As String = "NCM_CHG_LOG_AUDIT"
+    Friend Const FILE_CHG_LOG_AUDIT As String = "FIL_CHG_LOG_AUDIT.srf"
 
     Friend Const MNU_NCM_GLL As String = "MNU_NCM_GLL"
     Friend Const FRM_NCM_GLL As String = "NCM_GLL"
@@ -287,6 +297,7 @@ Module SubMain
             oAPAgeing_Proj = New frmAPAgeing_Proj
             oNCM_AR_AGEING_CRM = New frmARAgeingCRM
             oNCM_BREC = New NCM_BREC_V
+            oNCM_CHG_LOG_AUDIT = New NCM_CHG_LOG_AUDIT
 
             oSOA_TOS = New frmSOA_TOS
             oGPA = New FRM_GPA
@@ -441,6 +452,14 @@ Module SubMain
                 oNewMenuItem.Type = SAPbouiCOM.BoMenuType.mt_STRING
                 oNewMenuItem.UniqueID = MNU_SUB_WAR
                 oNewMenuItem.String = "Weighted Average Demand"
+                oMenus.AddEx(oNewMenuItem)
+            End If
+
+            If (IsIncludeModule(ReportName.CHANGE_LOG_AUDIT)) Then
+                oNewMenuItem = SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_MenuCreationParams)
+                oNewMenuItem.Type = SAPbouiCOM.BoMenuType.mt_STRING
+                oNewMenuItem.UniqueID = MNU_CHG_LOG_AUDIT
+                oNewMenuItem.String = "Change Log Audit Report"
                 oMenus.AddEx(oNewMenuItem)
             End If
 
@@ -1080,6 +1099,8 @@ Module SubMain
     End Function
     Friend Function GetReportCode(ByVal RptName As ReportName) As String
         Select Case RptName
+            Case ReportName.CHANGE_LOG_AUDIT                '55
+                Return "CHANGE_LOG_AUDIT"
             Case ReportName.ARSOA_Landscape                 '48
                 Return "AR_SOA_LANDSCAPE"
             Case ReportName.GL_Listing                      '1
@@ -1269,10 +1290,89 @@ Module SubMain
     End Function
 #End Region
 
+#Region "HANA Connection"
+    Public Function ExecuteHANACommandToDataAdapter(ByVal sQuery As String) As System.Data.Common.DbDataAdapter
+        Dim sFormattedQuery As String = ""
+        Dim sCompanyDB As String
+        Dim SqlConn As DbConnection = Nothing
+        Dim DA As DbDataAdapter = Nothing
+        Dim Command As DbCommand = Nothing
+        Try
+
+            Dim _DbProviderFactoryObject As DbProviderFactory = Nothing
+
+            SqlConn = GetHANAConnection(_DbProviderFactoryObject)
+            SqlConn.Open()
+
+            DA = _DbProviderFactoryObject.CreateDataAdapter()
+            Command = SqlConn.CreateCommand()
+            sCompanyDB = """" & oCompany.CompanyDB & """."
+            sFormattedQuery = String.Format(sQuery, sCompanyDB)
+            Command.CommandText = sFormattedQuery
+            Command.ExecuteNonQuery()
+            DA.SelectCommand = Command
+            Return DA
+        Finally
+
+        End Try
+    End Function
+
+    Public Function GetHANAConnection(ByRef _DbProviderFactoryObject As DbProviderFactory) As DbConnection
+
+        _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+        Dim HANADbConnection As DbConnection
+        HANADbConnection = _DbProviderFactoryObject.CreateConnection()
+        HANADbConnection.ConnectionString = connStr
+
+        Return HANADbConnection
+    End Function
+
+    Public Function ExecuteHANACommandToDataTable(ByVal sQuery As String) As System.Data.DataTable
+        Dim dt As System.Data.DataTable = New System.Data.DataTable()
+        Dim sFormattedQuery As String = ""
+        Dim sCompanyDB As String
+        Dim SqlConn As DbConnection = Nothing
+        Dim DA As DbDataAdapter = Nothing
+        Dim Command As DbCommand = Nothing
+        Try
+            Dim _DbProviderFactoryObject As DbProviderFactory = Nothing
+
+            SqlConn = GetHANAConnection(_DbProviderFactoryObject)
+            SqlConn.Open()
+
+            DA = _DbProviderFactoryObject.CreateDataAdapter()
+            Command = SqlConn.CreateCommand()
+
+            sCompanyDB = """" & oCompany.CompanyDB & """."
+            sFormattedQuery = String.Format(sQuery, sCompanyDB)
+            Command.CommandText = sFormattedQuery
+            Command.ExecuteNonQuery()
+            DA.SelectCommand = Command
+            DA.Fill(dt)
+            Return dt
+        Finally
+            If SqlConn IsNot Nothing Then
+                If SqlConn.State = ConnectionState.Open Then
+                    SqlConn.Close()
+                    SqlConn.Dispose()
+                End If
+            End If
+            If DA IsNot Nothing Then
+                DA.Dispose()
+            End If
+            If Command IsNot Nothing Then
+                Command.Dispose()
+            End If
+        End Try
+    End Function
+#End Region
+
 #Region "Event Handler"
     Private Sub SBO_Application_ItemEvent(ByVal FormUID As String, ByRef pVal As SAPbouiCOM.ItemEvent, ByRef BubbleEvent As Boolean) Handles SBO_Application.ItemEvent
         Try
             Select Case FormUID
+                Case FRM_CHG_LOG_AUDIT
+                    BubbleEvent = oNCM_CHG_LOG_AUDIT.ItemEvent(pVal)
                 Case FRM_NCM_BREC
                     BubbleEvent = oNCM_BREC.ItemEvent(pVal)
                 Case FRM_NCM_PO_PROJ
@@ -1378,6 +1478,10 @@ Module SubMain
                 End Select
             Else
                 Select Case pVal.MenuUID
+                    Case MNU_CHG_LOG_AUDIT
+                        oNCM_CHG_LOG_AUDIT.LoadForm()
+                        BubbleEvent = False
+
                     Case MNU_NCM_BREC
                         oNCM_BREC.LoadForm()
                         BubbleEvent = False

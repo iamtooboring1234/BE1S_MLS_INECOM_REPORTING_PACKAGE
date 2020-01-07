@@ -128,10 +128,6 @@
     <Reference Include="CrystalDecisions.Shared, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Web, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\EASendMail\EASendMail.dll</HintPath>
-    </Reference>
     <Reference Include="Interop.SAPbobsCOM, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Interop.SAPbouiCOM, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="LicenseClient, Version=2.0.5245.32686, Culture=neutral, processorArchitecture=MSIL" />
@@ -354,6 +350,24 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Bank Reconciliation\NCM_BREC_V.vb" />
+    <Compile Include="Change Log\DataSet\DatasetLog.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetLog.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Change Log\NCM_CHG_LOG_AUDIT.vb" />
+    <Compile Include="Change Log\rptChgLogAudit.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptChgLogAudit.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Change Log\rptChgLogAudit1.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptChgLogAudit1.rpt</DependentUpon>
+    </Compile>
     <Compile Include="GL Listing\RPT_GLL_NEW.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1090,6 +1104,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_BANK_RECON.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Change Log\rptChgLogAudit.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptChgLogAudit.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Change Log\rptChgLogAudit1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptChgLogAudit1.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="GL Listing\RPT_GLL_NEW.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_GLL_NEW.vb</LastGenOutput>
@@ -1436,6 +1458,7 @@
     <EmbeddedResource Include="Ageing\SRF\NCM_ARAGEING_7B.srf" />
     <EmbeddedResource Include="Ageing\SRF\ncmARAgeingCRM.srf" />
     <EmbeddedResource Include="Bank Reconciliation\NCM_BREC.srf" />
+    <EmbeddedResource Include="Change Log\FIL_CHG_LOG_AUDIT.srf" />
     <Content Include="GST Report\Dataset\GST_Report_XML.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GST_Report_XML.Designer.vb</LastGenOutput>
@@ -1479,6 +1502,17 @@
       <DependentUpon>DS_AGEING.xsd</DependentUpon>
     </None>
     <None Include="app.config" />
+    <None Include="Change Log\DataSet\DatasetLog.xsc">
+      <DependentUpon>DatasetLog.xsd</DependentUpon>
+    </None>
+    <None Include="Change Log\DataSet\DatasetLog.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetLog.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Change Log\DataSet\DatasetLog.xss">
+      <DependentUpon>DatasetLog.xsd</DependentUpon>
+    </None>
     <None Include="GL Listing\XML_GLL.xsc">
       <DependentUpon>XML_GLL.xsd</DependentUpon>
     </None>

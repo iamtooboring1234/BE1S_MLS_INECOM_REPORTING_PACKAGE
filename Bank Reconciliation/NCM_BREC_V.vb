@@ -1,3 +1,6 @@
+'' © Copyright © 2007-2019, Inecom Pte Ltd, All rights reserved.
+'' =============================================================
+
 Imports SAPbobsCOM
 Imports System.Globalization
 Imports System.Threading

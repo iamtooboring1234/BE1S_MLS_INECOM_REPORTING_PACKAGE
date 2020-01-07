@@ -1,3 +1,5 @@
+'' © Copyright © 2007-2019, Inecom Pte Ltd, All rights reserved.
+'' =============================================================
 Option Strict Off
 Option Explicit On
 
