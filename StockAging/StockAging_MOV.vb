@@ -503,10 +503,17 @@ Public Class StockAging_MOV
                 inputString(iCount) = oFormFIFO1.DataSources.UserDataSources.Item(sTemp1).ValueEx
             Next
 
-            SBO_Application.StatusBar.SetText("Filing Dataset...", SAPbouiCOM.BoMessageTime.bmt_Long, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+            SBO_Application.StatusBar.SetText("Filling Dataset...", SAPbouiCOM.BoMessageTime.bmt_Long, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
 
             iCount = 1
-            sQuery = "CALL """ & oCompany.CompanyDB & """.""NCM_SP_SAR_MOV2"" ("
+
+            Select Case oFormFIFO1.DataSources.UserDataSources.Item("cboRptType").ValueEx
+                Case "0"    'SUMMARY
+                    sQuery = "CALL """ & oCompany.CompanyDB & """.""NCM_SP_SAR_MOV2_SUMM"" ("
+                Case Else   'DETAILS
+                    sQuery = "CALL """ & oCompany.CompanyDB & """.""NCM_SP_SAR_MOV2"" ("
+            End Select
+
             sQuery &= "'" & inputString(0) & "',"
             sQuery &= "'" & oCompany.UserSignature & "',"
             sQuery &= "'" & inputString(1) & "',"
@@ -518,6 +525,7 @@ Public Class StockAging_MOV
             sQuery &= "'" & inputString(7) & "',"
             sQuery &= "'" & inputString(8) & "',"
             sQuery &= "'" & inputString(9) & "')"
+
             oExecute = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
             oExecute.DoQuery(sQuery)
 
@@ -535,13 +543,14 @@ Public Class StockAging_MOV
                 HANAda.SelectCommand = HANAcmd
                 HANAda.Fill(dtFIFO)
 
-                sQuery = "SELECT ""ItemCode"", ""ItemName"", IFNULL(""InvntryUom"",'') ""InvntryUom"" FROM """ & oCompany.CompanyDB & """.""OITM"" "
-                dtOITM = ds.Tables("OITM")
-                HANAcmd = dbConn.CreateCommand()
-                HANAcmd.CommandText = sQuery
-                HANAcmd.ExecuteNonQuery()
-                HANAda.SelectCommand = HANAcmd
-                HANAda.Fill(dtOITM)
+                'sQuery = "  SELECT ""ItemCode"", ""ItemName"", IFNULL(""InvntryUom"",'') ""InvntryUom"" "
+                'sQuery &= " FROM """ & oCompany.CompanyDB & """.""OITM"" "
+                'dtOITM = ds.Tables("OITM")
+                'HANAcmd = dbConn.CreateCommand()
+                'HANAcmd.CommandText = sQuery
+                'HANAcmd.ExecuteNonQuery()
+                'HANAda.SelectCommand = HANAcmd
+                'HANAda.Fill(dtOITM)
                 '--------------------------------------------------------
                 'OADM (Company Details)
                 '--------------------------------------------------------

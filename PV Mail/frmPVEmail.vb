@@ -1,5 +1,8 @@
+'' © Copyright © 2007-2020, Inecom Pte Ltd, All rights reserved.
+'' =============================================================
+
 Imports System.IO
-Imports EASendMail
+Imports outlook = Microsoft.Office.Interop.Outlook
 
 Public Class frmPVEmail
 
@@ -34,7 +37,6 @@ Public Class frmPVEmail
     Public Sub LoadForm()
         If LoadFromXML("Inecom_SDK_Reporting_Package.ncmPV_Email.srf") Then
             oForm = SBO_Application.Forms.Item("ncmPV_Email")
-
             oForm.EnableMenu(MenuID.Add, False)
             oForm.EnableMenu(MenuID.Find, False)
 
@@ -75,6 +77,8 @@ Public Class frmPVEmail
             .Add("tbPortNum", SAPbouiCOM.BoDataType.dt_SHORT_NUMBER, 10)
             .Add("tbReceipt", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 254)
             .Add("ckOffice", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
+            .Add("ckOutlook", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
+            .Add("tbSubject", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 254)
         End With
 
         oEdit = oForm.Items.Item("tbReceipt").Specific
@@ -91,6 +95,8 @@ Public Class frmPVEmail
         oEdit.DataBind.SetBound(True, "", "txtUser")
         oEdit = oForm.Items.Item("txtPass").Specific
         oEdit.DataBind.SetBound(True, "", "txtPass")
+        oEdit = oForm.Items.Item("tbSubject").Specific
+        oEdit.DataBind.SetBound(True, "", "tbSubject")
 
         oCombo = oForm.Items.Item("cboAuth").Specific
         oCombo.DataBind.SetBound(True, "", "cboAuth")
@@ -100,11 +106,18 @@ Public Class frmPVEmail
         oChck.ValOff = "N"
         oChck.ValOn = "Y"
 
+        oChck = oForm.Items.Item("ckOutlook").Specific
+        oChck.DataBind.SetBound(True, "", "ckOutlook")
+        oChck.ValOff = "N"
+        oChck.ValOn = "Y"
+
     End Sub
     Private Sub SetDatasource()
         Try
             Dim oRecord As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             Dim sQuery As String = String.Empty
+            Dim sOutlook As String = "N"
+            Dim sSubject As String = ""
 
             sQuery = "  SELECT IFNULL(T1.""FldValue"",''), IFNULL(T1.""Descr"",'') "
             sQuery &= " FROM ""CUFD"" T0 "
@@ -123,6 +136,34 @@ Public Class frmPVEmail
             If oCombo.ValidValues.Count > 0 Then
                 oCombo.Select(0, SAPbouiCOM.BoSearchKey.psk_Index)
             End If
+
+            Try
+                sQuery = "  SELECT IFNULL(""U_Outlook"",'N') "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" "
+                sQuery &= " WHERE ""Code"" = 'PV' "
+                oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRecord.DoQuery(sQuery)
+                If oRecord.RecordCount > 0 Then
+                    oRecord.MoveFirst()
+                    sOutlook = oRecord.Fields.Item(0).Value.ToString.Trim.ToUpper
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            Try
+                sQuery = "  SELECT IFNULL(""U_EmailSub"",'') "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" "
+                sQuery &= " WHERE ""Code"" = 'PV' "
+                oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRecord.DoQuery(sQuery)
+                If oRecord.RecordCount > 0 Then
+                    oRecord.MoveFirst()
+                    sSubject = oRecord.Fields.Item(0).Value.ToString.Trim
+                End If
+            Catch ex As Exception
+
+            End Try
 
             sQuery = "  SELECT IFNULL(""U_AuthType"",'0'), "
             sQuery &= " IFNULL(""U_MailFrom"",''), "
@@ -148,6 +189,8 @@ Public Class frmPVEmail
                     .Item("tbMailBody").ValueEx = oRecord.Fields.Item(5).Value
                     .Item("tbPortNum").ValueEx = oRecord.Fields.Item(6).Value
                     .Item("ckOffice").ValueEx = oRecord.Fields.Item(7).Value
+                    .Item("ckOutlook").ValueEx = sOutlook
+                    .Item("tbSubject").ValueEx = sSubject
 
                     If .Item("cboAuth").ValueEx.Trim() = "0" Then
                         oForm.Items.Item("txtUser").Enabled = False
@@ -212,36 +255,54 @@ Public Class frmPVEmail
     Private Function Save() As Boolean
         Dim oRecord As SAPbobsCOM.Recordset = Nothing
         Dim sQuery As String = ""
+
         Try
+            sQuery = "DELETE FROM """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" WHERE ""Code"" = 'PV' "
+            oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+            oRecord.DoQuery(sQuery)
+
+            sQuery = "INSERT INTO """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" (""Code"", ""Name"", ""U_Type"", ""U_MailFrom"", ""U_SMTP"", ""U_Username"", ""U_Password"", ""U_AuthType"", ""U_PortNum"", ""U_EmailPath"",""U_Office365"") VALUES ('PV', 'PV', 'PV', '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}') "
+            Dim sInput() As String = New String(7) {}
+            With oForm.DataSources.UserDataSources
+                sInput(0) = .Item("txtMailFr").ValueEx
+                sInput(1) = .Item("txtSMTP").ValueEx
+                sInput(2) = .Item("txtUser").ValueEx
+                sInput(3) = .Item("txtPass").ValueEx
+                sInput(4) = .Item("cboAuth").ValueEx
+                sInput(5) = .Item("tbPortNum").ValueEx
+                sInput(6) = .Item("tbMailBody").ValueEx
+                sInput(7) = .Item("ckOffice").ValueEx
+            End With
+
+            sQuery = String.Format(sQuery, sInput)
+            oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+            oRecord.DoQuery(sQuery)
+
             Try
-                sQuery = "DELETE FROM """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" WHERE ""Code"" = 'PV' "
+                sQuery = "  UPDATE """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" "
+                sQuery &= " SET ""U_Outlook"" = '" & oForm.DataSources.UserDataSources.Item("ckOutlook").ValueEx & "' "
+                sQuery &= " WHERE ""Code"" = 'PV' "
                 oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                 oRecord.DoQuery(sQuery)
-
-                sQuery = "INSERT INTO """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" (""Code"", ""Name"", ""U_Type"", ""U_MailFrom"", ""U_SMTP"", ""U_Username"", ""U_Password"", ""U_AuthType"", ""U_PortNum"", ""U_EmailPath"",""U_Office365"") VALUES ('PV', 'PV', 'PV', '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}') "
-                Dim sInput() As String = New String(7) {}
-                With oForm.DataSources.UserDataSources
-                    sInput(0) = .Item("txtMailFr").ValueEx
-                    sInput(1) = .Item("txtSMTP").ValueEx
-                    sInput(2) = .Item("txtUser").ValueEx
-                    sInput(3) = .Item("txtPass").ValueEx
-                    sInput(4) = .Item("cboAuth").ValueEx
-                    sInput(5) = .Item("tbPortNum").ValueEx
-                    sInput(6) = .Item("tbMailBody").ValueEx
-                    sInput(7) = .Item("ckOffice").ValueEx
-                End With
-
-                sQuery = String.Format(sQuery, sInput)
-                oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                oRecord.DoQuery(sQuery)
-                oRecord = Nothing
-
-                SBO_Application.StatusBar.SetText("The configuration has been updated successfully.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
-                Return True
             Catch ex As Exception
-                Throw ex
+
             End Try
+
+            Try
+                sQuery = "  UPDATE """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" "
+                sQuery &= " SET ""U_EmailSub"" = '" & oForm.DataSources.UserDataSources.Item("tbSubject").ValueEx & "' "
+                sQuery &= " WHERE ""Code"" = 'PV' "
+                oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRecord.DoQuery(sQuery)
+            Catch ex As Exception
+
+            End Try
+
+
+            oRecord = Nothing
+            SBO_Application.StatusBar.SetText("The configuration has been updated successfully.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
             Return True
+
         Catch ex As Exception
             Throw New Exception("[frmEmail].[Save]" & vbNewLine & ex.Message)
             Return False
@@ -252,14 +313,25 @@ Public Class frmPVEmail
             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             Dim sRec As String = ""
             Dim sEnableSSL As String = ""
-            Dim sEmailCc As String = GetEmailCCFromUDT()
+            Dim sToday As String = ""
+            Dim sQry As String = "SELECT TO_VARCHAR(current_timestamp, 'DD.MM.YYYY HH:MM:SS') FROM DUMMY"
 
             sRec = " SELECT TOP 1 IFNULL(""U_EnableSSL"",'N') FROM ""@NCM_EMAIL_CONFIG"" WHERE ""Code"" = 'PV' "
-
             oRec.DoQuery(sRec)
             If oRec.RecordCount > 0 Then
                 sEnableSSL = oRec.Fields.Item(0).Value
             End If
+
+            Try
+                oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRec.DoQuery(sQry)
+                If oRec.RecordCount > 0 Then
+                    oRec.MoveFirst()
+                    sToday = oRec.Fields.Item(0).Value.ToString.Trim
+                End If
+            Catch ex As Exception
+
+            End Try
 
             Dim sInput() As String = New String(7) {}
             With oForm.DataSources.UserDataSources
@@ -296,112 +368,86 @@ Public Class frmPVEmail
                 Exit Sub
             End If
 
-            'IRP HANA
-            '=======================================================================================================
-            'Select Case oForm.DataSources.UserDataSources.Item("ckOffice").ValueEx.ToString.Trim
-            '    Case "Y"
-            'Dim oMail As New SmtpMail("TryIt")
-            'Dim oSmtp As New SmtpClient()
-            'Dim s() As String = sInput(6).Split(";")
 
-            '' Your hotmail/outlook email address
-            'oMail.From = sInput(0)
 
-            '' Set recipient email address, please change it to yours
-            'For i As Integer = 0 To s.Length - 1
-            '    oMail.To.Add((s(i).Trim))
-            'Next
+            Select Case oForm.DataSources.UserDataSources.Item("ckOutlook").ValueEx
+                Case "Y"
+                    Dim OutlookMessage As outlook.MailItem
+                    Dim AppOutlook As New outlook.Application
+                    Try
+                        OutlookMessage = AppOutlook.CreateItem(outlook.OlItemType.olMailItem)
+                        Dim Recipients As outlook.Recipients = OutlookMessage.Recipients
+                        Dim s() As String = sInput(6).Split(";")
 
-            'Dim Cc() As String
-            'If sEmailCc.Trim.Length > 0 Then
-            '    Cc = sEmailCc.Split(";")
-            '    For i As Integer = 0 To Cc.Length - 1
-            '        oMail.Cc.Add((Cc(i).Trim))
-            '    Next
-            'End If
+                        For i As Integer = 0 To s.Length - 1
+                            Recipients.Add(s(i).Trim)
+                        Next
 
-            '' Set email subject
-            'oMail.Subject = oCompany.CompanyName & " - Test Sending Email From SMTP Connection "
+                        OutlookMessage.Subject = oCompany.CompanyName & " - Test Sending Email From MS Outlook - " & sToday
+                        OutlookMessage.HTMLBody = "Test Connection - Successful"
+                        OutlookMessage.BodyFormat = outlook.OlBodyFormat.olFormatHTML
+                        OutlookMessage.Send()
 
-            '' Set email body
-            'oMail.HtmlBody = "Test Connection - Successful"
+                        SBO_Application.MessageBox("[MS Outlook] Test sending email is successful, please check the recipient's email to confirm.", 1, "OK")
 
-            '' Hotmail/Outlook SMTP server address
-            'Dim oServer As New SmtpServer(sInput(1))
+                    Catch ex As Exception
+                        SBO_Application.MessageBox("[MS Outlook] Sending Email Failed : " & ex.Message, 1, "OK")
+                    Finally
+                        OutlookMessage = Nothing
+                        AppOutlook = Nothing
+                    End Try
 
-            'oServer.User = sInput(2)
-            'oServer.Password = sInput(3)
+                Case Else
+                    Dim tmpMailFr As New System.Net.Mail.MailAddress(sInput(0))
+                    Dim a As New System.Net.Mail.MailMessage()
+                    Dim s() As String = sInput(6).Split(";")
 
-            '' use 587 port
-            'oServer.Port = sInput(5)
+                    a.From = tmpMailFr
+                    a.Subject = oCompany.CompanyName & " - Test Sending Email From SMTP Connection "
+                    a.IsBodyHtml = True
+                    a.Body = "Test Connection - Successful"
 
-            '' detect SSL/TLS connection automatically
-            'oServer.ConnectType = SmtpConnectType.ConnectSSLAuto
+                    For i As Integer = 0 To s.Length - 1
+                        a.To.Add(s(i).Trim)
+                    Next
 
-            'Try
-            '    oSmtp.SendMail(oServer, oMail)
-            'Catch ep As Exception
-            '    SBO_Application.StatusBar.SetText("[Test Connection] : " & ep.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
-            'End Try
+                    Dim c As New System.Net.Mail.SmtpClient(sInput(1))
 
-            'Case "N"
+                    If sInput(4) = "1" Then
+                        Dim d As New System.Net.NetworkCredential(sInput(2), sInput(3))
 
-            Dim tmpMailFr As New System.Net.Mail.MailAddress(sInput(0))
-            Dim a As New System.Net.Mail.MailMessage()
-            Dim s() As String = sInput(6).Split(";")
-            Dim Cc() As String
-
-            a.From = tmpMailFr
-            a.Subject = oCompany.CompanyName & " - Test Sending Email From SMTP Connection "
-            a.IsBodyHtml = True
-            a.Body = "Test Connection - Successful"
-
-            For i As Integer = 0 To s.Length - 1
-                a.To.Add(s(i).Trim)
-            Next
-
-            If sEmailCc.Trim.Length > 0 Then
-                Cc = sEmailCc.Split(";")
-                For i As Integer = 0 To Cc.Length - 1
-                    a.CC.Add((Cc(i).Trim))
-                Next
-            End If
-
-            Dim c As New System.Net.Mail.SmtpClient(sInput(1))
-
-            If sInput(4) = "1" Then
-                Dim d As New System.Net.NetworkCredential(sInput(2), sInput(3))
-
-                If oForm.DataSources.UserDataSources.Item("ckOffice").ValueEx.ToString.Trim = "Y" Then
-                    c.EnableSsl = True
-                Else
-                    Select Case sEnableSSL
-                        Case "Y"
+                        If oForm.DataSources.UserDataSources.Item("ckOffice").ValueEx.ToString.Trim = "Y" Then
                             c.EnableSsl = True
-                        Case "N"
-                            c.EnableSsl = False
-                    End Select
-                End If
+                        Else
+                            Select Case sEnableSSL
+                                Case "Y"
+                                    c.EnableSsl = True
+                                Case "N"
+                                    c.EnableSsl = False
+                            End Select
+                        End If
 
-                If sInput(5) > 0 Then
-                    c.Port = sInput(5)
-                End If
+                        If sInput(5) > 0 Then
+                            c.Port = sInput(5)
+                        End If
 
-                c.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
-                c.UseDefaultCredentials = False
-                c.Credentials = d
+                        c.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+                        c.UseDefaultCredentials = False
+                        c.Credentials = d
 
-            End If
+                    End If
 
-            Try
-                c.Send(a)
-                SBO_Application.MessageBox("Test sending email is successful, please check the recipient's email to confirm.", 1, "OK")
-            Catch ex As Exception
-                SBO_Application.MessageBox("Sending Email Failed : " & ex.Message, 1, "OK")
-            End Try
+                    Try
+                        c.Send(a)
+                        SBO_Application.MessageBox("[SMTP] Test sending email is successful, please check the recipient's email to confirm.", 1, "OK")
+                    Catch ex As Exception
+                        SBO_Application.MessageBox("[SMTP] Sending Email Failed : " & ex.Message, 1, "OK")
+                    End Try
 
-            c = Nothing
-            a = Nothing
+                    c = Nothing
+                    a = Nothing
+            End Select
+
             'End Select
             '=======================================================================================================
         Catch ex As Exception
@@ -468,4 +514,5 @@ Public Class frmPVEmail
         Return BubbleEvent
     End Function
 #End Region
+
 End Class

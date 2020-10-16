@@ -736,49 +736,50 @@ Public Class SARVwr
                 CrField3 = .Database.Tables("DS_FIFO").Fields("ItemGroup")
                 CrGroups = .DataDefinition.Groups
 
-                If (String.Compare(sGroupBy, "ItemCode", True) = 0) Then
-                    'Added: V03.02.2005
-                    .DataDefinition.FormulaFields.Item("GroupBy").Text = "'ITEMCODE'"
-                    For Each CrGroup In CrGroups
-                        If (CrGroup.ConditionField.Name = "Group1") Then
-                            CrGroup.ConditionField = CrField1
-                        End If
-                        If (CrGroup.ConditionField.Name = "Group2") Then
-                            CrGroup.ConditionField = CrField1
-                        End If
-                    Next
-                ElseIf (String.Compare(sGroupBy, "WhsCode", True) = 0) Then
-                    .DataDefinition.FormulaFields.Item("GroupBy").Text = "'WHSCODE'"
-                    For Each CrGroup In CrGroups
-                        If (CrGroup.ConditionField.Name = "Group1") Then
-                            CrGroup.ConditionField = CrField2
-                        End If
-                        If (CrGroup.ConditionField.Name = "Group2") Then
-                            CrGroup.ConditionField = CrField1
-                        End If
-                    Next
-                ElseIf (String.Compare(sGroupBy, "ItemCode_Whse", True) = 0) Then
-                    .DataDefinition.FormulaFields.Item("GroupBy").Text = "'ITEMWHSE'"
-                    For Each CrGroup In CrGroups
-                        If (CrGroup.ConditionField.Name = "Group1") Then
-                            CrGroup.ConditionField = CrField1
-                        End If
-                        If (CrGroup.ConditionField.Name = "Group2") Then
-                            CrGroup.ConditionField = CrField2
-                        End If
-                    Next
-                ElseIf (String.Compare(sGroupBy, "ItemGroup", True) = 0) Then
+                Select Case sGroupBy
+                    Case "ItemCode"
+                        'Added: V03.02.2005
+                        .DataDefinition.FormulaFields.Item("GroupBy").Text = "'ITEMCODE'"
+                        For Each CrGroup In CrGroups
+                            If (CrGroup.ConditionField.Name = "Group1") Then
+                                CrGroup.ConditionField = CrField1
+                            End If
+                            If (CrGroup.ConditionField.Name = "Group2") Then
+                                CrGroup.ConditionField = CrField1
+                            End If
+                        Next
+                    Case "WhsCode"
+                        .DataDefinition.FormulaFields.Item("GroupBy").Text = "'WHSCODE'"
+                        For Each CrGroup In CrGroups
+                            If (CrGroup.ConditionField.Name = "Group1") Then
+                                CrGroup.ConditionField = CrField2
+                            End If
+                            If (CrGroup.ConditionField.Name = "Group2") Then
+                                CrGroup.ConditionField = CrField1
+                            End If
+                        Next
+                    Case "ItemCode_Whse"
+                        .DataDefinition.FormulaFields.Item("GroupBy").Text = "'ITEMWHSE'"
+                        For Each CrGroup In CrGroups
+                            If (CrGroup.ConditionField.Name = "Group1") Then
+                                CrGroup.ConditionField = CrField1
+                            End If
+                            If (CrGroup.ConditionField.Name = "Group2") Then
+                                CrGroup.ConditionField = CrField2
+                            End If
+                        Next
+                    Case "ItemGroup"
+                        .DataDefinition.FormulaFields.Item("GroupBy").Text = "'ITEMGROUP'"
+                        For Each CrGroup In CrGroups
+                            If (CrGroup.ConditionField.Name = "Group1") Then
+                                CrGroup.ConditionField = CrField3
+                            End If
+                            If (CrGroup.ConditionField.Name = "Group2") Then
+                                CrGroup.ConditionField = CrField3
+                            End If
+                        Next
+                End Select
 
-                    .DataDefinition.FormulaFields.Item("GroupBy").Text = "'ITEMGROUP'"
-                    For Each CrGroup In CrGroups
-                        If (CrGroup.ConditionField.Name = "Group1") Then
-                            CrGroup.ConditionField = CrField3
-                        End If
-                        If (CrGroup.ConditionField.Name = "Group2") Then
-                            CrGroup.ConditionField = CrField3
-                        End If
-                    Next
-                End If
                 .Refresh()
 
             End With
@@ -795,24 +796,25 @@ Public Class SARVwr
                 System.Diagnostics.Process.Start(sPath)
             Else
 
-                If cClientType = "S" Then
-                    ' Web Browser
-                    ' generate pdf, put to a standard local folder, with specific name.
-                    ' call the pdf out.
+                Select Case cClientType
+                    Case "S"
+                        ' Web Browser
+                        ' generate pdf, put to a standard local folder, with specific name.
+                        ' call the pdf out.
 
-                    rpt.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
-                    rpt.ExportOptions.ExportFormatType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
+                        rpt.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
+                        rpt.ExportOptions.ExportFormatType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
 
-                    Dim objOptions As New CrystalDecisions.Shared.DiskFileDestinationOptions
-                    objOptions.DiskFileName = g_sExportPath
-                    rpt.ExportOptions.DestinationOptions = objOptions
-                    rpt.Export()
-                Else
-                    'Desktop
-                    crViewer.ReportSource = rpt
-                    crViewer.PerformAutoScale()
-                    crViewer.Show()
-                End If
+                        Dim objOptions As New CrystalDecisions.Shared.DiskFileDestinationOptions
+                        objOptions.DiskFileName = g_sExportPath
+                        rpt.ExportOptions.DestinationOptions = objOptions
+                        rpt.Export()
+                    Case Else
+                        'Desktop
+                        crViewer.ReportSource = rpt
+                        crViewer.PerformAutoScale()
+                        crViewer.Show()
+                End Select
 
             End If
         Catch ex As Exception

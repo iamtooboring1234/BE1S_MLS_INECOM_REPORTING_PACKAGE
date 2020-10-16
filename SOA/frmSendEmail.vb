@@ -1,5 +1,8 @@
-Imports System.IO
+'' © Copyright © 2007-2020, Inecom Pte Ltd, All rights reserved.
+'' =============================================================
 
+Imports System.IO
+Imports outlook = Microsoft.Office.Interop.Outlook
 Public Class frmSendEmail
 
 #Region "Global Variables"
@@ -149,6 +152,7 @@ Public Class frmSendEmail
                 End With
                 oMrx.AddRow(1, -1)
             Next
+            oMrx.AutoResizeColumns()
         Catch ex As Exception
             Throw ex
         Finally

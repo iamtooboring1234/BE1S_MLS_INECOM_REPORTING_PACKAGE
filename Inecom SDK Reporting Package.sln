@@ -1,5 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Inecom SDK Reporting Package", "Inecom SDK Reporting Package.vbproj", "{3ABA7DF6-8F66-4A09-9979-164CB51B7DEF}"
 EndProject
 Global

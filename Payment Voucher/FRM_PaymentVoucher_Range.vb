@@ -13,7 +13,15 @@ Public Class FRM_PaymentVoucher_Range
     Private lErrCode As Integer
     Private g_sReportFilename As String
     Private g_bIsShared As Boolean = False
+
+    Private g_sReportFilename_Email As String = ""
+    Private g_bIsShared_Email As Boolean = False
+
     Private dsPAYMENT As DataSet
+    Private g_sDocNum As String = ""
+    Private g_sDocEntry As String = ""
+    Private g_sSeries As String = ""
+    Private AsAtDate As DateTime
 
     Private g_StructureFilename As String = ""
     Private myThread As System.Threading.Thread
@@ -65,7 +73,7 @@ Public Class FRM_PaymentVoucher_Range
                 oForm.Items.Item("cbLayout").Visible = False
 
                 InitializeItem()
-                'SetupChooseFromList()
+
                 oForm.Items.Item("lkEntFr").Visible = True
                 oForm.Items.Item("lkEntTo").Visible = True
 
@@ -88,35 +96,48 @@ Public Class FRM_PaymentVoucher_Range
             SBO_Application.StatusBar.SetText("[LoadForm] : " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
         End Try
     End Sub
-    Private Sub SetupChooseFromList()
+    Private Sub SetupChooseFromList(ByVal sInputDocumentType As String)
         Dim oEditLn As SAPbouiCOM.EditText
         Dim oCFL As SAPbouiCOM.ChooseFromList
         Dim oCFLs As SAPbouiCOM.ChooseFromListCollection
         Dim oCFLCreation As SAPbouiCOM.ChooseFromListCreationParams
+        Dim oCons As SAPbouiCOM.Conditions
+        Dim oCon As SAPbouiCOM.Condition
+        Dim sDocType As String = "C"
+
 
         Try
-            oCFLs = oForm.ChooseFromLists
-         
-            oCFLCreation = DirectCast(SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_ChooseFromListCreationParams), SAPbouiCOM.ChooseFromListCreationParams)
-            oCFLCreation.MultiSelection = False
-            oCFLCreation.ObjectType = SAPbouiCOM.BoLinkedObject.lf_VendorPayment
-            oCFLCreation.UniqueID = "CFL_PAYMENT_FR"
-            oCFL = oCFLs.Add(oCFLCreation)
+            Select Case sInputDocumentType
+                Case "C"
 
-            oEditLn = DirectCast(oForm.Items.Item("txtSDocNum").Specific, SAPbouiCOM.EditText)
-            oEditLn.ChooseFromListUID = "CFL_PAYMENT_FR"
-            oEditLn.ChooseFromListAlias = "DocNum"
-            ' ----------------------------------------
-            oCFLCreation = DirectCast(SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_ChooseFromListCreationParams), SAPbouiCOM.ChooseFromListCreationParams)
-            oCFLCreation.MultiSelection = False
-            oCFLCreation.ObjectType = SAPbouiCOM.BoLinkedObject.lf_VendorPayment
-            oCFLCreation.UniqueID = "CFL_PAYMENT_TO"
-            oCFL = oCFLs.Add(oCFLCreation)
+                    oEditLn = oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.TXT_StartingBPCode)).Specific
+                    oEditLn.ChooseFromListUID = "CFL_CUSTFR"
+                    oEditLn.ChooseFromListAlias = "CardCode"
 
-            oEditLn = DirectCast(oForm.Items.Item("txtEDocNum").Specific, SAPbouiCOM.EditText)
-            oEditLn.ChooseFromListUID = "CFL_PAYMENT_TO"
-            oEditLn.ChooseFromListAlias = "DocNum"
-            ' ----------------------------------------
+                    oEditLn = oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.TXT_EndingBPCode)).Specific
+                    oEditLn.ChooseFromListUID = "CFL_CUSTTO"
+                    oEditLn.ChooseFromListAlias = "CardCode"
+
+                Case "S"
+
+                    oEditLn = oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.TXT_StartingBPCode)).Specific
+                    oEditLn.ChooseFromListUID = "CFL_SUPPFR"
+                    oEditLn.ChooseFromListAlias = "CardCode"
+
+                    oEditLn = oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.TXT_EndingBPCode)).Specific
+                    oEditLn.ChooseFromListUID = "CFL_SUPPTO"
+                    oEditLn.ChooseFromListAlias = "CardCode"
+                Case Else
+
+                    oEditLn = oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.TXT_StartingBPCode)).Specific
+                    oEditLn.ChooseFromListUID = GetItemUID(PaymentVoucherRangeItems.CFL_StartingBPCode)
+                    oEditLn.ChooseFromListAlias = "CardCode"
+
+                    oEditLn = oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.TXT_EndingBPCode)).Specific
+                    oEditLn.ChooseFromListUID = GetItemUID(PaymentVoucherRangeItems.CFL_EndingBPCode)
+                    oEditLn.ChooseFromListAlias = "CardCode"
+            End Select
+
         Catch ex As Exception
             Throw New Exception("[RPV].[SetupChooseFromList]" & vbNewLine & ex.Message)
         End Try
@@ -127,8 +148,13 @@ Public Class FRM_PaymentVoucher_Range
         Dim oCFLs As SAPbouiCOM.ChooseFromListCollection
         Dim oCFLCreation As SAPbouiCOM.ChooseFromListCreationParams
         Dim oLink As SAPbouiCOM.LinkedButton
+        Dim oCbox As SAPbouiCOM.ComboBox
+        Dim oChck As SAPbouiCOM.CheckBox
+        Dim oCons As SAPbouiCOM.Conditions
+        Dim oCon As SAPbouiCOM.Condition
 
         oCFLs = oForm.ChooseFromLists
+
         oCFLCreation = DirectCast(SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_ChooseFromListCreationParams), SAPbouiCOM.ChooseFromListCreationParams)
         oCFLCreation.MultiSelection = False
         oCFLCreation.ObjectType = "2"
@@ -141,19 +167,120 @@ Public Class FRM_PaymentVoucher_Range
         oCFLCreation.UniqueID = GetItemUID(PaymentVoucherRangeItems.CFL_EndingBPCode)
         oCFL = oCFLs.Add(oCFLCreation)
 
+        ' ========================================================================
+
+        oCFLCreation = DirectCast(SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_ChooseFromListCreationParams), SAPbouiCOM.ChooseFromListCreationParams)
+        oCFLCreation.MultiSelection = False
+        oCFLCreation.ObjectType = "2"
+        oCFLCreation.UniqueID = "CFL_CUSTFR"
+        oCFL = oCFLs.Add(oCFLCreation)
+
+        oCons = New SAPbouiCOM.Conditions
+        oCon = oCons.Add()
+        oCon.Alias = "CardType"
+        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
+        oCon.CondVal = "C"
+        oCFL.SetConditions(oCons)
+
+        oCFLCreation = DirectCast(SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_ChooseFromListCreationParams), SAPbouiCOM.ChooseFromListCreationParams)
+        oCFLCreation.MultiSelection = False
+        oCFLCreation.ObjectType = "2"
+        oCFLCreation.UniqueID = "CFL_CUSTTO"
+        oCFL = oCFLs.Add(oCFLCreation)
+
+        oCons = New SAPbouiCOM.Conditions
+        oCon = oCons.Add()
+        oCon.Alias = "CardType"
+        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
+        oCon.CondVal = "C"
+        oCFL.SetConditions(oCons)
+
+        ' ========================================================================
+
+        oCFLCreation = DirectCast(SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_ChooseFromListCreationParams), SAPbouiCOM.ChooseFromListCreationParams)
+        oCFLCreation.MultiSelection = False
+        oCFLCreation.ObjectType = "2"
+        oCFLCreation.UniqueID = "CFL_SUPPFR"
+        oCFL = oCFLs.Add(oCFLCreation)
+
+        oCons = New SAPbouiCOM.Conditions
+        oCon = oCons.Add()
+        oCon.Alias = "CardType"
+        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
+        oCon.CondVal = "S"
+        oCFL.SetConditions(oCons)
+
+        oCFLCreation = DirectCast(SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_ChooseFromListCreationParams), SAPbouiCOM.ChooseFromListCreationParams)
+        oCFLCreation.MultiSelection = False
+        oCFLCreation.ObjectType = "2"
+        oCFLCreation.UniqueID = "CFL_SUPPTO"
+        oCFL = oCFLs.Add(oCFLCreation)
+
+        oCons = New SAPbouiCOM.Conditions
+        oCon = oCons.Add()
+        oCon.Alias = "CardType"
+        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
+        oCon.CondVal = "S"
+        oCFL.SetConditions(oCons)
+
+        oCFLCreation = DirectCast(SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_ChooseFromListCreationParams), SAPbouiCOM.ChooseFromListCreationParams)
+        oCFLCreation.MultiSelection = False
+        oCFLCreation.ObjectType = 10
+        oCFLCreation.UniqueID = "CFL_BGFR"
+        oCFL = oCFLs.Add(oCFLCreation)
+
+        oCFLCreation = DirectCast(SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_ChooseFromListCreationParams), SAPbouiCOM.ChooseFromListCreationParams)
+        oCFLCreation.MultiSelection = False
+        oCFLCreation.ObjectType = 10
+        oCFLCreation.UniqueID = "CFL_BGTO"
+        oCFL = oCFLs.Add(oCFLCreation)
+
         With oForm.DataSources.UserDataSources
-            .Add("txtSDocNum", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 20)
-            .Add("txtEDocNum", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 20)
+            .Add("txtSDocNum", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 30)
+            .Add("txtEDocNum", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 30)
+            .Add("txtSBPGrp", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 30)
+            .Add("txtEBPGrp", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 30)
+            .Add("tbEntFr", SAPbouiCOM.BoDataType.dt_LONG_NUMBER, 10)
+            .Add("tbEntTo", SAPbouiCOM.BoDataType.dt_LONG_NUMBER, 10)
+            .Add("cbWizard", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 100)
+            .Add("ckWizard", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
+
             .Add(GetItemUID(PaymentVoucherRangeItems.TXT_StartingBPCode), SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 30)
             .Add(GetItemUID(PaymentVoucherRangeItems.TXT_EndingBPCode), SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 30)
             .Add(GetItemUID(PaymentVoucherRangeItems.TXT_StartingDate), SAPbouiCOM.BoDataType.dt_DATE, 254)
             .Add(GetItemUID(PaymentVoucherRangeItems.TXT_EndingDate), SAPbouiCOM.BoDataType.dt_DATE, 254)
             .Add(GetItemUID(PaymentVoucherRangeItems.CBO_DocType), SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
             .Add(GetItemUID(PaymentVoucherRangeItems.CHK_IncludeCancel), SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
-
-            .Add("tbEntFr", SAPbouiCOM.BoDataType.dt_LONG_NUMBER, 10)
-            .Add("tbEntTo", SAPbouiCOM.BoDataType.dt_LONG_NUMBER, 10)
         End With
+
+        oChck = oForm.Items.Item("ckWizard").Specific
+        oChck.DataBind.SetBound(True, String.Empty, "ckWizard")
+        oChck.ValOff = "0"
+        oChck.ValOn = "1"
+        oForm.DataSources.UserDataSources.Item("ckWizard").ValueEx = "0"
+
+        Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+        Dim sRec As String = ""
+        Dim sFirstWizard As String = ""
+        sRec = "SELECT ""IdNumber"", ""WizardName"" FROM ""OPWZ"" WHERE ""OutgoType"" = 'Y' ORDER BY ""IdNumber"" "
+        oRec.DoQuery(sRec)
+
+        oCbox = oForm.Items.Item("cbWizard").Specific
+        oCbox.DataBind.SetBound(True, String.Empty, "cbWizard")
+        If oRec.RecordCount > 0 Then
+            oRec.MoveFirst()
+            sFirstWizard = oRec.Fields.Item(0).Value.ToString.Trim
+            While Not oRec.EoF
+                oCbox.ValidValues.Add(oRec.Fields.Item(0).Value.ToString.Trim, oRec.Fields.Item(1).Value.ToString.Trim)
+                oRec.MoveNext()
+            End While
+            oCbox.Select(sFirstWizard, SAPbouiCOM.BoSearchKey.psk_ByValue)
+        End If
+        oRec = Nothing
+
+        If sFirstWizard.Length > 0 Then
+            oForm.DataSources.UserDataSources.Item("cbWizard").ValueEx = sFirstWizard
+        End If
 
         oEdit = oForm.Items.Item("tbEntFr").Specific
         oEdit.DataBind.SetBound(True, "", "tbEntFr")
@@ -167,16 +294,28 @@ Public Class FRM_PaymentVoucher_Range
 
         oForm.Items.Item("lkEntFr").LinkTo = "tbEntFr"
         oForm.Items.Item("lkEntTo").LinkTo = "tbEntTo"
-
+        ' =============================================================
         oEdit = oForm.Items.Item("txtSDocNum").Specific
         oEdit.DataBind.SetBound(True, String.Empty, "txtSDocNum")
         oEdit = oForm.Items.Item("txtEDocNum").Specific
         oEdit.DataBind.SetBound(True, String.Empty, "txtEDocNum")
+        ' =============================================================
+        oEdit = oForm.Items.Item("txtSBPGrp").Specific
+        oEdit.DataBind.SetBound(True, String.Empty, "txtSBPGrp")
+        oEdit.ChooseFromListUID = "CFL_BGFR"
+        oEdit.ChooseFromListAlias = "GroupCode"
+        ' =============================================================
+        oEdit = oForm.Items.Item("txtEBPGrp").Specific
+        oEdit.DataBind.SetBound(True, String.Empty, "txtEBPGrp")
+        oEdit.ChooseFromListUID = "CFL_BGTO"
+        oEdit.ChooseFromListAlias = "GroupCode"
+        ' =============================================================
 
         oEdit = oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.TXT_StartingBPCode)).Specific
         oEdit.DataBind.SetBound(True, String.Empty, GetItemUID(PaymentVoucherRangeItems.TXT_StartingBPCode))
         oEdit.ChooseFromListUID = GetItemUID(PaymentVoucherRangeItems.CFL_StartingBPCode)
         oEdit.ChooseFromListAlias = "CardCode"
+
         oEdit = oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.TXT_EndingBPCode)).Specific
         oEdit.DataBind.SetBound(True, String.Empty, GetItemUID(PaymentVoucherRangeItems.TXT_EndingBPCode))
         oEdit.ChooseFromListUID = GetItemUID(PaymentVoucherRangeItems.CFL_EndingBPCode)
@@ -236,76 +375,6 @@ Public Class FRM_PaymentVoucher_Range
     Private Function GetDocType(ByVal PaymentVoucherRangeDocType As PaymentVoucherRangeDocTypes) As String
         Dim i As Integer = PaymentVoucherRangeDocType
         Return i.ToString()
-    End Function
-    Private Function setChooseFromListConditions(ByVal myVal As String, ByVal compareVal As String, ByVal cflUID As String) As Boolean
-        Dim oCFL As SAPbouiCOM.ChooseFromList
-        Dim oCons As SAPbouiCOM.Conditions
-        Dim oCon As SAPbouiCOM.Condition
-        oCFL = oForm.ChooseFromLists.Item(cflUID)
-        oCons = New SAPbouiCOM.Conditions
-        Try
-            Select Case cflUID
-                Case GetItemUID(PaymentVoucherRangeItems.CFL_StartingBPCode)
-                    If (myVal.Length > 0 AndAlso compareVal.Length > 0) Then
-                        oCon = oCons.Add()
-                        oCon.Alias = "CardCode"
-                        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
-                        oCon.CondVal = myVal
-                        oCon.Relationship = SAPbouiCOM.BoConditionRelationship.cr_AND
-
-                        oCon = oCons.Add()
-                        oCon.Alias = "CardCode"
-                        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_LESS_EQUAL
-                        oCon.CondVal = compareVal
-                        oCon.Relationship = SAPbouiCOM.BoConditionRelationship.cr_AND
-                    ElseIf (myVal.Length > 0) Then
-                        oCon = oCons.Add()
-                        oCon.Alias = "CardCode"
-                        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
-                        oCon.CondVal = myVal
-                    ElseIf (compareVal.Length > 0) Then
-                        oCon = oCons.Add()
-                        oCon.Alias = "CardCode"
-                        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_LESS_EQUAL
-                        oCon.CondVal = compareVal
-                    End If
-                Case GetItemUID(PaymentVoucherRangeItems.CFL_EndingBPCode)
-                    If (myVal.Length > 0 AndAlso compareVal.Length > 0) Then
-                        oCon = oCons.Add()
-                        oCon.Alias = "CardCode"
-                        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
-                        oCon.CondVal = myVal
-                        oCon.Relationship = SAPbouiCOM.BoConditionRelationship.cr_AND
-
-                        oCon = oCons.Add()
-                        oCon.Alias = "CardCode"
-                        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_GRATER_EQUAL
-                        oCon.CondVal = compareVal
-
-                    ElseIf (myVal.Length > 0) Then
-                        oCon = oCons.Add()
-                        oCon.Alias = "CardCode"
-                        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
-                        oCon.CondVal = myVal
-
-                    ElseIf (compareVal.Length > 0) Then
-                        oCon = oCons.Add()
-                        oCon.Alias = "CardCode"
-                        oCon.Operation = SAPbouiCOM.BoConditionOperation.co_GRATER_EQUAL
-                        oCon.CondVal = compareVal
-
-                    End If
-                Case Else
-                    Throw New Exception("Invalid Choose from list. UID#" & cflUID)
-                    Exit Select
-            End Select
-            oCFL.SetConditions(oCons)
-            Return True
-        Catch ex As Exception
-            Throw New Exception("[PaymentVoucherRange].[SetChooseFromList] " & vbNewLine & ex.Message)
-            Return False
-        End Try
-        Return False
     End Function
     Private Function IsParametersValid() As Boolean
         Try
@@ -401,20 +470,80 @@ Public Class FRM_PaymentVoucher_Range
             Return True
         Catch ex As Exception
             g_sReportFilename = " "
-            SBO_Application.StatusBar.SetText("[IRA].[GetPath] :" & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            SBO_Application.StatusBar.SetText("[RPV].[GetPath] :" & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
             Return False
         End Try
     End Function
+
+    Private Function IsSharedFileExistEmail() As Boolean
+        Try
+            Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+            Dim sQuery As String = ""
+
+            g_sReportFilename_Email = ""
+            g_StructureFilename = ""
+
+            sQuery = " SELECT IFNULL(""STRUCTUREPATH"",'') FROM ""@NCM_RPT_STRUCTURE"" "
+            sQuery &= " WHERE ""RPTCODE"" ='" & GetReportCode(ReportName.PV) & "'"
+
+            g_sReportFilename_Email = GetSharedFilePath(ReportName.PV)
+            If g_sReportFilename_Email <> "" Then
+                If IsSharedFilePathExists(g_sReportFilename_Email) Then
+                    'Return True
+                End If
+            End If
+
+
+            Dim sCheck As String = ""
+            Dim oCheck As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+
+            sCheck = "  SELECT ""OBJECT_NAME"" FROM SYS.OBJECTS  "
+            sCheck &= " WHERE ""SCHEMA_NAME"" = '" & oCompany.CompanyDB & "' "
+            sCheck &= " AND ""OBJECT_TYPE"" = 'TABLE' "
+            sCheck &= " AND ""OBJECT_NAME"" ='@NCM_RPT_STRUCTURE' "
+            oCheck.DoQuery(sCheck)
+            If oCheck.RecordCount > 0 Then
+                oCheck = Nothing
+
+                oRec.DoQuery(sQuery)
+                If oRec.RecordCount > 0 Then
+                    oRec.MoveFirst()
+                    g_StructureFilename = oRec.Fields.Item(0).Value.ToString
+                    If File.Exists(g_StructureFilename) = False Then
+                        g_StructureFilename = ""
+                    End If
+                End If
+            Else
+                oCheck = Nothing
+            End If
+
+            Return True
+        Catch ex As Exception
+            g_sReportFilename = " "
+            SBO_Application.StatusBar.SetText("[PV].[GetPath] :" & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            Return False
+        End Try
+    End Function
+
     Private Sub Print_Report()
         oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.BTN_PRINT)).Enabled = False
         Dim sFinalExportPath As String = ""
         Dim sFinalFileName As String = ""
+        Dim iCount As Integer = 0
+        Dim bIsWizard As Boolean = False
+        Dim sWizardCode As String = ""
+
+        If oForm.DataSources.UserDataSources.Item("ckWizard").ValueEx = "1" Then
+            bIsWizard = True
+            sWizardCode = oForm.DataSources.UserDataSources.Item("cbWizard").ValueEx.ToString.Trim
+        End If
 
         Try
             Dim frm As Hydac_FormViewer = New Hydac_FormViewer
             Dim bIsContinue As Boolean = False
             Dim sTempDirectory As String = ""
-            Dim sPathFormat As String = "{0}\ROP_{1}.pdf"
+            Dim sPathFormat As String = "{0}\RPV_{1}.pdf"
+            Dim sPathFormatSingle As String = "{0}\RPV_{1}_{2}_{3}.pdf"
             Dim sCurrDate As String = ""
             Dim sCurrTime As String = DateTime.Now.ToString("HHMMss")
             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
@@ -428,13 +557,13 @@ Public Class FRM_PaymentVoucher_Range
             ' ===============================================================================
             ' get the folder of the current DB Name
             ' set to local
-            sTempDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\ROP\" & oCompany.CompanyDB
+            sTempDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\RPV\" & oCompany.CompanyDB
             Dim di As New System.IO.DirectoryInfo(sTempDirectory)
             If Not di.Exists Then
                 di.Create()
             End If
             sFinalExportPath = String.Format(sPathFormat, di.FullName, sCurrDate & "_" & sCurrTime)
-            sFinalFileName = di.FullName & "\ROP_" & sCurrDate & "_" & sCurrTime & ".pdf"
+            sFinalFileName = di.FullName & "\RPV_" & sCurrDate & "_" & sCurrTime & ".pdf"
             ' ===============================================================================
 
             Try
@@ -452,6 +581,19 @@ Public Class FRM_PaymentVoucher_Range
                     End If
                 End If
 
+                g_bIsShared_Email = IsSharedFileExistEmail()
+                If (g_bIsShared_Email) Then
+                    If g_sReportFilename_Email.Trim.Length > 0 Then
+                        If (Not File.Exists(g_sReportFilename_Email)) Then
+                            g_bIsShared_Email = False
+                            g_sReportFilename_Email = ""
+                        End If
+                    Else
+                        g_bIsShared_Email = False
+                        g_sReportFilename_Email = ""
+                    End If
+                End If
+
                 Dim sTemp As String = String.Empty
                 Dim iTemp As Integer = 0
                 Dim sDocNumS As String = String.Empty
@@ -464,7 +606,7 @@ Public Class FRM_PaymentVoucher_Range
                 Dim dtDocDateE As DateTime
                 Dim iIsIncludeCancel As Integer = 0
                 Dim myPaymentVoucherDocType As PaymentVoucherRangeDocTypes = PaymentVoucherRangeDocTypes.Supplier
-              
+
                 oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                 oRec.DoQuery("SELECT ""U_INVDETAIL"", ""U_TAXDATE"" FROM """ & oCompany.CompanyDB & """.""@NCM_NEW_SETTING""")
                 g_bShowDetails = IIf(oRec.Fields.Item(0).Value = "Y", True, False)
@@ -495,125 +637,635 @@ Public Class FRM_PaymentVoucher_Range
                 Dim oLoop As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                 Dim sLoop As String = ""
 
-                sLoop = " SELECT ""DocNum"", ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""OVPM"" "
-                sLoop &= " WHERE 1=1 "
+                Select Case bIsWizard
+                    Case True
+                        sLoop = "  SELECT T1.""DocEntry"", T1.""DocNum"", T1.""Series"", T1.""CardCode"", T2.""CardName"", "
+                        sLoop &= " T1.""DocCurr"", IFNULL(T2.""U_PV_MailTo"",'') ""EmailTo"", T0.""PymAmount"" ""DocTotal"", T0.""PymNum"" "
+                        sLoop &= " FROM """ & oCompany.CompanyDB & """.""PWZ4"" T0 "
+                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OVPM"" T1 ON T0.""RctId""     = T1.""DocNum"" "
+                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode""  = T2.""CardCode""  "
+                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T3 ON T2.""GroupCode"" = T3.""GroupCode"" "
+                        sLoop &= " WHERE 1=1 "
+                        sLoop &= " AND T0.""IdEntry"" = '" & sWizardCode & "' "
+                        sLoop &= " AND T0.""ObjType"" = 46 "
+                        sLoop &= " ORDER BY T0.""PymNum"" "
 
-                If iIsIncludeCancel = 1 Then
-                    ' sLoop &= " AND ""Canceled"" = 'Y' " ' doesnt matter Y or N
-                Else
-                    sLoop &= " AND ""Canceled"" = 'N'  "
-                End If
+                    Case False
+                        sLoop = "  Select T1.""DocEntry"", T1.""DocNum"", T1.""Series"", T1.""CardCode"", T2.""CardName"", T1.""DocCurr"", IFNULL(T2.""U_PV_MailTo"",'') ""EmailTo"", SUM(T1.""DocTotal"") ""DocTotal""  "
+                        sLoop &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode""  = T2.""CardCode""  "
+                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T3 ON T2.""GroupCode"" = T3.""GroupCode"" "
+                        sLoop &= " WHERE 1=1 "
 
-                Select Case sTemp
-                    Case "1"
-                        sLoop &= " AND ""DocType"" = 'A' "
-                    Case "2"
-                        sLoop &= " AND ""DocType"" = 'C' "
-                    Case "3"
-                        sLoop &= " AND ""DocType"" = 'S' "
+                        If iIsIncludeCancel = 1 Then
+                            ' sLoop &= " And ""Canceled"" = 'Y' " ' doesnt matter Y or N
+                        Else
+                            sLoop &= " AND T1.""Canceled"" = 'N'  "
+                        End If
+
+                        oEdit = oForm.Items.Item("txtSBPGrp").Specific
+                        If oEdit.Value.ToString.Trim() <> "" Then
+                            sQuery &= " AND T3.""GroupCode"" >= '" & oEdit.Value.ToString.Trim & "' "
+                        End If
+
+                        oEdit = oForm.Items.Item("txtEBPGrp").Specific
+                        If oEdit.Value.ToString().Trim() <> "" Then
+                            sQuery &= " AND T3.""GroupCode"" <= '" & oEdit.Value.ToString.Trim & "' "
+                        End If
+
+                        Select Case sTemp
+                            Case "1"
+                                sLoop &= " AND T1.""DocType"" = 'A' "
+                            Case "2"
+                                sLoop &= " AND T1.""DocType"" = 'C' "
+                            Case "3"
+                                sLoop &= " AND T1.""DocType"" = 'S' "
+                        End Select
+
+                        If sBPCodeS.Trim.Length > 0 Then
+                            sLoop &= " AND T1.""CardCode"" >= '" & sBPCodeS.Trim & "' "
+                        End If
+                        If sBPCodeE.Trim.Length > 0 Then
+                            sLoop &= " AND T1.""CardCode"" <= '" & sBPCodeE.Trim & "' "
+                        End If
+                        If sDocNumS.Trim.Length > 0 Then
+                            sLoop &= " AND T1.""DocNum"" >= '" & sDocNumS.Trim & "' "
+                        End If
+                        If sDocNumE.Trim.Length > 0 Then
+                            sLoop &= " AND T1.""DocNum"" <= '" & sDocNumE.Trim & "' "
+                        End If
+                        If sDocDateS.Trim.Length > 0 Then
+                            sLoop &= " AND T1.""DocDate"" >= '" & sDocDateS.Trim & "' "
+                        End If
+                        If sDocDateE.Trim.Length > 0 Then
+                            sLoop &= " AND T1.""DocDate"" <= '" & sDocDateE.Trim & "' "
+                        End If
+
+                        sLoop &= " GROUP BY T1.""DocEntry"", T1.""DocNum"", T1.""Series"", T1.""CardCode"", T2.""CardName"", T1.""DocCurr"", T2.""U_PV_MailTo""  "
+
                 End Select
 
-                If sBPCodeS.Trim.Length > 0 Then
-                    sLoop &= " AND ""CardCode"" >= '" & sBPCodeS.Trim & "' "
-                End If
-                If sBPCodeE.Trim.Length > 0 Then
-                    sLoop &= " AND ""CardCode"" <= '" & sBPCodeE.Trim & "' "
-                End If
-                If sDocNumS.Trim.Length > 0 Then
-                    sLoop &= " AND ""DocNum"" >= '" & sDocNumS.Trim & "' "
-                End If
-                If sDocNumE.Trim.Length > 0 Then
-                    sLoop &= " AND ""DocNum"" <= '" & sDocNumE.Trim & "' "
-                End If
-                If sDocDateS.Trim.Length > 0 Then
-                    sLoop &= " AND ""DocDate"" >= '" & sDocDateS.Trim & "' "
-                End If
-                If sDocDateE.Trim.Length > 0 Then
-                    sLoop &= " AND ""DocDate"" <= '" & sDocDateE.Trim & "' "
-                End If
+                iCount = SBO_Application.MessageBox("Please select your option." & vbNewLine & "1. Click ""Yes"" to send email." & vbNewLine & "2. Click ""No"" to preview only.", 1, "Yes", "No", String.Empty)
+                Select Case iCount
+                    Case 1
+                        ' EMAIL
+                        oLoop = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                        oLoop.DoQuery(sLoop)
 
-                sLoop &= " GROUP BY ""DocNum"", ""DocEntry"" "
+                        If oLoop.RecordCount > 0 Then
+                            SBO_Application.StatusBar.SetText("Preparing the email, please wait...", SAPbouiCOM.BoMessageTime.bmt_Long, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
 
-                oLoop.DoQuery(sLoop)
-                If oLoop.RecordCount > 0 Then
-                    Dim sListDocNum As String = "("
-                    Dim sListDocEntry As String = "("
-                    oLoop.MoveFirst()
+                            Dim ds As New dsPVEmail()
 
-                    While Not oLoop.EoF
-                        sListDocNum &= "'" & oLoop.Fields.Item(0).Value & "',"
-                        sListDocEntry &= "'" & oLoop.Fields.Item(1).Value & "',"
+                            While Not oLoop.EoF
+                                g_sDocEntry = oLoop.Fields.Item("DocEntry").Value.ToString()
+                                g_sDocNum = oLoop.Fields.Item("DocNum").Value.ToString()
+                                g_sSeries = oLoop.Fields.Item("Series").Value.ToString()
 
-                        oLoop.MoveNext()
-                    End While
+                                SBO_Application.StatusBar.SetText("Generating PV #" & g_sDocNum & "...", SAPbouiCOM.BoMessageTime.bmt_Long, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
 
-                    sListDocNum = sListDocNum.Remove(sListDocNum.Length - 1, 1)
-                    sListDocNum = sListDocNum & ")"
+                                If PrepareDatasetSingle() Then
+                                    With frm
+                                        .ReportName = ReportName.PV
+                                        .ExportPath = sFinalFileName
+                                        .Dataset = dsPAYMENT
+                                        .DocNum = g_sDocNum
+                                        .DocEntry = g_sDocEntry
+                                        .Series = g_sSeries
+                                        .DBUsernameViewer = DBUsername
+                                        .DBPasswordViewer = DBPassword
+                                        .ShowDetails = g_bShowDetails
+                                        .ShowTaxDate = g_sShowTaxDate
+                                        .IsShared = g_bIsShared_Email
+                                        .ReportNamePV = g_sReportFilename_Email
+                                        .DatabaseServer = oCompany.Server
+                                        .DatabaseName = oCompany.CompanyDB
+                                        .IsIncludeCancel = iIsIncludeCancel
+                                        .IsExport = True
+                                        .CrystalReportExportType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
+                                        .CrystalReportExportPath = String.Format(sPathFormatSingle, di.FullName, oLoop.Fields.Item("CardCode").Value.ToString(), System.DateTime.Now.Date.ToString("ddMMyyyy"), g_sDocNum)
+                                        frm.OPEN_HANADS_PV_EMAIL()
 
-                    sListDocEntry = sListDocEntry.Remove(sListDocEntry.Length - 1, 1)
-                    sListDocEntry = sListDocEntry & ")"
-                    '=========================================
-                    myPaymentVoucherDocType = iTemp
+                                    End With
 
-                    If PrepareDataset(sListDocNum, sListDocEntry) Then
-                        With frm
-                            Select Case SBO_Application.ClientType
-                                Case SAPbouiCOM.BoClientType.ct_Desktop
-                                    .ClientType = "D"
-                                Case SAPbouiCOM.BoClientType.ct_Browser
-                                    .ClientType = "S"
-                            End Select
+                                    Dim dr As dsPVEmail.PreviewDTRow
+                                    dr = ds.PreviewDT.NewPreviewDTRow()
+                                    dr.Attachment = String.Format(sPathFormatSingle, di.FullName, oLoop.Fields.Item("CardCode").Value, System.DateTime.Now.Date.ToString("ddMMyyyy"), g_sDocNum)
+                                    dr.Balance = oLoop.Fields.Item("DocTotal").Value
+                                    dr.CardCode = oLoop.Fields.Item("CardCode").Value
+                                    dr.CardName = oLoop.Fields.Item("CardName").Value
+                                    dr.Currency = oLoop.Fields.Item("DocCurr").Value
+                                    dr.EmailTo = oLoop.Fields.Item("EmailTo").Value
+                                    dr.DocEntry = oLoop.Fields.Item("DocEntry").Value
+                                    dr.DocNum = oLoop.Fields.Item("DocNum").Value
+                                    dr.IsEmail = IIf(dr.Balance > 0, 1, 0)
+                                    dr.Table.Rows.Add(dr)
 
-                            .ExportPath = sFinalFileName
-                            .Dataset = dsPAYMENT
-                            .Text = "Payment Voucher Range Report"
-                            .ReportName = ReportName.PV_Range
-                            .DBUsernameViewer = DBUsername
-                            .DBPasswordViewer = DBPassword
-                            .ShowDetails = g_bShowDetails
-                            .ShowTaxDate = g_sShowTaxDate
-                            .IsShared = g_bIsShared
-                            .ReportNamePV = g_sReportFilename
-                            .DocNumStart = sDocNumS
-                            .DocNumEnd = sDocNumE
-                            .BPCodeStart = sBPCodeS
-                            .BPCodeEnd = sBPCodeE
-                            .DocDateSStart = sDocDateS
-                            .DocDateSEnd = sDocDateE
-                            .DocDateStart = dtDocDateS
-                            .DocDateEnd = dtDocDateE
-                            .IsIncludeCancel = iIsIncludeCancel
-                            .PVRangeDocType = myPaymentVoucherDocType
-                        End With
-                        bIsContinue = True
-                    End If
-                Else
-                    SBO_Application.StatusBar.SetText("No data found.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
-                End If
+                                End If
+
+                                oLoop.MoveNext()
+                            End While
+
+                            SBO_Application.StatusBar.SetText("Showing email list, please wait...", SAPbouiCOM.BoMessageTime.bmt_Long, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+
+                            If ds.Tables(0).Rows.Count > 0 Then
+                                SubMain.oFrmPVSendEmail.ReportName = ReportName.PV
+                                SubMain.oFrmPVSendEmail.StatementAsAtDate = GetDateObject(GetCurrentDate)
+                                SubMain.oFrmPVSendEmail.StatementDataTable = ds.PreviewDT
+                                SubMain.oFrmPVSendEmail.LoadForm()
+                                Hydac_FormViewer.Close()
+                            End If
+
+                        Else
+                            SBO_Application.StatusBar.SetText("No data found.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                        End If
+
+                    Case Else
+                        ' PREVIEW
+                        oLoop.DoQuery(sLoop)
+                        If oLoop.RecordCount > 0 Then
+                            Dim sListDocNum As String = "("
+                            Dim sListDocEntry As String = "("
+                            oLoop.MoveFirst()
+
+                            While Not oLoop.EoF
+                                sListDocNum &= "'" & oLoop.Fields.Item(0).Value & "',"
+                                sListDocEntry &= "'" & oLoop.Fields.Item(1).Value & "',"
+
+                                oLoop.MoveNext()
+                            End While
+
+                            sListDocNum = sListDocNum.Remove(sListDocNum.Length - 1, 1)
+                            sListDocNum = sListDocNum & ")"
+
+                            sListDocEntry = sListDocEntry.Remove(sListDocEntry.Length - 1, 1)
+                            sListDocEntry = sListDocEntry & ")"
+                            '=========================================
+                            myPaymentVoucherDocType = iTemp
+
+                            If PrepareDataset(sListDocNum, sListDocEntry) Then
+                                With frm
+                                    Select Case SBO_Application.ClientType
+                                        Case SAPbouiCOM.BoClientType.ct_Desktop
+                                            .ClientType = "D"
+                                        Case SAPbouiCOM.BoClientType.ct_Browser
+                                            .ClientType = "S"
+                                    End Select
+
+                                    .ExportPath = sFinalFileName
+                                    .Dataset = dsPAYMENT
+                                    .Text = "Payment Voucher Range Report"
+                                    .ReportName = ReportName.PV_Range
+                                    .DBUsernameViewer = DBUsername
+                                    .DBPasswordViewer = DBPassword
+                                    .ShowDetails = g_bShowDetails
+                                    .ShowTaxDate = g_sShowTaxDate
+                                    .IsShared = g_bIsShared
+                                    .ReportNamePV = g_sReportFilename
+                                    .DocNumStart = sDocNumS
+                                    .DocNumEnd = sDocNumE
+                                    .BPCodeStart = sBPCodeS
+                                    .BPCodeEnd = sBPCodeE
+                                    .DocDateSStart = sDocDateS
+                                    .DocDateSEnd = sDocDateE
+                                    .DocDateStart = dtDocDateS
+                                    .DocDateEnd = dtDocDateE
+                                    .IsIncludeCancel = iIsIncludeCancel
+                                    .PVRangeDocType = myPaymentVoucherDocType
+
+
+
+                                End With
+                                bIsContinue = True
+                            End If
+                        Else
+                            SBO_Application.StatusBar.SetText("No data found.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                        End If
+                End Select
+
 
             Catch ex As Exception
                 Throw ex
             Finally
                 oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.BTN_PRINT)).Enabled = True
             End Try
-            If bIsContinue Then
-                Select Case SBO_Application.ClientType
-                    Case SAPbouiCOM.BoClientType.ct_Desktop
-                        frm.ShowDialog()
 
-                    Case SAPbouiCOM.BoClientType.ct_Browser
-                        frm.OPEN_HANADS_PV_RANGE()
+            If iCount <> "1" Then
+                If bIsContinue Then
+                    Select Case SBO_Application.ClientType
+                        Case SAPbouiCOM.BoClientType.ct_Desktop
+                            frm.ShowDialog()
 
-                        If File.Exists(sFinalFileName) Then
-                            SBO_Application.SendFileToBrowser(sFinalFileName)
-                        End If
-                End Select
+                        Case SAPbouiCOM.BoClientType.ct_Browser
+                            frm.OPEN_HANADS_PV_RANGE()
+
+                            If File.Exists(sFinalFileName) Then
+                                SBO_Application.SendFileToBrowser(sFinalFileName)
+                            End If
+                    End Select
+                End If
             End If
+
         Catch ex As Exception
             SBO_Application.StatusBar.SetText("[Print_Report] : " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
         Finally
         End Try
     End Sub
+
+    Private Function PrepareDatasetSingle() As Boolean
+        Try
+            If g_StructureFilename.Length <= 0 Then
+                dsPAYMENT = New DS_PAYMENT
+            Else
+                dsPAYMENT = New DataSet
+                dsPAYMENT.ReadXml(g_StructureFilename)
+            End If
+
+            Dim ProviderName As String = "System.Data.Odbc"
+            Dim sQuery As String = ""
+            Dim dbConn As DbConnection = Nothing
+            Dim _DbProviderFactoryObject As DbProviderFactory
+
+            Dim dtOADM As System.Data.DataTable
+            Dim dtADM1 As System.Data.DataTable
+            Dim dtIMAGE As System.Data.DataTable
+            Dim dtNNM1 As System.Data.DataTable
+            Dim dtOACT As System.Data.DataTable
+
+            Dim dtOVPM As System.Data.DataTable
+            Dim dtVPM1 As System.Data.DataTable
+            Dim dtVPM2 As System.Data.DataTable
+            Dim dtVPM3 As System.Data.DataTable
+            Dim dtVPM4 As System.Data.DataTable
+
+            Dim dtNNM1_1 As System.Data.DataTable
+            Dim dtNNM1_2 As System.Data.DataTable
+            Dim dtNNM1_3 As System.Data.DataTable
+            Dim dtNNM1_4 As System.Data.DataTable
+            Dim dtNNM1_5 As System.Data.DataTable
+            Dim dtNNM1_6 As System.Data.DataTable
+            Dim dtNNM1_7 As System.Data.DataTable
+
+            Dim dtOJDT As System.Data.DataTable
+            Dim dtOINV As System.Data.DataTable
+            Dim dtORIN As System.Data.DataTable
+            Dim dtOPCH As System.Data.DataTable
+            Dim dtORPC As System.Data.DataTable
+            Dim dtODPO As System.Data.DataTable
+            Dim dtODPI As System.Data.DataTable
+
+            Dim dtINV1 As System.Data.DataTable
+            Dim dtRIN1 As System.Data.DataTable
+            Dim dtPCH1 As System.Data.DataTable
+            Dim dtRPC1 As System.Data.DataTable
+            Dim dtDPO1 As System.Data.DataTable
+            Dim dtDPI1 As System.Data.DataTable
+
+            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+            dbConn = _DbProviderFactoryObject.CreateConnection()
+            dbConn.ConnectionString = connStr
+            dbConn.Open()
+
+            Dim HANAda As DbDataAdapter = _DbProviderFactoryObject.CreateDataAdapter()
+            Dim HANAcmd As DbCommand
+
+            '------INV HEADER--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OINV"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '13') "
+            dtOINV = dsPAYMENT.Tables("OINV")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtOINV)
+
+            '------INV LINE--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
+            sQuery &= "  FROM """ & oCompany.CompanyDB & """.""INV1"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '13') "
+            dtINV1 = dsPAYMENT.Tables("INV1")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtINV1)
+
+            '------RIN HEADER--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""ORIN"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '14') "
+            dtORIN = dsPAYMENT.Tables("ORIN")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtORIN)
+
+            '------RIN LINE--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
+            sQuery &= "  FROM """ & oCompany.CompanyDB & """.""RIN1"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '14') "
+            dtRIN1 = dsPAYMENT.Tables("RIN1")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtRIN1)
+
+            '------PCH HEADER--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OPCH"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '18') "
+            dtOPCH = dsPAYMENT.Tables("OPCH")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtOPCH)
+
+            '------PCH LINE--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
+            sQuery &= "  FROM """ & oCompany.CompanyDB & """.""PCH1"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '18') "
+            dtPCH1 = dsPAYMENT.Tables("PCH1")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtPCH1)
+
+            '------RPC HEADER--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""ORPC"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '19') "
+            dtORPC = dsPAYMENT.Tables("ORPC")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtORPC)
+
+            '------RPC LINE--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
+            sQuery &= "  FROM """ & oCompany.CompanyDB & """.""RPC1"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '19') "
+            dtRPC1 = dsPAYMENT.Tables("RPC1")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtRPC1)
+
+            '------DPI HEADER--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""ODPI"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '203') "
+            dtODPI = dsPAYMENT.Tables("ODPI")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtODPI)
+
+            '------DPI LINE--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
+            sQuery &= "  FROM """ & oCompany.CompanyDB & """.""DPI1"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '203') "
+            dtDPI1 = dsPAYMENT.Tables("DPI1")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtDPI1)
+
+            '------DPO HEADER--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""ODPO"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '204') "
+            dtODPO = dsPAYMENT.Tables("ODPO")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtODPO)
+
+            '------DPO LINE--------------------------------------------------
+            sQuery = " SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
+            sQuery &= "  FROM """ & oCompany.CompanyDB & """.""DPO1"" "
+            sQuery &= " WHERE ""DocEntry"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '204') "
+            dtDPO1 = dsPAYMENT.Tables("DPO1")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtDPO1)
+
+            '------JE--------------------------------------------------
+            sQuery = " SELECT ""LogInstanc"",""DocSeries"",""DocType"",""DueDate"",""Number"",""Memo"",""ObjType"",""Ref1"",""Ref2"",""Ref3"",""RefDate"",""Series"",""SeriesStr"",""TaxDate"",""TransCode"",  CASE WHEN IFNULL(""TransCurr"",'') = '' THEN (SELECT ""MainCurncy"" FROM """ & oCompany.CompanyDB & """.""OADM"") ELSE ""TransCurr"" END ""TransCurr"",""TransId"",""TransType"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OJDT"" "
+            sQuery &= " WHERE ""TransType"" = '30' AND ""TransId"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '30') "
+            sQuery &= " UNION ALL "
+            sQuery &= " SELECT ""LogInstanc"",""DocSeries"",""DocType"",""DueDate"",""Number"",""Memo"",""ObjType"",""Ref1"",""Ref2"",""Ref3"",""RefDate"",""Series"",""SeriesStr"",""TaxDate"",""TransCode"", CASE WHEN IFNULL(""TransCurr"",'') = '' THEN (SELECT ""MainCurncy"" FROM """ & oCompany.CompanyDB & """.""OADM"") ELSE ""TransCurr"" END ""TransCurr"",""TransId"",""TransType"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OJDT"" "
+            sQuery &= " WHERE ""TransType"" = '24' AND ""TransId"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '24') "
+            sQuery &= " UNION ALL "
+            sQuery &= " SELECT ""LogInstanc"",""DocSeries"",""DocType"",""DueDate"",""Number"",""Memo"",""ObjType"",""Ref1"",""Ref2"",""Ref3"",""RefDate"",""Series"",""SeriesStr"",""TaxDate"",""TransCode"", CASE WHEN IFNULL(""TransCurr"",'') = '' THEN (SELECT ""MainCurncy"" FROM """ & oCompany.CompanyDB & """.""OADM"") ELSE ""TransCurr"" END ""TransCurr"",""TransId"",""TransType"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OJDT"" "
+            sQuery &= " WHERE ""TransType"" = '46' AND ""TransId"" IN ( "
+            sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
+            sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '46') "
+
+            dtOJDT = dsPAYMENT.Tables("OJDT")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtOJDT)
+            '--------------------------------------------------------
+            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""OVPM"" WHERE ""DocNum"" = '" & g_sDocNum & "' AND ""Series"" = '" & g_sSeries & "' AND ""DocEntry"" = '" & g_sDocEntry & "' "
+            dtOVPM = dsPAYMENT.Tables("OVPM")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtOVPM)
+
+            '--------------------------------------------------------
+            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""VPM1"" WHERE ""DocNum"" = '" & g_sDocEntry & "' "
+            dtVPM1 = dsPAYMENT.Tables("VPM1")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtVPM1)
+            '--------------------------------------------------------
+            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""VPM2"" WHERE ""DocNum"" = '" & g_sDocEntry & "' "
+            dtVPM2 = dsPAYMENT.Tables("VPM2")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtVPM2)
+            '--------------------------------------------------------
+            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""VPM3"" WHERE ""DocNum"" = '" & g_sDocEntry & "' "
+            dtVPM3 = dsPAYMENT.Tables("VPM3")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtVPM3)
+            '--------------------------------------------------------
+            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""VPM4"" WHERE ""DocNum"" = '" & g_sDocEntry & "' "
+            dtVPM4 = dsPAYMENT.Tables("VPM4")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtVPM4)
+
+            '--------------------------------------------------------
+            sQuery = " SELECT '1' ""FLAG"", '1' ""SRNO"" FROM DUMMY "
+            dtIMAGE = dsPAYMENT.Tables("@NCM_IMAGE")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtIMAGE)
+
+            '--------------------------------------------------------
+            sQuery = " SELECT ""AcctCode"",""AcctName"",""LogInstanc"",""FormatCode"" FROM """ & oCompany.CompanyDB & """.""OACT"" "
+            dtOACT = dsPAYMENT.Tables("OACT")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtOACT)
+
+            '--------------------------------------------------------
+            sQuery = "  SELECT ""ObjectCode"", ""Series"", ""SeriesName"", IFNULL(""BeginStr"",'') AS ""BeginStr"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""NNM1"" WHERE ""ObjectCode"" = '46' "
+            sQuery &= " UNION ALL "
+            sQuery &= " SELECT '46' ""ObjectCode"", '-1' ""Series"", 'Manual' ""SeriesName"", '' ""BeginStr""  "
+            sQuery &= " FROM ""DUMMY"" "
+            dtNNM1 = dsPAYMENT.Tables("NNM1")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtNNM1)
+
+            '--------------------------------------------------------
+            sQuery = "SELECT  ""Block"", ""City"", ""County"",""Country"",""Code"",""State"",""ZipCode"",""Street"",""IntrntAdrs"",""LogInstanc"" FROM """ & oCompany.CompanyDB & """.""ADM1""  "
+            dtADM1 = dsPAYMENT.Tables("ADM1")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtADM1)
+
+            '--------------------------------------------------------
+            sQuery = "SELECT ""Code"",""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""MainCurncy"",""RevOffice"",""Phone1"",""Phone2"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
+            dtOADM = dsPAYMENT.Tables("OADM")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtOADM)
+
+            '--------------------------------------------------------
+            sQuery = "SELECT ""ObjectCode"",""Series"",""SeriesName"" FROM """ & oCompany.CompanyDB & """.""NNM1"" WHERE ""ObjectCode"" = '18' "
+            dtNNM1_1 = dsPAYMENT.Tables("NCM_NNM1_1")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtNNM1_1)
+            '--------------------------------------------------------
+            sQuery = "SELECT ""ObjectCode"",""Series"",""SeriesName"" FROM """ & oCompany.CompanyDB & """.""NNM1"" WHERE ""ObjectCode"" = '19' "
+            dtNNM1_2 = dsPAYMENT.Tables("NCM_NNM1_2")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtNNM1_2)
+            '--------------------------------------------------------
+            sQuery = "SELECT ""ObjectCode"",""Series"",""SeriesName"" FROM """ & oCompany.CompanyDB & """.""NNM1"" WHERE ""ObjectCode"" IN ('24','46','30') "
+            dtNNM1_3 = dsPAYMENT.Tables("NCM_NNM1_3")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtNNM1_3)
+            '--------------------------------------------------------
+            sQuery = "SELECT ""ObjectCode"",""Series"",""SeriesName"" FROM """ & oCompany.CompanyDB & """.""NNM1"" WHERE ""ObjectCode"" = '204' "
+            dtNNM1_4 = dsPAYMENT.Tables("NCM_NNM1_4")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtNNM1_4)
+            '--------------------------------------------------------
+            sQuery = "SELECT ""ObjectCode"",""Series"",""SeriesName"" FROM """ & oCompany.CompanyDB & """.""NNM1"" WHERE ""ObjectCode"" = '13' "
+            dtNNM1_5 = dsPAYMENT.Tables("NCM_NNM1_5")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtNNM1_5)
+            '--------------------------------------------------------
+            sQuery = "SELECT ""ObjectCode"",""Series"",""SeriesName"" FROM """ & oCompany.CompanyDB & """.""NNM1"" WHERE ""ObjectCode"" = '203' "
+            dtNNM1_6 = dsPAYMENT.Tables("NCM_NNM1_6")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtNNM1_6)
+            '--------------------------------------------------------
+            sQuery = "SELECT ""ObjectCode"",""Series"",""SeriesName"" FROM """ & oCompany.CompanyDB & """.""NNM1"" WHERE ""ObjectCode"" = '14' "
+            dtNNM1_7 = dsPAYMENT.Tables("NCM_NNM1_7")
+            HANAcmd = dbConn.CreateCommand()
+            HANAcmd.CommandText = sQuery
+            HANAcmd.ExecuteNonQuery()
+            HANAda.SelectCommand = HANAcmd
+            HANAda.Fill(dtNNM1_7)
+            '--------------------------------------------------------
+            dbConn.Close()
+
+            Return True
+        Catch ex As Exception
+            SBO_Application.StatusBar.SetText("[PrepareDatasetSingle] : " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            Return False
+        End Try
+    End Function
     Private Function PrepareDataset(ByVal sListDocNum As String, ByVal sListDocEntry As String) As Boolean
         Try
             If g_StructureFilename.Length <= 0 Then
@@ -814,14 +1466,41 @@ Public Class FRM_PaymentVoucher_Range
                         Select Case pVal.ItemUID
                             Case GetItemUID(PaymentVoucherRangeItems.BTN_PRINT)
                                 If oForm.Items.Item(pVal.ItemUID).Enabled Then
-                                    If IsParametersValid() Then
-                                        myThread = New System.Threading.Thread(AddressOf Print_Report)
-                                        myThread.SetApartmentState(Threading.ApartmentState.STA)
-                                        myThread.Start()
+                                    Dim iReturn As Integer = 0
+
+                                    If oForm.DataSources.UserDataSources.Item("ckWizard").ValueEx = "1" Then
+                                        iReturn = SBO_Application.MessageBox("Please confirm if you want to list Outgoing Payments using Payment Wizard.", 2, "&Yes", "&No")
+                                        If iReturn = 1 Then
+                                            If IsParametersValid() Then
+                                                myThread = New System.Threading.Thread(AddressOf Print_Report)
+                                                myThread.SetApartmentState(Threading.ApartmentState.STA)
+                                                myThread.Start()
+                                            End If
+                                        End If
+                                    Else
+                                        If IsParametersValid() Then
+                                            myThread = New System.Threading.Thread(AddressOf Print_Report)
+                                            myThread.SetApartmentState(Threading.ApartmentState.STA)
+                                            myThread.Start()
+                                        End If
                                     End If
-                                
+
                                 End If
                         End Select
+
+                    Case SAPbouiCOM.BoEventTypes.et_COMBO_SELECT
+                        If pVal.ItemUID = GetItemUID(PaymentVoucherRangeItems.CBO_DocType) Then
+                            Dim oCombo As SAPbouiCOM.ComboBox
+                            oCombo = oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.CBO_DocType)).Specific
+                            Select Case oCombo.Selected.Description
+                                Case "Supplier"
+                                    SetupChooseFromList("S")
+                                Case "Customer"
+                                    SetupChooseFromList("C")
+                                Case Else
+                                    SetupChooseFromList("")
+                            End Select
+                        End If
 
                     Case SAPbouiCOM.BoEventTypes.et_CHOOSE_FROM_LIST
                         Dim oCFLEvento As SAPbouiCOM.IChooseFromListEvent
@@ -843,6 +1522,23 @@ Public Class FRM_PaymentVoucher_Range
 
                                 End Try
                                 oForm.DataSources.UserDataSources.Item(pVal.ItemUID).ValueEx = sItemCode
+
+                            Case "txtSBPGrp"
+                                Try
+                                    sItemCode = oDataTable.GetValue("GroupCode", 0)
+                                Catch ex As Exception
+
+                                End Try
+                                oForm.DataSources.UserDataSources.Item(pVal.ItemUID).ValueEx = sItemCode
+
+                            Case "txtEBPGrp"
+                                Try
+                                    sItemCode = oDataTable.GetValue("GroupCode", 0)
+                                Catch ex As Exception
+
+                                End Try
+                                oForm.DataSources.UserDataSources.Item(pVal.ItemUID).ValueEx = sItemCode
+
                         End Select
                 End Select
             End If

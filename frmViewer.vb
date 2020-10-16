@@ -1634,8 +1634,10 @@ Public Class Hydac_FormViewer
                 subreport.DataDefinition.FormulaFields.Item("PageBreak").Text = SetStringIntoCrystalFormula("Yes")
             End If
 
-
+            ' =====================
             ' Main Report Parameter ----------------------------------------------------------------------
+            ' =====================
+
             .DataDefinition.FormulaFields.Item("statementDate").Text = StatementDate
             .DataDefinition.FormulaFields.Item("AgeingBy").Text = cAgeBy
             .DataDefinition.FormulaFields.Item("LocalCurr").Text = "'" & sLocalCurr & "'"
@@ -2432,7 +2434,7 @@ Public Class Hydac_FormViewer
 
         If g_bIsShared Then
             rpt = New ReportDocument
-            rpt.Load(g_sSharedReportName)
+            rpt.Load(g_sReportName)
         Else
             rpt = New PV_HANADS
         End If

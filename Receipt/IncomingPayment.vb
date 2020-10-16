@@ -123,7 +123,6 @@ Public Class IncomingPayment
                 sCurrDate = Convert.ToString(oRec.Fields.Item(0).Value).Trim
             End If
 
-
             ' ===============================================================================
             ' get the folder of the current DB Name
             ' set to local
@@ -164,6 +163,7 @@ Public Class IncomingPayment
                     .Text = "Official Receipt - " & g_sDocNum
                     .ReportName = ReportName.IRA
                     .DocNum = g_sDocNum
+                    .DocEntry = g_sDocEntry
                     .Series = g_sSeries
                     .DBUsernameViewer = DBUsername
                     .DBPasswordViewer = DBPassword
@@ -248,7 +248,7 @@ Public Class IncomingPayment
             Dim HANAcmd As DbCommand
 
             '------INV HEADER--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery = "  SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""OINV"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""RCT2"" "
@@ -261,8 +261,8 @@ Public Class IncomingPayment
             HANAda.Fill(dtOINV)
 
             '------INV LINE--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
-            sQuery &= "  FROM """ & oCompany.CompanyDB & """.""INV1"" "
+            sQuery = "  SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""INV1"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""RCT2"" "
             sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '13') "
@@ -274,7 +274,7 @@ Public Class IncomingPayment
             HANAda.Fill(dtINV1)
 
             '------RIN HEADER--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery = "  SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""ORIN"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""RCT2"" "
@@ -287,8 +287,8 @@ Public Class IncomingPayment
             HANAda.Fill(dtORIN)
 
             '------RIN LINE--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
-            sQuery &= "  FROM """ & oCompany.CompanyDB & """.""RIN1"" "
+            sQuery = "  SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""RIN1"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""RCT2"" "
             sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '14') "
@@ -300,7 +300,7 @@ Public Class IncomingPayment
             HANAda.Fill(dtRIN1)
 
             '------PCH HEADER--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery = "  SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""OPCH"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""RCT2"" "
@@ -313,8 +313,8 @@ Public Class IncomingPayment
             HANAda.Fill(dtOPCH)
 
             '------PCH LINE--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
-            sQuery &= "  FROM """ & oCompany.CompanyDB & """.""PCH1"" "
+            sQuery = "  SELECT ""DocEntry"",""LineNum"",""VisOrder"",""ItemCode"",""Dscription"",""Quantity"",""Price"",""TotalFrgn"",""Rate"",""LineTotal"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""PCH1"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""RCT2"" "
             sQuery &= " WHERE ""DocNum"" = '" & g_sDocEntry & "' AND ""InvType"" = '18') "
@@ -326,7 +326,7 @@ Public Class IncomingPayment
             HANAda.Fill(dtPCH1)
 
             '------RPC HEADER--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery = "  SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""ORPC"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""RCT2"" "
@@ -488,7 +488,8 @@ Public Class IncomingPayment
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtOUSR)
             '--------------------------------------------------------
-            sQuery = "  SELECT ""ObjectCode"",""Series"",""SeriesName"",IFNULL(""BeginStr"",'') AS ""BeginStr"" FROM """ & oCompany.CompanyDB & """.""NNM1"" WHERE ""ObjectCode"" = '24' "
+            sQuery = "  SELECT ""ObjectCode"",""Series"",""SeriesName"",IFNULL(""BeginStr"",'') AS ""BeginStr"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""NNM1"" WHERE ""ObjectCode"" = '24' "
             sQuery &= " UNION ALL "
             sQuery &= " SELECT '24' ""ObjectCode"", '-1' ""Series"", 'Manual' ""SeriesName"", '' ""BeginStr""  "
             sQuery &= " FROM ""DUMMY"" "
@@ -634,7 +635,7 @@ Public Class IncomingPayment
                                 sShowTaxDate = oRec.Fields.Item(1).Value
 
                                 If bolShowDetails = True Then
-                                    If oRecordset.Fields.Item("DocType").Value = "S" Then
+                                    If oRecordset.Fields.Item("DocType").Value = "C" Then
                                         If oRecordset.Fields.Item("CashSum").Value <> 0 Or oRecordset.Fields.Item("TrsfrSum").Value <> 0 Then
                                             If SBO_Application.MessageBox("Do you want to print Invoice Details?", 1, "Yes", "No") = 1 Then
                                                 bolShowDetails = True

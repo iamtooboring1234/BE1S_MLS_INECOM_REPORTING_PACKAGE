@@ -592,8 +592,12 @@ Public Class frmARAgeing
             '--------------------------------------------------------
             'NCM_AR_AGEING
             '--------------------------------------------------------
-            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""@NCM_AR_AGEING"" "
-            sQuery &= " WHERE ""USERNAME"" = '" & g_sARAGERunningDate & oCompany.UserName & "' "
+            sQuery = "  SELECT T1.*, "
+            sQuery &= " IFNULL(T2.""Phone1"",'') ""PHONE1"", IFNULL(T2.""Phone2"",'') ""PHONE2"", "
+            sQuery &= " IFNULL(T2.""CntctPrsn"",'') ""CONTACTPERSON"" "
+            sQuery &= " FROM   """ & oCompany.CompanyDB & """.""@NCM_AR_AGEING"" T1 "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CARDCODE"" = T2.""CardCode"" "
+            sQuery &= " WHERE  T1.""USERNAME"" = '" & g_sARAGERunningDate & oCompany.UserName & "' "
             dtAGE = ds.Tables("@NCM_AR_AGEING")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -602,7 +606,6 @@ Public Class frmARAgeing
             HANAda.Fill(dtAGE)
 
             dbConn.Close()
-
             Return True
         Catch ex As Exception
             SBO_Application.StatusBar.SetText("[PrepareDataset] : " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
@@ -1009,6 +1012,11 @@ Public Class frmARAgeing
                             End If
                         End If
 
+                    Case SAPbouiCOM.BoEventTypes.et_DOUBLE_CLICK
+                        If pVal.ItemUID = "btnExecute" Then
+                            BubbleEvent = False
+                        End If
+
                     Case SAPbouiCOM.BoEventTypes.et_ITEM_PRESSED
                         Select Case pVal.ItemUID
                             Case "btSelect"
@@ -1077,6 +1085,8 @@ Public Class frmARAgeing
                             Case "ckFin"
                                 PopulateData()
                         End Select
+
+
                     Case SAPbouiCOM.BoEventTypes.et_VALIDATE
                         Select Case pVal.ItemUID
                             Case "txtB4Val"

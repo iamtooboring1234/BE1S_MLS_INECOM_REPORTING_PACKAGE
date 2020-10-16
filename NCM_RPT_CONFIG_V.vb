@@ -1,4 +1,4 @@
-'' © Copyright © 2007-2019, Inecom Pte Ltd, All rights reserved.
+'' © Copyright © 2007-2020, Inecom Pte Ltd, All rights reserved.
 '' =============================================================
 Option Strict Off
 Option Explicit On
@@ -189,6 +189,9 @@ Public Class NCM_RPT_CONFIG_V
                 g_iPaneLvl = 1
                 PopulateReport()
                 ''-------------------------------------------------------------------------------------------
+                oMtrxBSC.AutoResizeColumns()
+                oMtrxADV.AutoResizeColumns()
+
                 oFormCFG.Mode = BoFormMode.fm_OK_MODE
                 oFormCFG.Items.Item("flOne").Click(BoCellClickType.ct_Regular)
                 oFormCFG.PaneLevel = 1
@@ -689,6 +692,19 @@ Public Class NCM_RPT_CONFIG_V
     Friend Function ItemEvent(ByRef pVal As SAPbouiCOM.ItemEvent) As Boolean
         Dim BubbleEvent As Boolean = True
         Try
+            If pVal.EventType = BoEventTypes.et_FORM_RESIZE Then
+                Try
+                    oFormCFG = SBO_Application.Forms.Item(FRM_RPT_CONFIG)
+                    oMtrxBSC = oFormCFG.Items.Item("mxBSC").Specific
+                    oMtrxADV = oFormCFG.Items.Item("mxADV").Specific
+
+                    oMtrxBSC.AutoResizeColumns()
+                    oMtrxADV.AutoResizeColumns()
+                Catch ex As Exception
+
+                End Try
+            End If
+
             If pVal.Before_Action = True Then
                 If pVal.ItemUID = "1" Then
                     If pVal.EventType = BoEventTypes.et_ITEM_PRESSED Then
@@ -708,9 +724,13 @@ Public Class NCM_RPT_CONFIG_V
                             Case "flOne"
                                 oFormCFG.PaneLevel = 1
                                 g_iPaneLvl = 1
+                                oMtrxBSC.AutoResizeColumns()
+
                             Case "flTwo"
                                 oFormCFG.PaneLevel = 2
                                 g_iPaneLvl = 2
+                                oMtrxADV.AutoResizeColumns()
+
                             Case "flThree"
                                 oFormCFG.PaneLevel = 3
                                 g_iPaneLvl = 3

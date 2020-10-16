@@ -1,4 +1,4 @@
-'' © Copyright © 2007-2019, Inecom Pte Ltd, All rights reserved.
+'' © Copyright © 2007-2020, Inecom Pte Ltd, All rights reserved.
 '' =============================================================
 
 Option Strict Off
@@ -258,20 +258,23 @@ Module SubMain
             oCompany = New SAPbobsCOM.Company
             oCompany = SBO_Application.Company.GetDICompany()
 
+
+
 #If DEBUG Then
-            global_DBUsername = "SYSTEM"
-            global_DBPassword = "Hana#sg1"
-            connStr = "DRIVER={HDBODBC32};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server & ";DATABASE=" & oCompany.CompanyDB & ""
+                        global_DBUsername = "SYSTEM"
+                        global_DBPassword = "Hana#sg1"
+                        connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & ";DATABASE=" & oCompany.CompanyDB & ""
 
-            Dim ProviderName As String = "System.Data.Odbc"
-            Dim dbConn As DbConnection = Nothing
-            Dim _DbProviderFactoryObject As DbProviderFactory
-            Dim sQuery As String = ""
 
-            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
-            dbConn = _DbProviderFactoryObject.CreateConnection()
-            dbConn.ConnectionString = connStr
-            dbConn.Open()
+                        Dim ProviderName As String = "System.Data.Odbc"
+                        Dim dbConn As DbConnection = Nothing
+                        Dim _DbProviderFactoryObject As DbProviderFactory
+                        Dim sQuery As String = ""
+
+                        _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+                        dbConn = _DbProviderFactoryObject.CreateConnection()
+                        dbConn.ConnectionString = connStr
+                        dbConn.Open()
 #Else
             Dim bCloud As Boolean = False
             If bCloud = False Then
@@ -463,13 +466,13 @@ Module SubMain
                 oMenus.AddEx(oNewMenuItem)
             End If
 
-            If (IsIncludeModule(ReportName.PV_Mass_Email)) Then 'AT added on 04.05.2019
-                oNewMenuItem = SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_MenuCreationParams)
-                oNewMenuItem.Type = SAPbouiCOM.BoMenuType.mt_STRING
-                oNewMenuItem.UniqueID = MNU_NCM_PV_EMAIL_PARA
-                oNewMenuItem.String = "PV Email"
-                oMenus.AddEx(oNewMenuItem)
-            End If
+            'If (IsIncludeModule(ReportName.PV_Mass_Email)) Then 'AT added on 04.05.2019
+            '    oNewMenuItem = SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_MenuCreationParams)
+            '    oNewMenuItem.Type = SAPbouiCOM.BoMenuType.mt_STRING
+            '    oNewMenuItem.UniqueID = MNU_NCM_PV_EMAIL_PARA
+            '    oNewMenuItem.String = "PV Email"
+            '    oMenus.AddEx(oNewMenuItem)
+            'End If
 
             oMenuItem = SBO_Application.Menus.Item("12800") ' Sales Report 
             If (IsIncludeModule(ReportName.ARAging_Details_Proj)) Then
@@ -848,10 +851,10 @@ Module SubMain
                             DBIntegratedSecurity = licAddOn.sqlIntegratedSecurity
 
                             '32 bit connstring
-                            connStr = "DRIVER={HDBODBC32};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server & ";DATABASE=" & oCompany.CompanyDB & ""
+                            'connStr = "DRIVER={HDBODBC32};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server & ";DATABASE=" & oCompany.CompanyDB & ""
 
                             '64 bit connstring
-                            'connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server & ";DATABASE=" & oCompany.CompanyDB & ""
+                            connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & ";DATABASE=" & oCompany.CompanyDB & ""
 
                             _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
                             HANADbConnection = _DbProviderFactoryObject.CreateConnection()
@@ -1316,7 +1319,6 @@ Module SubMain
 
         End Try
     End Function
-
     Public Function GetHANAConnection(ByRef _DbProviderFactoryObject As DbProviderFactory) As DbConnection
 
         _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
@@ -1326,7 +1328,6 @@ Module SubMain
 
         Return HANADbConnection
     End Function
-
     Public Function ExecuteHANACommandToDataTable(ByVal sQuery As String) As System.Data.DataTable
         Dim dt As System.Data.DataTable = New System.Data.DataTable()
         Dim sFormattedQuery As String = ""

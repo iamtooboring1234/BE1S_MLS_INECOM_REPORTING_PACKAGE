@@ -1,5 +1,8 @@
+'' © Copyright © 2007-2020, Inecom Pte Ltd, All rights reserved.
+'' =============================================================
+
 Imports System.IO
-Imports EASendMail
+Imports outlook = Microsoft.Office.Interop.Outlook
 
 Public Class frmEmail
 
@@ -37,7 +40,6 @@ Public Class frmEmail
 
             oForm.EnableMenu(MenuID.Add, False)
             oForm.EnableMenu(MenuID.Find, False)
-
             oForm.SupportedModes = -1
             oForm.Items.Item("tbReceipt").AffectsFormMode = False
 
@@ -75,6 +77,7 @@ Public Class frmEmail
             .Add("tbPortNum", SAPbouiCOM.BoDataType.dt_SHORT_NUMBER, 10)
             .Add("tbReceipt", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 254)
             .Add("ckOffice", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
+            .Add("ckOutlook", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
         End With
 
         oEdit = oForm.Items.Item("tbReceipt").Specific
@@ -100,11 +103,17 @@ Public Class frmEmail
         oChck.ValOff = "N"
         oChck.ValOn = "Y"
 
+        oChck = oForm.Items.Item("ckOutlook").Specific
+        oChck.DataBind.SetBound(True, "", "ckOutlook")
+        oChck.ValOff = "N"
+        oChck.ValOn = "Y"
+
     End Sub
     Private Sub SetDatasource()
         Try
             Dim oRecord As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             Dim sQuery As String = String.Empty
+            Dim sOutlook As String = "N"
 
             sQuery = "  SELECT IFNULL(T1.""FldValue"",''), IFNULL(T1.""Descr"",'') "
             sQuery &= " FROM ""CUFD"" T0 "
@@ -123,6 +132,20 @@ Public Class frmEmail
             If oCombo.ValidValues.Count > 0 Then
                 oCombo.Select(0, SAPbouiCOM.BoSearchKey.psk_Index)
             End If
+
+            Try
+                sQuery = "  SELECT IFNULL(""U_Outlook"",'N') "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" "
+                sQuery &= " WHERE ""Code"" = 'SOA' "
+                oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRecord.DoQuery(sQuery)
+                If oRecord.RecordCount > 0 Then
+                    oRecord.MoveFirst()
+                    sOutlook = oRecord.Fields.Item(0).Value.ToString.Trim.ToUpper
+                End If
+            Catch ex As Exception
+
+            End Try
 
             sQuery = "  SELECT IFNULL(""U_AuthType"",'0'), "
             sQuery &= " IFNULL(""U_MailFrom"",''), "
@@ -148,6 +171,7 @@ Public Class frmEmail
                     .Item("tbMailBody").ValueEx = oRecord.Fields.Item(5).Value
                     .Item("tbPortNum").ValueEx = oRecord.Fields.Item(6).Value
                     .Item("ckOffice").ValueEx = oRecord.Fields.Item(7).Value
+                    .Item("ckOutlook").ValueEx = sOutlook
 
                     If .Item("cboAuth").ValueEx.Trim() = "0" Then
                         oForm.Items.Item("txtUser").Enabled = False
@@ -234,6 +258,17 @@ Public Class frmEmail
                 sQuery = String.Format(sQuery, sInput)
                 oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                 oRecord.DoQuery(sQuery)
+
+                Try
+                    sQuery = "  UPDATE """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" "
+                    sQuery &= " SET ""U_Outlook"" = '" & oForm.DataSources.UserDataSources.Item("ckOutlook").ValueEx & "' "
+                    sQuery &= " WHERE ""Code"" = 'SOA' "
+                    oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                    oRecord.DoQuery(sQuery)
+                Catch ex As Exception
+
+                End Try
+
                 oRecord = Nothing
 
                 SBO_Application.StatusBar.SetText("The configuration has been updated successfully.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
@@ -247,19 +282,99 @@ Public Class frmEmail
             Return False
         End Try
     End Function
+
+    Private Function CheckImage1(ByVal sInput As String) As Boolean
+        Try
+            If sInput.Contains("image1") Then
+                Return True
+            End If
+            Return False
+        Catch ex As Exception
+            SBO_Application.MessageBox("[CheckImage1] - " & ex.Message, 1, "Ok", String.Empty, String.Empty)
+            Return False
+        End Try
+    End Function
+    Private Function CheckImage2(ByVal sInput As String) As Boolean
+        Try
+            If sInput.Contains("image2") Then
+                Return True
+            End If
+            Return False
+        Catch ex As Exception
+            SBO_Application.MessageBox("[CheckImage2] - " & ex.Message, 1, "Ok", String.Empty, String.Empty)
+            Return False
+        End Try
+    End Function
+    Private Function CheckImage3(ByVal sInput As String) As Boolean
+        Try
+            If sInput.Contains("image3") Then
+                Return True
+            End If
+            Return False
+        Catch ex As Exception
+            SBO_Application.MessageBox("[CheckImage3] - " & ex.Message, 1, "Ok", String.Empty, String.Empty)
+            Return False
+        End Try
+    End Function
+    Private Function CheckImage4(ByVal sInput As String) As Boolean
+        Try
+            If sInput.Contains("image4") Then
+                Return True
+            End If
+            Return False
+        Catch ex As Exception
+            SBO_Application.MessageBox("[CheckImage4] - " & ex.Message, 1, "Ok", String.Empty, String.Empty)
+            Return False
+        End Try
+    End Function
+    Private Function CheckImage5(ByVal sInput As String) As Boolean
+        Try
+            If sInput.Contains("image5") Then
+                Return True
+            End If
+            Return False
+        Catch ex As Exception
+            SBO_Application.MessageBox("[CheckImage5] - " & ex.Message, 1, "Ok", String.Empty, String.Empty)
+            Return False
+        End Try
+    End Function
+    Private Function CheckImage6(ByVal sInput As String) As Boolean
+        Try
+            If sInput.Contains("image6") Then
+                Return True
+            End If
+            Return False
+        Catch ex As Exception
+            SBO_Application.MessageBox("[CheckImage6] - " & ex.Message, 1, "Ok", String.Empty, String.Empty)
+            Return False
+        End Try
+    End Function
+
     Private Sub Connect()
         Try
             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             Dim sRec As String = ""
             Dim sEnableSSL As String = ""
-            Dim sEmailCc As String = GetEmailCCFromUDT()
+            Dim sToday As String = ""
+            Dim sQry As String = "SELECT TO_VARCHAR(current_timestamp, 'DD.MM.YYYY HH:MM:SS') FROM DUMMY"
 
             sRec = " SELECT TOP 1 IFNULL(""U_EnableSSL"",'N') FROM ""@NCM_EMAIL_CONFIG"" WHERE ""Code"" = 'SOA' "
-
+            oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             oRec.DoQuery(sRec)
             If oRec.RecordCount > 0 Then
                 sEnableSSL = oRec.Fields.Item(0).Value
             End If
+
+            Try
+                oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRec.DoQuery(sQry)
+                If oRec.RecordCount > 0 Then
+                    oRec.MoveFirst()
+                    sToday = oRec.Fields.Item(0).Value.ToString.Trim
+                End If
+            Catch ex As Exception
+
+            End Try
 
             Dim sInput() As String = New String(7) {}
             With oForm.DataSources.UserDataSources
@@ -298,111 +413,175 @@ Public Class frmEmail
 
             'IRP HANA
             '=======================================================================================================
-            'Select Case oForm.DataSources.UserDataSources.Item("ckOffice").ValueEx.ToString.Trim
-            '    Case "Y"
-            'Dim oMail As New SmtpMail("TryIt")
-            'Dim oSmtp As New SmtpClient()
-            'Dim s() As String = sInput(6).Split(";")
+            Select Case oForm.DataSources.UserDataSources.Item("ckOutlook").ValueEx
+                Case "Y"
+                    Dim OutlookMessage As outlook.MailItem
+                    Dim AppOutlook As New outlook.Application
+                    Try
+                        OutlookMessage = AppOutlook.CreateItem(outlook.OlItemType.olMailItem)
+                        Dim Recipients As outlook.Recipients = OutlookMessage.Recipients
+                        Dim s() As String = sInput(6).Split(";")
 
-            '' Your hotmail/outlook email address
-            'oMail.From = sInput(0)
+                        For i As Integer = 0 To s.Length - 1
+                            Recipients.Add(s(i).Trim)
+                        Next
 
-            '' Set recipient email address, please change it to yours
-            'For i As Integer = 0 To s.Length - 1
-            '    oMail.To.Add((s(i).Trim))
-            'Next
+                        OutlookMessage.Subject = oCompany.CompanyName & " - Test Sending Email From MS Outlook - " & sToday
+                        OutlookMessage.HTMLBody = "Test Connection - Successful"
+                        OutlookMessage.BodyFormat = outlook.OlBodyFormat.olFormatHTML
+                        OutlookMessage.Send()
 
-            'Dim Cc() As String
-            'If sEmailCc.Trim.Length > 0 Then
-            '    Cc = sEmailCc.Split(";")
-            '    For i As Integer = 0 To Cc.Length - 1
-            '        oMail.Cc.Add((Cc(i).Trim))
-            '    Next
-            'End If
+                        SBO_Application.MessageBox("[MS Outlook] Test sending email is successful, please check the recipient's email to confirm.", 1, "OK")
 
-            '' Set email subject
-            'oMail.Subject = oCompany.CompanyName & " - Test Sending Email From SMTP Connection "
+                    Catch ex As Exception
+                        SBO_Application.MessageBox("[MS Outlook] Sending Email Failed : " & ex.Message, 1, "OK")
+                    Finally
+                        OutlookMessage = Nothing
+                        AppOutlook = Nothing
+                    End Try
 
-            '' Set email body
-            'oMail.HtmlBody = "Test Connection - Successful"
+                    'Dim OutlookMessage As outlook.MailItem
+                    'Dim AppOutlook As New outlook.Application
+                    'Dim sOutput As String = ""
+                    'Dim sOutput2 As String = ""
+                    'Dim bImage1 As Boolean = False
+                    'Dim bImage2 As Boolean = False
+                    'Dim bImage3 As Boolean = False
+                    'Dim bImage4 As Boolean = False
+                    'Dim bImage5 As Boolean = False
+                    'Dim bImage6 As Boolean = False
+                    'Dim propertyAccessor As outlook.PropertyAccessor
+                    'Dim image1 As outlook.Attachment
+                    'Dim image2 As outlook.Attachment
+                    'Dim image3 As outlook.Attachment
+                    'Dim image4 As outlook.Attachment
+                    'Dim image5 As outlook.Attachment
+                    'Dim image6 As outlook.Attachment
+                    'Dim attachments As outlook.Attachments = Nothing
 
-            '' Hotmail/Outlook SMTP server address
-            'Dim oServer As New SmtpServer(sInput(1))
+                    'Try
+                    '    sOutput = System.IO.File.ReadAllText("C:\Visual Studio Projects\IRP V905.091.2009 HANA\IRP V905.091.2009_GIT\Inecom SDK Reporting Package\bin\EmailBody.html")
+                    '    bImage1 = CheckImage1(sOutput)
+                    '    bImage2 = CheckImage2(sOutput)
+                    '    bImage3 = CheckImage3(sOutput)
+                    '    bImage4 = CheckImage4(sOutput)
+                    '    bImage5 = CheckImage5(sOutput)
+                    '    bImage6 = CheckImage6(sOutput)
 
-            'oServer.User = sInput(2)
-            'oServer.Password = sInput(3)
+                    '    OutlookMessage = AppOutlook.CreateItem(outlook.OlItemType.olMailItem)
+                    '    Dim Recipients As outlook.Recipients = OutlookMessage.Recipients
+                    '    Dim s() As String = sInput(6).Split(";")
 
-            '' use 587 port
-            'oServer.Port = sInput(5)
+                    '    For i As Integer = 0 To s.Length - 1
+                    '        Recipients.Add(s(i).Trim)
+                    '    Next
 
-            '' detect SSL/TLS connection automatically
-            'oServer.ConnectType = SmtpConnectType.ConnectSSLAuto
+                    '    If sOutput.Contains("{0}") Then
+                    '        sOutput2 = sOutput.Replace("{0}", AsAtDate.ToString("dd/MM/yyyy"))
+                    '    Else
+                    '        sOutput2 = sOutput
+                    '    End If
 
-            'Try
-            '    oSmtp.SendMail(oServer, oMail)
-            'Catch ep As Exception
-            '    SBO_Application.StatusBar.SetText("[Test Connection] : " & ep.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
-            'End Try
+                    '    attachments = OutlookMessage.Attachments
 
-            'Case "N"
+                    '    If bImage1 And File.Exists() Then
 
-            Dim tmpMailFr As New System.Net.Mail.MailAddress(sInput(0))
-            Dim a As New System.Net.Mail.MailMessage()
-            Dim s() As String = sInput(6).Split(";")
-            Dim Cc() As String
+                    '    End If
+                    '    image1 = attachments.Add("C:\Visual Studio Projects\IRP V905.091.2009 HANA\IRP V905.091.2009_GIT\Inecom SDK Reporting Package\bin\image001.gif")
+                    '    propertyAccessor = image1.PropertyAccessor
+                    '    propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image1")
 
-            a.From = tmpMailFr
-            a.Subject = oCompany.CompanyName & " - Test Sending Email From SMTP Connection "
-            a.IsBodyHtml = True
-            a.Body = "Test Connection - Successful"
+                    '    image2 = attachments.Add("C:\Visual Studio Projects\IRP V905.091.2009 HANA\IRP V905.091.2009_GIT\Inecom SDK Reporting Package\bin\image002.jpg")
+                    '    propertyAccessor = image2.PropertyAccessor
+                    '    propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image2")
 
-            For i As Integer = 0 To s.Length - 1
-                a.To.Add(s(i).Trim)
-            Next
 
-            If sEmailCc.Trim.Length > 0 Then
-                Cc = sEmailCc.Split(";")
-                For i As Integer = 0 To Cc.Length - 1
-                    a.CC.Add((Cc(i).Trim))
-                Next
-            End If
+                    '    image3 = attachments.Add(Directory.GetCurrentDirectory & "\image003.gif")
+                    '    propertyAccessor = image3.PropertyAccessor
+                    '    propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image3")
 
-            Dim c As New System.Net.Mail.SmtpClient(sInput(1))
+                    '    image4 = attachments.Add(Directory.GetCurrentDirectory & "\image004.gif")
+                    '    propertyAccessor = image4.PropertyAccessor
+                    '    propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image4")
 
-            If sInput(4) = "1" Then
-                Dim d As New System.Net.NetworkCredential(sInput(2), sInput(3))
+                    '    image5 = attachments.Add(Directory.GetCurrentDirectory & "\image005.gif")
+                    '    propertyAccessor = image5.PropertyAccessor
+                    '    propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image5")
 
-                If oForm.DataSources.UserDataSources.Item("ckOffice").ValueEx.ToString.Trim = "Y" Then
-                    c.EnableSsl = True
-                Else
-                    Select Case sEnableSSL
-                        Case "Y"
+                    '    image6 = attachments.Add(Directory.GetCurrentDirectory & "\image006.gif")
+                    '    propertyAccessor = image6.PropertyAccessor
+                    '    propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image6")
+
+
+                    '    OutlookMessage.Subject = oCompany.CompanyName & " - Test Sending Email From MS Outlook - " & sToday
+                    '    OutlookMessage.BodyFormat = outlook.OlBodyFormat.olFormatHTML
+                    '    OutlookMessage.HTMLBody = sOutput2
+                    '    OutlookMessage.Send()
+
+                    '    SBO_Application.MessageBox("Test sending email is successful, please check the recipient's email to confirm.", 1, "OK")
+
+                    'Catch ex As Exception
+                    '    SBO_Application.MessageBox("[MS Outlook] Sending Email Failed : " & ex.Message, 1, "OK")
+                    'Finally
+                    '    image1 = Nothing
+                    '    image2 = Nothing
+                    '    attachments = Nothing
+                    '    OutlookMessage = Nothing
+                    '    AppOutlook = Nothing
+                    'End Try
+
+
+                Case Else
+                    Dim tmpMailFr As New System.Net.Mail.MailAddress(sInput(0))
+                    Dim a As New System.Net.Mail.MailMessage()
+                    Dim s() As String = sInput(6).Split(";")
+
+                    a.From = tmpMailFr
+                    a.Subject = oCompany.CompanyName & " - Test Sending Email From SMTP Connection - " & sToday
+                    a.IsBodyHtml = True
+                    a.Body = "Test Connection - Successful"
+
+                    For i As Integer = 0 To s.Length - 1
+                        a.To.Add(s(i).Trim)
+                    Next
+
+                    Dim c As New System.Net.Mail.SmtpClient(sInput(1))
+
+                    If sInput(4) = "1" Then
+                        Dim d As New System.Net.NetworkCredential(sInput(2), sInput(3))
+
+                        If oForm.DataSources.UserDataSources.Item("ckOffice").ValueEx.ToString.Trim = "Y" Then
                             c.EnableSsl = True
-                        Case "N"
-                            c.EnableSsl = False
-                    End Select
-                End If
-          
-                If sInput(5) > 0 Then
-                    c.Port = sInput(5)
-                End If
+                        Else
+                            Select Case sEnableSSL
+                                Case "Y"
+                                    c.EnableSsl = True
+                                Case "N"
+                                    c.EnableSsl = False
+                            End Select
+                        End If
 
-                c.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
-                c.UseDefaultCredentials = False
-                c.Credentials = d
+                        If sInput(5) > 0 Then
+                            c.Port = sInput(5)
+                        End If
 
-            End If
+                        c.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+                        c.UseDefaultCredentials = False
+                        c.Credentials = d
+                    End If
 
-            Try
-                c.Send(a)
-                SBO_Application.MessageBox("Test sending email is successful, please check the recipient's email to confirm.", 1, "OK")
-            Catch ex As Exception
-                SBO_Application.MessageBox("Sending Email Failed : " & ex.Message, 1, "OK")
-            End Try
+                    Try
+                        c.Send(a)
+                        SBO_Application.MessageBox("Test sending email is successful, please check the recipient's email to confirm.", 1, "OK")
+                    Catch ex As Exception
+                        SBO_Application.MessageBox("[SMTP] Sending Email Failed : " & ex.Message, 1, "OK")
+                    End Try
 
-            c = Nothing
-            a = Nothing
-            'End Select
+                    c = Nothing
+                    a = Nothing
+
+            End Select
+
             '=======================================================================================================
         Catch ex As Exception
             SBO_Application.StatusBar.SetText("[Test Connection] : " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)

@@ -493,7 +493,6 @@ Public Class OutgoingPayment
             Return False
         End Try
     End Function
-
     Friend Sub LoadViewer()
         Try
             Dim frm As Hydac_FormViewer = New Hydac_FormViewer

@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("")> 
-<Assembly: AssemblyCopyright("")> 
+<Assembly: AssemblyTitle("IRP")>
+<Assembly: AssemblyDescription("Inecom Reporting Package")>
+<Assembly: AssemblyCompany("Inecom Pte Ltd")>
+<Assembly: AssemblyProduct("IRP")>
+<Assembly: AssemblyCopyright("© Copyright © 2020, Inecom Pte Ltd, All rights reserved.")>
 <Assembly: AssemblyTrademark("")> 
 <Assembly: CLSCompliant(True)> 
 

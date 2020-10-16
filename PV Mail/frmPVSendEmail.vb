@@ -1,3 +1,6 @@
+'' © Copyright © 2007-2020, Inecom Pte Ltd, All rights reserved.
+'' =============================================================
+
 Imports System.IO
 
 Public Class frmPVSendEmail
@@ -102,7 +105,6 @@ Public Class frmPVSendEmail
     Private Sub SetDatasource()
         oEdit = oForm.Items.Item("txtAsAt").Specific
         oEdit.DataBind.SetBound(True, String.Empty, "txtAsAt")
-
         oMrx = oForm.Items.Item("mrxList").Specific
 
         oCol = oMrx.Columns.Item("Col01")
@@ -158,6 +160,8 @@ Public Class frmPVSendEmail
                 End With
                 oMrx.AddRow(1, -1)
             Next
+            oMrx.AutoResizeColumns()
+
         Catch ex As Exception
             Throw ex
         Finally
@@ -178,31 +182,35 @@ Public Class frmPVSendEmail
                 Catch ex As Exception
                     Throw ex
                 End Try
+
+                'Dim al As New System.Collections.ArrayList
                 Dim s As New clsEmail
                 s.GetSetting("PV")
-                Dim al As New System.Collections.ArrayList
 
                 For i As Integer = 1 To oMrx.VisualRowCount Step 1
                     sOutput = ""
                     oMrx.GetLineData(i)
                     With oForm.DataSources.UserDataSources
                         If .Item("Col01").ValueEx = "1" Then
-                            If Not al.Contains(.Item("Col02").ValueEx) Then
-                                al.Add(.Item("Col02").ValueEx)
 
-                                s.Attachment = .Item("Col07").ValueEx
-                                s.EmailTo = .Item("Col06").ValueEx
-                                s.CardName = .Item("Col03").ValueEx
-                                s.DocNum = .Item("Col10").ValueEx
+                            ' COPY PASTE FROM SOA, NOT RELEVANT TO THIS> BUG --> COMMENTED OUT BY ES 
+                            ' If Not al.Contains(.Item("Col02").ValueEx) Then
+                            ' al.Add(.Item("Col02").ValueEx)
 
-                                If s.SendPVEmail(sOutput, AsAtDate) Then
-                                    .Item("Col08").ValueEx = "Sent"
-                                Else
-                                    .Item("Col08").ValueEx = sOutput
-                                End If
-                            Else
+                            s.Attachment = .Item("Col07").ValueEx
+                            s.EmailTo = .Item("Col06").ValueEx
+                            s.CardName = .Item("Col03").ValueEx
+                            s.DocNum = .Item("Col10").ValueEx
+
+                            If s.SendPVEmail(sOutput, AsAtDate) Then
                                 .Item("Col08").ValueEx = "Sent"
+                            Else
+                                .Item("Col08").ValueEx = sOutput
                             End If
+
+                            'Else
+                            '    .Item("Col08").ValueEx = "Sent"
+                            'End If
                         Else
                             .Item("Col08").ValueEx = "Skipped"
                         End If
@@ -228,6 +236,16 @@ Public Class frmPVSendEmail
     Friend Function SBO_Application_ItemEvent(ByRef pVal As SAPbouiCOM.ItemEvent) As Boolean
         Dim BubbleEvent As Boolean = True
         Try
+            If pVal.EventType = SAPbouiCOM.BoEventTypes.et_FORM_RESIZE Then
+                Try
+                    oForm = SBO_Application.Forms.Item("ncmPV_SendEmail")
+                    oMrx = oForm.Items.Item("mrxList").Specific
+                    oMrx.AutoResizeColumns()
+                Catch ex As Exception
+
+                End Try
+            End If
+
             If pVal.Before_Action Then
                 Select Case pVal.EventType
                     Case SAPbouiCOM.BoEventTypes.et_MATRIX_LINK_PRESSED
