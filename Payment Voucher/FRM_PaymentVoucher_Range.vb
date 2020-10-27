@@ -789,8 +789,8 @@ Public Class FRM_PaymentVoucher_Range
                             oLoop.MoveFirst()
 
                             While Not oLoop.EoF
-                                sListDocNum &= "'" & oLoop.Fields.Item(0).Value & "',"
-                                sListDocEntry &= "'" & oLoop.Fields.Item(1).Value & "',"
+                                sListDocNum &= "'" & oLoop.Fields.Item("DocNum").Value.ToString.Trim & "',"
+                                sListDocEntry &= "'" & oLoop.Fields.Item("DocEntry").Value.ToString.Trim & "',"
 
                                 oLoop.MoveNext()
                             End While

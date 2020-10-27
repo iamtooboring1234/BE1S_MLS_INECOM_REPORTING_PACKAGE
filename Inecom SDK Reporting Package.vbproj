@@ -229,6 +229,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Ageing\frmARAgeing_Proj.vb" />
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_AT.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary_HANADS_AT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_FT.vb">
       <DependentUpon>rptARAgeingSummary_HANADS_FT.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1130,6 +1136,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_AT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_AT.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_FT.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptARAgeingSummary_HANADS_FT.vb</LastGenOutput>

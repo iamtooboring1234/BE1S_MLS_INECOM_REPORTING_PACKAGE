@@ -303,7 +303,7 @@ Public Class GST_FrmViewer
             Return "'" & InputString.Replace("'", "''") & "'"
         End If
     End Function
-    Private Sub GST_CrtViewer_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GST_CrtViewer.Load
+    Private Sub GST_CrtViewer_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Select Case cReportName
                 Case ReportName.GST

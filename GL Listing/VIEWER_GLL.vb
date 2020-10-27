@@ -87,7 +87,7 @@ Public Class VIEWER_GLL
 
     Private g_sParamAccount As String = ""
     Private g_sParamAccountTo As String = ""
-    Private g_sParamDate As String = ""
+    Private g_sParamDateFr As String = ""
     Private g_sParamDateTo As String = ""
     Private g_sExportPath As String = ""
     Private cClientType As String = "D"
@@ -153,10 +153,10 @@ Public Class VIEWER_GLL
     End Property
     Public Property StartDate() As String
         Get
-            Return g_sParamDate
+            Return g_sParamDateFr
         End Get
         Set(ByVal Value As String)
-            g_sParamDate = Value
+            g_sParamDateFr = Value
         End Set
     End Property
     Public Property EndDate() As String
@@ -188,11 +188,20 @@ Public Class VIEWER_GLL
         End If
 
         With rpt
+
+            If g_sParamAccount.Length > 0 Then
+                .DataDefinition.FormulaFields.Item("ParamAccount").Text = SetStringIntoCrystalFormula(g_sParamAccount)
+            End If
+            If g_sParamAccountTo.Length > 0 Then
+                .DataDefinition.FormulaFields.Item("ParamAccountTo").Text = SetStringIntoCrystalFormula(g_sParamAccountTo)
+            End If
+            If g_sParamDateFr.Length > 0 Then
+                .DataDefinition.FormulaFields.Item("ParamDate").Text = "'" & g_sParamDateFr.Substring(6, 2) & "." & g_sParamDateFr.Substring(4, 2) & "." & g_sParamDateFr.Substring(0, 4) & "'"
+            End If
+            If g_sParamDateTo.Length > 0 Then
+                .DataDefinition.FormulaFields.Item("ParamDateTo").Text = "'" & g_sParamDateTo.Substring(6, 2) & "." & g_sParamDateTo.Substring(4, 2) & "." & g_sParamDateTo.Substring(0, 4) & "'"
+            End If
             .DataDefinition.FormulaFields.Item("OpBalance").Text = "'" & cOpBalance & "'"
-            .DataDefinition.FormulaFields.Item("ParamAccount").Text = SetStringIntoCrystalFormula(g_sParamAccount)
-            .DataDefinition.FormulaFields.Item("ParamAccountTo").Text = SetStringIntoCrystalFormula(g_sParamAccountTo)
-            .DataDefinition.FormulaFields.Item("ParamDate").Text = "'" & g_sParamDate.Substring(6, 2) & "." & g_sParamDate.Substring(4, 2) & "." & g_sParamDate.Substring(0, 4) & "'"
-            .DataDefinition.FormulaFields.Item("ParamDateTo").Text = "'" & g_sParamDateTo.Substring(6, 2) & "." & g_sParamDateTo.Substring(4, 2) & "." & g_sParamDateTo.Substring(0, 4) & "'"
             .SetDataSource(ds)
             .Refresh()
         End With
@@ -223,7 +232,7 @@ Public Class VIEWER_GLL
             Return "'" & InputString.Replace("'", "''") & "'"
         End If
     End Function
-    Private Sub VIEWER_GLL_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GST_CrtViewer.Load
+    Private Sub VIEWER_GLL_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             OpenGLLReport()
         Catch ex As Exception

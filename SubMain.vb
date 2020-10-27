@@ -258,8 +258,6 @@ Module SubMain
             oCompany = New SAPbobsCOM.Company
             oCompany = SBO_Application.Company.GetDICompany()
 
-
-
 #If DEBUG Then
                         global_DBUsername = "SYSTEM"
                         global_DBPassword = "Hana#sg1"

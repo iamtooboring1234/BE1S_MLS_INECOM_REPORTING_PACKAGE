@@ -191,7 +191,7 @@ Public Class RecpPaym_FrmViewer
 
         End Try
     End Sub
-    Private Sub RecpPaym_crViewer_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RecpPaym_crViewer.Load
+    Private Sub RecpPaym_crViewer_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             OpenRPLReport()
 
@@ -200,7 +200,5 @@ Public Class RecpPaym_FrmViewer
         End Try
     End Sub
 #End Region
-
-
 
 End Class
