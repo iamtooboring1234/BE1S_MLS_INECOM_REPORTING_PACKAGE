@@ -274,18 +274,19 @@ Module SubMain
                         dbConn.ConnectionString = connStr
                         dbConn.Open()
 #Else
-            Dim bCloud As Boolean = False
-            If bCloud = False Then
-                If CheckLicense() = False Then
+
+            If CheckLicense() = False Then
                     SBO_Application.MessageBox("Failed to find license for this add-on.")
                 End If 'terminating add on
-            End If
 #End If
 
-            If Not TablesInitialization() Then
-                SBO_Application.MessageBox("Failed to initialize tables needed.")
-                End
-            End If
+            GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmInecom.bmp").Save("ncmInecom.bmp")
+            GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmMenu.bmp").Save("ncmMenu.bmp")
+
+            'If Not TablesInitialization() Then
+            '    SBO_Application.MessageBox("Failed to initialize tables needed.")
+            '    End
+            'End If
 
             If RemoveMenuItems() Then   'if removing success, then add menu items
                 AddMenuItems()
@@ -334,9 +335,7 @@ Module SubMain
             oFrmPVSendEmail = New frmPVSendEmail
             oPVEmailParam = New NCM_PV_Email_Param
 
-            'MsgBox(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\APSOA\" & oCompany.CompanyDB)
 
-            GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmInecom.bmp").Save("ncmInecom.bmp")
             SBO_Application.StatusBar.SetText("Inecom SDK Reporting Package add-on connected.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
             System.Windows.Forms.Application.Run()
 

@@ -1691,6 +1691,7 @@
     <EmbeddedResource Include="PV Mail\SRF\ncmPV_Email.srf" />
     <EmbeddedResource Include="PV Mail\SRF\ncmPV_Email_Param.srf" />
     <EmbeddedResource Include="PV Mail\SRF\ncmPV_SendEmail.srf" />
+    <EmbeddedResource Include="Logo\ncmMenu.bmp" />
     <Content Include="StockAging\Dataset\SAR_FIFO1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>SAR_FIFO1.Designer.vb</LastGenOutput>
@@ -1916,6 +1917,7 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="Receipt\Dataset\" />
     <Folder Include="TM SAR\Dataset\" />
   </ItemGroup>
