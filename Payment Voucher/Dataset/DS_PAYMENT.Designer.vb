@@ -10103,6 +10103,8 @@ Partial Public Class DS_PAYMENT
         
         Private columnLogInstanc As Global.System.Data.DataColumn
         
+        Private columnComments As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -10275,6 +10277,14 @@ Partial Public Class DS_PAYMENT
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CommentsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnComments
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -10328,9 +10338,10 @@ Partial Public Class DS_PAYMENT
                     ByVal VatSum As Decimal,  _
                     ByVal VatSumFC As Decimal,  _
                     ByVal Series As Integer,  _
-                    ByVal LogInstanc As Integer) As OINVRow
+                    ByVal LogInstanc As Integer,  _
+                    ByVal Comments As String) As OINVRow
             Dim rowOINVRow As OINVRow = CType(Me.NewRow,OINVRow)
-            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc}
+            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc, Comments}
             rowOINVRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOINVRow)
             Return rowOINVRow
@@ -10370,6 +10381,7 @@ Partial Public Class DS_PAYMENT
             Me.columnVatSumFC = MyBase.Columns("VatSumFC")
             Me.columnSeries = MyBase.Columns("Series")
             Me.columnLogInstanc = MyBase.Columns("LogInstanc")
+            Me.columnComments = MyBase.Columns("Comments")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10409,6 +10421,8 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnSeries)
             Me.columnLogInstanc = New Global.System.Data.DataColumn("LogInstanc", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLogInstanc)
+            Me.columnComments = New Global.System.Data.DataColumn("Comments", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnComments)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10579,6 +10593,8 @@ Partial Public Class DS_PAYMENT
         Private columnSeries As Global.System.Data.DataColumn
         
         Private columnLogInstanc As Global.System.Data.DataColumn
+        
+        Private columnComments As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -10752,6 +10768,14 @@ Partial Public Class DS_PAYMENT
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CommentsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnComments
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -10805,9 +10829,10 @@ Partial Public Class DS_PAYMENT
                     ByVal VatSum As Decimal,  _
                     ByVal VatSumFC As Decimal,  _
                     ByVal Series As Integer,  _
-                    ByVal LogInstanc As Integer) As ORPCRow
+                    ByVal LogInstanc As Integer,  _
+                    ByVal Comments As String) As ORPCRow
             Dim rowORPCRow As ORPCRow = CType(Me.NewRow,ORPCRow)
-            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc}
+            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc, Comments}
             rowORPCRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowORPCRow)
             Return rowORPCRow
@@ -10847,6 +10872,7 @@ Partial Public Class DS_PAYMENT
             Me.columnVatSumFC = MyBase.Columns("VatSumFC")
             Me.columnSeries = MyBase.Columns("Series")
             Me.columnLogInstanc = MyBase.Columns("LogInstanc")
+            Me.columnComments = MyBase.Columns("Comments")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10886,6 +10912,8 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnSeries)
             Me.columnLogInstanc = New Global.System.Data.DataColumn("LogInstanc", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLogInstanc)
+            Me.columnComments = New Global.System.Data.DataColumn("Comments", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnComments)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11056,6 +11084,8 @@ Partial Public Class DS_PAYMENT
         Private columnSeries As Global.System.Data.DataColumn
         
         Private columnLogInstanc As Global.System.Data.DataColumn
+        
+        Private columnComments As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -11229,6 +11259,14 @@ Partial Public Class DS_PAYMENT
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CommentsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnComments
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -11282,9 +11320,10 @@ Partial Public Class DS_PAYMENT
                     ByVal VatSum As Decimal,  _
                     ByVal VatSumFC As Decimal,  _
                     ByVal Series As Integer,  _
-                    ByVal LogInstanc As Integer) As ORINRow
+                    ByVal LogInstanc As Integer,  _
+                    ByVal Comments As String) As ORINRow
             Dim rowORINRow As ORINRow = CType(Me.NewRow,ORINRow)
-            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc}
+            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc, Comments}
             rowORINRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowORINRow)
             Return rowORINRow
@@ -11324,6 +11363,7 @@ Partial Public Class DS_PAYMENT
             Me.columnVatSumFC = MyBase.Columns("VatSumFC")
             Me.columnSeries = MyBase.Columns("Series")
             Me.columnLogInstanc = MyBase.Columns("LogInstanc")
+            Me.columnComments = MyBase.Columns("Comments")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11363,6 +11403,8 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnSeries)
             Me.columnLogInstanc = New Global.System.Data.DataColumn("LogInstanc", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLogInstanc)
+            Me.columnComments = New Global.System.Data.DataColumn("Comments", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnComments)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11533,6 +11575,8 @@ Partial Public Class DS_PAYMENT
         Private columnSeries As Global.System.Data.DataColumn
         
         Private columnLogInstanc As Global.System.Data.DataColumn
+        
+        Private columnComments As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -11706,6 +11750,14 @@ Partial Public Class DS_PAYMENT
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CommentsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnComments
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -11759,9 +11811,10 @@ Partial Public Class DS_PAYMENT
                     ByVal VatSum As Decimal,  _
                     ByVal VatSumFC As Decimal,  _
                     ByVal Series As Integer,  _
-                    ByVal LogInstanc As Integer) As OPCHRow
+                    ByVal LogInstanc As Integer,  _
+                    ByVal Comments As String) As OPCHRow
             Dim rowOPCHRow As OPCHRow = CType(Me.NewRow,OPCHRow)
-            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc}
+            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc, Comments}
             rowOPCHRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOPCHRow)
             Return rowOPCHRow
@@ -11801,6 +11854,7 @@ Partial Public Class DS_PAYMENT
             Me.columnVatSumFC = MyBase.Columns("VatSumFC")
             Me.columnSeries = MyBase.Columns("Series")
             Me.columnLogInstanc = MyBase.Columns("LogInstanc")
+            Me.columnComments = MyBase.Columns("Comments")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11840,6 +11894,8 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnSeries)
             Me.columnLogInstanc = New Global.System.Data.DataColumn("LogInstanc", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLogInstanc)
+            Me.columnComments = New Global.System.Data.DataColumn("Comments", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnComments)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12010,6 +12066,8 @@ Partial Public Class DS_PAYMENT
         Private columnSeries As Global.System.Data.DataColumn
         
         Private columnLogInstanc As Global.System.Data.DataColumn
+        
+        Private columnComments As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -12183,6 +12241,14 @@ Partial Public Class DS_PAYMENT
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CommentsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnComments
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -12236,9 +12302,10 @@ Partial Public Class DS_PAYMENT
                     ByVal VatSum As Decimal,  _
                     ByVal VatSumFC As Decimal,  _
                     ByVal Series As Integer,  _
-                    ByVal LogInstanc As Integer) As ODPIRow
+                    ByVal LogInstanc As Integer,  _
+                    ByVal Comments As String) As ODPIRow
             Dim rowODPIRow As ODPIRow = CType(Me.NewRow,ODPIRow)
-            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc}
+            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc, Comments}
             rowODPIRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowODPIRow)
             Return rowODPIRow
@@ -12278,6 +12345,7 @@ Partial Public Class DS_PAYMENT
             Me.columnVatSumFC = MyBase.Columns("VatSumFC")
             Me.columnSeries = MyBase.Columns("Series")
             Me.columnLogInstanc = MyBase.Columns("LogInstanc")
+            Me.columnComments = MyBase.Columns("Comments")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12317,6 +12385,8 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnSeries)
             Me.columnLogInstanc = New Global.System.Data.DataColumn("LogInstanc", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLogInstanc)
+            Me.columnComments = New Global.System.Data.DataColumn("Comments", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnComments)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12487,6 +12557,8 @@ Partial Public Class DS_PAYMENT
         Private columnSeries As Global.System.Data.DataColumn
         
         Private columnLogInstanc As Global.System.Data.DataColumn
+        
+        Private columnComments As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -12660,6 +12732,14 @@ Partial Public Class DS_PAYMENT
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CommentsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnComments
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -12713,9 +12793,10 @@ Partial Public Class DS_PAYMENT
                     ByVal VatSum As Decimal,  _
                     ByVal VatSumFC As Decimal,  _
                     ByVal Series As Integer,  _
-                    ByVal LogInstanc As Integer) As ODPORow
+                    ByVal LogInstanc As Integer,  _
+                    ByVal Comments As String) As ODPORow
             Dim rowODPORow As ODPORow = CType(Me.NewRow,ODPORow)
-            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc}
+            Dim columnValuesArray() As Object = New Object() {CardCode, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, Series, LogInstanc, Comments}
             rowODPORow.ItemArray = columnValuesArray
             Me.Rows.Add(rowODPORow)
             Return rowODPORow
@@ -12755,6 +12836,7 @@ Partial Public Class DS_PAYMENT
             Me.columnVatSumFC = MyBase.Columns("VatSumFC")
             Me.columnSeries = MyBase.Columns("Series")
             Me.columnLogInstanc = MyBase.Columns("LogInstanc")
+            Me.columnComments = MyBase.Columns("Comments")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12794,6 +12876,8 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnSeries)
             Me.columnLogInstanc = New Global.System.Data.DataColumn("LogInstanc", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLogInstanc)
+            Me.columnComments = New Global.System.Data.DataColumn("Comments", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnComments)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -15945,6 +16029,8 @@ Partial Public Class DS_PAYMENT
         
         Private columnSeriesName As Global.System.Data.DataColumn
         
+        Private columnComments As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -16261,6 +16347,14 @@ Partial Public Class DS_PAYMENT
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CommentsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnComments
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -16332,9 +16426,10 @@ Partial Public Class DS_PAYMENT
                     ByVal TaxDate As Date,  _
                     ByVal VatSum As Decimal,  _
                     ByVal VatSumFC As Decimal,  _
-                    ByVal SeriesName As String) As NCM_VIEW_DRAFTPV_INVOICERow
+                    ByVal SeriesName As String,  _
+                    ByVal Comments As String) As NCM_VIEW_DRAFTPV_INVOICERow
             Dim rowNCM_VIEW_DRAFTPV_INVOICERow As NCM_VIEW_DRAFTPV_INVOICERow = CType(Me.NewRow,NCM_VIEW_DRAFTPV_INVOICERow)
-            Dim columnValuesArray() As Object = New Object() {PaymentDocType, PaymentDocEntry, PaymentDocNum, NoDocSum, NoDocSumFC, InvType, InvoiceId, SumApplied, AppliedFC, PaymentDocRate, PaymentObjType, vatApplied, vatAppldFC, VisOrder, ItemCode, Dscription, Quantity, Price, LineTotal, TotalFrgn, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, SeriesName}
+            Dim columnValuesArray() As Object = New Object() {PaymentDocType, PaymentDocEntry, PaymentDocNum, NoDocSum, NoDocSumFC, InvType, InvoiceId, SumApplied, AppliedFC, PaymentDocRate, PaymentObjType, vatApplied, vatAppldFC, VisOrder, ItemCode, Dscription, Quantity, Price, LineTotal, TotalFrgn, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, SeriesName, Comments}
             rowNCM_VIEW_DRAFTPV_INVOICERow.ItemArray = columnValuesArray
             Me.Rows.Add(rowNCM_VIEW_DRAFTPV_INVOICERow)
             Return rowNCM_VIEW_DRAFTPV_INVOICERow
@@ -16392,6 +16487,7 @@ Partial Public Class DS_PAYMENT
             Me.columnVatSum = MyBase.Columns("VatSum")
             Me.columnVatSumFC = MyBase.Columns("VatSumFC")
             Me.columnSeriesName = MyBase.Columns("SeriesName")
+            Me.columnComments = MyBase.Columns("Comments")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16467,6 +16563,8 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnVatSumFC)
             Me.columnSeriesName = New Global.System.Data.DataColumn("SeriesName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSeriesName)
+            Me.columnComments = New Global.System.Data.DataColumn("Comments", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnComments)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -26148,6 +26246,21 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Comments() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOINV.CommentsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Comments' in table 'OINV' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOINV.CommentsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCardCodeNull() As Boolean
             Return Me.IsNull(Me.tableOINV.CardCodeColumn)
         End Function
@@ -26348,6 +26461,18 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetLogInstancNull()
             Me(Me.tableOINV.LogInstancColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCommentsNull() As Boolean
+            Return Me.IsNull(Me.tableOINV.CommentsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCommentsNull()
+            Me(Me.tableOINV.CommentsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -26623,6 +26748,21 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Comments() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableORPC.CommentsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Comments' in table 'ORPC' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableORPC.CommentsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCardCodeNull() As Boolean
             Return Me.IsNull(Me.tableORPC.CardCodeColumn)
         End Function
@@ -26823,6 +26963,18 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetLogInstancNull()
             Me(Me.tableORPC.LogInstancColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCommentsNull() As Boolean
+            Return Me.IsNull(Me.tableORPC.CommentsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCommentsNull()
+            Me(Me.tableORPC.CommentsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -27098,6 +27250,21 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Comments() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableORIN.CommentsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Comments' in table 'ORIN' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableORIN.CommentsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCardCodeNull() As Boolean
             Return Me.IsNull(Me.tableORIN.CardCodeColumn)
         End Function
@@ -27298,6 +27465,18 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetLogInstancNull()
             Me(Me.tableORIN.LogInstancColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCommentsNull() As Boolean
+            Return Me.IsNull(Me.tableORIN.CommentsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCommentsNull()
+            Me(Me.tableORIN.CommentsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -27573,6 +27752,21 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Comments() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOPCH.CommentsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Comments' in table 'OPCH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOPCH.CommentsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCardCodeNull() As Boolean
             Return Me.IsNull(Me.tableOPCH.CardCodeColumn)
         End Function
@@ -27773,6 +27967,18 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetLogInstancNull()
             Me(Me.tableOPCH.LogInstancColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCommentsNull() As Boolean
+            Return Me.IsNull(Me.tableOPCH.CommentsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCommentsNull()
+            Me(Me.tableOPCH.CommentsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -28048,6 +28254,21 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Comments() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableODPI.CommentsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Comments' in table 'ODPI' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableODPI.CommentsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCardCodeNull() As Boolean
             Return Me.IsNull(Me.tableODPI.CardCodeColumn)
         End Function
@@ -28248,6 +28469,18 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetLogInstancNull()
             Me(Me.tableODPI.LogInstancColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCommentsNull() As Boolean
+            Return Me.IsNull(Me.tableODPI.CommentsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCommentsNull()
+            Me(Me.tableODPI.CommentsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -28523,6 +28756,21 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Comments() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableODPO.CommentsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Comments' in table 'ODPO' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableODPO.CommentsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCardCodeNull() As Boolean
             Return Me.IsNull(Me.tableODPO.CardCodeColumn)
         End Function
@@ -28723,6 +28971,18 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetLogInstancNull()
             Me(Me.tableODPO.LogInstancColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCommentsNull() As Boolean
+            Return Me.IsNull(Me.tableODPO.CommentsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCommentsNull()
+            Me(Me.tableODPO.CommentsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -31923,6 +32183,21 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Comments() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNCM_VIEW_DRAFTPV_INVOICE.CommentsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Comments' in table 'NCM_VIEW_DRAFTPV_INVOICE' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNCM_VIEW_DRAFTPV_INVOICE.CommentsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsPaymentDocTypeNull() As Boolean
             Return Me.IsNull(Me.tableNCM_VIEW_DRAFTPV_INVOICE.PaymentDocTypeColumn)
         End Function
@@ -32339,6 +32614,18 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetSeriesNameNull()
             Me(Me.tableNCM_VIEW_DRAFTPV_INVOICE.SeriesNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCommentsNull() As Boolean
+            Return Me.IsNull(Me.tableNCM_VIEW_DRAFTPV_INVOICE.CommentsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCommentsNull()
+            Me(Me.tableNCM_VIEW_DRAFTPV_INVOICE.CommentsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

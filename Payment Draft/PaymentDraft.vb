@@ -195,6 +195,7 @@ Public Class PaymentDraft
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtADM1)
             '--------------------------------------------------------
+
             sQuery = "SELECT * FROM """ & oCompany.CompanyDB & """.""NCM_VIEW_DRAFTPV_INVOICE"" WHERE ""PaymentDocEntry"" = '" & g_sDocEntry & "' AND ""PaymentObjType"" = '46' "
             dtVIEW = dsPAYMENT.Tables("NCM_VIEW_DRAFTPV_INVOICE")
             HANAcmd = dbConn.CreateCommand()

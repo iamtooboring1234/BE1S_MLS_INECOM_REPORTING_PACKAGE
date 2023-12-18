@@ -1,4 +1,4 @@
-'' © Copyright © 2007-2020, Inecom Pte Ltd, All rights reserved.
+'' © Copyright © 2007-2023, Inecom Pte Ltd, All rights reserved.
 '' =============================================================
 
 Option Strict Off
@@ -99,6 +99,8 @@ Public Enum ReportName
     ARAging_SummaryFC = 63
     RA_Range = 64
     ARAging_Summary_BRN = 65
+    ARSOA_PROJECT_ONLY = 70
+    ARSOA_PROJECT_SITE = 71
 End Enum
 Public Enum CompanyCode
     General = 0
@@ -271,27 +273,27 @@ Module SubMain
             oCompany = New SAPbobsCOM.Company
             oCompany = SBO_Application.Company.GetDICompany()
 
-#If DEBUG Then
-            global_DBUsername = "SYSTEM"
-            global_DBPassword = "Hana#sg1"
-            connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & ";DATABASE=" & oCompany.CompanyDB & ""
-            Dim ProviderName As String = "System.Data.Odbc"
-            Dim dbConn As DbConnection = Nothing
-            Dim _DbProviderFactoryObject As DbProviderFactory
-            Dim sQuery As String = ""
-            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
-            dbConn = _DbProviderFactoryObject.CreateConnection()
-            dbConn.ConnectionString = connStr
-            dbConn.Open()
-#Else
-                        If CheckLicense() = False Then
-                            SBO_Application.MessageBox("Failed to find license for this add-on.")
-                        End If 'terminating add on
-#End If
+            '#If DEBUG Then
+            '            global_DBUsername = "SYSTEM"
+            '            global_DBPassword = "Hana#sg1"
+            '            connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & ";DATABASE=" & oCompany.CompanyDB & ""
+            '            Dim ProviderName As String = "System.Data.Odbc"
+            '            Dim dbConn As DbConnection = Nothing
+            '            Dim _DbProviderFactoryObject As DbProviderFactory
+            '            Dim sQuery As String = ""
+            '            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+            '            dbConn = _DbProviderFactoryObject.CreateConnection()
+            '            dbConn.ConnectionString = connStr
+            '            dbConn.Open()
+            '#Else
+            '                                                            If CheckLicense() = False Then
+            '                                                                SBO_Application.MessageBox("Failed to find license for this add-on.")
+            '                                                            End If 'terminating add on
+            '#End If
 
-            'If CheckLicense() = False Then
-            '    SBO_Application.MessageBox("Failed to find license for this add-on.")
-            'End If 'terminating add on
+            If CheckLicense() = False Then
+                SBO_Application.MessageBox("Failed to find license for this add-on.")
+            End If 'terminating add on
 
             GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmInecom.bmp").Save("ncmInecom.bmp")
             GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmMenu.bmp").Save("ncmMenu.bmp")
@@ -1263,6 +1265,10 @@ Module SubMain
                 Return "AR_AGEING_SUMMARY_FC"
             Case ReportName.ARAging_Summary_BRN
                 Return "AR_AGEING_SUMMARY_BRN"
+            Case ReportName.ARSOA_PROJECT_ONLY
+                Return "ARSOA_PROJECT_ONLY"
+            Case ReportName.ARSOA_PROJECT_SITE
+                Return "ARSOA_PROJECT_SITE"
         End Select
         Return "NULL"
     End Function

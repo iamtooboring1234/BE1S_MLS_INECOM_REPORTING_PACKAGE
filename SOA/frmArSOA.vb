@@ -27,6 +27,8 @@ Public Class frmArSOA
     Private oCheck As SAPbouiCOM.CheckBox
     Private g_sARSOARunningDate As String = ""
     Private g_sARSOAPrintOption As String = "2"
+    Private g_bProjectSite As Boolean = False
+    Private g_bProjectOnly As Boolean = False
 
 #End Region
 
@@ -48,17 +50,19 @@ Public Class frmArSOA
             oPictureBox = oFormARSOA.Items.Item("pbInecom").Specific
             oPictureBox.Picture = Application.StartupPath.ToString & "\ncmInecom.bmp"
             g_sARSOAPrintOption = "2"
+            g_bProjectSite = False
+            g_bProjectOnly = False
 
             If ClientCompany = CompanyCode.AE Then
                 oFormARSOA.Items.Item("ckLogo").Visible = False
             End If
+
             oFormARSOA.Items.Item("lbStatus").FontSize = 10
             oFormARSOA.Items.Item("lbStyleOpt").TextStyle = 4
+            oFormARSOA.Items.Item("cbFormat").DisplayDesc = True
 
-            ' Show or Hide new option
-            g_sARSOAPrintOption = "2"
             Try
-                Dim sQuery As String = ""
+            Dim sQuery As String = ""
                 Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                 sQuery = "  SELECT TOP 1 IFNULL(""U_SOAPRTOPT"",'2') FROM ""@NCM_NEW_SETTING"" "
                 oRec.DoQuery(sQuery)
@@ -68,7 +72,30 @@ Public Class frmArSOA
             Catch ex As Exception
 
             End Try
-            ' Show or Hide new option
+
+            Try
+                Dim sQuery As String = ""
+                Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                sQuery = " SELECT TOP 1 IFNULL(""RPTCODE"",'') FROM ""@NCM_RPT_CONFIG"" WHERE ""RPTCODE"" = 'ARSOA_PROJECT_SITE' AND ""INCLUDED"" = 'Y'"
+                oRec.DoQuery(sQuery)
+                If oRec.RecordCount > 0 Then
+                    g_bProjectSite = True
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            Try
+                Dim sQuery As String = ""
+                Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                sQuery = " SELECT TOP 1 IFNULL(""RPTCODE"",'') FROM ""@NCM_RPT_CONFIG"" WHERE ""RPTCODE"" = 'ARSOA_PROJECT_ONLY' AND ""INCLUDED"" = 'Y'"
+                oRec.DoQuery(sQuery)
+                If oRec.RecordCount > 0 Then
+                    g_bProjectOnly = True
+                End If
+            Catch ex As Exception
+
+            End Try
 
             Select Case g_sARSOAPrintOption
                 Case "2"
@@ -79,10 +106,15 @@ Public Class frmArSOA
                     oFormARSOA.Items.Item("cbSOAPrt").Visible = True
             End Select
 
-            SetDatasource()
+            If g_bProjectOnly Or g_bProjectSite Then
+                oFormARSOA.Items.Item("lbFormat").Visible = True
+                oFormARSOA.Items.Item("cbFormat").Visible = True
+            Else
+                oFormARSOA.Items.Item("lbFormat").Visible = False
+                oFormARSOA.Items.Item("cbFormat").Visible = False
+            End If
 
-            'Commented out in SAP HANA10 because it cannot CREATE TABLE.
-            'NotesSetup()
+            SetDatasource()
             RetrieveNotes()
             SetupChooseFromList()
 
@@ -129,6 +161,7 @@ Public Class frmArSOA
                 .Add("ckLayout", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
                 .Add("cbBased", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
                 .Add("cbSOAPrt", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
+                .Add("cbFormat", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
 
                 .Add("Notes", SAPbouiCOM.BoDataType.dt_LONG_TEXT, 1500)
                 .Add("txtBPFr", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 30)
@@ -189,6 +222,13 @@ Public Class frmArSOA
             oCombo.ValidValues.Add("2", "Preview All")
             oCombo.ValidValues.Add("3", "Preview Non-Email")
             oFormARSOA.DataSources.UserDataSources.Item("cbSOAPrt").ValueEx = "1"
+
+            oCombo = oFormARSOA.Items.Item("cbFormat").Specific
+            oCombo.DataBind.SetBound(True, "", "cbFormat")
+            oCombo.ValidValues.Add("1", "Standard")
+            oCombo.ValidValues.Add("2", "By Project Only")
+            oCombo.ValidValues.Add("3", "By Project & Site")
+            oFormARSOA.DataSources.UserDataSources.Item("cbFormat").ValueEx = "1"
 
             oCheck = oFormARSOA.Items.Item("ckLogo").Specific
             oCheck.DataBind.SetBound(True, "", "Logo")
@@ -950,11 +990,25 @@ Public Class frmArSOA
                     sQuery &= " WHERE ""RPTCODE"" ='" & GetReportCode(ReportName.ARSOA_Landscape) & "'"
 
                     g_sReportFilename = GetSharedFilePath(ReportName.ARSOA_Landscape)
-                Case Else
+                Case Else   ' NORMAL
                     sQuery = " SELECT IFNULL(""STRUCTUREPATH"",'') FROM ""@NCM_RPT_STRUCTURE"" "
                     sQuery &= " WHERE ""RPTCODE"" ='" & GetReportCode(ReportName.ARSoa) & "'"
-
                     g_sReportFilename = GetSharedFilePath(ReportName.ARSoa)
+
+                    Try
+                        Select Case oFormARSOA.DataSources.UserDataSources.Item("cbFormat").ValueEx.ToString.Trim
+                            Case "1"
+                                g_sReportFilename = GetSharedFilePath(ReportName.ARSoa)
+                            Case "2"
+                                g_sReportFilename = GetSharedFilePath(ReportName.ARSOA_PROJECT_ONLY)
+                            Case "3"
+                                g_sReportFilename = GetSharedFilePath(ReportName.ARSOA_PROJECT_SITE)
+                            Case Else
+                                g_sReportFilename = GetSharedFilePath(ReportName.ARSoa)
+                        End Select
+                    Catch ex As Exception
+
+                    End Try
             End Select
 
             If g_sReportFilename.Trim <> "" Then
@@ -1443,7 +1497,7 @@ Public Class frmArSOA
                 Dim sDelete As String = ""
 
                 sDelete = "  UPDATE """ & oCompany.CompanyDB & """.""@NCM_SOC"" "
-                sDelete &= " SET ""PROJECT"" = ''"
+                sDelete &= " SET ""PROJECT"" = '' "
                 sDelete &= " WHERE ""USERNAME"" = '" & g_sARSOARunningDate & oCompany.UserName & "'"
                 sDelete &= " AND IFNULL(""PROJECT"",'') = '' "
                 oDelete = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)

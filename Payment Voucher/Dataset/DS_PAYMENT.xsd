@@ -397,6 +397,7 @@
               <xs:element name="VatSumFC" msprop:Generator_ColumnVarNameInTable="columnVatSumFC" msprop:Generator_ColumnPropNameInRow="VatSumFC" msprop:Generator_ColumnPropNameInTable="VatSumFCColumn" msprop:Generator_UserColumnName="VatSumFC" type="xs:decimal" minOccurs="0" />
               <xs:element name="Series" msprop:Generator_ColumnVarNameInTable="columnSeries" msprop:Generator_ColumnPropNameInRow="Series" msprop:Generator_ColumnPropNameInTable="SeriesColumn" msprop:Generator_UserColumnName="Series" type="xs:int" minOccurs="0" />
               <xs:element name="LogInstanc" msprop:Generator_ColumnVarNameInTable="columnLogInstanc" msprop:Generator_ColumnPropNameInRow="LogInstanc" msprop:Generator_ColumnPropNameInTable="LogInstancColumn" msprop:Generator_UserColumnName="LogInstanc" type="xs:int" minOccurs="0" />
+              <xs:element name="Comments" msprop:Generator_ColumnVarNameInTable="columnComments" msprop:Generator_ColumnPropNameInRow="Comments" msprop:Generator_ColumnPropNameInTable="CommentsColumn" msprop:Generator_UserColumnName="Comments" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -420,6 +421,7 @@
               <xs:element name="VatSumFC" msprop:Generator_ColumnVarNameInTable="columnVatSumFC" msprop:Generator_ColumnPropNameInRow="VatSumFC" msprop:Generator_ColumnPropNameInTable="VatSumFCColumn" msprop:Generator_UserColumnName="VatSumFC" type="xs:decimal" minOccurs="0" />
               <xs:element name="Series" msprop:Generator_ColumnVarNameInTable="columnSeries" msprop:Generator_ColumnPropNameInRow="Series" msprop:Generator_ColumnPropNameInTable="SeriesColumn" msprop:Generator_UserColumnName="Series" type="xs:int" minOccurs="0" />
               <xs:element name="LogInstanc" msprop:Generator_ColumnVarNameInTable="columnLogInstanc" msprop:Generator_ColumnPropNameInRow="LogInstanc" msprop:Generator_ColumnPropNameInTable="LogInstancColumn" msprop:Generator_UserColumnName="LogInstanc" type="xs:int" minOccurs="0" />
+              <xs:element name="Comments" msprop:Generator_ColumnVarNameInTable="columnComments" msprop:Generator_ColumnPropNameInRow="Comments" msprop:Generator_ColumnPropNameInTable="CommentsColumn" msprop:Generator_UserColumnName="Comments" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -443,6 +445,7 @@
               <xs:element name="VatSumFC" msprop:Generator_ColumnVarNameInTable="columnVatSumFC" msprop:Generator_ColumnPropNameInRow="VatSumFC" msprop:Generator_ColumnPropNameInTable="VatSumFCColumn" msprop:Generator_UserColumnName="VatSumFC" type="xs:decimal" minOccurs="0" />
               <xs:element name="Series" msprop:Generator_ColumnVarNameInTable="columnSeries" msprop:Generator_ColumnPropNameInRow="Series" msprop:Generator_ColumnPropNameInTable="SeriesColumn" msprop:Generator_UserColumnName="Series" type="xs:int" minOccurs="0" />
               <xs:element name="LogInstanc" msprop:Generator_ColumnVarNameInTable="columnLogInstanc" msprop:Generator_ColumnPropNameInRow="LogInstanc" msprop:Generator_ColumnPropNameInTable="LogInstancColumn" msprop:Generator_UserColumnName="LogInstanc" type="xs:int" minOccurs="0" />
+              <xs:element name="Comments" msprop:Generator_ColumnVarNameInTable="columnComments" msprop:Generator_ColumnPropNameInRow="Comments" msprop:Generator_ColumnPropNameInTable="CommentsColumn" msprop:Generator_UserColumnName="Comments" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -466,6 +469,7 @@
               <xs:element name="VatSumFC" msprop:Generator_ColumnVarNameInTable="columnVatSumFC" msprop:Generator_ColumnPropNameInRow="VatSumFC" msprop:Generator_ColumnPropNameInTable="VatSumFCColumn" msprop:Generator_UserColumnName="VatSumFC" type="xs:decimal" minOccurs="0" />
               <xs:element name="Series" msprop:Generator_ColumnVarNameInTable="columnSeries" msprop:Generator_ColumnPropNameInRow="Series" msprop:Generator_ColumnPropNameInTable="SeriesColumn" msprop:Generator_UserColumnName="Series" type="xs:int" minOccurs="0" />
               <xs:element name="LogInstanc" msprop:Generator_ColumnVarNameInTable="columnLogInstanc" msprop:Generator_ColumnPropNameInRow="LogInstanc" msprop:Generator_ColumnPropNameInTable="LogInstancColumn" msprop:Generator_UserColumnName="LogInstanc" type="xs:int" minOccurs="0" />
+              <xs:element name="Comments" msprop:Generator_ColumnVarNameInTable="columnComments" msprop:Generator_ColumnPropNameInRow="Comments" msprop:Generator_ColumnPropNameInTable="CommentsColumn" msprop:Generator_UserColumnName="Comments" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -489,6 +493,7 @@
               <xs:element name="VatSumFC" msprop:Generator_ColumnVarNameInTable="columnVatSumFC" msprop:Generator_ColumnPropNameInRow="VatSumFC" msprop:Generator_ColumnPropNameInTable="VatSumFCColumn" msprop:Generator_UserColumnName="VatSumFC" type="xs:decimal" minOccurs="0" />
               <xs:element name="Series" msprop:Generator_ColumnVarNameInTable="columnSeries" msprop:Generator_ColumnPropNameInRow="Series" msprop:Generator_ColumnPropNameInTable="SeriesColumn" msprop:Generator_UserColumnName="Series" type="xs:int" minOccurs="0" />
               <xs:element name="LogInstanc" msprop:Generator_ColumnVarNameInTable="columnLogInstanc" msprop:Generator_ColumnPropNameInRow="LogInstanc" msprop:Generator_ColumnPropNameInTable="LogInstancColumn" msprop:Generator_UserColumnName="LogInstanc" type="xs:int" minOccurs="0" />
+              <xs:element name="Comments" msprop:Generator_ColumnVarNameInTable="columnComments" msprop:Generator_ColumnPropNameInRow="Comments" msprop:Generator_ColumnPropNameInTable="CommentsColumn" msprop:Generator_UserColumnName="Comments" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -512,6 +517,7 @@
               <xs:element name="VatSumFC" msprop:Generator_ColumnVarNameInTable="columnVatSumFC" msprop:Generator_ColumnPropNameInRow="VatSumFC" msprop:Generator_ColumnPropNameInTable="VatSumFCColumn" msprop:Generator_UserColumnName="VatSumFC" type="xs:decimal" minOccurs="0" />
               <xs:element name="Series" msprop:Generator_ColumnVarNameInTable="columnSeries" msprop:Generator_ColumnPropNameInRow="Series" msprop:Generator_ColumnPropNameInTable="SeriesColumn" msprop:Generator_UserColumnName="Series" type="xs:int" minOccurs="0" />
               <xs:element name="LogInstanc" msprop:Generator_ColumnVarNameInTable="columnLogInstanc" msprop:Generator_ColumnPropNameInRow="LogInstanc" msprop:Generator_ColumnPropNameInTable="LogInstancColumn" msprop:Generator_UserColumnName="LogInstanc" type="xs:int" minOccurs="0" />
+              <xs:element name="Comments" msprop:Generator_ColumnVarNameInTable="columnComments" msprop:Generator_ColumnPropNameInRow="Comments" msprop:Generator_ColumnPropNameInTable="CommentsColumn" msprop:Generator_UserColumnName="Comments" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -689,6 +695,7 @@
               <xs:element name="VatSum" msprop:Generator_ColumnVarNameInTable="columnVatSum" msprop:Generator_ColumnPropNameInRow="VatSum" msprop:Generator_ColumnPropNameInTable="VatSumColumn" msprop:Generator_UserColumnName="VatSum" type="xs:decimal" minOccurs="0" />
               <xs:element name="VatSumFC" msprop:Generator_ColumnVarNameInTable="columnVatSumFC" msprop:Generator_ColumnPropNameInRow="VatSumFC" msprop:Generator_ColumnPropNameInTable="VatSumFCColumn" msprop:Generator_UserColumnName="VatSumFC" type="xs:decimal" minOccurs="0" />
               <xs:element name="SeriesName" msprop:Generator_ColumnVarNameInTable="columnSeriesName" msprop:Generator_ColumnPropNameInRow="SeriesName" msprop:Generator_ColumnPropNameInTable="SeriesNameColumn" msprop:Generator_UserColumnName="SeriesName" type="xs:string" minOccurs="0" />
+              <xs:element name="Comments" msprop:Generator_ColumnVarNameInTable="columnComments" msprop:Generator_ColumnPropNameInRow="Comments" msprop:Generator_ColumnPropNameInTable="CommentsColumn" msprop:Generator_UserColumnName="Comments" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -936,7 +936,7 @@ Public Class FRM_PaymentVoucher_Range
             Dim HANAcmd As DbCommand
 
             '------INV HEADER--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"", ""Comments"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""OINV"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
@@ -962,7 +962,7 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.Fill(dtINV1)
 
             '------RIN HEADER--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"", ""Comments"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""ORIN"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
@@ -988,7 +988,7 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.Fill(dtRIN1)
 
             '------PCH HEADER--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"", ""Comments"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""OPCH"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
@@ -1014,7 +1014,7 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.Fill(dtPCH1)
 
             '------RPC HEADER--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"", ""Comments"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""ORPC"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
@@ -1040,7 +1040,7 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.Fill(dtRPC1)
 
             '------DPI HEADER--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"", ""Comments"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""ODPI"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
@@ -1066,7 +1066,7 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.Fill(dtDPI1)
 
             '------DPO HEADER--------------------------------------------------
-            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"" "
+            sQuery = " SELECT ""DocEntry"",""DocNum"",""Series"",""CardCode"",""DocDate"",""DocDueDate"",""DocCur"",""DocRate"",""DocType"",""DocTotal"",""DocTotalFC"",""NumAtCard"",""ObjType"",""TaxDate"",""VatSum"",""VatSumFC"", ""Comments"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""ODPO"" "
             sQuery &= " WHERE ""DocEntry"" IN ( "
             sQuery &= " SELECT DISTINCT ""DocEntry"" FROM """ & oCompany.CompanyDB & """.""VPM2"" "
@@ -1415,7 +1415,7 @@ Public Class FRM_PaymentVoucher_Range
                     sQuery &= " ""PaymentDocRate"", ""PaymentObjType"", ""vatApplied"", ""vatAppldFC"", ""VisOrder"", ""DocEntry"",  "
                     sQuery &= " ""ItemCode"", ""Dscription"", ""Quantity"", ""Price"", ""LineTotal"", ""TotalFrgn"", ""ObjType"", "
                     sQuery &= " ""NumAtCard"", ""DocNum"", ""DocType"", ""DocCur"", ""DocRate"", ""DocTotal"", ""DocTotalFC"",  "
-                    sQuery &= " ""VatSum"", ""VatSumFC"", ""DocDate"", ""DocDueDate"", ""TaxDate"", ""SeriesName"" "
+                    sQuery &= " ""VatSum"", ""VatSumFC"", ""DocDate"", ""DocDueDate"", ""TaxDate"", ""SeriesName"", ""Comments"" "
                     sQuery &= " FROM """ & oCompany.CompanyDB & """.""NCM_VIEW_RPV_INVOICE"" "
                     sQuery &= " WHERE ""PaymentDocEntry"" In " & sListDocEntry & " And ""PaymentObjType"" = '46' "
                 Case False
@@ -1423,7 +1423,7 @@ Public Class FRM_PaymentVoucher_Range
                     sQuery &= " ""PaymentDocRate"", ""PaymentObjType"", ""vatApplied"", ""vatAppldFC"", ""VisOrder"", ""DocEntry"",  "
                     sQuery &= " ""ItemCode"", ""Dscription"", ""Quantity"", ""Price"", ""LineTotal"", ""TotalFrgn"", ""ObjType"", "
                     sQuery &= " ""NumAtCard"", ""DocNum"", ""DocType"", ""DocCur"", ""DocRate"", ""DocTotal"", ""DocTotalFC"",  "
-                    sQuery &= " ""VatSum"", ""VatSumFC"", ""DocDate"", ""DocDueDate"", ""TaxDate"", ""SeriesName"" "
+                    sQuery &= " ""VatSum"", ""VatSumFC"", ""DocDate"", ""DocDueDate"", ""TaxDate"", ""SeriesName"", ""Comments"" "
                     sQuery &= " FROM """ & oCompany.CompanyDB & """.""NCM_VIEW_RPV_INVOICE_SUMM"" "
                     sQuery &= " WHERE ""PaymentDocEntry"" IN " & sListDocEntry & " And ""PaymentObjType"" = '46' "
             End Select

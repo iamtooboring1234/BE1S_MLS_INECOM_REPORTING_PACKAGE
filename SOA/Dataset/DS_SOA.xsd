@@ -124,6 +124,10 @@
               <xs:element name="USERNAME" msprop:Generator_ColumnVarNameInTable="columnUSERNAME" msprop:Generator_ColumnPropNameInRow="USERNAME" msprop:Generator_ColumnPropNameInTable="USERNAMEColumn" msprop:Generator_UserColumnName="USERNAME" type="xs:string" minOccurs="0" />
               <xs:element name="BRANCH" msprop:Generator_ColumnVarNameInTable="columnBRANCH" msprop:Generator_ColumnPropNameInRow="BRANCH" msprop:Generator_ColumnPropNameInTable="BRANCHColumn" msprop:Generator_UserColumnName="BRANCH" type="xs:string" minOccurs="0" />
               <xs:element name="OFFICE" msprop:Generator_ColumnVarNameInTable="columnOFFICE" msprop:Generator_ColumnPropNameInRow="OFFICE" msprop:Generator_ColumnPropNameInTable="OFFICEColumn" msprop:Generator_UserColumnName="OFFICE" type="xs:string" minOccurs="0" />
+              <xs:element name="PROJNAME" msprop:Generator_ColumnVarNameInTable="columnPROJNAME" msprop:Generator_ColumnPropNameInRow="PROJNAME" msprop:Generator_ColumnPropNameInTable="PROJNAMEColumn" msprop:Generator_UserColumnName="PROJNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="SITECODE" msprop:Generator_ColumnVarNameInTable="columnSITECODE" msprop:Generator_ColumnPropNameInRow="SITECODE" msprop:Generator_ColumnPropNameInTable="SITECODEColumn" msprop:Generator_UserColumnName="SITECODE" type="xs:string" minOccurs="0" />
+              <xs:element name="SITENAME" msprop:Generator_ColumnVarNameInTable="columnSITENAME" msprop:Generator_ColumnPropNameInRow="SITENAME" msprop:Generator_ColumnPropNameInTable="SITENAMEColumn" msprop:Generator_UserColumnName="SITENAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BASEDONUM" msprop:Generator_ColumnVarNameInTable="columnBASEDONUM" msprop:Generator_ColumnPropNameInRow="BASEDONUM" msprop:Generator_ColumnPropNameInTable="BASEDONUMColumn" msprop:Generator_UserColumnName="BASEDONUM" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -180,6 +184,10 @@
               <xs:element name="USERNAME" msprop:Generator_ColumnVarNameInTable="columnUSERNAME" msprop:Generator_ColumnPropNameInRow="USERNAME" msprop:Generator_ColumnPropNameInTable="USERNAMEColumn" msprop:Generator_UserColumnName="USERNAME" type="xs:string" minOccurs="0" />
               <xs:element name="BRANCH" msprop:Generator_ColumnVarNameInTable="columnBRANCH" msprop:Generator_ColumnPropNameInRow="BRANCH" msprop:Generator_ColumnPropNameInTable="BRANCHColumn" msprop:Generator_UserColumnName="BRANCH" type="xs:string" minOccurs="0" />
               <xs:element name="OFFICE" msprop:Generator_ColumnVarNameInTable="columnOFFICE" msprop:Generator_ColumnPropNameInRow="OFFICE" msprop:Generator_ColumnPropNameInTable="OFFICEColumn" msprop:Generator_UserColumnName="OFFICE" type="xs:string" minOccurs="0" />
+              <xs:element name="PROJNAME" msprop:Generator_ColumnVarNameInTable="columnPROJNAME" msprop:Generator_ColumnPropNameInRow="PROJNAME" msprop:Generator_ColumnPropNameInTable="PROJNAMEColumn" msprop:Generator_UserColumnName="PROJNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="SITECODE" msprop:Generator_ColumnVarNameInTable="columnSITECODE" msprop:Generator_ColumnPropNameInRow="SITECODE" msprop:Generator_ColumnPropNameInTable="SITECODEColumn" msprop:Generator_UserColumnName="SITECODE" type="xs:string" minOccurs="0" />
+              <xs:element name="SITENAME" msprop:Generator_ColumnVarNameInTable="columnSITENAME" msprop:Generator_ColumnPropNameInRow="SITENAME" msprop:Generator_ColumnPropNameInTable="SITENAMEColumn" msprop:Generator_UserColumnName="SITENAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BASEDONUM" msprop:Generator_ColumnVarNameInTable="columnBASEDONUM" msprop:Generator_ColumnPropNameInRow="BASEDONUM" msprop:Generator_ColumnPropNameInTable="BASEDONUMColumn" msprop:Generator_UserColumnName="BASEDONUM" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

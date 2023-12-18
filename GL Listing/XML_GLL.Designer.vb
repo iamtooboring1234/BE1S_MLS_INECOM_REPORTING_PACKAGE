@@ -1104,6 +1104,10 @@ Partial Public Class XML_GLL
         
         Private columnBankBookBal As Global.System.Data.DataColumn
         
+        Private columnBaseDocNum As Global.System.Data.DataColumn
+        
+        Private columnNewGroupNum As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1444,6 +1448,22 @@ Partial Public Class XML_GLL
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BaseDocNumColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBaseDocNum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NewGroupNumColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNewGroupNum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1518,9 +1538,11 @@ Partial Public Class XML_GLL
                     ByVal UnRecSumLCCredit As Decimal,  _
                     ByVal UnRecSumFCDebit As Decimal,  _
                     ByVal UnRecSumFCCredit As Decimal,  _
-                    ByVal BankBookBal As Decimal) As _NCM_BANKRECON_1Row
+                    ByVal BankBookBal As Decimal,  _
+                    ByVal BaseDocNum As String,  _
+                    ByVal NewGroupNum As String) As _NCM_BANKRECON_1Row
             Dim row_NCM_BANKRECON_1Row As _NCM_BANKRECON_1Row = CType(Me.NewRow,_NCM_BANKRECON_1Row)
-            Dim columnValuesArray() As Object = New Object() {AccountCode, AccountName, Reconciled, ReconNo, TransId, Number, RefDateHeader, DueDateHeader, Ref1Header, Ref2Header, Ref3Header, RemarkHeader, Ref1Line, Ref2Line, Ref3Line, RemarkLine, MainCurrency, Company, Currency, Debit, Credit, FCDebit, FCCredit, SumLCDebit, SumLCCredit, SumFCDebit, SumFCCredit, DocNum, CardName, CounterRef, _Number_1_, DocDate, OriginDoc, UnRecSumLCDebit, UnRecSumLCCredit, UnRecSumFCDebit, UnRecSumFCCredit, BankBookBal}
+            Dim columnValuesArray() As Object = New Object() {AccountCode, AccountName, Reconciled, ReconNo, TransId, Number, RefDateHeader, DueDateHeader, Ref1Header, Ref2Header, Ref3Header, RemarkHeader, Ref1Line, Ref2Line, Ref3Line, RemarkLine, MainCurrency, Company, Currency, Debit, Credit, FCDebit, FCCredit, SumLCDebit, SumLCCredit, SumFCDebit, SumFCCredit, DocNum, CardName, CounterRef, _Number_1_, DocDate, OriginDoc, UnRecSumLCDebit, UnRecSumLCCredit, UnRecSumFCDebit, UnRecSumFCCredit, BankBookBal, BaseDocNum, NewGroupNum}
             row_NCM_BANKRECON_1Row.ItemArray = columnValuesArray
             Me.Rows.Add(row_NCM_BANKRECON_1Row)
             Return row_NCM_BANKRECON_1Row
@@ -1581,6 +1603,8 @@ Partial Public Class XML_GLL
             Me.columnUnRecSumFCDebit = MyBase.Columns("UnRecSumFCDebit")
             Me.columnUnRecSumFCCredit = MyBase.Columns("UnRecSumFCCredit")
             Me.columnBankBookBal = MyBase.Columns("BankBookBal")
+            Me.columnBaseDocNum = MyBase.Columns("BaseDocNum")
+            Me.columnNewGroupNum = MyBase.Columns("NewGroupNum")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1664,6 +1688,10 @@ Partial Public Class XML_GLL
             MyBase.Columns.Add(Me.columnUnRecSumFCCredit)
             Me.columnBankBookBal = New Global.System.Data.DataColumn("BankBookBal", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnBankBookBal)
+            Me.columnBaseDocNum = New Global.System.Data.DataColumn("BaseDocNum", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBaseDocNum)
+            Me.columnNewGroupNum = New Global.System.Data.DataColumn("NewGroupNum", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNewGroupNum)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_tableNCM_BANKRECON_1")
             Me.ExtendedProperties.Add("Generator_UserTableName", "NCM_BANKRECON;1")
         End Sub
@@ -3262,6 +3290,36 @@ Partial Public Class XML_GLL
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BaseDocNum() As String
+            Get
+                Try 
+                    Return CType(Me(Me._tableNCM_BANKRECON_1.BaseDocNumColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BaseDocNum' in table 'NCM_BANKRECON;1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._tableNCM_BANKRECON_1.BaseDocNumColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NewGroupNum() As String
+            Get
+                Try 
+                    Return CType(Me(Me._tableNCM_BANKRECON_1.NewGroupNumColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NewGroupNum' in table 'NCM_BANKRECON;1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._tableNCM_BANKRECON_1.NewGroupNumColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsAccountCodeNull() As Boolean
             Return Me.IsNull(Me._tableNCM_BANKRECON_1.AccountCodeColumn)
         End Function
@@ -3714,6 +3772,30 @@ Partial Public Class XML_GLL
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetBankBookBalNull()
             Me(Me._tableNCM_BANKRECON_1.BankBookBalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBaseDocNumNull() As Boolean
+            Return Me.IsNull(Me._tableNCM_BANKRECON_1.BaseDocNumColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBaseDocNumNull()
+            Me(Me._tableNCM_BANKRECON_1.BaseDocNumColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNewGroupNumNull() As Boolean
+            Return Me.IsNull(Me._tableNCM_BANKRECON_1.NewGroupNumColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNewGroupNumNull()
+            Me(Me._tableNCM_BANKRECON_1.NewGroupNumColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

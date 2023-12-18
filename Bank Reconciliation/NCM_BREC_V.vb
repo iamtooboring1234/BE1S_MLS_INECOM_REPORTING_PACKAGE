@@ -1,4 +1,4 @@
-'' © Copyright © 2007-2019, Inecom Pte Ltd, All rights reserved.
+'' © Copyright © 2007-2023, Inecom Pte Ltd, All rights reserved.
 '' =============================================================
 
 Imports SAPbobsCOM
@@ -238,7 +238,6 @@ Public Class NCM_BREC_V
             dtCommand = ds.Tables("NCM_BANKRECON;1")
 
             sQuery = "CALL """ & oCompany.CompanyDB & """.""NCM_BANKRECON"" ('" & sBankAccount & "','" & sBankDate & "') "
-            'sQuery = "CALL ""ECS_ENT_LIVE_30062017"".""NCM_BANKRECON"" ('_SYS00000000359','20151130') "
 
             oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             oRecord.DoQuery(sQuery)

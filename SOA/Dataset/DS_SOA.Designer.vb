@@ -2129,6 +2129,14 @@ Partial Public Class DS_SOA
         
         Private columnOFFICE As Global.System.Data.DataColumn
         
+        Private columnPROJNAME As Global.System.Data.DataColumn
+        
+        Private columnSITECODE As Global.System.Data.DataColumn
+        
+        Private columnSITENAME As Global.System.Data.DataColumn
+        
+        Private columnBASEDONUM As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -2565,6 +2573,38 @@ Partial Public Class DS_SOA
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PROJNAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPROJNAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SITECODEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSITECODE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SITENAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSITENAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BASEDONUMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBASEDONUM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2651,9 +2691,13 @@ Partial Public Class DS_SOA
                     ByVal TRANSID As String,  _
                     ByVal USERNAME As String,  _
                     ByVal BRANCH As String,  _
-                    ByVal OFFICE As String) As __NCM_SOCRow
+                    ByVal OFFICE As String,  _
+                    ByVal PROJNAME As String,  _
+                    ByVal SITECODE As String,  _
+                    ByVal SITENAME As String,  _
+                    ByVal BASEDONUM As String) As __NCM_SOCRow
             Dim row__NCM_SOCRow As __NCM_SOCRow = CType(Me.NewRow,__NCM_SOCRow)
-            Dim columnValuesArray() As Object = New Object() {BALDUECP, BALDUEOP, BASEDOCDATE, BASEENTRY, BASEPOSDATE, BASEREF, BASETRANSID, BASETYPE, CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, COUNTRY, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, EXTRACTBY, INSTL_ID, INSTLMNTID, INTRNMATCH, JN_REMARKS, LINE_ID, NUMATCARD, OPENPAID, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SERIES, SERIESNAME, SLPCODE, TRANSID, USERNAME, BRANCH, OFFICE}
+            Dim columnValuesArray() As Object = New Object() {BALDUECP, BALDUEOP, BASEDOCDATE, BASEENTRY, BASEPOSDATE, BASEREF, BASETRANSID, BASETYPE, CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, COUNTRY, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, EXTRACTBY, INSTL_ID, INSTLMNTID, INTRNMATCH, JN_REMARKS, LINE_ID, NUMATCARD, OPENPAID, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SERIES, SERIESNAME, SLPCODE, TRANSID, USERNAME, BRANCH, OFFICE, PROJNAME, SITECODE, SITENAME, BASEDONUM}
             row__NCM_SOCRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_SOCRow)
             Return row__NCM_SOCRow
@@ -2726,6 +2770,10 @@ Partial Public Class DS_SOA
             Me.columnUSERNAME = MyBase.Columns("USERNAME")
             Me.columnBRANCH = MyBase.Columns("BRANCH")
             Me.columnOFFICE = MyBase.Columns("OFFICE")
+            Me.columnPROJNAME = MyBase.Columns("PROJNAME")
+            Me.columnSITECODE = MyBase.Columns("SITECODE")
+            Me.columnSITENAME = MyBase.Columns("SITENAME")
+            Me.columnBASEDONUM = MyBase.Columns("BASEDONUM")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2831,6 +2879,14 @@ Partial Public Class DS_SOA
             MyBase.Columns.Add(Me.columnBRANCH)
             Me.columnOFFICE = New Global.System.Data.DataColumn("OFFICE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOFFICE)
+            Me.columnPROJNAME = New Global.System.Data.DataColumn("PROJNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPROJNAME)
+            Me.columnSITECODE = New Global.System.Data.DataColumn("SITECODE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSITECODE)
+            Me.columnSITENAME = New Global.System.Data.DataColumn("SITENAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSITENAME)
+            Me.columnBASEDONUM = New Global.System.Data.DataColumn("BASEDONUM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBASEDONUM)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_SOC")
             Me.ExtendedProperties.Add("Generator_UserTableName", "@NCM_SOC")
         End Sub
@@ -3069,6 +3125,14 @@ Partial Public Class DS_SOA
         Private columnBRANCH As Global.System.Data.DataColumn
         
         Private columnOFFICE As Global.System.Data.DataColumn
+        
+        Private columnPROJNAME As Global.System.Data.DataColumn
+        
+        Private columnSITECODE As Global.System.Data.DataColumn
+        
+        Private columnSITENAME As Global.System.Data.DataColumn
+        
+        Private columnBASEDONUM As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -3506,6 +3570,38 @@ Partial Public Class DS_SOA
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PROJNAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPROJNAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SITECODEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSITECODE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SITENAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSITENAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BASEDONUMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBASEDONUM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -3592,9 +3688,13 @@ Partial Public Class DS_SOA
                     ByVal TRANSID As String,  _
                     ByVal USERNAME As String,  _
                     ByVal BRANCH As String,  _
-                    ByVal OFFICE As String) As __NCM_SOC_APRow
+                    ByVal OFFICE As String,  _
+                    ByVal PROJNAME As String,  _
+                    ByVal SITECODE As String,  _
+                    ByVal SITENAME As String,  _
+                    ByVal BASEDONUM As String) As __NCM_SOC_APRow
             Dim row__NCM_SOC_APRow As __NCM_SOC_APRow = CType(Me.NewRow,__NCM_SOC_APRow)
-            Dim columnValuesArray() As Object = New Object() {BALDUECP, BALDUEOP, BASEDOCDATE, BASEENTRY, BASEPOSDATE, BASEREF, BASETRANSID, BASETYPE, CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, COUNTRY, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, EXTRACTBY, INSTL_ID, INSTLMNTID, INTRNMATCH, JN_REMARKS, LINE_ID, NUMATCARD, OPENPAID, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SERIES, SERIESNAME, SLPCODE, TRANSID, USERNAME, BRANCH, OFFICE}
+            Dim columnValuesArray() As Object = New Object() {BALDUECP, BALDUEOP, BASEDOCDATE, BASEENTRY, BASEPOSDATE, BASEREF, BASETRANSID, BASETYPE, CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, COUNTRY, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, EXTRACTBY, INSTL_ID, INSTLMNTID, INTRNMATCH, JN_REMARKS, LINE_ID, NUMATCARD, OPENPAID, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SERIES, SERIESNAME, SLPCODE, TRANSID, USERNAME, BRANCH, OFFICE, PROJNAME, SITECODE, SITENAME, BASEDONUM}
             row__NCM_SOC_APRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_SOC_APRow)
             Return row__NCM_SOC_APRow
@@ -3667,6 +3767,10 @@ Partial Public Class DS_SOA
             Me.columnUSERNAME = MyBase.Columns("USERNAME")
             Me.columnBRANCH = MyBase.Columns("BRANCH")
             Me.columnOFFICE = MyBase.Columns("OFFICE")
+            Me.columnPROJNAME = MyBase.Columns("PROJNAME")
+            Me.columnSITECODE = MyBase.Columns("SITECODE")
+            Me.columnSITENAME = MyBase.Columns("SITENAME")
+            Me.columnBASEDONUM = MyBase.Columns("BASEDONUM")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3772,6 +3876,14 @@ Partial Public Class DS_SOA
             MyBase.Columns.Add(Me.columnBRANCH)
             Me.columnOFFICE = New Global.System.Data.DataColumn("OFFICE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOFFICE)
+            Me.columnPROJNAME = New Global.System.Data.DataColumn("PROJNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPROJNAME)
+            Me.columnSITECODE = New Global.System.Data.DataColumn("SITECODE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSITECODE)
+            Me.columnSITENAME = New Global.System.Data.DataColumn("SITENAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSITENAME)
+            Me.columnBASEDONUM = New Global.System.Data.DataColumn("BASEDONUM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBASEDONUM)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_SOC_AP")
             Me.ExtendedProperties.Add("Generator_UserTableName", "@NCM_SOC_AP")
         End Sub
@@ -7508,6 +7620,66 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PROJNAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC.PROJNAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PROJNAME' in table '@NCM_SOC' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC.PROJNAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SITECODE() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC.SITECODEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SITECODE' in table '@NCM_SOC' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC.SITECODEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SITENAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC.SITENAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SITENAME' in table '@NCM_SOC' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC.SITENAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BASEDONUM() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC.BASEDONUMColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BASEDONUM' in table '@NCM_SOC' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC.BASEDONUMColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsBALDUECPNull() As Boolean
             Return Me.IsNull(Me._table_NCM_SOC.BALDUECPColumn)
         End Function
@@ -8104,6 +8276,54 @@ Partial Public Class DS_SOA
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetOFFICENull()
             Me(Me._table_NCM_SOC.OFFICEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPROJNAMENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC.PROJNAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPROJNAMENull()
+            Me(Me._table_NCM_SOC.PROJNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSITECODENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC.SITECODEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSITECODENull()
+            Me(Me._table_NCM_SOC.SITECODEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSITENAMENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC.SITENAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSITENAMENull()
+            Me(Me._table_NCM_SOC.SITENAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBASEDONUMNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC.BASEDONUMColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBASEDONUMNull()
+            Me(Me._table_NCM_SOC.BASEDONUMColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -8874,6 +9094,66 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PROJNAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC_AP.PROJNAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PROJNAME' in table '@NCM_SOC_AP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC_AP.PROJNAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SITECODE() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC_AP.SITECODEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SITECODE' in table '@NCM_SOC_AP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC_AP.SITECODEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SITENAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC_AP.SITENAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SITENAME' in table '@NCM_SOC_AP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC_AP.SITENAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BASEDONUM() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_SOC_AP.BASEDONUMColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BASEDONUM' in table '@NCM_SOC_AP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_SOC_AP.BASEDONUMColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsBALDUECPNull() As Boolean
             Return Me.IsNull(Me._table_NCM_SOC_AP.BALDUECPColumn)
         End Function
@@ -9470,6 +9750,54 @@ Partial Public Class DS_SOA
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetOFFICENull()
             Me(Me._table_NCM_SOC_AP.OFFICEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPROJNAMENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC_AP.PROJNAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPROJNAMENull()
+            Me(Me._table_NCM_SOC_AP.PROJNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSITECODENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC_AP.SITECODEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSITECODENull()
+            Me(Me._table_NCM_SOC_AP.SITECODEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSITENAMENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC_AP.SITENAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSITENAMENull()
+            Me(Me._table_NCM_SOC_AP.SITENAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBASEDONUMNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_SOC_AP.BASEDONUMColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBASEDONUMNull()
+            Me(Me._table_NCM_SOC_AP.BASEDONUMColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
