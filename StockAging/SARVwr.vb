@@ -546,15 +546,6 @@ Public Class SARVwr
 
             lastIndex = InputString.LastIndexOf(" ")
 
-
-            'Dim inString As String = String.Empty
-            'Dim outString As String = String.Empty
-            'Dim lastIndex As Integer = -1
-            'inString = TextBox1.Text
-            'lastIndex = inString.LastIndexOf(" ")
-            'outString = inString.Substring(0, lastIndex) & " + chr(10) + " & inString.Substring(lastIndex + 1, inString.Length - 1 - lastIndex)
-            'MsgBox(outString)
-
             If (lastIndex <> -1) Then
                 outputString = "'" & InputString.Substring(0, lastIndex).TrimEnd().Replace("'", "''") & "' + chr(10) + '" & InputString.Substring(lastIndex + 1, InputString.Length - 1 - lastIndex).TrimStart().Replace("'", "''") & "'"
                 Return outputString

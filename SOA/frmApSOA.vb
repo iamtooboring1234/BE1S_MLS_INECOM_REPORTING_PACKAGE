@@ -557,13 +557,24 @@ Public Class frmApSOA
             '--------------------------------------------------------
             'OSLP
             '--------------------------------------------------------
-            sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
-            dtOSLP = dsSOA.Tables("OSLP")
-            HANAcmd = dbConn.CreateCommand()
-            HANAcmd.CommandText = sQuery
-            HANAcmd.ExecuteNonQuery()
-            HANAda.SelectCommand = HANAcmd
-            HANAda.Fill(dtOSLP)
+            Try
+                sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"", IFNULL(""U_ShortName"",'') AS ""ShortName"", IFNULL(""U_SalesTeam"",'') AS ""SalesTeam"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
+                dtOSLP = dsSOA.Tables("OSLP")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOSLP)
+
+            Catch ex As Exception
+                sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"", '' ""ShortName"", '' ""SalesTeam"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
+                dtOSLP = dsSOA.Tables("OSLP")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOSLP)
+            End Try
 
             '--------------------------------------------------------
             'NCM_SOC2

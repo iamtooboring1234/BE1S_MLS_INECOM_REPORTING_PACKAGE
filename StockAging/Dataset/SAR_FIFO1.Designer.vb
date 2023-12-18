@@ -2231,6 +2231,14 @@ Partial Public Class SAR_FIFO1
         
         Private columnInvntryUom As Global.System.Data.DataColumn
         
+        Private columnU_MQ_BU As Global.System.Data.DataColumn
+        
+        Private columnU_MQ_SUPPLIER As Global.System.Data.DataColumn
+        
+        Private columnU_MQ_BRAND As Global.System.Data.DataColumn
+        
+        Private columnU_MQ_BRANDNAME As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -2291,6 +2299,38 @@ Partial Public Class SAR_FIFO1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_MQ_BUColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_MQ_BU
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_MQ_SUPPLIERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_MQ_SUPPLIER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_MQ_BRANDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_MQ_BRAND
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_MQ_BRANDNAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_MQ_BRANDNAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2327,9 +2367,9 @@ Partial Public Class SAR_FIFO1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOITMRow(ByVal ItemCode As String, ByVal ItemName As String, ByVal InvntryUom As String) As OITMRow
+        Public Overloads Function AddOITMRow(ByVal ItemCode As String, ByVal ItemName As String, ByVal InvntryUom As String, ByVal U_MQ_BU As String, ByVal U_MQ_SUPPLIER As String, ByVal U_MQ_BRAND As String, ByVal U_MQ_BRANDNAME As String) As OITMRow
             Dim rowOITMRow As OITMRow = CType(Me.NewRow,OITMRow)
-            Dim columnValuesArray() As Object = New Object() {ItemCode, ItemName, InvntryUom}
+            Dim columnValuesArray() As Object = New Object() {ItemCode, ItemName, InvntryUom, U_MQ_BU, U_MQ_SUPPLIER, U_MQ_BRAND, U_MQ_BRANDNAME}
             rowOITMRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOITMRow)
             Return rowOITMRow
@@ -2355,6 +2395,10 @@ Partial Public Class SAR_FIFO1
             Me.columnItemCode = MyBase.Columns("ItemCode")
             Me.columnItemName = MyBase.Columns("ItemName")
             Me.columnInvntryUom = MyBase.Columns("InvntryUom")
+            Me.columnU_MQ_BU = MyBase.Columns("U_MQ_BU")
+            Me.columnU_MQ_SUPPLIER = MyBase.Columns("U_MQ_SUPPLIER")
+            Me.columnU_MQ_BRAND = MyBase.Columns("U_MQ_BRAND")
+            Me.columnU_MQ_BRANDNAME = MyBase.Columns("U_MQ_BRANDNAME")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2366,6 +2410,14 @@ Partial Public Class SAR_FIFO1
             MyBase.Columns.Add(Me.columnItemName)
             Me.columnInvntryUom = New Global.System.Data.DataColumn("InvntryUom", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnInvntryUom)
+            Me.columnU_MQ_BU = New Global.System.Data.DataColumn("U_MQ_BU", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_MQ_BU)
+            Me.columnU_MQ_SUPPLIER = New Global.System.Data.DataColumn("U_MQ_SUPPLIER", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_MQ_SUPPLIER)
+            Me.columnU_MQ_BRAND = New Global.System.Data.DataColumn("U_MQ_BRAND", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_MQ_BRAND)
+            Me.columnU_MQ_BRANDNAME = New Global.System.Data.DataColumn("U_MQ_BRANDNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_MQ_BRANDNAME)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4976,6 +5028,66 @@ Partial Public Class SAR_FIFO1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_MQ_BU() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOITM.U_MQ_BUColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_MQ_BU' in table 'OITM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOITM.U_MQ_BUColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_MQ_SUPPLIER() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOITM.U_MQ_SUPPLIERColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_MQ_SUPPLIER' in table 'OITM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOITM.U_MQ_SUPPLIERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_MQ_BRAND() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOITM.U_MQ_BRANDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_MQ_BRAND' in table 'OITM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOITM.U_MQ_BRANDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_MQ_BRANDNAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOITM.U_MQ_BRANDNAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_MQ_BRANDNAME' in table 'OITM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOITM.U_MQ_BRANDNAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsItemCodeNull() As Boolean
             Return Me.IsNull(Me.tableOITM.ItemCodeColumn)
         End Function
@@ -5008,6 +5120,54 @@ Partial Public Class SAR_FIFO1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetInvntryUomNull()
             Me(Me.tableOITM.InvntryUomColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_MQ_BUNull() As Boolean
+            Return Me.IsNull(Me.tableOITM.U_MQ_BUColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_MQ_BUNull()
+            Me(Me.tableOITM.U_MQ_BUColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_MQ_SUPPLIERNull() As Boolean
+            Return Me.IsNull(Me.tableOITM.U_MQ_SUPPLIERColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_MQ_SUPPLIERNull()
+            Me(Me.tableOITM.U_MQ_SUPPLIERColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_MQ_BRANDNull() As Boolean
+            Return Me.IsNull(Me.tableOITM.U_MQ_BRANDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_MQ_BRANDNull()
+            Me(Me.tableOITM.U_MQ_BRANDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_MQ_BRANDNAMENull() As Boolean
+            Return Me.IsNull(Me.tableOITM.U_MQ_BRANDNAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_MQ_BRANDNAMENull()
+            Me(Me.tableOITM.U_MQ_BRANDNAMEColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

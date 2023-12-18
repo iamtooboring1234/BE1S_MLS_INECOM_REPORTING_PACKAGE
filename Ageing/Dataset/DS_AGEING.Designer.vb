@@ -427,6 +427,8 @@ Partial Public Class DS_AGEING
         
         Private columnCardName As Global.System.Data.DataColumn
         
+        Private columnCardFName As Global.System.Data.DataColumn
+        
         Private columnGroupCode As Global.System.Data.DataColumn
         
         Private columnGroupName As Global.System.Data.DataColumn
@@ -434,6 +436,10 @@ Partial Public Class DS_AGEING
         Private columnU_U_Retention As Global.System.Data.DataColumn
         
         Private columnLicTradNum As Global.System.Data.DataColumn
+        
+        Private columnCountry As Global.System.Data.DataColumn
+        
+        Private columnCreditLine As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -488,6 +494,14 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CardFNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCardFName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property GroupCodeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnGroupCode
@@ -515,6 +529,22 @@ Partial Public Class DS_AGEING
         Public ReadOnly Property LicTradNumColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnLicTradNum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CountryColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCountry
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CreditLineColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCreditLine
             End Get
         End Property
         
@@ -555,9 +585,9 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOCRDRow(ByVal CardCode As String, ByVal CardName As String, ByVal GroupCode As Integer, ByVal GroupName As String, ByVal U_U_Retention As String, ByVal LicTradNum As String) As OCRDRow
+        Public Overloads Function AddOCRDRow(ByVal CardCode As String, ByVal CardName As String, ByVal CardFName As String, ByVal GroupCode As Integer, ByVal GroupName As String, ByVal U_U_Retention As String, ByVal LicTradNum As String, ByVal Country As String, ByVal CreditLine As Double) As OCRDRow
             Dim rowOCRDRow As OCRDRow = CType(Me.NewRow,OCRDRow)
-            Dim columnValuesArray() As Object = New Object() {CardCode, CardName, GroupCode, GroupName, U_U_Retention, LicTradNum}
+            Dim columnValuesArray() As Object = New Object() {CardCode, CardName, CardFName, GroupCode, GroupName, U_U_Retention, LicTradNum, Country, CreditLine}
             rowOCRDRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOCRDRow)
             Return rowOCRDRow
@@ -582,10 +612,13 @@ Partial Public Class DS_AGEING
         Friend Sub InitVars()
             Me.columnCardCode = MyBase.Columns("CardCode")
             Me.columnCardName = MyBase.Columns("CardName")
+            Me.columnCardFName = MyBase.Columns("CardFName")
             Me.columnGroupCode = MyBase.Columns("GroupCode")
             Me.columnGroupName = MyBase.Columns("GroupName")
             Me.columnU_U_Retention = MyBase.Columns("U_U_Retention")
             Me.columnLicTradNum = MyBase.Columns("LicTradNum")
+            Me.columnCountry = MyBase.Columns("Country")
+            Me.columnCreditLine = MyBase.Columns("CreditLine")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -595,6 +628,8 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnCardCode)
             Me.columnCardName = New Global.System.Data.DataColumn("CardName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCardName)
+            Me.columnCardFName = New Global.System.Data.DataColumn("CardFName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCardFName)
             Me.columnGroupCode = New Global.System.Data.DataColumn("GroupCode", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGroupCode)
             Me.columnGroupName = New Global.System.Data.DataColumn("GroupName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -603,6 +638,10 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnU_U_Retention)
             Me.columnLicTradNum = New Global.System.Data.DataColumn("LicTradNum", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLicTradNum)
+            Me.columnCountry = New Global.System.Data.DataColumn("Country", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCountry)
+            Me.columnCreditLine = New Global.System.Data.DataColumn("CreditLine", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCreditLine)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3652,6 +3691,21 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property CardFName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.CardFNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CardFName' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.CardFNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property GroupCode() As Integer
             Get
                 Try 
@@ -3712,6 +3766,36 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Country() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.CountryColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Country' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.CountryColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property CreditLine() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.CreditLineColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CreditLine' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.CreditLineColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCardCodeNull() As Boolean
             Return Me.IsNull(Me.tableOCRD.CardCodeColumn)
         End Function
@@ -3732,6 +3816,18 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCardNameNull()
             Me(Me.tableOCRD.CardNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCardFNameNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.CardFNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCardFNameNull()
+            Me(Me.tableOCRD.CardFNameColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3780,6 +3876,30 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetLicTradNumNull()
             Me(Me.tableOCRD.LicTradNumColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCountryNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.CountryColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCountryNull()
+            Me(Me.tableOCRD.CountryColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCreditLineNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.CreditLineColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCreditLineNull()
+            Me(Me.tableOCRD.CreditLineColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

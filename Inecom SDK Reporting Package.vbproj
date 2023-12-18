@@ -238,6 +238,36 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Ageing\frmARAgeing_Proj.vb" />
+    <Compile Include="Ageing\Report\Dataset Report\NewRptARAgeing_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewRptARAgeing_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptAPAgeingSummary_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptAPAgeingSummary_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptAPAgeing_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptAPAgeing_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing7B_HANADS_EASTWIN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing7B_HANADS_EASTWIN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary7B_HANADS_EASTWIN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary7B_HANADS_EASTWIN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_BRNGROUP.vb">
       <DependentUpon>rptARAgeingSummary_HANADS_BRNGROUP.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -304,6 +334,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_WA.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -327,6 +363,12 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_WA.vb">
       <AutoGen>True</AutoGen>
@@ -693,6 +735,12 @@
       <DependentUpon>PV_HANADS_SAFRAN.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_SS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPV_HANADS_SS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_WA.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -978,6 +1026,12 @@
       <DependentUpon>SA_CUSTNAME_HANA.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="SOA\Report\SA_HANADS_EASTWIN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_HANADS_EASTWIN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SOA\Report\SA_LANDSCAPE_HANA_TEST.vb">
       <DependentUpon>SA_LANDSCAPE_HANA_TEST.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1044,6 +1098,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="StockAging\Report\FIFO_COM_DET_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FIFO_COM_DET_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="StockAging\Report\FIFO_COM_SUMM_HANADS.vb">
       <DependentUpon>FIFO_COM_SUMM_HANADS.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1061,6 +1121,12 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="StockAging\Report\FIFO_COM_SUMM_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FIFO_COM_SUMM_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TM SAR\frmTMSAR.vb" />
     <Compile Include="TM SAR\Report\frmTMSAR_2.Designer.vb">
@@ -1302,6 +1368,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\NewRptARAgeing_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>NewRptARAgeing_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptAPAgeingSummary_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeingSummary_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptAPAgeing_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeing_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing7B_HANADS_EASTWIN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing7B_HANADS_EASTWIN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary7B_HANADS_EASTWIN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary7B_HANADS_EASTWIN.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_BRNGROUP.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptARAgeingSummary_HANADS_BRNGROUP.vb</LastGenOutput>
@@ -1346,6 +1432,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptARAgeingSummary_HANADS_DTDS.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_WA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptARAgeingSummary_HANADS_WA.vb</LastGenOutput>
@@ -1361,6 +1451,10 @@
     <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_DTDS.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptARAgeing_HANADS_DTDS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADS_MED.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_WA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1564,6 +1658,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PV_HANADS_SAFRAN.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_SS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPV_HANADS_SS.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_WA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPV_HANADS_WA.vb</LastGenOutput>
@@ -1744,6 +1842,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SA_CUSTNAME_HANA.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_HANADS_EASTWIN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANADS_EASTWIN.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="SOA\Report\SA_LANDSCAPE_HANA_TEST.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SA_LANDSCAPE_HANA_TEST.vb</LastGenOutput>
@@ -1788,6 +1890,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FIFO_COM_DET_HANADS.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\Report\FIFO_COM_DET_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FIFO_COM_DET_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="StockAging\Report\FIFO_COM_SUMM_HANADS.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FIFO_COM_SUMM_HANADS.vb</LastGenOutput>
@@ -1799,6 +1905,10 @@
     <EmbeddedResource Include="StockAging\Report\FIFO_COM_DET_HANA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FIFO_COM_DET_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\Report\FIFO_COM_SUMM_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FIFO_COM_SUMM_HANADS_MED.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="TM SAR\Report\frmTMSAR_2.resx">
       <DependentUpon>frmTMSAR_2.vb</DependentUpon>

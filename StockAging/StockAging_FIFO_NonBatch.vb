@@ -1,5 +1,9 @@
 Option Strict Off
-Option Explicit On 
+Option Explicit On
+
+' LAST CHECKED BY ES - 16.05.2023
+' FOR MEDQUEST
+' NOT CONVERTED YET - COULD BE ALREADY COMBINED INTO STOCKAGEING_MOV.
 
 Imports SAPbobsCOM
 Imports System.Data.SqlClient
@@ -8,6 +12,8 @@ Imports System.Threading
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 Imports System.IO
+Imports System.Data.Common
+
 
 Public Class StockAging_FIFO_NonBatch
 
@@ -23,6 +29,10 @@ Public Class StockAging_FIFO_NonBatch
     Private ds As DataSet
 
     Private dtFIFO As DataTable
+    Private dtOITB As DataTable
+    Private dtOITM As DataTable
+    Private dtOADM As DataTable
+
     Private dtExportD As DataTable
     Private dtExportS As DataTable
     Dim bIsExportToExcel As Boolean = False
@@ -231,14 +241,7 @@ Public Class StockAging_FIFO_NonBatch
             oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
             oCon.CondVal = "F"
             oCon.BracketCloseNum = 2
-            'oCon.Relationship = SAPbouiCOM.BoConditionRelationship.cr_AND
 
-            'oCon = oCons.Add
-            'oCon.BracketOpenNum = 2
-            'oCon.Alias = "ManBtchNum"
-            'oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
-            'oCon.CondVal = "N"
-            'oCon.BracketCloseNum = 3
             '' -----------------------------------------------------------            
             oCFL.SetConditions(oCons)
 
@@ -263,14 +266,7 @@ Public Class StockAging_FIFO_NonBatch
             oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
             oCon.CondVal = "F"
             oCon.BracketCloseNum = 2
-            'oCon.Relationship = SAPbouiCOM.BoConditionRelationship.cr_AND
 
-            'oCon = oCons.Add
-            'oCon.BracketOpenNum = 2
-            'oCon.Alias = "ManBtchNum"
-            'oCon.Operation = SAPbouiCOM.BoConditionOperation.co_EQUAL
-            'oCon.CondVal = "N"
-            'oCon.BracketCloseNum = 3
             '' -----------------------------------------------------------            
             oCFL.SetConditions(oCons)
 
@@ -300,15 +296,10 @@ Public Class StockAging_FIFO_NonBatch
     End Sub
     Private Sub PopulateDate()
         Try
-            Dim oRecord As Recordset = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
             Dim sCurrDate As String = String.Empty
-            Dim sQuery As String = String.Empty
-            sQuery = " SELECT ISNULL(CAST(YEAR(GetDate()) AS VARCHAR) + Right(Replicate('0',2) + CAST(MONTH(GetDate()) AS VARCHAR(2)),2) + Right(Replicate('0',2) + CAST(DAY(GetDate()) AS VARCHAR(2)),2),'') As CurrDate "
-            oRecord.DoQuery(sQuery)
-            If oRecord.RecordCount > 0 Then
-                sCurrDate = oRecord.Fields.Item(0).Value
-                oFormFIFO1.DataSources.UserDataSources.Item("uAsDate").ValueEx = sCurrDate
-            End If
+            sCurrDate = GetCurrentDate()
+            oFormFIFO1.DataSources.UserDataSources.Item("uAsDate").ValueEx = sCurrDate
+
         Catch ex As Exception
             SBO_Application.StatusBar.SetText("[PopulateDate] : " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
         End Try
@@ -362,16 +353,18 @@ Public Class StockAging_FIFO_NonBatch
             Dim sItemFr, sItemTo, sWareFr, sWareTo, sAsDate As String
             Dim sItmGrpFr, sItmGrpTo As String
             With oFormFIFO1.DataSources.UserDataSources
-                sItemFr = .Item("uItemFr").ValueEx
-                sItemTo = .Item("uItemTo").ValueEx
-                sWareFr = .Item("uWareFr").ValueEx
-                sWareTo = .Item("uWareTo").ValueEx
+                sItemFr = .Item("uItemFr").ValueEx.ToString.Trim.Replace("'", "''")
+                sItemTo = .Item("uItemTo").ValueEx.ToString.Trim.Replace("'", "''")
+                sWareFr = .Item("uWareFr").ValueEx.ToString.Trim.Replace("'", "''")
+                sWareTo = .Item("uWareTo").ValueEx.ToString.Trim.Replace("'", "''")
                 sAsDate = .Item("uAsDate").ValueEx
-                sItmGrpFr = .Item("tbItmGrpFr").ValueEx
-                sItmGrpTo = .Item("tbItmGrpTo").ValueEx
+                sItmGrpFr = .Item("tbItmGrpFr").ValueEx.ToString.Trim.Replace("'", "''")
+                sItmGrpTo = .Item("tbItmGrpTo").ValueEx.ToString.Trim.Replace("'", "''")
             End With
 
-            sQuery = "EXECUTE NCM_SP_SAR_FIFO1 "
+            SBO_Application.StatusBar.SetText("Executing Stored Procedure...", SAPbouiCOM.BoMessageTime.bmt_Long, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+
+            sQuery = "CALL ""NCM_SP_SAR_FIFO1"" "
             sQuery &= "'" & sAsDate & "', "
             sQuery &= "'" & oCompany.UserSignature & "', "
             sQuery &= "'" & sItemFr & "', "
@@ -379,7 +372,7 @@ Public Class StockAging_FIFO_NonBatch
             sQuery &= "'" & sWareFr & "', "
             sQuery &= "'" & sWareTo & "',  "
             sQuery &= "'" & sItmGrpFr & "', "
-            sQuery &= "'" & sItmGrpTo & "'"
+            sQuery &= "'" & sItmGrpTo & "' "
 
             Try
                 statusThread.Start()
@@ -403,6 +396,10 @@ Public Class StockAging_FIFO_NonBatch
         Try
             Dim oQuery As Recordset = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
             Dim sQuery As String = String.Empty
+            Dim ProviderName As String = "System.Data.Odbc"
+            Dim dbConn As DbConnection = Nothing
+            Dim _DbProviderFactoryObject As DbProviderFactory
+
             bIsExportToExcel = IIf(oFormFIFO1.DataSources.UserDataSources.Item("chkExcel").ValueEx = "Y", True, False)
 
             Dim oComboLn As SAPbouiCOM.ComboBox
@@ -419,7 +416,7 @@ Public Class StockAging_FIFO_NonBatch
             dtExportS = ds.Tables("Excel_Output")
             '' ----------------------------------------------------------------------
 
-            sQuery = "SELECT U_Query FROM [@NCM_QUERY] WHERE U_Type ='NCM_SAR_FIFO1'"
+            sQuery = "SELECT ""U_Query"" FROM ""@NCM_QUERY"" WHERE ""U_Type"" ='NCM_SAR_FIFO1'"
             oQuery.DoQuery(sQuery)
             If oQuery.RecordCount > 0 Then
                 oQuery.MoveFirst()
@@ -431,24 +428,42 @@ Public Class StockAging_FIFO_NonBatch
                 da = New SqlDataAdapter(sQuery, sqlConn)
                 da.Fill(dtFIFO)
 
+                _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+                dbConn = _DbProviderFactoryObject.CreateConnection()
+                dbConn.ConnectionString = connStr
+                dbConn.Open()
 
-                'sQuery = "SELECT ""ItemCode"", ""ItemName"", ""InvntryUom"" FROM """ & oCompany.CompanyDB & """.""OITM"" "
-                'dtOITM = ds.Tables("OCRD")
-                'HANAcmd = dbConn.CreateCommand()
-                'HANAcmd.CommandText = sQuery
-                'HANAcmd.ExecuteNonQuery()
-                'HANAda.SelectCommand = HANAcmd
-                'HANAda.Fill(dtOITM)
+                Dim HANAda As DbDataAdapter = _DbProviderFactoryObject.CreateDataAdapter()
+                Dim HANAcmd As DbCommand = dbConn.CreateCommand()
+
                 ''--------------------------------------------------------
-                ''OADM (Company Details)
+                '' OITM - Item Master
                 ''--------------------------------------------------------
-                'sQuery = "SELECT ""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""RevOffice"",""Phone1"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
-                'dtOADM = ds.Tables("OADM")
-                'HANAcmd = dbConn.CreateCommand()
-                'HANAcmd.CommandText = sQuery
-                'HANAcmd.ExecuteNonQuery()
-                'HANAda.SelectCommand = HANAcmd
-                'HANAda.Fill(dtOADM)
+                sQuery = "SELECT ""ItemCode"", ""ItemName"", ""InvntryUom"" FROM """ & oCompany.CompanyDB & """.""OITM"" "
+                dtOITM = ds.Tables("OITM")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOITM)
+                ''--------------------------------------------------------
+                '' OADM - Company
+                ''--------------------------------------------------------
+                sQuery = "SELECT ""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""RevOffice"",""Phone1"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
+                dtOADM = ds.Tables("OADM")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOADM)
+
+                sQuery = "SELECT ""ItmsGrpCod"", ""ItmsGrpNam""  FROM """ & oCompany.CompanyDB & """.""OITB"" "
+                dtOITB = ds.Tables("OITB")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOITB)
 
                 '' ----------------------------------------------------------------------
                 oQuery = Nothing
@@ -506,7 +521,7 @@ Public Class StockAging_FIFO_NonBatch
                             Dim sCurrTime As String = DateTime.Now.ToString("HHMMss")
                             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
 
-                            oRec.DoQuery("SELECT  TO_CHAR(current_timestamp, 'YYYYMMDD') FROM DUMMY")
+                            oRec.DoQuery("SELECT TO_CHAR(current_timestamp, 'YYYYMMDD') FROM DUMMY")
                             If oRec.RecordCount > 0 Then
                                 oRec.MoveFirst()
                                 sCurrDate = Convert.ToString(oRec.Fields.Item(0).Value).Trim
@@ -651,6 +666,7 @@ Public Class StockAging_FIFO_NonBatch
                                     Case "tbItemTo"
                                         oFormFIFO1.DataSources.UserDataSources.Item("uItemTo").ValueEx = sItemCode
                                 End Select
+
                             Case "tbItmGrpFr", "tbItmGrpTo"
                                 Dim oCFLEvento As SAPbouiCOM.IChooseFromListEvent
                                 Dim sCFL_ID As String = ""
@@ -679,6 +695,7 @@ Public Class StockAging_FIFO_NonBatch
                                         oFormFIFO1.DataSources.UserDataSources.Item("tbItmGrpTo").ValueEx = sItemGrpName
                                         oFormFIFO1.DataSources.UserDataSources.Item("tbItmGTo").ValueEx = sItemGrpCod
                                 End Select
+
                             Case "tbWareFr", "tbWareTo"
                                 Dim oCFLEvento As SAPbouiCOM.IChooseFromListEvent
                                 Dim sCFL_ID As String = ""

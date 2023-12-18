@@ -578,7 +578,8 @@ Public Class frmARAgeing
             'OCRD
             '--------------------------------------------------------
             Try
-                sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", "
+                sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", T1.""CardFName"", "
+                sQuery &= " T1.""CreditLine"", T1.""Country"", "
                 sQuery &= " IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"", "
                 sQuery &= " IFNULL(T1.""U_U_Retention"",'0') AS ""U_U_Retention"" "
                 sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
@@ -595,7 +596,8 @@ Public Class frmARAgeing
 
             Catch ex As Exception
 
-                sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", "
+                sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", T1.""CardFName"", "
+                sQuery &= " T1.""CreditLine"", T1.""Country"", "
                 sQuery &= " IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"" "
                 sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
                 sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T2 "

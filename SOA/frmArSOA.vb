@@ -1129,7 +1129,7 @@ Public Class frmArSOA
             'OCRD (Customer)
             '--------------------------------------------------------
             Try
-                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""U_U_Retention"", ""U_SOAContact"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""U_U_Retention"", ""U_SOAContact"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
                 dtOCRD = dsSOA.Tables("OCRD")
                 HANAcmd = dbConn.CreateCommand()
                 HANAcmd.CommandText = sQuery
@@ -1139,7 +1139,7 @@ Public Class frmArSOA
 
             Catch ex As Exception
 
-                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
                 dtOCRD = dsSOA.Tables("OCRD")
                 HANAcmd = dbConn.CreateCommand()
                 HANAcmd.CommandText = sQuery
@@ -1197,7 +1197,7 @@ Public Class frmArSOA
             'OSLP
             '--------------------------------------------------------
             Try
-                sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"", IFNULL(""U_ShortName"",'') AS ""ShortName"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
+                sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"", IFNULL(""U_ShortName"",'') AS ""ShortName"", IFNULL(""U_SalesTeam"",'') AS ""SalesTeam"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
                 dtOSLP = dsSOA.Tables("OSLP")
                 HANAcmd = dbConn.CreateCommand()
                 HANAcmd.CommandText = sQuery
@@ -1206,7 +1206,7 @@ Public Class frmArSOA
                 HANAda.Fill(dtOSLP)
 
             Catch ex As Exception
-                sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"", '' ""ShortName"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
+                sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"", '' ""ShortName"", '' ""SalesTeam"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
                 dtOSLP = dsSOA.Tables("OSLP")
                 HANAcmd = dbConn.CreateCommand()
                 HANAcmd.CommandText = sQuery

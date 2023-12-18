@@ -53,6 +53,7 @@
               <xs:element name="SlpName" msprop:Generator_ColumnVarNameInTable="columnSlpName" msprop:Generator_ColumnPropNameInRow="SlpName" msprop:Generator_ColumnPropNameInTable="SlpNameColumn" msprop:Generator_UserColumnName="SlpName" type="xs:string" minOccurs="0" />
               <xs:element name="Memo" msprop:Generator_ColumnVarNameInTable="columnMemo" msprop:Generator_ColumnPropNameInRow="Memo" msprop:Generator_ColumnPropNameInTable="MemoColumn" msprop:Generator_UserColumnName="Memo" type="xs:string" minOccurs="0" />
               <xs:element name="ShortName" msprop:Generator_ColumnVarNameInTable="columnShortName" msprop:Generator_ColumnPropNameInRow="ShortName" msprop:Generator_ColumnPropNameInTable="ShortNameColumn" msprop:Generator_UserColumnName="ShortName" type="xs:string" minOccurs="0" />
+              <xs:element name="SalesTeam" msprop:Generator_ColumnVarNameInTable="columnSalesTeam" msprop:Generator_ColumnPropNameInRow="SalesTeam" msprop:Generator_ColumnPropNameInTable="SalesTeamColumn" msprop:Generator_UserColumnName="SalesTeam" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -338,7 +338,7 @@ Public Class OutgoingPayment
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtOJDT)
             '--------------------------------------------------------
-            sQuery = "  SELECT T1.*, T2.""CardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
+            sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"",  T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
             sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
             sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "

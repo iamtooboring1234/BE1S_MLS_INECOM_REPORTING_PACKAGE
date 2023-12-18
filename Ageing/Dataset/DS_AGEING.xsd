@@ -17,10 +17,13 @@
             <xs:sequence>
               <xs:element name="CardCode" msprop:Generator_ColumnVarNameInTable="columnCardCode" msprop:Generator_ColumnPropNameInRow="CardCode" msprop:Generator_ColumnPropNameInTable="CardCodeColumn" msprop:Generator_UserColumnName="CardCode" type="xs:string" minOccurs="0" />
               <xs:element name="CardName" msprop:Generator_ColumnVarNameInTable="columnCardName" msprop:Generator_ColumnPropNameInRow="CardName" msprop:Generator_ColumnPropNameInTable="CardNameColumn" msprop:Generator_UserColumnName="CardName" type="xs:string" minOccurs="0" />
+              <xs:element name="CardFName" msprop:Generator_ColumnVarNameInTable="columnCardFName" msprop:Generator_ColumnPropNameInRow="CardFName" msprop:Generator_ColumnPropNameInTable="CardFNameColumn" msprop:Generator_UserColumnName="CardFName" type="xs:string" minOccurs="0" />
               <xs:element name="GroupCode" msprop:Generator_ColumnVarNameInTable="columnGroupCode" msprop:Generator_ColumnPropNameInRow="GroupCode" msprop:Generator_ColumnPropNameInTable="GroupCodeColumn" msprop:Generator_UserColumnName="GroupCode" type="xs:int" minOccurs="0" />
               <xs:element name="GroupName" msprop:Generator_ColumnVarNameInTable="columnGroupName" msprop:Generator_ColumnPropNameInRow="GroupName" msprop:Generator_ColumnPropNameInTable="GroupNameColumn" msprop:Generator_UserColumnName="GroupName" type="xs:string" minOccurs="0" />
               <xs:element name="U_U_Retention" msprop:Generator_ColumnVarNameInTable="columnU_U_Retention" msprop:Generator_ColumnPropNameInRow="U_U_Retention" msprop:Generator_ColumnPropNameInTable="U_U_RetentionColumn" msprop:Generator_UserColumnName="U_U_Retention" type="xs:string" minOccurs="0" />
               <xs:element name="LicTradNum" msprop:Generator_ColumnVarNameInTable="columnLicTradNum" msprop:Generator_ColumnPropNameInRow="LicTradNum" msprop:Generator_ColumnPropNameInTable="LicTradNumColumn" msprop:Generator_UserColumnName="LicTradNum" type="xs:string" minOccurs="0" />
+              <xs:element name="Country" msprop:Generator_ColumnVarNameInTable="columnCountry" msprop:Generator_ColumnPropNameInRow="Country" msprop:Generator_ColumnPropNameInTable="CountryColumn" msprop:Generator_UserColumnName="Country" type="xs:string" minOccurs="0" />
+              <xs:element name="CreditLine" msprop:Generator_ColumnVarNameInTable="columnCreditLine" msprop:Generator_ColumnPropNameInRow="CreditLine" msprop:Generator_ColumnPropNameInTable="CreditLineColumn" msprop:Generator_UserColumnName="CreditLine" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

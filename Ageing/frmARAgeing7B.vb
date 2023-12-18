@@ -452,7 +452,9 @@ Public Class frmARAgeing7B
             '--------------------------------------------------------
             'OCRD
             '--------------------------------------------------------
-            sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"" "
+            sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", "
+            sQuery &= " T1.""CreditLine"", T1.""Country"", "
+            sQuery &= " IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
             sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T2 "
             sQuery &= " ON T1.""GroupCode"" = T2.""GroupCode"" "

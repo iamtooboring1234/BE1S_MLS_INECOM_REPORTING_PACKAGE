@@ -1390,6 +1390,8 @@ Partial Public Class DS_SOA
         
         Private columnShortName As Global.System.Data.DataColumn
         
+        Private columnSalesTeam As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1458,6 +1460,14 @@ Partial Public Class DS_SOA
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SalesTeamColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSalesTeam
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1494,9 +1504,9 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOSLPRow(ByVal SlpCode As Integer, ByVal SlpName As String, ByVal Memo As String, ByVal ShortName As String) As OSLPRow
+        Public Overloads Function AddOSLPRow(ByVal SlpCode As Integer, ByVal SlpName As String, ByVal Memo As String, ByVal ShortName As String, ByVal SalesTeam As String) As OSLPRow
             Dim rowOSLPRow As OSLPRow = CType(Me.NewRow,OSLPRow)
-            Dim columnValuesArray() As Object = New Object() {SlpCode, SlpName, Memo, ShortName}
+            Dim columnValuesArray() As Object = New Object() {SlpCode, SlpName, Memo, ShortName, SalesTeam}
             rowOSLPRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOSLPRow)
             Return rowOSLPRow
@@ -1523,6 +1533,7 @@ Partial Public Class DS_SOA
             Me.columnSlpName = MyBase.Columns("SlpName")
             Me.columnMemo = MyBase.Columns("Memo")
             Me.columnShortName = MyBase.Columns("ShortName")
+            Me.columnSalesTeam = MyBase.Columns("SalesTeam")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1536,6 +1547,8 @@ Partial Public Class DS_SOA
             MyBase.Columns.Add(Me.columnMemo)
             Me.columnShortName = New Global.System.Data.DataColumn("ShortName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnShortName)
+            Me.columnSalesTeam = New Global.System.Data.DataColumn("SalesTeam", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSalesTeam)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6547,6 +6560,21 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SalesTeam() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOSLP.SalesTeamColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SalesTeam' in table 'OSLP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOSLP.SalesTeamColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsSlpCodeNull() As Boolean
             Return Me.IsNull(Me.tableOSLP.SlpCodeColumn)
         End Function
@@ -6591,6 +6619,18 @@ Partial Public Class DS_SOA
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetShortNameNull()
             Me(Me.tableOSLP.ShortNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSalesTeamNull() As Boolean
+            Return Me.IsNull(Me.tableOSLP.SalesTeamColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSalesTeamNull()
+            Me(Me.tableOSLP.SalesTeamColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

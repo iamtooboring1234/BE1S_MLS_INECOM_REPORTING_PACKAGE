@@ -543,14 +543,42 @@ Public Class StockAging_MOV
                 HANAda.SelectCommand = HANAcmd
                 HANAda.Fill(dtFIFO)
 
-                'sQuery = "  SELECT ""ItemCode"", ""ItemName"", IFNULL(""InvntryUom"",'') ""InvntryUom"" "
-                'sQuery &= " FROM """ & oCompany.CompanyDB & """.""OITM"" "
-                'dtOITM = ds.Tables("OITM")
-                'HANAcmd = dbConn.CreateCommand()
-                'HANAcmd.CommandText = sQuery
-                'HANAcmd.ExecuteNonQuery()
-                'HANAda.SelectCommand = HANAcmd
-                'HANAda.Fill(dtOITM)
+                Try
+                    'sQuery = "  SELECT  T1.""ItemCode"", T1.""ItemName"", IFNULL(T1.""InvntryUom"",'') ""InvntryUom"", "
+                    'sQuery &= "         IFNULL(T1.""U_MQ_BU"",'') AS ""U_MQ_BU"", "
+                    'sQuery &= "         IFNULL(T1.""U_MQ_SUPPLIER"",'') AS ""U_MQ_SUPPLIER"", "
+                    'sQuery &= "         IFNULL(T1.""U_MQ_BRAND"",'') AS ""U_MQ_BRAND"", "
+                    'sQuery &= "         IFNULL(T2.""Name"",'') AS ""U_MQ_BRANDNAME"" "
+                    'sQuery &= " FROM    """ & oCompany.CompanyDB & """.""OITM"" T1 "
+                    'sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""@MQ_ITM_BRAND"" T2 ON T1.""U_MQ_BRAND"" = T2.""Code"" "
+
+                    sQuery = "  SELECT  ""ItemCode"", ""ItemName"", IFNULL(""InvntryUom"",'') ""InvntryUom"", "
+                    sQuery &= "         '' ""U_MQ_BU"", ""U_MQ_SUPPLIER"", '' ""U_MQ_BRAND"", '' ""U_MQ_BRANDNAME"" "
+                    sQuery &= " FROM    """ & oCompany.CompanyDB & """.""OITM"" "
+
+                    dtOITM = ds.Tables("OITM")
+                    HANAcmd = dbConn.CreateCommand()
+                    HANAcmd.CommandText = sQuery
+                    HANAcmd.ExecuteNonQuery()
+                    HANAda.SelectCommand = HANAcmd
+                    HANAda.Fill(dtOITM)
+
+                Catch ex As Exception
+
+                    sQuery = "  SELECT  ""ItemCode"", ""ItemName"", IFNULL(""InvntryUom"",'') ""InvntryUom"", "
+                    sQuery &= "         '' ""U_MQ_BU"", ""U_MQ_SUPPLIER"", '' ""U_MQ_BRAND"", '' ""U_MQ_BRANDNAME"" "
+                    sQuery &= " FROM    """ & oCompany.CompanyDB & """.""OITM"" "
+
+
+                    dtOITM = ds.Tables("OITM")
+                    HANAcmd = dbConn.CreateCommand()
+                    HANAcmd.CommandText = sQuery
+                    HANAcmd.ExecuteNonQuery()
+                    HANAda.SelectCommand = HANAcmd
+                    HANAda.Fill(dtOITM)
+
+                End Try
+
                 '--------------------------------------------------------
                 'OADM (Company Details)
                 '--------------------------------------------------------
@@ -622,8 +650,8 @@ Public Class StockAging_MOV
                 End If
 
                 ' ===============================================================================
-                ' get the folder of the current DB Name
-                ' set to local
+                ' get the folder of the current DB Name --> set to local
+
                 sTempDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\STOCK\" & oCompany.CompanyDB
                 Dim di As New System.IO.DirectoryInfo(sTempDirectory)
                 If Not di.Exists Then
