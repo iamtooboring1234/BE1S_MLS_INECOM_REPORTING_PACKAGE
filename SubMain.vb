@@ -1,6 +1,5 @@
 '' © Copyright © 2007-2023, Inecom Pte Ltd, All rights reserved.
 '' =============================================================
-'' September 2023
 
 Option Strict Off
 Option Explicit On
@@ -1372,10 +1371,9 @@ Module SubMain
         Dim SqlConn As DbConnection = Nothing
         Dim DA As DbDataAdapter = Nothing
         Dim Command As DbCommand = Nothing
+
         Try
-
             Dim _DbProviderFactoryObject As DbProviderFactory = Nothing
-
             SqlConn = GetHANAConnection(_DbProviderFactoryObject)
             SqlConn.Open()
 

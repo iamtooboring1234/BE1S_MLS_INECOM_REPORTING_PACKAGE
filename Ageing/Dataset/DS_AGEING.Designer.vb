@@ -441,6 +441,14 @@ Partial Public Class DS_AGEING
         
         Private columnCreditLine As Global.System.Data.DataColumn
         
+        Private columnDebtLine As Global.System.Data.DataColumn
+        
+        Private columnU_Fin_Group As Global.System.Data.DataColumn
+        
+        Private columnU_Status As Global.System.Data.DataColumn
+        
+        Private columnU_LOB As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -549,6 +557,38 @@ Partial Public Class DS_AGEING
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property DebtLineColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDebtLine
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_Fin_GroupColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_Fin_Group
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_StatusColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_Status
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_LOBColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_LOB
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -585,9 +625,9 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOCRDRow(ByVal CardCode As String, ByVal CardName As String, ByVal CardFName As String, ByVal GroupCode As Integer, ByVal GroupName As String, ByVal U_U_Retention As String, ByVal LicTradNum As String, ByVal Country As String, ByVal CreditLine As Double) As OCRDRow
+        Public Overloads Function AddOCRDRow(ByVal CardCode As String, ByVal CardName As String, ByVal CardFName As String, ByVal GroupCode As Integer, ByVal GroupName As String, ByVal U_U_Retention As String, ByVal LicTradNum As String, ByVal Country As String, ByVal CreditLine As Double, ByVal DebtLine As Double, ByVal U_Fin_Group As String, ByVal U_Status As String, ByVal U_LOB As String) As OCRDRow
             Dim rowOCRDRow As OCRDRow = CType(Me.NewRow,OCRDRow)
-            Dim columnValuesArray() As Object = New Object() {CardCode, CardName, CardFName, GroupCode, GroupName, U_U_Retention, LicTradNum, Country, CreditLine}
+            Dim columnValuesArray() As Object = New Object() {CardCode, CardName, CardFName, GroupCode, GroupName, U_U_Retention, LicTradNum, Country, CreditLine, DebtLine, U_Fin_Group, U_Status, U_LOB}
             rowOCRDRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOCRDRow)
             Return rowOCRDRow
@@ -619,6 +659,10 @@ Partial Public Class DS_AGEING
             Me.columnLicTradNum = MyBase.Columns("LicTradNum")
             Me.columnCountry = MyBase.Columns("Country")
             Me.columnCreditLine = MyBase.Columns("CreditLine")
+            Me.columnDebtLine = MyBase.Columns("DebtLine")
+            Me.columnU_Fin_Group = MyBase.Columns("U_Fin_Group")
+            Me.columnU_Status = MyBase.Columns("U_Status")
+            Me.columnU_LOB = MyBase.Columns("U_LOB")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -642,6 +686,14 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnCountry)
             Me.columnCreditLine = New Global.System.Data.DataColumn("CreditLine", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCreditLine)
+            Me.columnDebtLine = New Global.System.Data.DataColumn("DebtLine", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDebtLine)
+            Me.columnU_Fin_Group = New Global.System.Data.DataColumn("U_Fin_Group", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_Fin_Group)
+            Me.columnU_Status = New Global.System.Data.DataColumn("U_Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_Status)
+            Me.columnU_LOB = New Global.System.Data.DataColumn("U_LOB", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_LOB)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3796,6 +3848,66 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property DebtLine() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.DebtLineColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DebtLine' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.DebtLineColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_Fin_Group() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.U_Fin_GroupColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_Fin_Group' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.U_Fin_GroupColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_Status() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.U_StatusColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_Status' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.U_StatusColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_LOB() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.U_LOBColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_LOB' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.U_LOBColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCardCodeNull() As Boolean
             Return Me.IsNull(Me.tableOCRD.CardCodeColumn)
         End Function
@@ -3900,6 +4012,54 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCreditLineNull()
             Me(Me.tableOCRD.CreditLineColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDebtLineNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.DebtLineColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDebtLineNull()
+            Me(Me.tableOCRD.DebtLineColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_Fin_GroupNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.U_Fin_GroupColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_Fin_GroupNull()
+            Me(Me.tableOCRD.U_Fin_GroupColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_StatusNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.U_StatusColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_StatusNull()
+            Me(Me.tableOCRD.U_StatusColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_LOBNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.U_LOBColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_LOBNull()
+            Me(Me.tableOCRD.U_LOBColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

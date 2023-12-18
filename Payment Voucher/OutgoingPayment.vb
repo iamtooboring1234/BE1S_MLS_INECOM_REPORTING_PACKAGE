@@ -13,6 +13,7 @@ Public Class OutgoingPayment
     Private g_sSeries As String = ""
     Private dsPAYMENT As DataSet
 
+    Private g_sCompanySign As String = "GENERIC"
     Private g_StructureFilename As String = ""
     Private g_sReportType As String = ""
     Private g_sReportFilename As String = ""
@@ -338,12 +339,22 @@ Public Class OutgoingPayment
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtOJDT)
             '--------------------------------------------------------
-            sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"",  T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
-            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
-            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
-            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "
-            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 ON T1.""UserSign"" = T4.""INTERNAL_K"" "
-            sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""Series"" = '" & g_sSeries & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' "
+            If g_sCompanySign.Contains("CEH") Then
+                sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"", IFNULL(T1.""U_Bank_Info"",'') AS ""UDF_Bank_Info"" "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 ON T1.""UserSign"" = T4.""INTERNAL_K"" "
+                sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""Series"" = '" & g_sSeries & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' "
+            Else
+                sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 ON T1.""UserSign"" = T4.""INTERNAL_K"" "
+                sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""Series"" = '" & g_sSeries & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' "
+            End If
+
             dtOVPM = dsPAYMENT.Tables("OVPM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -510,6 +521,14 @@ Public Class OutgoingPayment
             Dim sCurrTime As String = DateTime.Now.ToString("HHMMss")
             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
 
+            g_sCompanySign = "GENERIC"
+            oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+            oRec.DoQuery(" SELECT TOP 1 ""Code"" FROM """ & oCompany.CompanyDB & """.""@NCM_SETTING"" ")
+            If oRec.RecordCount > 0 Then
+                g_sCompanySign = oRec.Fields.Item(0).Value.ToString.Trim
+            End If
+
+            oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             oRec.DoQuery("SELECT  TO_CHAR(current_timestamp, 'YYYYMMDD') FROM DUMMY")
             If oRec.RecordCount > 0 Then
                 oRec.MoveFirst()

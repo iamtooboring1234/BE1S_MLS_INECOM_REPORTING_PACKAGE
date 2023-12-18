@@ -16,6 +16,7 @@ Public Class frmARAgeing
     Private oPictureBox As SAPbouiCOM.PictureBox
     Private oMtrxARA As SAPbouiCOM.Matrix
 
+    Private g_sCompanySign As String = "GENERIC"
     Private g_sReportFilename As String = String.Empty
     Private g_StructureFilename As String = ""
     Private g_bIsShared As Boolean = False
@@ -308,6 +309,7 @@ Public Class frmARAgeing
             Dim oRecord As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             Dim sQuery As String = ""
+            Dim sRec As String = ""
             Dim iRow As Integer = 1
 
             Dim sTemp1 As String = String.Empty
@@ -319,8 +321,16 @@ Public Class frmARAgeing
                 sCheck = oForm.DataSources.UserDataSources.Item("ckFin").ValueEx
             End If
 
+            g_sCompanySign = "GENERIC"
+            sRec = " SELECT TOP 1 ""Code"" FROM """ & oCompany.CompanyDB & """.""@NCM_SETTING"" "
+            oRec.DoQuery(sRec)
+            If oRec.RecordCount > 0 Then
+                oRec.MoveFirst()
+                g_sCompanySign = oRec.Fields.Item(0).Value.ToString.Trim
+            End If
+
             ' ------------------------------------------------------------------
-            'sQuery = "  SELECT U_Dim2 FROM [OCRD] "
+            'sQuery = "  Select U_Dim2 FROM [OCRD] "
             'sQuery &= " WHERE ISNULL(U_Dim2,'') <> '' AND CardType = 'C' "
             'sQuery &= " GROUP BY U_Dim2 "
             'oRec.DoQuery(sQuery)
@@ -578,14 +588,31 @@ Public Class frmARAgeing
             'OCRD
             '--------------------------------------------------------
             Try
-                sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", T1.""CardFName"", "
-                sQuery &= " T1.""CreditLine"", T1.""Country"", "
-                sQuery &= " IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"", "
-                sQuery &= " IFNULL(T1.""U_U_Retention"",'0') AS ""U_U_Retention"" "
-                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
-                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T2 "
-                sQuery &= " ON T1.""GroupCode"" = T2.""GroupCode"" "
-                sQuery &= " WHERE T1.""CardType"" = 'C' "
+                If g_sCompanySign.Contains("CEH") Then
+                    sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", T1.""CardFName"", "
+                    sQuery &= " T1.""CreditLine"", T1.""DebtLine"", T1.""Country"", "
+                    sQuery &= " IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"", "
+                    sQuery &= " IFNULL(T1.""U_U_Retention"",'0') AS ""U_U_Retention"", "
+                    sQuery &= " IFNULL(T1.""U_Fin_Group"",'') AS ""U_Fin_Group"", "
+                    sQuery &= " IFNULL(T1.""U_Status"",'') AS ""U_Status"", "
+                    sQuery &= " IFNULL(T1.""U_LOB"",'') AS ""U_LOB"" "
+                    sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
+                    sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T2 "
+                    sQuery &= " ON T1.""GroupCode"" = T2.""GroupCode"" "
+                    sQuery &= " WHERE T1.""CardType"" = 'C' "
+                Else
+                    sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", T1.""CardFName"", "
+                    sQuery &= " T1.""CreditLine"", T1.""DebtLine"", T1.""Country"", "
+                    sQuery &= " IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"", "
+                    sQuery &= " IFNULL(T1.""U_U_Retention"",'0') AS ""U_U_Retention"", "
+                    sQuery &= " '' AS ""U_Fin_Group"", "
+                    sQuery &= " '' AS ""U_Status"", "
+                    sQuery &= " '' AS ""U_LOB"" "
+                    sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
+                    sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T2 "
+                    sQuery &= " ON T1.""GroupCode"" = T2.""GroupCode"" "
+                    sQuery &= " WHERE T1.""CardType"" = 'C' "
+                End If
 
                 dtOCRD = ds.Tables("OCRD")
                 HANAcmd = dbConn.CreateCommand()
@@ -597,8 +624,12 @@ Public Class frmARAgeing
             Catch ex As Exception
 
                 sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", T1.""CardFName"", "
-                sQuery &= " T1.""CreditLine"", T1.""Country"", "
-                sQuery &= " IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"" "
+                sQuery &= " T1.""CreditLine"", T1.""DebtLine"", T1.""Country"", "
+                sQuery &= " IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"", "
+                sQuery &= " '0' AS ""U_U_Retention"", "
+                sQuery &= " '' AS ""U_Fin_Group"", "
+                sQuery &= " '' AS ""U_Status"", "
+                sQuery &= " '' AS ""U_LOB"" "
                 sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
                 sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T2 "
                 sQuery &= " ON T1.""GroupCode"" = T2.""GroupCode"" "

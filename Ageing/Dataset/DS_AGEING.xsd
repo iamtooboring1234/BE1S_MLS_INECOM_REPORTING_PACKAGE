@@ -24,6 +24,10 @@
               <xs:element name="LicTradNum" msprop:Generator_ColumnVarNameInTable="columnLicTradNum" msprop:Generator_ColumnPropNameInRow="LicTradNum" msprop:Generator_ColumnPropNameInTable="LicTradNumColumn" msprop:Generator_UserColumnName="LicTradNum" type="xs:string" minOccurs="0" />
               <xs:element name="Country" msprop:Generator_ColumnVarNameInTable="columnCountry" msprop:Generator_ColumnPropNameInRow="Country" msprop:Generator_ColumnPropNameInTable="CountryColumn" msprop:Generator_UserColumnName="Country" type="xs:string" minOccurs="0" />
               <xs:element name="CreditLine" msprop:Generator_ColumnVarNameInTable="columnCreditLine" msprop:Generator_ColumnPropNameInRow="CreditLine" msprop:Generator_ColumnPropNameInTable="CreditLineColumn" msprop:Generator_UserColumnName="CreditLine" type="xs:double" minOccurs="0" />
+              <xs:element name="DebtLine" msprop:Generator_ColumnVarNameInTable="columnDebtLine" msprop:Generator_ColumnPropNameInRow="DebtLine" msprop:Generator_ColumnPropNameInTable="DebtLineColumn" msprop:Generator_UserColumnName="DebtLine" type="xs:double" minOccurs="0" />
+              <xs:element name="U_Fin_Group" msprop:Generator_ColumnVarNameInTable="columnU_Fin_Group" msprop:Generator_ColumnPropNameInRow="U_Fin_Group" msprop:Generator_ColumnPropNameInTable="U_Fin_GroupColumn" msprop:Generator_UserColumnName="U_Fin_Group" type="xs:string" minOccurs="0" />
+              <xs:element name="U_Status" msprop:Generator_ColumnVarNameInTable="columnU_Status" msprop:Generator_ColumnPropNameInRow="U_Status" msprop:Generator_ColumnPropNameInTable="U_StatusColumn" msprop:Generator_UserColumnName="U_Status" type="xs:string" minOccurs="0" />
+              <xs:element name="U_LOB" msprop:Generator_ColumnVarNameInTable="columnU_LOB" msprop:Generator_ColumnPropNameInRow="U_LOB" msprop:Generator_ColumnPropNameInTable="U_LOBColumn" msprop:Generator_UserColumnName="U_LOB" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

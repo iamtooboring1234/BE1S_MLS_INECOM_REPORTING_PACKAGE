@@ -2,6 +2,7 @@
 '' =============================================================
 
 Imports System.IO
+Imports System.Net
 Imports outlook = Microsoft.Office.Interop.Outlook
 
 Public Class frmPVEmail
@@ -417,10 +418,12 @@ Public Class frmPVEmail
                         Dim d As New System.Net.NetworkCredential(sInput(2), sInput(3))
 
                         If oForm.DataSources.UserDataSources.Item("ckOffice").ValueEx.ToString.Trim = "Y" Then
+                            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                             c.EnableSsl = True
                         Else
                             Select Case sEnableSSL
                                 Case "Y"
+                                    System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                                     c.EnableSsl = True
                                 Case "N"
                                     c.EnableSsl = False

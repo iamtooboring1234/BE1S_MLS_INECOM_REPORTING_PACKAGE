@@ -15,6 +15,7 @@ Public Class NCM_PV_Email_Param
     Private IsGAT As String
     Private dsPayment As DataSet
 
+    Private g_sCompanySign As String = "GENERIC"
     Private g_StructureFilename As String = ""
     Private g_sReportFilename As String = ""
     Private g_bIsShared As Boolean = False
@@ -176,7 +177,16 @@ Public Class NCM_PV_Email_Param
 
                 g_sPVMailRunningDate = ""
                 Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                oRec.DoQuery("SELECT CAST(current_timestamp AS NVARCHAR(24)), TO_CHAR(current_timestamp, 'YYYYMMDD') , IFNULL(""AttachPath"",'')  FROM " & oCompany.CompanyDB & ".""OADP"" ")
+
+                g_sCompanySign = "GENERIC"
+                oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRec.DoQuery(" SELECT TOP 1 ""Code"" FROM """ & oCompany.CompanyDB & """.""@NCM_SETTING"" ")
+                If oRec.RecordCount > 0 Then
+                    g_sCompanySign = oRec.Fields.Item(0).Value.ToString.Trim
+                End If
+
+                oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRec.DoQuery("SELECT CAST(current_timestamp AS NVARCHAR(24)), TO_CHAR(current_timestamp, 'YYYYMMDD') , IFNULL(""AttachPath"",'')  FROM """ & oCompany.CompanyDB & """.""OADP"" ")
                 If oRec.RecordCount > 0 Then
                     oRec.MoveFirst()
                     g_sPVMailRunningDate = Convert.ToString(oRec.Fields.Item(0).Value).Trim
@@ -184,7 +194,8 @@ Public Class NCM_PV_Email_Param
                     sAttachPath = Convert.ToString(oRec.Fields.Item(2).Value).Trim
                 End If
 
-                oRec.DoQuery("SELECT ""U_INVDETAIL"", ""U_TAXDATE"" FROM """ & oCompany.CompanyDB & """.""@NCM_NEW_SETTING"" ")
+                oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRec.DoQuery("SELECT TOP 1 ""U_INVDETAIL"", ""U_TAXDATE"" FROM """ & oCompany.CompanyDB & """.""@NCM_NEW_SETTING"" ")
                 bolShowDetails = IIf(oRec.Fields.Item(0).Value = "Y", True, False)
                 sShowTaxDate = oRec.Fields.Item(1).Value
 
@@ -689,7 +700,28 @@ Public Class NCM_PV_Email_Param
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtOJDT)
             '--------------------------------------------------------
-            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""OVPM"" WHERE ""DocNum"" = '" & g_sDocNum & "' AND ""Series"" = '" & g_sSeries & "' AND ""DocEntry"" = '" & g_sDocEntry & "' "
+
+            ' COMMENTED OUT - V146 CONSISTENT TO DRAFT.
+            ' sQuery = "  SELECT * FROM """ & oCompany.CompanyDB & """.""OVPM"" "
+            ' sQuery &= " WHERE ""DocNum"" = '" & g_sDocNum & "' AND ""Series"" = '" & g_sSeries & "' AND ""DocEntry"" = '" & g_sDocEntry & "' "
+
+            If g_sCompanySign.Contains("CEH") Then
+                sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"", IFNULL(T1.""U_Bank_Info"",'') AS ""UDF_Bank_Info"" "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 On T1.""CardCode"" = T2.""CardCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 On T2.""BankCode"" = T3.""BankCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 On T1.""UserSign"" = T4.""INTERNAL_K"" "
+                sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' AND T1.""Series"" = '" & g_sSeries & "'"
+
+            Else
+                sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 On T1.""CardCode"" = T2.""CardCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 On T2.""BankCode"" = T3.""BankCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 On T1.""UserSign"" = T4.""INTERNAL_K"" "
+                sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' AND T1.""Series"" = '" & g_sSeries & "'"
+            End If
+
             dtOVPM = dsPayment.Tables("OVPM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -848,7 +880,6 @@ Public Class NCM_PV_Email_Param
 #End Region
 
 #Region "Logic Function"
-
     Private Function Save_Settings() As Boolean
         Dim Notes As String = ""
         Dim BitmapPath As String = ""
@@ -907,7 +938,6 @@ Public Class NCM_PV_Email_Param
             Return False
         End Try
     End Function
-    
     Private Function ValidateParameter() As Boolean
         Try
             Dim oRecordsetLn As SAPbobsCOM.Recordset

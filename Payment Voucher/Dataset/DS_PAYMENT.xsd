@@ -59,6 +59,7 @@
               <xs:element name="PayToCode" msprop:Generator_ColumnVarNameInTable="columnPayToCode" msprop:Generator_ColumnPropNameInRow="PayToCode" msprop:Generator_ColumnPropNameInTable="PayToCodeColumn" msprop:Generator_UserColumnName="PayToCode" type="xs:string" minOccurs="0" />
               <xs:element name="UserSign" msprop:Generator_ColumnVarNameInTable="columnUserSign" msprop:Generator_ColumnPropNameInRow="UserSign" msprop:Generator_ColumnPropNameInTable="UserSignColumn" msprop:Generator_UserColumnName="UserSign" type="xs:string" minOccurs="0" />
               <xs:element name="OrigCardName" msprop:Generator_ColumnVarNameInTable="columnOrigCardName" msprop:Generator_ColumnPropNameInRow="OrigCardName" msprop:Generator_ColumnPropNameInTable="OrigCardNameColumn" msprop:Generator_UserColumnName="OrigCardName" type="xs:string" minOccurs="0" />
+              <xs:element name="UDF_Bank_Info" msprop:Generator_ColumnVarNameInTable="columnUDF_Bank_Info" msprop:Generator_ColumnPropNameInRow="UDF_Bank_Info" msprop:Generator_ColumnPropNameInTable="UDF_Bank_InfoColumn" msprop:Generator_UserColumnName="UDF_Bank_Info" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -587,6 +588,7 @@
               <xs:element name="PayToCode" msprop:Generator_ColumnVarNameInTable="columnPayToCode" msprop:Generator_ColumnPropNameInRow="PayToCode" msprop:Generator_ColumnPropNameInTable="PayToCodeColumn" msprop:Generator_UserColumnName="PayToCode" type="xs:string" minOccurs="0" />
               <xs:element name="UserSign" msprop:Generator_ColumnVarNameInTable="columnUserSign" msprop:Generator_ColumnPropNameInRow="UserSign" msprop:Generator_ColumnPropNameInTable="UserSignColumn" msprop:Generator_UserColumnName="UserSign" type="xs:string" minOccurs="0" />
               <xs:element name="OrigCardName" msprop:Generator_ColumnVarNameInTable="columnOrigCardName" msprop:Generator_ColumnPropNameInRow="OrigCardName" msprop:Generator_ColumnPropNameInTable="OrigCardNameColumn" msprop:Generator_UserColumnName="OrigCardName" type="xs:string" minOccurs="0" />
+              <xs:element name="UDF_Bank_Info" msprop:Generator_ColumnVarNameInTable="columnUDF_Bank_Info" msprop:Generator_ColumnPropNameInRow="UDF_Bank_Info" msprop:Generator_ColumnPropNameInTable="UDF_Bank_InfoColumn" msprop:Generator_UserColumnName="UDF_Bank_Info" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -747,6 +749,7 @@
               <xs:element name="JrnlMemo" msprop:Generator_ColumnVarNameInTable="columnJrnlMemo" msprop:Generator_ColumnPropNameInRow="JrnlMemo" msprop:Generator_ColumnPropNameInTable="JrnlMemoColumn" msprop:Generator_UserColumnName="JrnlMemo" type="xs:string" minOccurs="0" />
               <xs:element name="ContactPerson" msprop:Generator_ColumnVarNameInTable="columnContactPerson" msprop:Generator_ColumnPropNameInRow="ContactPerson" msprop:Generator_ColumnPropNameInTable="ContactPersonColumn" msprop:Generator_UserColumnName="ContactPerson" type="xs:string" minOccurs="0" />
               <xs:element name="OrigCardName" msprop:Generator_ColumnVarNameInTable="columnOrigCardName" msprop:Generator_ColumnPropNameInRow="OrigCardName" msprop:Generator_ColumnPropNameInTable="OrigCardNameColumn" msprop:Generator_UserColumnName="OrigCardName" type="xs:string" minOccurs="0" />
+              <xs:element name="UDF_Bank_Info" msprop:Generator_ColumnVarNameInTable="columnUDF_Bank_Info" msprop:Generator_ColumnPropNameInRow="UDF_Bank_Info" msprop:Generator_ColumnPropNameInTable="UDF_Bank_InfoColumn" msprop:Generator_UserColumnName="UDF_Bank_Info" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
