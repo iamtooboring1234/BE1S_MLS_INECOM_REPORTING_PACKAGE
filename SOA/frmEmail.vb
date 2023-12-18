@@ -2,6 +2,7 @@
 '' =============================================================
 
 Imports System.IO
+Imports System.Net
 Imports outlook = Microsoft.Office.Interop.Outlook
 
 Public Class frmEmail
@@ -122,6 +123,9 @@ Public Class frmEmail
     End Sub
     Private Sub AddDataSource()
         Try
+
+            Dim oColn As SAPbouiCOM.Column
+
             With oForm.DataSources.UserDataSources
                 .Add("txtMailFr", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 254)
                 .Add("txtSMTP", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 254)
@@ -145,8 +149,19 @@ Public Class frmEmail
                 .Add("tbRA", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 254)
 
                 .Add("cRow", SAPbouiCOM.BoDataType.dt_SHORT_NUMBER, 10)
+                .Add("cCode", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 30)
                 .Add("cEmail", SAPbouiCOM.BoDataType.dt_LONG_TEXT, 1000)
             End With
+
+            oMtrx = oForm.Items.Item("mxEmail").Specific
+
+            oColn = oMtrx.Columns.Item("cRow")
+            oColn.DataBind.SetBound(True, "", "cRow")
+            oColn = oMtrx.Columns.Item("cEmail")
+            oColn.DataBind.SetBound(True, "", "cEmail")
+            oColn = oMtrx.Columns.Item("cCode")
+            oColn.DataBind.SetBound(True, "", "cCode")
+            oColn.Visible = False
 
             oFldr = oForm.Items.Item("flSMTP").Specific
             oFldr.DataBind.SetBound(True, "", "flSMTP")
@@ -166,8 +181,6 @@ Public Class frmEmail
             oEdit.DataBind.SetBound(True, "", "tbPV")
             oEdit = oForm.Items.Item("tbRA").Specific
             oEdit.DataBind.SetBound(True, "", "tbRA")
-
-
 
             oEdit = oForm.Items.Item("tbReceipt").Specific
             oEdit.DataBind.SetBound(True, "", "tbReceipt")
@@ -200,8 +213,6 @@ Public Class frmEmail
             SBO_Application.StatusBar.SetSystemMessage("[Email - AddDataSource] : " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
 
         End Try
-
-
     End Sub
     Private Sub SetDatasource()
         Try
@@ -292,8 +303,32 @@ Public Class frmEmail
                 End With
             End If
 
+            Dim iRow As Integer = 1
+
+            sQuery = "  SELECT ""Code"", IFNULL(""U_EmailAdd"",'') "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""@NCMCCEMAIL"" "
+            sQuery &= " ORDER BY ""Code"" "
+
+            oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+            oRecord.DoQuery(sQuery)
+            If oRecord.RecordCount > 0 Then
+                oRecord.MoveFirst()
+                oMtrx.Clear()
+
+                While Not oRecord.EoF
+                    With oForm.DataSources.UserDataSources
+                        .Item("cRow").ValueEx = iRow
+                        .Item("cCode").ValueEx = oRecord.Fields.Item(0).Value.ToString.Trim
+                        .Item("cEmail").ValueEx = oRecord.Fields.Item(1).Value.ToString.Trim
+                    End With
+                    iRow += 1
+                    oMtrx.AddRow()
+                    oRecord.MoveNext()
+                End While
+                oMtrx.AutoResizeColumns()
+            End If
         Catch ex As Exception
-            SBO_Application.StatusBar.SetSystemMessage("[Email - SetDataSources] : " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            SBO_Application.StatusBar.SetSystemMessage("[Email - SetDataSources]  " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
         End Try
     End Sub
 #End Region
@@ -323,7 +358,7 @@ Public Class frmEmail
 
                 If .Item("tbPortNum").ValueEx.ToString.Trim.Length > 0 Then
                     If Convert.ToInt32(.Item("tbPortNum").ValueEx.ToString) < 0 Then
-                        SBO_Application.StatusBar.SetText("Port Num is not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                        SBO_Application.StatusBar.SetText("Port Num Is Not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
                         oForm.ActiveItem = "tbPortNum"
                         Return False
                     End If
@@ -331,7 +366,7 @@ Public Class frmEmail
 
                 If .Item("tbARSOA").ValueEx.Trim.Length > 0 Then
                     If Not System.IO.File.Exists(.Item("tbARSOA").ValueEx.Trim) Then
-                        SBO_Application.StatusBar.SetText("HTML File location for AR SOA is not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                        SBO_Application.StatusBar.SetText("HTML File location for AR SOA Is Not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
                         oForm.ActiveItem = "tbARSOA"
                         Return False
                     End If
@@ -339,7 +374,7 @@ Public Class frmEmail
 
                 If .Item("tbINV").ValueEx.Trim.Length > 0 Then
                     If Not System.IO.File.Exists(.Item("tbINV").ValueEx.Trim) Then
-                        SBO_Application.StatusBar.SetText("HTML File location for AR Invoice is not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                        SBO_Application.StatusBar.SetText("HTML File location for AR Invoice Is Not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
                         oForm.ActiveItem = "tbINV"
                         Return False
                     End If
@@ -347,7 +382,7 @@ Public Class frmEmail
 
                 If .Item("tbRIN").ValueEx.Trim.Length > 0 Then
                     If Not System.IO.File.Exists(.Item("tbRIN").ValueEx.Trim) Then
-                        SBO_Application.StatusBar.SetText("HTML File location for AR Credit Note is not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                        SBO_Application.StatusBar.SetText("HTML File location for AR Credit Note Is Not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
                         oForm.ActiveItem = "tbRIN"
                         Return False
                     End If
@@ -355,7 +390,7 @@ Public Class frmEmail
 
                 If .Item("tbDPI").ValueEx.Trim.Length > 0 Then
                     If Not System.IO.File.Exists(.Item("tbDPI").ValueEx.Trim) Then
-                        SBO_Application.StatusBar.SetText("HTML File location for AR DP Invoice is not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                        SBO_Application.StatusBar.SetText("HTML File location for AR DP Invoice Is Not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
                         oForm.ActiveItem = "tbDPI"
                         Return False
                     End If
@@ -363,7 +398,7 @@ Public Class frmEmail
 
                 If .Item("tbRA").ValueEx.Trim.Length > 0 Then
                     If Not System.IO.File.Exists(.Item("tbRA").ValueEx.Trim) Then
-                        SBO_Application.StatusBar.SetText("HTML File location for Remittance Advice is not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                        SBO_Application.StatusBar.SetText("HTML File location for Remittance Advice Is Not valid. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
                         oForm.ActiveItem = "tbRA"
                         Return False
                     End If
@@ -412,6 +447,16 @@ Public Class frmEmail
 
                 End Try
 
+                Try
+                    sQuery = "  UPDATE """ & oCompany.CompanyDB & """.""@NCM_EMAIL_CONFIG"" "
+                    sQuery &= " SET ""U_EnableSSL"" = '" & oForm.DataSources.UserDataSources.Item("ckOffice").ValueEx & "' "
+                    sQuery &= " WHERE ""Code"" = 'SOA' "
+                    oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                    oRecord.DoQuery(sQuery)
+                Catch ex As Exception
+
+                End Try
+
                 sQuery = "DELETE FROM """ & oCompany.CompanyDB & """.""@NCM_EMAIL_HTML"" "
                 oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                 oRecord.DoQuery(sQuery)
@@ -431,6 +476,31 @@ Public Class frmEmail
                 oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                 oRecord.DoQuery(sQuery)
 
+                ' CC EMAIL
+                ' -------------------------------------------------------------------------
+                sQuery = "DELETE FROM """ & oCompany.CompanyDB & """.""@NCMCCEMAIL"" "
+                oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRecord.DoQuery(sQuery)
+
+                For i As Integer = 1 To oMtrx.VisualRowCount Step 1
+                    oMtrx.GetLineData(i)
+                    If oForm.DataSources.UserDataSources.Item("cEmail").ValueEx.ToString.Trim <> "" Then
+                        Try
+                            sQuery = "  INSERT INTO """ & oCompany.CompanyDB & """.""@NCMCCEMAIL"" "
+                            sQuery &= " (""Code"", ""Name"", ""U_EmailAdd"") VALUES "
+                            sQuery &= " ('" & oForm.DataSources.UserDataSources.Item("cRow").ValueEx & "', "
+                            sQuery &= "  '" & oForm.DataSources.UserDataSources.Item("cRow").ValueEx & "', "
+                            sQuery &= "  '" & oForm.DataSources.UserDataSources.Item("cEmail").ValueEx & "') "
+
+                            oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                            oRecord.DoQuery(sQuery)
+                        Catch ex As Exception
+
+                        End Try
+                    End If
+                Next
+                ' -------------------------------------------------------------------------
+
                 oRecord = Nothing
 
                 SBO_Application.StatusBar.SetText("The configuration has been updated successfully.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
@@ -441,6 +511,23 @@ Public Class frmEmail
             Return True
         Catch ex As Exception
             Throw New Exception("[frmEmail].[Save]" & vbNewLine & ex.Message)
+            Return False
+        End Try
+    End Function
+
+    Private Function ValidateData() As Boolean
+        Try
+            For i As Integer = 1 To oMtrx.VisualRowCount Step 1
+                oMtrx.GetLineData(i)
+                If oForm.DataSources.UserDataSources.Item("cEmail").ValueEx.ToString.Trim <> "" Then
+                    If Not oForm.DataSources.UserDataSources.Item("cEmail").ValueEx.ToString.Trim.Contains("@") Then
+                        SBO_Application.StatusBar.SetText("Line " & i & " - Invalid Email Address. Please check.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+                        Return False
+                    End If
+                End If
+            Next
+            Return True
+        Catch ex As Exception
             Return False
         End Try
     End Function
@@ -703,12 +790,11 @@ Public Class frmEmail
                     a.IsBodyHtml = True
                     a.Body = "Test Connection - Successful"
 
-                    ' System.Net.ServicePointManager.SecurityProtocol = System.Net.ServicePointManager.SecurityProtocol.SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12
-
 
                     For i As Integer = 0 To s.Length - 1
                         a.To.Add(s(i).Trim)
                     Next
+
 
                     Dim c As New System.Net.Mail.SmtpClient(sInput(1))
 
@@ -716,10 +802,12 @@ Public Class frmEmail
                         Dim d As New System.Net.NetworkCredential(sInput(2), sInput(3))
 
                         If oForm.DataSources.UserDataSources.Item("ckOffice").ValueEx.ToString.Trim = "Y" Then
+                            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                             c.EnableSsl = True
                         Else
                             Select Case sEnableSSL
                                 Case "Y"
+                                    System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                                     c.EnableSsl = True
                                 Case "N"
                                     c.EnableSsl = False
@@ -766,6 +854,7 @@ Public Class frmEmail
                                 BubbleEvent = ValidateBeforeSave()
                             End If
                         End If
+
                 End Select
             Else 'After Action
                 Select Case pVal.EventType
@@ -780,14 +869,40 @@ Public Class frmEmail
                                 g_iPaneLvl = 2
                             Case "1"
                                 If pVal.FormMode = SAPbouiCOM.BoFormMode.fm_UPDATE_MODE Then
-                                    If Save() Then
-                                        'oForm.Mode = SAPbouiCOM.BoFormMode.fm_OK_MODE
-                                        'Dim oBttn As SAPbouiCOM.Button = oForm.Items.Item("1").Specific
-                                        'oBttn.Caption = "OK"
-                                        'do nothing
-                                    Else
-                                        BubbleEvent = False
+                                    If ValidateData() Then
+                                        If Save() Then
+
+                                            Dim iRow As Integer = 1
+                                            Dim oRecord As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+
+                                            sQuery = "  SELECT ""Code"", IFNULL(""U_EmailAdd"",'') "
+                                            sQuery &= " FROM """ & oCompany.CompanyDB & """.""@NCMCCEMAIL"" "
+                                            sQuery &= " ORDER BY ""Code"" "
+
+                                            oRecord = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                                            oRecord.DoQuery(sQuery)
+                                            If oRecord.RecordCount > 0 Then
+                                                oRecord.MoveFirst()
+                                                oMtrx.Clear()
+
+                                                While Not oRecord.EoF
+                                                    With oForm.DataSources.UserDataSources
+                                                        .Item("cRow").ValueEx = iRow
+                                                        .Item("cCode").ValueEx = oRecord.Fields.Item(0).Value.ToString.Trim
+                                                        .Item("cEmail").ValueEx = oRecord.Fields.Item(1).Value.ToString.Trim
+                                                    End With
+                                                    iRow += 1
+                                                    oMtrx.AddRow()
+                                                    oRecord.MoveNext()
+                                                End While
+                                                oMtrx.AutoResizeColumns()
+                                            End If
+
+                                        Else
+                                            BubbleEvent = False
+                                        End If
                                     End If
+
                                 End If
                             Case "btConnect"
                                 Select Case pVal.FormMode
@@ -818,6 +933,55 @@ Public Class frmEmail
         End Try
         Return BubbleEvent
     End Function
+    Friend Function MenuEvent(ByRef pVal As SAPbouiCOM.MenuEvent) As Boolean
+        Dim BubbleEvent As Boolean = True
+        Try
+            If (pVal.BeforeAction = True) Then
+                Select Case pVal.MenuUID
+                    Case MenuID.Delete_Row
+                        Dim iCurrLine As Integer = 0
+                        iCurrLine = oMtrx.GetNextSelectedRow
+
+                        If iCurrLine <= 0 Or iCurrLine > oMtrx.VisualRowCount Then
+                            BubbleEvent = False
+                            SBO_Application.StatusBar.SetText("Select a valid line to delete.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+                        End If
+                End Select
+            Else
+                Select Case pVal.MenuUID
+                    Case MenuID.Delete_Row
+                        oForm.Freeze(True)
+                        For i As Integer = 1 To oMtrx.VisualRowCount Step 1
+                            oMtrx.GetLineData(i)
+                            oForm.DataSources.UserDataSources.Item("cRow").ValueEx = i
+                            oMtrx.SetLineData(i)
+                        Next
+                        oForm.Freeze(False)
+
+                        If oForm.Mode = SAPbouiCOM.BoFormMode.fm_OK_MODE Then
+                            oForm.Mode = SAPbouiCOM.BoFormMode.fm_UPDATE_MODE
+                        End If
+
+                    Case MenuID.Add_Row
+                        With oForm.DataSources.UserDataSources
+                            .Item("cRow").ValueEx = oMtrx.VisualRowCount + 1
+                            .Item("cCode").ValueEx = ""
+                            .Item("cEmail").ValueEx = ""
+                        End With
+                        oMtrx.AddRow()
+                        oMtrx.SelectRow(oMtrx.VisualRowCount, True, False)
+                        oMtrx.Columns.Item("cEmail").Cells.Item(oMtrx.VisualRowCount).Click(SAPbouiCOM.BoCellClickType.ct_Regular)
+
+                End Select
+            End If
+        Catch ex As Exception
+            oForm.Freeze(False)
+            BubbleEvent = False
+            SBO_Application.StatusBar.SetText("[MenuEvent] : " & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+        End Try
+        Return BubbleEvent
+    End Function
+
 #End Region
 
 End Class

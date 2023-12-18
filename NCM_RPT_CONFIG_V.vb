@@ -121,8 +121,6 @@ Public Class NCM_RPT_CONFIG_V
                 End If
                 oRec = Nothing
 
-
-
                 oCbox = oFormCFG.Items.Item("cbPVInv").Specific
                 oCbox.DataBind.SetBound(True, String.Empty, "cbPVInv")
                 oCbox.ValidValues.Add("Y", "Yes")
@@ -157,8 +155,6 @@ Public Class NCM_RPT_CONFIG_V
                 oFormCFG.Items.Item("cbSOAPrt").DisplayDesc = True
 
                 ' =============================================================
-
-
                 oCbox = oFormCFG.Items.Item("cbCardOp").Specific
                 oCbox.DataBind.SetBound(True, String.Empty, "cbCardOp")
                 oCbox.ValidValues.Add("C", "BP Code")
@@ -273,6 +269,7 @@ Public Class NCM_RPT_CONFIG_V
             sQuery &= "         IFNULL(T0.""U_RinEmailType"",'H'), IFNULL(T0.""U_RinPlainText"",''),  IFNULL(T0.""U_DpiEmailType"",'H'), "
             sQuery &= "         IFNULL(T0.""U_DpiPlainText"",''),  IFNULL(T0.""U_CardOption"",'C') "
             sQuery &= " FROM    ""@NCM_NEW_SETTING"" T0"
+
             oRecord = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
             oRecord.DoQuery(sQuery)
             With oFormCFG.DataSources.UserDataSources
@@ -328,9 +325,10 @@ Public Class NCM_RPT_CONFIG_V
             End Try
             ' ==================================================================================
 
-            sQuery = "  SELECT  T0.* "
-            sQuery &= " FROM    ""@NCM_RPT_CONFIG"" T0 "
-            sQuery &= " WHERE   T0.""RPTTYPE"" = 'BSC' AND IFNULL(T0.""INCLUDED"",'N') = 'Y'"
+            sQuery = "  SELECT   T0.""RPTCODE"", T0.""RPTNAME"", T0.""INCLUDED"", T0.""FILEPATH"" "
+            sQuery &= " FROM     ""@NCM_RPT_CONFIG"" T0 "
+            sQuery &= " WHERE    T0.""RPTTYPE"" = 'BSC' AND IFNULL(T0.""INCLUDED"",'N') = 'Y' "
+            sQuery &= " ORDER BY T0.""RPTNAME"" "
             oMtrxBSC.Clear()
             oRecord = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
             oRecord.DoQuery(sQuery)
@@ -350,9 +348,10 @@ Public Class NCM_RPT_CONFIG_V
                 End While
             End If
 
-            sQuery = "  SELECT  T0.* "
-            sQuery &= " FROM    ""@NCM_RPT_CONFIG"" T0 "
-            sQuery &= " WHERE   T0.""RPTTYPE"" = 'ADV' AND IFNULL(T0.""INCLUDED"",'N') = 'Y'"
+            sQuery = "  SELECT   T0.""RPTCODE"", T0.""RPTNAME"", T0.""INCLUDED"", T0.""FILEPATH"" "
+            sQuery &= " FROM     ""@NCM_RPT_CONFIG"" T0 "
+            sQuery &= " WHERE    T0.""RPTTYPE"" = 'ADV' AND IFNULL(T0.""INCLUDED"",'N') = 'Y'"
+            sQuery &= " ORDER BY T0.""RPTNAME"" "
             oMtrxADV.Clear()
             iCount = 1
             oRecord = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
@@ -836,6 +835,8 @@ Public Class NCM_RPT_CONFIG_V
         End Try
         Return BubbleEvent
     End Function
+
+
 #End Region
 
 End Class

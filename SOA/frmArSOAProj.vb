@@ -399,10 +399,10 @@ Public Class frmArSOAProj
                                     End If
 
                                     Dim sPathFormat As String = "{0}\{1}_SOA_{2}.pdf"
-                                    sQuery = "  SELECT DISTINCT ""CARDCODE"" "
+                                    sQuery = "  SELECT DISTINCT ""CARDCODE""  "
                                     sQuery &= " FROM """ & oCompany.CompanyDB & """.""@NCM_SOC"" "
                                     sQuery &= " WHERE ""USERNAME"" = '" & g_sARSOARunningDate & oCompany.UserName & "'"
-                                    sQuery &= " ORDER BY ""CARDCODE"", ""PROJECT"" "
+                                    sQuery &= " ORDER BY ""CARDCODE""  "
                                     oRecord.DoQuery(sQuery)
                                     If (oRecord.RecordCount > 0) Then
                                         oRecord.MoveFirst()

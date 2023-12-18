@@ -642,7 +642,12 @@ Public Class FRM_PaymentVoucher_Range
                         sLoop &= " ORDER BY T1.""DocEntry"", T1.""DocNum"", T1.""DocType"", T1.""Series"", T1.""CardCode"", T2.""CardName"", T1.""DocCurr"", T2.""U_PV_MailTo"", T1.""U_AcctMailTo""  "
                 End Select
 
-                iCount = SBO_Application.MessageBox("Please select your option." & vbNewLine & "1. Click ""Yes"" to send email." & vbNewLine & "2. Click ""No"" to preview only.", 1, "Yes", "No", String.Empty)
+                iCount = 2
+
+                If (IsIncludeModule(ReportName.PV_Mass_Email)) Then
+                    iCount = SBO_Application.MessageBox("Please select your option." & vbNewLine & "1. Click ""Yes"" to send email." & vbNewLine & "2. Click ""No"" to preview only.", 1, "Yes", "No", String.Empty)
+                End If
+
                 Select Case iCount
                     Case 1
                         g_bIsShared = IsSharedFileExist("Email")
@@ -765,7 +770,7 @@ Public Class FRM_PaymentVoucher_Range
                             End If
                         End If
 
-
+                        SBO_Application.StatusBar.SetText("Processing Data...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
                         oLoop.DoQuery(sLoop)
                         If oLoop.RecordCount > 0 Then
                             Dim sListDocNum As String = "("
@@ -787,6 +792,7 @@ Public Class FRM_PaymentVoucher_Range
                             '=========================================
                             myPaymentVoucherDocType = iTemp
 
+                            SBO_Application.StatusBar.SetText("Preparing Dataset...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
                             If PrepareDataset(sListDocNum, sListDocEntry) Then
                                 With frm
                                     Select Case SBO_Application.ClientType
@@ -795,6 +801,8 @@ Public Class FRM_PaymentVoucher_Range
                                         Case SAPbouiCOM.BoClientType.ct_Browser
                                             .ClientType = "S"
                                     End Select
+
+                                    SBO_Application.StatusBar.SetText("Viewing.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
 
                                     .ExportPath = sFinalFileName
                                     .Dataset = dsPAYMENT
@@ -810,6 +818,7 @@ Public Class FRM_PaymentVoucher_Range
                                             .ReportNameRA = g_sReportFilename
                                     End Select
 
+                                    SBO_Application.StatusBar.SetText("Viewing..", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
                                     .LayoutType = oForm.DataSources.UserDataSources.Item("cbLayout").ValueEx
                                     .ReportName = ReportName.PV_Range
                                     .DBUsernameViewer = DBUsername
@@ -828,6 +837,7 @@ Public Class FRM_PaymentVoucher_Range
                                     .DocDateEnd = dtDocDateE
                                     .IsIncludeCancel = iIsIncludeCancel
                                     .PVRangeDocType = myPaymentVoucherDocType
+                                    SBO_Application.StatusBar.SetText("Viewing...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
 
                                 End With
                                 bIsContinue = True
@@ -846,6 +856,8 @@ Public Class FRM_PaymentVoucher_Range
 
             If iCount <> "1" Then
                 If bIsContinue Then
+                    SBO_Application.StatusBar.SetText("Viewing Crystal Report...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+
                     Select Case SBO_Application.ClientType
                         Case SAPbouiCOM.BoClientType.ct_Desktop
                             frm.ShowDialog()
@@ -1328,13 +1340,22 @@ Public Class FRM_PaymentVoucher_Range
             HANAcmd.ExecuteNonQuery()
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtNNM1)
+
             '--------------------------------------------------------
-            sQuery = " SELECT T1.*, T2.""CardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
+            sQuery = " SELECT  T1.""Address"", T1.""CardCode"", T1.""CashAcct"", T1.""CashSum"", T1.""CashSumFC"", T1.""Comments"", "
+            sQuery &= "     T1.""CounterRef"", T1.""NoDocSum"", T1.""NoDocSumFC"", T1.""DocCurr"", T1.""DocDate"", T1.""DocDueDate"", "
+            sQuery &= "     T1.""DocEntry"", T1.""DocNum"", T1.""DocRate"", T1.""DocTotal"", T1.""DocTotalFC"", T1.""DocType"", "
+            sQuery &= "     T1.""Ref1"", T1.""Ref2"", T1.""Series"", T1.""SeriesStr"", T1.""TaxDate"", T1.""TransId"", T1.""TrsfrAcct"", "
+            sQuery &= "     T1.""TrsfrDate"", T1.""TrsfrRef"", T1.""TrsfrSum"", T1.""TrsfrSumFC"", T1.""LogInstanc"", T1.""DiffCurr"", "
+            sQuery &= "     T1.""PrjCode"", T1.""JrnlMemo"", IFNULL(T5.""Name"",'') AS ""ContactPerson"", T1.""PayToCode"", T1.""UserSign"", "
+            sQuery &= "     T1.""BcgSum"", T1.""BcgSumFC"", "
+            sQuery &= "     T2.""CardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
             sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
-            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
-            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "
-            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 ON T1.""UserSign"" = T4.""INTERNAL_K"" "
-            sQuery &= " WHERE T1.""DocEntry"" IN " & sListDocEntry & " "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 On T1.""CardCode"" = T2.""CardCode"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""ODSC"" T3 On T2.""BankCode"" = T3.""BankCode"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OUSR"" T4 On T1.""UserSign"" = T4.""INTERNAL_K"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCPR"" T5 On T1.""CardCode"" = T5.""CardCode"" AND T1.""CntctCode"" = T5.""CntctCode"" "
+            sQuery &= " WHERE T1.""DocEntry"" In " & sListDocEntry & " "
 
             dtOPDF = dsPAYMENT.Tables("OPDF")
             HANAcmd = dbConn.CreateCommand()
@@ -1390,9 +1411,21 @@ Public Class FRM_PaymentVoucher_Range
             '--------------------------------------------------------
             Select Case g_bShowDetails
                 Case True
-                    sQuery = "SELECT * FROM """ & oCompany.CompanyDB & """.""NCM_VIEW_RPV_INVOICE"" WHERE ""PaymentDocEntry"" IN " & sListDocEntry & " AND ""PaymentObjType"" = '46' "
+                    sQuery = "  SELECT  ""PaymentDocType"", ""PaymentDocEntry"", ""PaymentDocNum"", ""InvType"", ""InvoiceId"", ""SumApplied"", ""AppliedFC"", "
+                    sQuery &= " ""PaymentDocRate"", ""PaymentObjType"", ""vatApplied"", ""vatAppldFC"", ""VisOrder"", ""DocEntry"",  "
+                    sQuery &= " ""ItemCode"", ""Dscription"", ""Quantity"", ""Price"", ""LineTotal"", ""TotalFrgn"", ""ObjType"", "
+                    sQuery &= " ""NumAtCard"", ""DocNum"", ""DocType"", ""DocCur"", ""DocRate"", ""DocTotal"", ""DocTotalFC"",  "
+                    sQuery &= " ""VatSum"", ""VatSumFC"", ""DocDate"", ""DocDueDate"", ""TaxDate"", ""SeriesName"" "
+                    sQuery &= " FROM """ & oCompany.CompanyDB & """.""NCM_VIEW_RPV_INVOICE"" "
+                    sQuery &= " WHERE ""PaymentDocEntry"" In " & sListDocEntry & " And ""PaymentObjType"" = '46' "
                 Case False
-                    sQuery = "SELECT * FROM """ & oCompany.CompanyDB & """.""NCM_VIEW_RPV_INVOICE_SUMM"" WHERE ""PaymentDocEntry"" IN " & sListDocEntry & " AND ""PaymentObjType"" = '46' "
+                    sQuery = "  SELECT  ""PaymentDocType"", ""PaymentDocEntry"", ""PaymentDocNum"", ""InvType"", ""InvoiceId"", ""SumApplied"", ""AppliedFC"", "
+                    sQuery &= " ""PaymentDocRate"", ""PaymentObjType"", ""vatApplied"", ""vatAppldFC"", ""VisOrder"", ""DocEntry"",  "
+                    sQuery &= " ""ItemCode"", ""Dscription"", ""Quantity"", ""Price"", ""LineTotal"", ""TotalFrgn"", ""ObjType"", "
+                    sQuery &= " ""NumAtCard"", ""DocNum"", ""DocType"", ""DocCur"", ""DocRate"", ""DocTotal"", ""DocTotalFC"",  "
+                    sQuery &= " ""VatSum"", ""VatSumFC"", ""DocDate"", ""DocDueDate"", ""TaxDate"", ""SeriesName"" "
+                    sQuery &= " FROM """ & oCompany.CompanyDB & """.""NCM_VIEW_RPV_INVOICE_SUMM"" "
+                    sQuery &= " WHERE ""PaymentDocEntry"" IN " & sListDocEntry & " And ""PaymentObjType"" = '46' "
             End Select
 
             dtVIEW = dsPAYMENT.Tables("NCM_VIEW_DRAFTPV_INVOICE")

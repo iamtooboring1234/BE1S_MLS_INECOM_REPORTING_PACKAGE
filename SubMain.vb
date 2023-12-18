@@ -98,7 +98,7 @@ Public Enum ReportName
     ARAging_SummaryLC = 62
     ARAging_SummaryFC = 63
     RA_Range = 64
-
+    ARAging_Summary_BRN = 65
 End Enum
 Public Enum CompanyCode
     General = 0
@@ -133,6 +133,7 @@ Module SubMain
     Private oARAgeing6B As frmARAgeing6B
     Private oARAgeing7B As frmARAgeing7B
     Private oAPAgeing As frmAPAgeing
+    Private oARAgeingBRN As frmARAgeingBRN
 
     Private oApSOA As frmApSOA
     Private oArSOA As frmArSOA
@@ -250,6 +251,8 @@ Module SubMain
     Friend Const FRM_NCM_AP_PAYMENT As String = "NCM_AP_PAYMENT"
     Friend Const MNU_RPT_CONFIG As String = "MNU_RPT_CONFIG"
     Friend Const FRM_RPT_CONFIG As String = "NCM_RPT_CONFIG"
+    Friend Const MNU_AR_AGEING_BRN As String = "MNU_AR_AGEING_BRN"
+    Friend Const FRM_AR_AGEING_BR As String = "ncmARAgeingBRN"
 
     Friend Const MNU_ARAGEING_JCS As String = ""
     Friend Const MNU_APAGEING_JCS As String = ""
@@ -268,27 +271,27 @@ Module SubMain
             oCompany = New SAPbobsCOM.Company
             oCompany = SBO_Application.Company.GetDICompany()
 
-            '#If DEBUG Then
-            '            global_DBUsername = "SYSTEM"
-            '            global_DBPassword = "Hana#sg1"
-            '            connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & ";DATABASE=" & oCompany.CompanyDB & ""
-            '            Dim ProviderName As String = "System.Data.Odbc"
-            '            Dim dbConn As DbConnection = Nothing
-            '            Dim _DbProviderFactoryObject As DbProviderFactory
-            '            Dim sQuery As String = ""
-            '            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
-            '            dbConn = _DbProviderFactoryObject.CreateConnection()
-            '            dbConn.ConnectionString = connStr
-            '            dbConn.Open()
-            '#Else
-            '                                                If CheckLicense() = False Then
-            '                                                        SBO_Application.MessageBox("Failed to find license for this add-on.")
-            '                                                    End If 'terminating add on
-            '#End If
+#If DEBUG Then
+            global_DBUsername = "SYSTEM"
+            global_DBPassword = "Hana#sg1"
+            connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & ";DATABASE=" & oCompany.CompanyDB & ""
+            Dim ProviderName As String = "System.Data.Odbc"
+            Dim dbConn As DbConnection = Nothing
+            Dim _DbProviderFactoryObject As DbProviderFactory
+            Dim sQuery As String = ""
+            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+            dbConn = _DbProviderFactoryObject.CreateConnection()
+            dbConn.ConnectionString = connStr
+            dbConn.Open()
+#Else
+                        If CheckLicense() = False Then
+                            SBO_Application.MessageBox("Failed to find license for this add-on.")
+                        End If 'terminating add on
+#End If
 
-            If CheckLicense() = False Then
-                SBO_Application.MessageBox("Failed to find license for this add-on.")
-            End If 'terminating add on
+            'If CheckLicense() = False Then
+            '    SBO_Application.MessageBox("Failed to find license for this add-on.")
+            'End If 'terminating add on
 
             GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmInecom.bmp").Save("ncmInecom.bmp")
             GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmMenu.bmp").Save("ncmMenu.bmp")
@@ -310,6 +313,7 @@ Module SubMain
             oNCM_AR_AGEING_CRM = New frmARAgeingCRM
             oNCM_BREC = New NCM_BREC_V
             oNCM_CHG_LOG_AUDIT = New NCM_CHG_LOG_AUDIT
+            oARAgeingBRN = New frmARAgeingBRN
 
             oNCM_INV = New NCM_INV_V
             oSOA_TOS = New frmSOA_TOS
@@ -345,7 +349,6 @@ Module SubMain
             oFrmPVEmail = New frmPVEmail 'AT Added on 04.05.2019
             oFrmPVSendEmail = New frmPVSendEmail
             oPVEmailParam = New NCM_PV_Email_Param
-
 
             SBO_Application.StatusBar.SetText("Inecom SDK Reporting Package add-on connected.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
             System.Windows.Forms.Application.Run()
@@ -518,6 +521,15 @@ Module SubMain
                 oNewMenuItem.Type = SAPbouiCOM.BoMenuType.mt_STRING
                 oNewMenuItem.UniqueID = MNU_ARAGEING_CRM
                 oNewMenuItem.String = "AR Ageing Details Report with CRM Notes"
+                oMenus.AddEx(oNewMenuItem)
+            End If
+
+            If (IsIncludeModule(ReportName.ARAging_Summary_BRN)) Then
+                oMenus = oMenuItem.SubMenus
+                oNewMenuItem = SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_MenuCreationParams)
+                oNewMenuItem.Type = SAPbouiCOM.BoMenuType.mt_STRING
+                oNewMenuItem.UniqueID = MNU_AR_AGEING_BRN
+                oNewMenuItem.String = "AR Ageing Summary Report - BRN"
                 oMenus.AddEx(oNewMenuItem)
             End If
 
@@ -776,6 +788,10 @@ Module SubMain
 
             If oMenus.Exists("NCM_ARAgeing") Then
                 oMenus.RemoveEx("NCM_ARAgeing")
+            End If
+
+            If oMenus.Exists(MNU_AR_AGEING_BRN) Then
+                oMenus.RemoveEx(MNU_AR_AGEING_BRN)
             End If
 
             If oMenus.Exists("NCM_ARAgeing6B") Then
@@ -1245,6 +1261,8 @@ Module SubMain
                 Return "AR_AGEING_SUMMARY_LC"
             Case ReportName.ARAging_SummaryFC
                 Return "AR_AGEING_SUMMARY_FC"
+            Case ReportName.ARAging_Summary_BRN
+                Return "AR_AGEING_SUMMARY_BRN"
         End Select
         Return "NULL"
     End Function
@@ -1419,6 +1437,8 @@ Module SubMain
     Private Sub SBO_Application_ItemEvent(ByVal FormUID As String, ByRef pVal As SAPbouiCOM.ItemEvent, ByRef BubbleEvent As Boolean) Handles SBO_Application.ItemEvent
         Try
             Select Case FormUID
+                Case "ncmARAgeingBRN"
+                    BubbleEvent = oARAgeingBRN.ItemEvent(pVal)
                 Case FRM_NCM_INV
                     BubbleEvent = oNCM_INV.SBO_Application_ItemEvent(pVal)
                 Case FRM_CHG_LOG_AUDIT
@@ -1525,6 +1545,8 @@ Module SubMain
                         BubbleEvent = oIncomingPayment.MenuEvent(pVal)
                     Case 655
                         BubbleEvent = oPaymentDraft.MenuEvent(pVal) 'JN added
+                    Case "ncmSOA_Email"
+                        BubbleEvent = oFrmEmail.MenuEvent(pVal)
                 End Select
             Else
                 Select Case pVal.MenuUID
@@ -1535,6 +1557,10 @@ Module SubMain
 
                     Case MNU_CHG_LOG_AUDIT
                         oNCM_CHG_LOG_AUDIT.LoadForm()
+                        BubbleEvent = False
+
+                    Case MNU_AR_AGEING_BRN
+                        oARAgeingBRN.ShowForm()
                         BubbleEvent = False
 
                     Case MNU_NCM_BREC
@@ -1685,6 +1711,8 @@ Module SubMain
                                 BubbleEvent = oIncomingPayment.MenuEvent(pVal)
                             Case 655
                                 BubbleEvent = oPaymentDraft.MenuEvent(pVal) 'JN added
+                            Case "ncmSOA_Email"
+                                BubbleEvent = oFrmEmail.MenuEvent(pVal)
                         End Select
                 End Select
             End If

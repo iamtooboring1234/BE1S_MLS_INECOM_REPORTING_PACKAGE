@@ -708,9 +708,11 @@ Public Class clsEmail
                         End If
 
                         If _IsOffice365 = "Y" Then
+                            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                             c.EnableSsl = True
                         Else
                             If _EnableSSL = "Y" Then
+                                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                                 c.EnableSsl = True
                             Else
                                 c.EnableSsl = False
@@ -750,6 +752,7 @@ Public Class clsEmail
             Dim bImage4 As Boolean = False
             Dim bImage5 As Boolean = False
             Dim bImage6 As Boolean = False
+            Dim sDirectoryName As String = ""
 
             GetSetting("SOA")
             _EmailCc = GetEmailCCFromUDT()
@@ -796,6 +799,9 @@ Public Class clsEmail
                         bImage5 = CheckImage5(sOutput)
                         bImage6 = CheckImage6(sOutput)
 
+                        Dim fi As New IO.FileInfo(sFilePath)
+                        sDirectoryName = fi.DirectoryName
+
                         If sOutput.Contains("{0}") Then
                             sOutput2 = sOutput.Replace("{0}", AsAtDate.ToString("dd/MM/yyyy"))
                         Else
@@ -810,38 +816,38 @@ Public Class clsEmail
                         Try
                             attachments = OutlookMessage.Attachments
 
-                            If bImage1 And File.Exists(Directory.GetCurrentDirectory & "\image001.gif") Then
-                                image1 = attachments.Add(Directory.GetCurrentDirectory & "\image001.gif")
+                            If bImage1 And File.Exists(sDirectoryName & "\image001.gif") Then
+                                image1 = attachments.Add(sDirectoryName & "\image001.gif")
                                 propertyAccessor = image1.PropertyAccessor
                                 propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image1")
                             End If
 
-                            If bImage2 And File.Exists(Directory.GetCurrentDirectory & "\image002.gif") Then
-                                image2 = attachments.Add(Directory.GetCurrentDirectory & "\image002.gif")
+                            If bImage2 And File.Exists(sDirectoryName & "\image002.gif") Then
+                                image2 = attachments.Add(sDirectoryName & "\image002.gif")
                                 propertyAccessor = image2.PropertyAccessor
                                 propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image2")
                             End If
 
-                            If bImage3 And File.Exists(Directory.GetCurrentDirectory & "\image003.gif") Then
-                                image3 = attachments.Add(Directory.GetCurrentDirectory & "\image003.gif")
+                            If bImage3 And File.Exists(sDirectoryName & "\image003.gif") Then
+                                image3 = attachments.Add(sDirectoryName & "\image003.gif")
                                 propertyAccessor = image3.PropertyAccessor
                                 propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image3")
                             End If
 
-                            If bImage4 And File.Exists(Directory.GetCurrentDirectory & "\image004.gif") Then
-                                image4 = attachments.Add(Directory.GetCurrentDirectory & "\image004.gif")
+                            If bImage4 And File.Exists(sDirectoryName & "\image004.gif") Then
+                                image4 = attachments.Add(sDirectoryName & "\image004.gif")
                                 propertyAccessor = image4.PropertyAccessor
                                 propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image4")
                             End If
 
-                            If bImage5 And File.Exists(Directory.GetCurrentDirectory & "\image005.gif") Then
-                                image5 = attachments.Add(Directory.GetCurrentDirectory & "\image005.gif")
+                            If bImage5 And File.Exists(sDirectoryName & "\image005.gif") Then
+                                image5 = attachments.Add(sDirectoryName & "\image005.gif")
                                 propertyAccessor = image5.PropertyAccessor
                                 propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image5")
                             End If
 
-                            If bImage6 And File.Exists(Directory.GetCurrentDirectory & "\image006.gif") Then
-                                image6 = attachments.Add(Directory.GetCurrentDirectory & "\image006.gif")
+                            If bImage6 And File.Exists(sDirectoryName & "\image006.gif") Then
+                                image6 = attachments.Add(sDirectoryName & "\image006.gif")
                                 propertyAccessor = image6.PropertyAccessor
                                 propertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image6")
                             End If
@@ -882,7 +888,7 @@ Public Class clsEmail
                     Dim sFilePath As String = ""
 
                     If _EmailPath.Trim = "" Then
-                        sFilePath = "EmailBody.html"
+                        sFilePath = Directory.GetCurrentDirectory & "\EmailBody.html"
                     Else
                         sFilePath = _EmailPath
                     End If
@@ -923,6 +929,9 @@ Public Class clsEmail
                                 bImage5 = CheckImage5(sOutput)
                                 bImage6 = CheckImage6(sOutput)
 
+                                Dim fi As New IO.FileInfo(sFilePath)
+                                sDirectoryName = fi.DirectoryName
+
                                 If sOutput.Contains("{0}") Then
                                     sOutput2 = sOutput.Replace("{0}", AsAtDate.ToString("dd/MM/yyyy"))
                                 Else
@@ -946,8 +955,8 @@ Public Class clsEmail
                             Dim imageRes6 As System.Net.Mail.LinkedResource
 
                             Try
-                                If bImage1 AndAlso IO.File.Exists("image001.gif") Then
-                                    imageRes1 = New System.Net.Mail.LinkedResource("image001.gif", "image/gif") ' !*** CHANGE AS NEEDED (image/jpeg, image/gif, etc)
+                                If bImage1 AndAlso IO.File.Exists(sDirectoryName & "\" & "image001.gif") Then
+                                    imageRes1 = New System.Net.Mail.LinkedResource(sDirectoryName & "\" & "image001.gif", "image/gif") ' !*** CHANGE AS NEEDED (image/jpeg, image/gif, etc)
                                     imageRes1.ContentId = "image1"
                                     imageRes1.TransferEncoding = Net.Mime.TransferEncoding.Base64 ' Set the encoding
                                     bodyAltView.LinkedResources.Add(imageRes1)
@@ -957,8 +966,8 @@ Public Class clsEmail
                             End Try
 
                             Try
-                                If bImage2 AndAlso IO.File.Exists("image002.gif") Then
-                                    imageRes2 = New System.Net.Mail.LinkedResource("image002.gif", "image/gif") ' !*** CHANGE AS NEEDED (image/jpeg, image/gif, etc)
+                                If bImage2 AndAlso IO.File.Exists(sDirectoryName & "\" & "image002.gif") Then
+                                    imageRes2 = New System.Net.Mail.LinkedResource(sDirectoryName & "\" & "image002.gif", "image/gif") ' !*** CHANGE AS NEEDED (image/jpeg, image/gif, etc)
                                     imageRes2.ContentId = "image2"
                                     imageRes2.TransferEncoding = Net.Mime.TransferEncoding.Base64 ' Set the encoding
                                     bodyAltView.LinkedResources.Add(imageRes2)
@@ -967,8 +976,8 @@ Public Class clsEmail
 
                             End Try
                             Try
-                                If bImage3 AndAlso IO.File.Exists("image003.gif") Then
-                                    imageRes3 = New System.Net.Mail.LinkedResource("image003.gif", "image/gif") ' !*** CHANGE AS NEEDED (image/jpeg, image/gif, etc)
+                                If bImage3 AndAlso IO.File.Exists(sDirectoryName & "\" & "image003.gif") Then
+                                    imageRes3 = New System.Net.Mail.LinkedResource(sDirectoryName & "\" & "image003.gif", "image/gif") ' !*** CHANGE AS NEEDED (image/jpeg, image/gif, etc)
                                     imageRes3.ContentId = "image3"
                                     imageRes3.TransferEncoding = Net.Mime.TransferEncoding.Base64 ' Set the encoding
                                     bodyAltView.LinkedResources.Add(imageRes3)
@@ -978,8 +987,8 @@ Public Class clsEmail
                             End Try
 
                             Try
-                                If bImage4 AndAlso IO.File.Exists("image004.gif") Then
-                                    imageRes4 = New System.Net.Mail.LinkedResource("image004.gif", "image/gif")
+                                If bImage4 AndAlso IO.File.Exists(sDirectoryName & "\" & "image004.gif") Then
+                                    imageRes4 = New System.Net.Mail.LinkedResource(sDirectoryName & "\" & "image004.gif", "image/gif")
                                     imageRes4.ContentId = "image4"
                                     imageRes4.TransferEncoding = Net.Mime.TransferEncoding.Base64
                                     bodyAltView.LinkedResources.Add(imageRes4)
@@ -989,8 +998,8 @@ Public Class clsEmail
                             End Try
 
                             Try
-                                If bImage5 AndAlso IO.File.Exists("image005.gif") Then
-                                    imageRes5 = New System.Net.Mail.LinkedResource("image005.gif", "image/gif")
+                                If bImage5 AndAlso IO.File.Exists(sDirectoryName & "\" & "image005.gif") Then
+                                    imageRes5 = New System.Net.Mail.LinkedResource(sDirectoryName & "\" & "image005.gif", "image/gif")
                                     imageRes5.ContentId = "image5"
                                     imageRes5.TransferEncoding = Net.Mime.TransferEncoding.Base64
                                     bodyAltView.LinkedResources.Add(imageRes5)
@@ -1001,8 +1010,8 @@ Public Class clsEmail
                             End Try
 
                             Try
-                                If bImage6 AndAlso IO.File.Exists("image006.gif") Then
-                                    imageRes6 = New System.Net.Mail.LinkedResource("image006.gif", "image/gif")
+                                If bImage6 AndAlso IO.File.Exists(sDirectoryName & "\" & "image006.gif") Then
+                                    imageRes6 = New System.Net.Mail.LinkedResource(sDirectoryName & "\" & "image006.gif", "image/gif")
                                     imageRes6.ContentId = "image6"
                                     imageRes6.TransferEncoding = Net.Mime.TransferEncoding.Base64
                                     bodyAltView.LinkedResources.Add(imageRes6)
@@ -1036,9 +1045,11 @@ Public Class clsEmail
                         End If
 
                         If _IsOffice365 = "Y" Then
+                            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                             c.EnableSsl = True
                         Else
                             If _EnableSSL = "Y" Then
+                                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                                 c.EnableSsl = True
                             Else
                                 c.EnableSsl = False
@@ -1374,9 +1385,11 @@ Public Class clsEmail
                         End If
 
                         If _IsOffice365 = "Y" Then
+                            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                             c.EnableSsl = True
                         Else
                             If _EnableSSL = "Y" Then
+                                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                                 c.EnableSsl = True
                             Else
                                 c.EnableSsl = False

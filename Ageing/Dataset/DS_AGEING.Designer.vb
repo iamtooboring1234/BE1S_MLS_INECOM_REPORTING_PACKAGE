@@ -433,6 +433,8 @@ Partial Public Class DS_AGEING
         
         Private columnU_U_Retention As Global.System.Data.DataColumn
         
+        Private columnLicTradNum As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -509,6 +511,14 @@ Partial Public Class DS_AGEING
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property LicTradNumColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLicTradNum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -545,9 +555,9 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOCRDRow(ByVal CardCode As String, ByVal CardName As String, ByVal GroupCode As Integer, ByVal GroupName As String, ByVal U_U_Retention As String) As OCRDRow
+        Public Overloads Function AddOCRDRow(ByVal CardCode As String, ByVal CardName As String, ByVal GroupCode As Integer, ByVal GroupName As String, ByVal U_U_Retention As String, ByVal LicTradNum As String) As OCRDRow
             Dim rowOCRDRow As OCRDRow = CType(Me.NewRow,OCRDRow)
-            Dim columnValuesArray() As Object = New Object() {CardCode, CardName, GroupCode, GroupName, U_U_Retention}
+            Dim columnValuesArray() As Object = New Object() {CardCode, CardName, GroupCode, GroupName, U_U_Retention, LicTradNum}
             rowOCRDRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOCRDRow)
             Return rowOCRDRow
@@ -575,6 +585,7 @@ Partial Public Class DS_AGEING
             Me.columnGroupCode = MyBase.Columns("GroupCode")
             Me.columnGroupName = MyBase.Columns("GroupName")
             Me.columnU_U_Retention = MyBase.Columns("U_U_Retention")
+            Me.columnLicTradNum = MyBase.Columns("LicTradNum")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -590,6 +601,8 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnGroupName)
             Me.columnU_U_Retention = New Global.System.Data.DataColumn("U_U_Retention", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnU_U_Retention)
+            Me.columnLicTradNum = New Global.System.Data.DataColumn("LicTradNum", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLicTradNum)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -844,6 +857,26 @@ Partial Public Class DS_AGEING
         Private columnCREDITLIMIT As Global.System.Data.DataColumn
         
         Private columnSAMPLEINV As Global.System.Data.DataColumn
+        
+        Private columnU_IRPFIELD1 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPFIELD2 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPFIELD3 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPFIELD4 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPFIELD5 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPBPFIELD1 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPBPFIELD2 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPBPFIELD3 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPBPFIELD4 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPBPFIELD5 As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -1353,6 +1386,86 @@ Partial Public Class DS_AGEING
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPFIELD1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPFIELD1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPFIELD2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPFIELD2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPFIELD3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPFIELD3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPFIELD4Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPFIELD4
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPFIELD5Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPFIELD5
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPBPFIELD1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPBPFIELD1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPBPFIELD2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPBPFIELD2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPBPFIELD3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPBPFIELD3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPBPFIELD4Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPBPFIELD4
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPBPFIELD5Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPBPFIELD5
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1448,9 +1561,19 @@ Partial Public Class DS_AGEING
                     ByVal SERIESREMARK As String,  _
                     ByVal PAYMENTTERM As String,  _
                     ByVal CREDITLIMIT As Decimal,  _
-                    ByVal SAMPLEINV As String) As __NCM_AR_AGEINGRow
+                    ByVal SAMPLEINV As String,  _
+                    ByVal U_IRPFIELD1 As String,  _
+                    ByVal U_IRPFIELD2 As String,  _
+                    ByVal U_IRPFIELD3 As String,  _
+                    ByVal U_IRPFIELD4 As String,  _
+                    ByVal U_IRPFIELD5 As String,  _
+                    ByVal U_IRPBPFIELD1 As String,  _
+                    ByVal U_IRPBPFIELD2 As String,  _
+                    ByVal U_IRPBPFIELD3 As String,  _
+                    ByVal U_IRPBPFIELD4 As String,  _
+                    ByVal U_IRPBPFIELD5 As String) As __NCM_AR_AGEINGRow
             Dim row__NCM_AR_AGEINGRow As __NCM_AR_AGEINGRow = CType(Me.NewRow,__NCM_AR_AGEINGRow)
-            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, PRJNAME, BPPRJCODE, BPPRJNAME, GROUPNUM, PYMNTGROUP, FAKTURPAJAK, REF1, REF2, REF3, REF4, SLPCODE, SLPNAME, MEMO, TRANSID, USERNAME, BRANCH, OFFICE, PAYMENTCUR, PAYMENTAMT, PAYMENTDATE, PHONE1, PHONE2, CONTACTPERSON, LASTRECDATE, SERIES, SERIESNAME, SERIESREMARK, PAYMENTTERM, CREDITLIMIT, SAMPLEINV}
+            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, PRJNAME, BPPRJCODE, BPPRJNAME, GROUPNUM, PYMNTGROUP, FAKTURPAJAK, REF1, REF2, REF3, REF4, SLPCODE, SLPNAME, MEMO, TRANSID, USERNAME, BRANCH, OFFICE, PAYMENTCUR, PAYMENTAMT, PAYMENTDATE, PHONE1, PHONE2, CONTACTPERSON, LASTRECDATE, SERIES, SERIESNAME, SERIESREMARK, PAYMENTTERM, CREDITLIMIT, SAMPLEINV, U_IRPFIELD1, U_IRPFIELD2, U_IRPFIELD3, U_IRPFIELD4, U_IRPFIELD5, U_IRPBPFIELD1, U_IRPBPFIELD2, U_IRPBPFIELD3, U_IRPBPFIELD4, U_IRPBPFIELD5}
             row__NCM_AR_AGEINGRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_AR_AGEINGRow)
             Return row__NCM_AR_AGEINGRow
@@ -1532,6 +1655,16 @@ Partial Public Class DS_AGEING
             Me.columnPAYMENTTERM = MyBase.Columns("PAYMENTTERM")
             Me.columnCREDITLIMIT = MyBase.Columns("CREDITLIMIT")
             Me.columnSAMPLEINV = MyBase.Columns("SAMPLEINV")
+            Me.columnU_IRPFIELD1 = MyBase.Columns("U_IRPFIELD1")
+            Me.columnU_IRPFIELD2 = MyBase.Columns("U_IRPFIELD2")
+            Me.columnU_IRPFIELD3 = MyBase.Columns("U_IRPFIELD3")
+            Me.columnU_IRPFIELD4 = MyBase.Columns("U_IRPFIELD4")
+            Me.columnU_IRPFIELD5 = MyBase.Columns("U_IRPFIELD5")
+            Me.columnU_IRPBPFIELD1 = MyBase.Columns("U_IRPBPFIELD1")
+            Me.columnU_IRPBPFIELD2 = MyBase.Columns("U_IRPBPFIELD2")
+            Me.columnU_IRPBPFIELD3 = MyBase.Columns("U_IRPBPFIELD3")
+            Me.columnU_IRPBPFIELD4 = MyBase.Columns("U_IRPBPFIELD4")
+            Me.columnU_IRPBPFIELD5 = MyBase.Columns("U_IRPBPFIELD5")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1655,6 +1788,26 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnCREDITLIMIT)
             Me.columnSAMPLEINV = New Global.System.Data.DataColumn("SAMPLEINV", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSAMPLEINV)
+            Me.columnU_IRPFIELD1 = New Global.System.Data.DataColumn("U_IRPFIELD1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPFIELD1)
+            Me.columnU_IRPFIELD2 = New Global.System.Data.DataColumn("U_IRPFIELD2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPFIELD2)
+            Me.columnU_IRPFIELD3 = New Global.System.Data.DataColumn("U_IRPFIELD3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPFIELD3)
+            Me.columnU_IRPFIELD4 = New Global.System.Data.DataColumn("U_IRPFIELD4", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPFIELD4)
+            Me.columnU_IRPFIELD5 = New Global.System.Data.DataColumn("U_IRPFIELD5", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPFIELD5)
+            Me.columnU_IRPBPFIELD1 = New Global.System.Data.DataColumn("U_IRPBPFIELD1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPBPFIELD1)
+            Me.columnU_IRPBPFIELD2 = New Global.System.Data.DataColumn("U_IRPBPFIELD2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPBPFIELD2)
+            Me.columnU_IRPBPFIELD3 = New Global.System.Data.DataColumn("U_IRPBPFIELD3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPBPFIELD3)
+            Me.columnU_IRPBPFIELD4 = New Global.System.Data.DataColumn("U_IRPBPFIELD4", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPBPFIELD4)
+            Me.columnU_IRPBPFIELD5 = New Global.System.Data.DataColumn("U_IRPBPFIELD5", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPBPFIELD5)
             Me.columnSERIESNAME.DefaultValue = CType("",String)
             Me.columnPAYMENTTERM.DefaultValue = CType("",String)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_AR_AGEING")
@@ -1897,6 +2050,26 @@ Partial Public Class DS_AGEING
         Private columnCREDITLIMIT As Global.System.Data.DataColumn
         
         Private columnSAMPLEINV As Global.System.Data.DataColumn
+        
+        Private columnU_IRPFIELD1 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPFIELD2 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPFIELD3 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPFIELD4 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPFIELD5 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPBPFIELD1 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPBPFIELD2 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPBPFIELD3 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPBPFIELD4 As Global.System.Data.DataColumn
+        
+        Private columnU_IRPBPFIELD5 As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -2342,6 +2515,86 @@ Partial Public Class DS_AGEING
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPFIELD1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPFIELD1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPFIELD2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPFIELD2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPFIELD3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPFIELD3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPFIELD4Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPFIELD4
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPFIELD5Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPFIELD5
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPBPFIELD1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPBPFIELD1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPBPFIELD2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPBPFIELD2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPBPFIELD3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPBPFIELD3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPBPFIELD4Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPBPFIELD4
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_IRPBPFIELD5Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_IRPBPFIELD5
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2429,9 +2682,19 @@ Partial Public Class DS_AGEING
                     ByVal SERIESREMARK As String,  _
                     ByVal PAYMENTTERM As String,  _
                     ByVal CREDITLIMIT As Decimal,  _
-                    ByVal SAMPLEINV As String) As __NCM_AP_AGEINGRow
+                    ByVal SAMPLEINV As String,  _
+                    ByVal U_IRPFIELD1 As String,  _
+                    ByVal U_IRPFIELD2 As String,  _
+                    ByVal U_IRPFIELD3 As String,  _
+                    ByVal U_IRPFIELD4 As String,  _
+                    ByVal U_IRPFIELD5 As String,  _
+                    ByVal U_IRPBPFIELD1 As String,  _
+                    ByVal U_IRPBPFIELD2 As String,  _
+                    ByVal U_IRPBPFIELD3 As String,  _
+                    ByVal U_IRPBPFIELD4 As String,  _
+                    ByVal U_IRPBPFIELD5 As String) As __NCM_AP_AGEINGRow
             Dim row__NCM_AP_AGEINGRow As __NCM_AP_AGEINGRow = CType(Me.NewRow,__NCM_AP_AGEINGRow)
-            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, PRJNAME, BPPRJCODE, BPPRJNAME, GROUPNUM, PYMNTGROUP, FAKTURPAJAK, REF1, REF2, SLPCODE, SLPNAME, MEMO, TRANSID, USERNAME, VENDORREF, BRANCH, OFFICE, SERIES, SERIESNAME, SERIESREMARK, PAYMENTTERM, CREDITLIMIT, SAMPLEINV}
+            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, PRJNAME, BPPRJCODE, BPPRJNAME, GROUPNUM, PYMNTGROUP, FAKTURPAJAK, REF1, REF2, SLPCODE, SLPNAME, MEMO, TRANSID, USERNAME, VENDORREF, BRANCH, OFFICE, SERIES, SERIESNAME, SERIESREMARK, PAYMENTTERM, CREDITLIMIT, SAMPLEINV, U_IRPFIELD1, U_IRPFIELD2, U_IRPFIELD3, U_IRPFIELD4, U_IRPFIELD5, U_IRPBPFIELD1, U_IRPBPFIELD2, U_IRPBPFIELD3, U_IRPBPFIELD4, U_IRPBPFIELD5}
             row__NCM_AP_AGEINGRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_AP_AGEINGRow)
             Return row__NCM_AP_AGEINGRow
@@ -2505,6 +2768,16 @@ Partial Public Class DS_AGEING
             Me.columnPAYMENTTERM = MyBase.Columns("PAYMENTTERM")
             Me.columnCREDITLIMIT = MyBase.Columns("CREDITLIMIT")
             Me.columnSAMPLEINV = MyBase.Columns("SAMPLEINV")
+            Me.columnU_IRPFIELD1 = MyBase.Columns("U_IRPFIELD1")
+            Me.columnU_IRPFIELD2 = MyBase.Columns("U_IRPFIELD2")
+            Me.columnU_IRPFIELD3 = MyBase.Columns("U_IRPFIELD3")
+            Me.columnU_IRPFIELD4 = MyBase.Columns("U_IRPFIELD4")
+            Me.columnU_IRPFIELD5 = MyBase.Columns("U_IRPFIELD5")
+            Me.columnU_IRPBPFIELD1 = MyBase.Columns("U_IRPBPFIELD1")
+            Me.columnU_IRPBPFIELD2 = MyBase.Columns("U_IRPBPFIELD2")
+            Me.columnU_IRPBPFIELD3 = MyBase.Columns("U_IRPBPFIELD3")
+            Me.columnU_IRPBPFIELD4 = MyBase.Columns("U_IRPBPFIELD4")
+            Me.columnU_IRPBPFIELD5 = MyBase.Columns("U_IRPBPFIELD5")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2612,6 +2885,26 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnCREDITLIMIT)
             Me.columnSAMPLEINV = New Global.System.Data.DataColumn("SAMPLEINV", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSAMPLEINV)
+            Me.columnU_IRPFIELD1 = New Global.System.Data.DataColumn("U_IRPFIELD1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPFIELD1)
+            Me.columnU_IRPFIELD2 = New Global.System.Data.DataColumn("U_IRPFIELD2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPFIELD2)
+            Me.columnU_IRPFIELD3 = New Global.System.Data.DataColumn("U_IRPFIELD3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPFIELD3)
+            Me.columnU_IRPFIELD4 = New Global.System.Data.DataColumn("U_IRPFIELD4", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPFIELD4)
+            Me.columnU_IRPFIELD5 = New Global.System.Data.DataColumn("U_IRPFIELD5", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPFIELD5)
+            Me.columnU_IRPBPFIELD1 = New Global.System.Data.DataColumn("U_IRPBPFIELD1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPBPFIELD1)
+            Me.columnU_IRPBPFIELD2 = New Global.System.Data.DataColumn("U_IRPBPFIELD2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPBPFIELD2)
+            Me.columnU_IRPBPFIELD3 = New Global.System.Data.DataColumn("U_IRPBPFIELD3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPBPFIELD3)
+            Me.columnU_IRPBPFIELD4 = New Global.System.Data.DataColumn("U_IRPBPFIELD4", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPBPFIELD4)
+            Me.columnU_IRPBPFIELD5 = New Global.System.Data.DataColumn("U_IRPBPFIELD5", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_IRPBPFIELD5)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_AP_AGEING")
             Me.ExtendedProperties.Add("Generator_UserTableName", "@NCM_AP_AGEING")
         End Sub
@@ -3404,6 +3697,21 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property LicTradNum() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.LicTradNumColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LicTradNum' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.LicTradNumColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCardCodeNull() As Boolean
             Return Me.IsNull(Me.tableOCRD.CardCodeColumn)
         End Function
@@ -3460,6 +3768,18 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetU_U_RetentionNull()
             Me(Me.tableOCRD.U_U_RetentionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsLicTradNumNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.LicTradNumColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetLicTradNumNull()
+            Me(Me.tableOCRD.LicTradNumColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -4365,6 +4685,156 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPFIELD1() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.U_IRPFIELD1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPFIELD1' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.U_IRPFIELD1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPFIELD2() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.U_IRPFIELD2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPFIELD2' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.U_IRPFIELD2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPFIELD3() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.U_IRPFIELD3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPFIELD3' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.U_IRPFIELD3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPFIELD4() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.U_IRPFIELD4Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPFIELD4' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.U_IRPFIELD4Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPFIELD5() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.U_IRPFIELD5Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPFIELD5' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.U_IRPFIELD5Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPBPFIELD1() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPBPFIELD1' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPBPFIELD2() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPBPFIELD2' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPBPFIELD3() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPBPFIELD3' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPBPFIELD4() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD4Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPBPFIELD4' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD4Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPBPFIELD5() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD5Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPBPFIELD5' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD5Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCANCELLEDNull() As Boolean
             Return Me.IsNull(Me._table_NCM_AR_AGEING.CANCELLEDColumn)
         End Function
@@ -5069,6 +5539,126 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetSAMPLEINVNull()
             Me(Me._table_NCM_AR_AGEING.SAMPLEINVColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPFIELD1Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.U_IRPFIELD1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPFIELD1Null()
+            Me(Me._table_NCM_AR_AGEING.U_IRPFIELD1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPFIELD2Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.U_IRPFIELD2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPFIELD2Null()
+            Me(Me._table_NCM_AR_AGEING.U_IRPFIELD2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPFIELD3Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.U_IRPFIELD3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPFIELD3Null()
+            Me(Me._table_NCM_AR_AGEING.U_IRPFIELD3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPFIELD4Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.U_IRPFIELD4Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPFIELD4Null()
+            Me(Me._table_NCM_AR_AGEING.U_IRPFIELD4Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPFIELD5Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.U_IRPFIELD5Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPFIELD5Null()
+            Me(Me._table_NCM_AR_AGEING.U_IRPFIELD5Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPBPFIELD1Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.U_IRPBPFIELD1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPBPFIELD1Null()
+            Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPBPFIELD2Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.U_IRPBPFIELD2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPBPFIELD2Null()
+            Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPBPFIELD3Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.U_IRPBPFIELD3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPBPFIELD3Null()
+            Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPBPFIELD4Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.U_IRPBPFIELD4Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPBPFIELD4Null()
+            Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD4Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPBPFIELD5Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.U_IRPBPFIELD5Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPBPFIELD5Null()
+            Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD5Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -5854,6 +6444,156 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPFIELD1() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.U_IRPFIELD1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPFIELD1' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.U_IRPFIELD1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPFIELD2() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.U_IRPFIELD2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPFIELD2' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.U_IRPFIELD2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPFIELD3() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.U_IRPFIELD3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPFIELD3' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.U_IRPFIELD3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPFIELD4() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.U_IRPFIELD4Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPFIELD4' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.U_IRPFIELD4Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPFIELD5() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.U_IRPFIELD5Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPFIELD5' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.U_IRPFIELD5Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPBPFIELD1() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPBPFIELD1' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPBPFIELD2() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPBPFIELD2' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPBPFIELD3() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPBPFIELD3' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPBPFIELD4() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD4Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPBPFIELD4' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD4Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_IRPBPFIELD5() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD5Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_IRPBPFIELD5' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD5Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCANCELLEDNull() As Boolean
             Return Me.IsNull(Me._table_NCM_AP_AGEING.CANCELLEDColumn)
         End Function
@@ -6462,6 +7202,126 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetSAMPLEINVNull()
             Me(Me._table_NCM_AP_AGEING.SAMPLEINVColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPFIELD1Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.U_IRPFIELD1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPFIELD1Null()
+            Me(Me._table_NCM_AP_AGEING.U_IRPFIELD1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPFIELD2Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.U_IRPFIELD2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPFIELD2Null()
+            Me(Me._table_NCM_AP_AGEING.U_IRPFIELD2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPFIELD3Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.U_IRPFIELD3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPFIELD3Null()
+            Me(Me._table_NCM_AP_AGEING.U_IRPFIELD3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPFIELD4Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.U_IRPFIELD4Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPFIELD4Null()
+            Me(Me._table_NCM_AP_AGEING.U_IRPFIELD4Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPFIELD5Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.U_IRPFIELD5Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPFIELD5Null()
+            Me(Me._table_NCM_AP_AGEING.U_IRPFIELD5Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPBPFIELD1Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.U_IRPBPFIELD1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPBPFIELD1Null()
+            Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPBPFIELD2Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.U_IRPBPFIELD2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPBPFIELD2Null()
+            Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPBPFIELD3Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.U_IRPBPFIELD3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPBPFIELD3Null()
+            Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPBPFIELD4Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.U_IRPBPFIELD4Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPBPFIELD4Null()
+            Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD4Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_IRPBPFIELD5Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.U_IRPBPFIELD5Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_IRPBPFIELD5Null()
+            Me(Me._table_NCM_AP_AGEING.U_IRPBPFIELD5Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     

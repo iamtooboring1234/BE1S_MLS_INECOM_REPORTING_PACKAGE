@@ -442,7 +442,6 @@ Public Class frmARAgeing_Proj
         Try
             Dim frmSave As New frmSaveDialog
             frmSave.TopMost = True
-
             frmSave.Show()
             System.Threading.Thread.CurrentThread.Sleep(10)
             frmSave.Activate()
@@ -589,6 +588,7 @@ Public Class frmARAgeing_Proj
                 oTest = Nothing
 
                 GetProjects()
+
                 If (ExecuteProcedure()) Then
                     'oUpdate.DoQuery("UPDATE [@NCM_AR_AGEING] SET Project = '<Blank>' WHERE ISNULL(Project,'') = ''")
                     oUpdate = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
@@ -634,8 +634,7 @@ Public Class frmARAgeing_Proj
                         iPageBreak = 1
                     End If
 
-                    SBO_Application.StatusBar.SetText("Opening Report. Please Wait...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
-
+                    SBO_Application.StatusBar.SetText("Opening Report...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
 
                     frm.IsShared = g_bIsShared
                     frm.SharedReportName = g_sReportFilename

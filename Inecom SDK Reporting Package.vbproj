@@ -219,6 +219,7 @@
     <Compile Include="Ageing\Dataset\DS_AGEING.vb">
       <DependentUpon>DS_AGEING.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Ageing\frmARAgeingBRN.vb" />
     <Compile Include="Ageing\frmARAgeingCRM.vb" />
     <Compile Include="Ageing\frmARAgeing7B.vb" />
     <Compile Include="Ageing\frmAPAgeing.vb">
@@ -232,6 +233,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Ageing\frmARAgeing_Proj.vb" />
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_BRNGROUP.vb">
+      <DependentUpon>rptARAgeingSummary_HANADS_BRNGROUP.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_BRN.vb">
+      <DependentUpon>rptARAgeingSummary_HANADS_BRN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_AT.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -291,6 +304,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rptARAgeingSummary_HANADS_WA.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_BRN.vb">
+      <DependentUpon>rptARAgeing_HANADS_BRN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_AT.vb">
       <DependentUpon>rptARAgeing_HANADS_AT.rpt</DependentUpon>
@@ -1269,6 +1288,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_BRNGROUP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_BRNGROUP.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_BRN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_BRN.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_AT.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptARAgeingSummary_HANADS_AT.vb</LastGenOutput>
@@ -1308,6 +1335,10 @@
     <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_WA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptARAgeingSummary_HANADS_WA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_BRN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADS_BRN.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_AT.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1874,6 +1905,7 @@
     <EmbeddedResource Include="Ageing\SRF\ncmARAgeingCRM.srf" />
     <EmbeddedResource Include="Bank Reconciliation\NCM_BREC.srf" />
     <EmbeddedResource Include="Change Log\FIL_CHG_LOG_AUDIT.srf" />
+    <EmbeddedResource Include="Ageing\SRF\ncmARAgeingBRN.srf" />
     <Content Include="GST Report\Dataset\GST_Report_XML.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GST_Report_XML.Designer.vb</LastGenOutput>
