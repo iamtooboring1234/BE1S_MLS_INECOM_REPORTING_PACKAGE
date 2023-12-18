@@ -496,7 +496,8 @@ Public Class NCM_GST
             ' commented out to resolve Showing GL Account
             ' sQueryFLn &= " ON T1.""VATACCTCODE"" = T2.""Account"" "
 
-            sQueryFLn &= " SELECT T1.* FROM """ & oCompany.CompanyDB & """.""@NCM_RPT_GSTY"" T1 "
+            sQueryFLn &= " SELECT T1.* "
+            sQueryFLn &= " FROM """ & oCompany.CompanyDB & """.""@NCM_RPT_GSTY"" T1 "
             sQueryFLn &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OVTG"" T2 ON T1.""VATCODE"" = T2.""Code"" "
             sQueryFLn &= " WHERE  T1.""USERNAME"" = '" & oCompany.UserName & "' "
             sQueryFLn &= " AND  T1.""GSTRUNNINGTIME"" = '" & g_sGSTRunningDate & oCompany.UserName & "' "

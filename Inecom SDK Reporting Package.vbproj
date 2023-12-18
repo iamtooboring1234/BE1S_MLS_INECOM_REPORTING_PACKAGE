@@ -144,6 +144,9 @@
     <PlatformTarget>x64</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
@@ -283,11 +286,29 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_WA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary_HANADS_WA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_AT.vb">
+      <DependentUpon>rptARAgeing_HANADS_AT.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_DTDS.vb">
       <DependentUpon>rptARAgeing_HANADS_DTDS.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_WA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_HANADS_WA.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_TOA_HANADS.vb">
       <DependentUpon>rptARAgeing_TOA_HANADS.rpt</DependentUpon>
@@ -508,6 +529,88 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Dataset_Hydac.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Invoice\A1_Item_Invoice.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\Dataset\A1 Item Credit Memo CR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Item Credit Memo CR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\Dataset\DataSet2.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\Dataset\EInvoice.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EInvoice.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\Dataset\EInvoice.vb">
+      <DependentUpon>EInvoice.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\Dataset\ESerInvoice.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ESerInvoice.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invoice\Logo\RPT_INV_ITEM_BK.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\NCM_INV_V.vb" />
+    <Compile Include="Invoice\RPT Dataset\A1 Item Credit Memo CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Item Credit Memo CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A1 Item DP Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Item DP Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A1 Item Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Item Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A1 Service Credit Memo CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Service Credit Memo CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A1 Service Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Service Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A2 Item Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A2 Item Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A2 Service Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A2 Service Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A3 Item Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A3 Item Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="JCS Reports\CLS_NCM_PO_PROJ.vb" />
     <Compile Include="JCS Reports\CLS_NCM_SO_PROJ.vb" />
     <Compile Include="JCS Reports\DataSet\dsPODetailByVendor.Designer.vb">
@@ -556,6 +659,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PV_HANADS_SAFRAN.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_WA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPV_HANADS_WA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RRA_HANADS.vb">
+      <DependentUpon>RRA_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_BAR.vb">
       <DependentUpon>RPV_HANADS_BAR.rpt</DependentUpon>
@@ -621,6 +736,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPV_HANADS_SAFRAN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RRA_HANADS_WA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RRA_HANADS_WA.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Payment Voucher\Report\PV_DS_HANA.vb">
@@ -709,6 +830,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DS_SOA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_HANADS_NEO_SG.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_HANADS_NEO_SG.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_HANADS_SG.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_HANADS_SG.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="SOA\Report\Dataset Report\SA_LANDSCAPE_HANADS_DTDS.vb">
       <DependentUpon>SA_LANDSCAPE_HANADS_DTDS.rpt</DependentUpon>
@@ -1172,9 +1305,21 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptARAgeingSummary_HANADS_DTDS.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_WA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_WA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_AT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADS_AT.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_DTDS.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptARAgeing_HANADS_DTDS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_WA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADS_WA.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_TOA_HANADS.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1315,6 +1460,45 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_GST_SF.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\Dataset\A1 Item Credit Memo CR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Item Credit Memo CR.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\Form2.resx">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A1 Item Credit Memo CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Item Credit Memo CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A1 Item DP Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Item DP Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A1 Item Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Item Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A1 Service Credit Memo CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Service Credit Memo CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A1 Service Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Service Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A2 Item Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A2 Item Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A2 Service Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A2 Service Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A3 Item Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A3 Item Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="JCS Reports\Report\RPT_PO_PROJ.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PO_PROJ.vb</LastGenOutput>
@@ -1330,6 +1514,14 @@
     <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\PV_HANADS_SAFRAN.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PV_HANADS_SAFRAN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_WA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPV_HANADS_WA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RRA_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RRA_HANADS.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_BAR.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1374,6 +1566,10 @@
     <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_SAFRAN.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPV_HANADS_SAFRAN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RRA_HANADS_WA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RRA_HANADS_WA.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment Voucher\Report\PV_DS_HANA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1422,6 +1618,14 @@
     <EmbeddedResource Include="Safran HANADS\SA_SAF_HANA_2014_ORI.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SA_SAF_HANA_2014_ORI.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_HANADS_NEO_SG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANADS_NEO_SG.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_HANADS_SG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANADS_SG.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SOA\Report\Dataset Report\SA_LANDSCAPE_HANADS_DTDS.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1692,6 +1896,23 @@
     <EmbeddedResource Include="PV Mail\SRF\ncmPV_Email_Param.srf" />
     <EmbeddedResource Include="PV Mail\SRF\ncmPV_SendEmail.srf" />
     <EmbeddedResource Include="Logo\ncmMenu.bmp" />
+    <Content Include="Invoice\Logo\1. bizSAFe Star.png" />
+    <Content Include="Invoice\Logo\1. HSS ISO.png" />
+    <Content Include="Invoice\Logo\1. SLA Logo.jpg" />
+    <Content Include="Invoice\Logo\2. SBFlogo 2018 _NEW.jpg" />
+    <Content Include="Invoice\Logo\2. SBFlogo 2018.jpg" />
+    <Content Include="Invoice\Logo\2. Trans Orient- logo.png" />
+    <Content Include="Invoice\Logo\3. Hoy San Services Logo.png" />
+    <Content Include="Invoice\Logo\3a. HST %28ISO QS Cert 45001 -2018%29.png" />
+    <Content Include="Invoice\Logo\3b. HST 9001-UKAS-JPEG.jpg" />
+    <Content Include="Invoice\Logo\3c. SLA Logo.jpg" />
+    <Content Include="Invoice\Logo\7. Uni Logo .jpg" />
+    <Content Include="Invoice\Logo\8. RS Machinery Logo.png" />
+    <Content Include="Invoice\Logo\HST_BizSafe4.png" />
+    <Content Include="Invoice\Logo\HST_ISO.png" />
+    <Content Include="Invoice\Logo\HST_ISO_45001.png" />
+    <Content Include="Invoice\Logo\HS_LOGO_TAG_RGB-LR%28small%29 .jpg" />
+    <EmbeddedResource Include="Invoice\NCM_INV.srf" />
     <Content Include="StockAging\Dataset\SAR_FIFO1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>SAR_FIFO1.Designer.vb</LastGenOutput>
@@ -1777,6 +1998,50 @@
     <None Include="Hydac Reports\Datasets\Dataset_Hydac.xss">
       <DependentUpon>Dataset_Hydac.xsd</DependentUpon>
     </None>
+    <None Include="Invoice\A1 Item Credit Memo CR BK.rpt" />
+    <None Include="Invoice\A1 Item Invoice CR HANADS.rpt" />
+    <None Include="Invoice\A1 Item Invoice CR.rpt" />
+    <None Include="Invoice\A1 Service Credit Memo CR.rpt" />
+    <None Include="Invoice\A1 Service Invoice CR.rpt" />
+    <None Include="Invoice\A1_Delivery Order_CDMS.rpt" />
+    <None Include="Invoice\A1_Item_Invoice.rpt" />
+    <None Include="Invoice\A2 Item Invoice CR.rpt" />
+    <None Include="Invoice\A2 Service Invoice CR.rpt" />
+    <None Include="Invoice\A3 Item Invoice CR.rpt" />
+    <None Include="Invoice\Dataset\DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Dataset\DataSet2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Invoice\Dataset\DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Dataset\EInvoice.xsc">
+      <DependentUpon>EInvoice.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Dataset\EInvoice.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EInvoice.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Invoice\Dataset\EInvoice.xss">
+      <DependentUpon>EInvoice.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Dataset\ESerInvoice.xsc">
+      <DependentUpon>ESerInvoice.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Dataset\ESerInvoice.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ESerInvoice.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Invoice\Dataset\ESerInvoice.xss">
+      <DependentUpon>ESerInvoice.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Logo\RPT_INV_ITEM_BK.rpt" />
     <None Include="JCS Reports\DataSet\dsPODetailByVendor.xsc">
       <DependentUpon>dsPODetailByVendor.xsd</DependentUpon>
     </None>
@@ -1810,6 +2075,7 @@
     <None Include="MRP Report\Dataset\dsMRP_RPT.xss">
       <DependentUpon>dsMRP_RPT.xsd</DependentUpon>
     </None>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>

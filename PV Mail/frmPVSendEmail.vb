@@ -193,10 +193,6 @@ Public Class frmPVSendEmail
                     With oForm.DataSources.UserDataSources
                         If .Item("Col01").ValueEx = "1" Then
 
-                            ' COPY PASTE FROM SOA, NOT RELEVANT TO THIS> BUG --> COMMENTED OUT BY ES 
-                            ' If Not al.Contains(.Item("Col02").ValueEx) Then
-                            ' al.Add(.Item("Col02").ValueEx)
-
                             s.Attachment = .Item("Col07").ValueEx
                             s.EmailTo = .Item("Col06").ValueEx
                             s.CardName = .Item("Col03").ValueEx
@@ -208,9 +204,6 @@ Public Class frmPVSendEmail
                                 .Item("Col08").ValueEx = sOutput
                             End If
 
-                            'Else
-                            '    .Item("Col08").ValueEx = "Sent"
-                            'End If
                         Else
                             .Item("Col08").ValueEx = "Skipped"
                         End If

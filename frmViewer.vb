@@ -136,6 +136,8 @@ Public Class Hydac_FormViewer
     Private cShowTaxDate As String = ""
     Private g_bIsShared As Boolean
     Private g_sReportName As String = ""
+    Private g_sReportNameRA As String = ""
+
     Private sExcelFilePath As String = String.Empty
     Private sBucketText As String() = New String(10) {}
     Private sBucketVal As Integer()
@@ -153,7 +155,6 @@ Public Class Hydac_FormViewer
     Private cDataset As DataSet
     Private g_sExportPath As String = ""
     Private cClientType As String = ""
-
 
     Private CLOG_UserId As String = ""
     Private CLOG_CompanyName As String = ""
@@ -784,6 +785,14 @@ Public Class Hydac_FormViewer
             g_sReportName = Value
         End Set
     End Property
+    Public Property ReportNameRA() As String
+        Get
+            Return g_sReportNameRA
+        End Get
+        Set(ByVal Value As String)
+            g_sReportNameRA = Value
+        End Set
+    End Property
     Public Property ShowDetails() As Boolean
         Get
             Return cShowDetails
@@ -841,7 +850,254 @@ Public Class Hydac_FormViewer
         End Set
     End Property
 
+#Region "Invoice Email"
+    ' * -------------------------------- */
+    Private g_sINV_ExportDocEntry As String = ""
+    Private g_oINV_ExportType As CrystalDecisions.Shared.ExportFormatType = ExportFormatType.PortableDocFormat
+    Private g_sINV_ExportPath As String = ""
+    Private g_sINV_DocumentType As String = ""
+    Private g_sINV_ReportFile As String = ""
+    Private g_bINV_IsShared As Boolean = False
+    Private g_dINV_ReportDataset As DataSet
+    Private cESignPath As String = "" 'SY add
+    ' * -------------------------------- */
+    Public Property INV_IsShared() As Boolean
+        Get
+            Return g_bINV_IsShared
+        End Get
+        Set(ByVal value As Boolean)
+            g_bINV_IsShared = value
+        End Set
+    End Property
+    Public Property INV_ReportFile() As String
+        Get
+            Return g_sINV_ReportFile
+        End Get
+        Set(ByVal value As String)
+            g_sINV_ReportFile = value
+        End Set
+    End Property
+    Public Property INV_DocumentType() As String
+        Get
+            Return g_sINV_DocumentType
+        End Get
+        Set(ByVal value As String)
+            g_sINV_DocumentType = value
+        End Set
+    End Property
+    Public Property INV_ExportDocEntry() As String
+        Get
+            Return g_sINV_ExportDocEntry
+        End Get
+        Set(ByVal value As String)
+            g_sINV_ExportDocEntry = value
+        End Set
+    End Property
+    Public Property INV_CrystalReportExportType() As CrystalDecisions.Shared.ExportFormatType
+        Get
+            Return g_oINV_ExportType
+        End Get
+        Set(ByVal value As CrystalDecisions.Shared.ExportFormatType)
+            g_oINV_ExportType = value
+        End Set
+    End Property
+    Public Property INV_CrystalReportExportPath() As String
+        Get
+            Return g_sINV_ExportPath
+        End Get
+        Set(ByVal value As String)
+            g_sINV_ExportPath = value
+        End Set
+    End Property
+    Public Property INV_ReportDataset() As DataSet
+        Get
+            Return g_dINV_ReportDataset
+        End Get
+        Set(ByVal Value As DataSet)
+            g_dINV_ReportDataset = Value
+        End Set
+    End Property
+
+    Public Property DO_ESignPath() As String
+        Get
+            Return cESignPath
+        End Get
+        Set(ByVal value As String)
+            cESignPath = value
+        End Set
+    End Property
+
+    Friend Sub OpenInvoiceEmailGenericDataset()
+        Try
+            Dim rpt As ReportDocument
+            Dim sPath As String = String.Empty
+
+            rpt = New ReportDocument
+            rpt.Load(g_sINV_ReportFile)
+
+            With rpt
+                .SetDataSource(g_dINV_ReportDataset)
+
+
+                'Dim crParameterFieldDefinitions As ParameterFieldDefinitions
+                'Dim crParameterFieldDefinition As ParameterFieldDefinition
+                'Dim crParameterValues As New ParameterValues
+                'Dim crParameterDiscreteValue As New ParameterDiscreteValue
+
+                'Dim ObjectID As String = ""
+                '.SetParameterValue("DocKey@", g_sINV_ExportDocEntry)
+
+                'crParameterDiscreteValue.Value = g_sINV_ExportDocEntry
+                'crParameterFieldDefinitions = rpt.DataDefinition.ParameterFields
+                'crParameterFieldDefinition = crParameterFieldDefinitions.Item("DocKey")
+                'crParameterValues = crParameterFieldDefinition.CurrentValues
+
+                'crParameterValues.Clear()
+                'crParameterValues.Add(crParameterDiscreteValue)
+                'crParameterFieldDefinition.ApplyCurrentValues(crParameterValues)
+
+                'Select Case g_sINV_DocumentType
+                '    Case "1"
+                '        .DataDefinition.FormulaFields.Item("TITLE").Text = "'TAX INVOICE'"
+                '    Case "2"
+                '        .DataDefinition.FormulaFields.Item("TITLE").Text = "'CREDIT NOTE'"
+                '    Case "3"
+                '        .DataDefinition.FormulaFields.Item("TITLE").Text = "'DOWN PAYMENT INVOICE'"
+                '    Case "4"
+                '        .DataDefinition.FormulaFields.Item("TITLE").Text = "'Delivery Order'"
+                '    Case Else
+                '        .DataDefinition.FormulaFields.Item("TITLE").Text = "'TAX INVOICE'"
+                'End Select
+
+                .Refresh()
+            End With
+
+            If bIsExport Then
+                sPath = g_sINV_ExportPath
+                rpt.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
+                rpt.ExportOptions.ExportFormatType = g_oINV_ExportType
+                If oExportType = ExportFormatType.Excel Then
+                    Dim objExcelOptions As New CrystalDecisions.Shared.ExcelFormatOptions
+                    objExcelOptions.ExcelUseConstantColumnWidth = False
+                    rpt.ExportOptions.FormatOptions = objExcelOptions
+                End If
+
+                Dim objOptions As New CrystalDecisions.Shared.DiskFileDestinationOptions
+                objOptions.DiskFileName = sPath
+                rpt.ExportOptions.DestinationOptions = objOptions
+                rpt.Export()
+                rpt.Close()
+
+            Else
+                crViewer.ReportSource = rpt
+                crViewer.Show()
+            End If
+        Catch ex As Exception
+            MsgBox("PrintInvoiceDataset: " & ex.ToString)
+        End Try
+    End Sub
+
+    Friend Sub OpenInvoiceEmailTest()
+        Try
+
+            Dim crtableLogoninfos As New TableLogOnInfos
+            Dim crtableLogoninfo As New TableLogOnInfo
+            Dim crConnectionInfo As New ConnectionInfo
+            Dim CrTables As Tables
+            Dim CrTable As Table
+            Dim rpt As ReportDocument
+            Dim sPath As String = String.Empty
+
+            'crConnectionInfo.ServerName = oCompany.Server
+            'or ?
+            crConnectionInfo.ServerName = oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "")
+            crConnectionInfo.DatabaseName = oCompany.CompanyDB
+            crConnectionInfo.UserID = global_DBUsername
+            crConnectionInfo.Password = global_DBPassword
+
+            rpt = New ReportDocument
+            rpt.Load(g_sINV_ReportFile)
+
+            'If got signature
+            If Not String.IsNullOrEmpty(cESignPath) Then
+                Try
+                    Dim fs As FileStream
+                    Dim br As BinaryReader
+                    fs = New FileStream(cESignPath, FileMode.Open)
+                    br = New BinaryReader(fs)
+                    Dim imgbyte As Byte() = New Byte(fs.Length + 1) {}
+                    imgbyte = br.ReadBytes(Convert.ToInt64((fs.Length)))
+                    br.Close()
+                    fs.Close()
+
+                    Dim dtSummary As System.Data.DataTable = New DataTable
+                    dtSummary.Columns.Add("DocEntry", System.Type.GetType("System.String"))
+                    dtSummary.Columns.Add("SignByteA", System.Type.GetType("System.Byte[]"))
+                    Dim dr As System.Data.DataRow = dtSummary.NewRow
+                    dr("DocEntry") = g_sINV_ExportDocEntry
+                    dr("SignByteA") = imgbyte
+                    dtSummary.Rows.Add(dr)
+                    'rpt.SetParameterValue("DocKey@", g_sINV_ExportDocEntry)
+                    rpt.Subreports(0).Database.Tables("doTbl").SetDataSource(dtSummary)
+                Catch ex As Exception
+                End Try
+            End If
+
+            With rpt
+                CrTables = .Database.Tables
+                For Each CrTable In CrTables
+                    crtableLogoninfo = CrTable.LogOnInfo
+                    crtableLogoninfo.ConnectionInfo = crConnectionInfo
+                    CrTable.ApplyLogOnInfo(crtableLogoninfo)
+                    CrTable.Location = oCompany.CompanyDB & "." & CrTable.Location.Substring(CrTable.Location.LastIndexOf(".") + 1)
+                Next
+
+                .RecordSelectionFormula = ""
+                Select Case g_sINV_DocumentType
+                    Case "1"
+                        .RecordSelectionFormula = "{OINV.DocEntry}=" & g_sINV_ExportDocEntry
+                    Case "2"
+                        .RecordSelectionFormula = "{ORIN.DocEntry}=" & g_sINV_ExportDocEntry
+                    Case "3"
+                        .RecordSelectionFormula = "{ODPI.DocEntry}=" & g_sINV_ExportDocEntry
+                    Case "4"
+                        .RecordSelectionFormula = "{ODLN.DocEntry}=" & g_sINV_ExportDocEntry
+                    Case Else
+                        .RecordSelectionFormula = "{OINV.DocEntry}=" & g_sINV_ExportDocEntry
+                End Select
+                '.Refresh() 'SY hide
+            End With
+
+            If bIsExport Then
+                sPath = g_sINV_ExportPath
+                rpt.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
+                rpt.ExportOptions.ExportFormatType = g_oINV_ExportType
+                If oExportType = ExportFormatType.Excel Then
+                    Dim objExcelOptions As New CrystalDecisions.Shared.ExcelFormatOptions
+                    objExcelOptions.ExcelUseConstantColumnWidth = False
+                    rpt.ExportOptions.FormatOptions = objExcelOptions
+                End If
+
+                Dim objOptions As New CrystalDecisions.Shared.DiskFileDestinationOptions
+                objOptions.DiskFileName = sPath
+                rpt.ExportOptions.DestinationOptions = objOptions
+                rpt.Export()
+            Else
+                crViewer.ReportSource = rpt
+                crViewer.Show()
+            End If
+            rpt.Close() 'SY add
+            rpt.Dispose() 'SY add
+        Catch ex As Exception
+            MsgBox("Print : " & ex.ToString)
+        End Try
+    End Sub
+
+#End Region
+
+
 #Region "PVRange Area"
+    Private sLayoutType As String = ""
     Private sDocNumS As String = String.Empty
     Private sDocNumE As String = String.Empty
     Private sBPCodeS As String = String.Empty
@@ -885,7 +1141,14 @@ Public Class Hydac_FormViewer
             sBPCodeE = Value
         End Set
     End Property
-
+    Public Property LayoutType() As String
+        Get
+            Return sLayoutType
+        End Get
+        Set(ByVal Value As String)
+            sLayoutType = Value
+        End Set
+    End Property
     Public Property DocDateSStart() As String
         Get
             Return sDocDateS
@@ -1859,6 +2122,8 @@ Public Class Hydac_FormViewer
             objOptions.DiskFileName = g_sExportPath
             rpt.ExportOptions.DestinationOptions = objOptions
             rpt.Export()
+            rpt.Close()
+
         Else
             'Desktop
             If (bIsExcel) Then
@@ -1873,6 +2138,7 @@ Public Class Hydac_FormViewer
                 objOptions.DiskFileName = sPath
                 rpt.ExportOptions.DestinationOptions = objOptions
                 rpt.Export()
+                rpt.Close()
                 System.Diagnostics.Process.Start(sPath)
             Else
                 crViewer.ReportSource = rpt
@@ -2069,6 +2335,8 @@ Public Class Hydac_FormViewer
             objOptions.DiskFileName = g_sExportPath
             rpt.ExportOptions.DestinationOptions = objOptions
             rpt.Export()
+            rpt.Close()
+
         Else
             'Desktop
             If (bIsExcel) Then
@@ -2167,6 +2435,7 @@ Public Class Hydac_FormViewer
             objOptions.DiskFileName = sPath
             rpt.ExportOptions.DestinationOptions = objOptions
             rpt.Export()
+            rpt.Close()
         Else
             crViewer.ReportSource = rpt
             crViewer.Show()
@@ -2240,6 +2509,7 @@ Public Class Hydac_FormViewer
             objOptions.DiskFileName = sPath
             rpt.ExportOptions.DestinationOptions = objOptions
             rpt.Export()
+            rpt.Close()
         Else
             crViewer.ReportSource = rpt
             crViewer.Show()
@@ -2247,7 +2517,7 @@ Public Class Hydac_FormViewer
     End Sub
 
     Friend Sub OPEN_HANADS_APSOA()
-        Dim subreport As ReportDocument
+
         Dim rpt As ReportDocument
         Dim bIsIncludeLG_BankDetail As Boolean = False
         Dim StatementDate As String = "DateValue(" & AsAtDate.Substring(0, 4) & "," & AsAtDate.Substring(4, 2) & "," & AsAtDate.Substring(6, 2) & ")"
@@ -2302,6 +2572,7 @@ Public Class Hydac_FormViewer
             objOptions.DiskFileName = g_sExportPath
             rpt.ExportOptions.DestinationOptions = objOptions
             rpt.Export()
+            rpt.Close()
         Else
             'Desktop
             crViewer.ReportSource = rpt
@@ -2362,10 +2633,10 @@ Public Class Hydac_FormViewer
                 objOptions.DiskFileName = g_sExportPath
                 rpt.ExportOptions.DestinationOptions = objOptions
                 rpt.Export()
+                rpt.Clone()
             Else
                 'Desktop
                 crViewer.ReportSource = rpt
-                crViewer.DisplayGroupTree = False
                 crViewer.PerformAutoScale()
                 crViewer.Show()
             End If
@@ -2416,10 +2687,10 @@ Public Class Hydac_FormViewer
                 objOptions.DiskFileName = g_sExportPath
                 rpt.ExportOptions.DestinationOptions = objOptions
                 rpt.Export()
+                rpt.Close()
             Else
                 'Desktop
                 crViewer.ReportSource = rpt
-                crViewer.DisplayGroupTree = False
                 crViewer.PerformAutoScale()
                 crViewer.Show()
             End If
@@ -2432,11 +2703,28 @@ Public Class Hydac_FormViewer
         Dim subreport As ReportDocument
         Dim rpt As ReportDocument
 
+        'If g_bIsShared Then
+        '    rpt = New ReportDocument
+        '    rpt.Load(g_sReportName)
+        'Else
+        '    rpt = New PV_HANADS
+        'End If
         If g_bIsShared Then
             rpt = New ReportDocument
-            rpt.Load(g_sReportName)
+            Select Case sLayoutType
+                Case "PV"
+                    rpt.Load(g_sReportName)
+                Case "RA"
+                    rpt.Load(g_sReportNameRA)
+            End Select
+
         Else
-            rpt = New PV_HANADS
+            Select Case sLayoutType
+                Case "PV"
+                    rpt = New PV_HANADS
+                Case "RA"
+                    rpt = New RA_HANADS
+            End Select
         End If
 
         ' Choose the correct ageing method
@@ -2474,6 +2762,7 @@ Public Class Hydac_FormViewer
             objOptions.DiskFileName = sPath
             rpt.ExportOptions.DestinationOptions = objOptions
             rpt.Export()
+            rpt.Close()
         Else
             crViewer.ReportSource = rpt
             crViewer.Show()
@@ -2520,10 +2809,11 @@ Public Class Hydac_FormViewer
             objOptions.DiskFileName = g_sExportPath
             rpt.ExportOptions.DestinationOptions = objOptions
             rpt.Export()
+            rpt.Close()
+
         Else
             'Desktop
             crViewer.ReportSource = rpt
-            crViewer.DisplayGroupTree = False
             crViewer.PerformAutoScale()
             crViewer.Show()
         End If
@@ -2535,9 +2825,20 @@ Public Class Hydac_FormViewer
 
         If g_bIsShared Then
             rpt = New ReportDocument
-            rpt.Load(g_sReportName)
+            Select Case sLayoutType
+                Case "PV"
+                    rpt.Load(g_sReportName)
+                Case "RA"
+                    rpt.Load(g_sReportNameRA)
+            End Select
+
         Else
-            rpt = New RPV_HANADS
+            Select Case sLayoutType
+                Case "PV"
+                    rpt = New RPV_HANADS
+                Case "RA"
+                    rpt = New RRA_HANADS
+            End Select
         End If
 
         With rpt
@@ -2571,6 +2872,7 @@ Public Class Hydac_FormViewer
             objOptions.DiskFileName = g_sExportPath
             rpt.ExportOptions.DestinationOptions = objOptions
             rpt.Export()
+            rpt.Close()
         Else
             'Desktop
             crViewer.ReportSource = rpt
@@ -2592,7 +2894,6 @@ Public Class Hydac_FormViewer
             rpt.SetDataSource(cDataset)
             crViewer.Text = "Bank Reconciliation Report"
             crViewer.Name = "Bank Reconciliation Report"
-            crViewer.DisplayGroupTree = False
 
             rpt.DataDefinition.FormulaFields.Item("InputAcct").Text = "'" & cBankAccount & "'"
             rpt.DataDefinition.FormulaFields.Item("InputDate").Text = "'" & cBankDate & "'"
@@ -2612,6 +2913,7 @@ Public Class Hydac_FormViewer
                     objOptions.DiskFileName = g_sExportPath 'g_sExportPath
                     rpt.ExportOptions.DestinationOptions = objOptions
                     rpt.Export()
+                    rpt.Close()
 
                 Case "D"
                     crViewer.ReportSource = rpt
@@ -2777,7 +3079,6 @@ Public Class Hydac_FormViewer
         End If
     End Sub
     Friend Sub OPEN_HANADS_CHANGE_LOG()
-        Dim subreport As ReportDocument
         Dim rpt As ReportDocument
 
         If g_bIsShared Then
@@ -2816,10 +3117,11 @@ Public Class Hydac_FormViewer
             objOptions.DiskFileName = g_sExportPath
             rpt.ExportOptions.DestinationOptions = objOptions
             rpt.Export()
+            rpt.Close()
+
         Else
             'Desktop
             crViewer.ReportSource = rpt
-            crViewer.DisplayGroupTree = False
             crViewer.PerformAutoScale()
             crViewer.Show()
         End If

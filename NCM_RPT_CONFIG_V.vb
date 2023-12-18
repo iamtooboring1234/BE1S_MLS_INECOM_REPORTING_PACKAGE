@@ -32,6 +32,7 @@ Public Class NCM_RPT_CONFIG_V
         Dim oCols As SAPbouiCOM.Columns
         Dim oColn As SAPbouiCOM.Column
         Dim oCbox As SAPbouiCOM.ComboBox
+        Dim oEdit As SAPbouiCOM.EditText
 
         Try
             If LoadFromXML("Inecom_SDK_Reporting_Package." & FRM_RPT_CONFIG & ".srf") Then ' Loading .srf file
@@ -49,6 +50,7 @@ Public Class NCM_RPT_CONFIG_V
                     .Add("uFLONE", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
                     .Add("uFLTWO", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
                     .Add("uFLTHREE", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
+                    .Add("uFLFOUR", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
                     .Add("tbPercent", BoDataType.dt_PERCENT)
 
                     .Add("xRow", BoDataType.dt_SHORT_NUMBER, 10)
@@ -63,12 +65,22 @@ Public Class NCM_RPT_CONFIG_V
                     .Add("yIncluded", BoDataType.dt_SHORT_TEXT, 254)
                     .Add("yFilePath", BoDataType.dt_SHORT_TEXT, 254)
 
+                    .Add("cbSOAPrt", BoDataType.dt_SHORT_TEXT, 1)
                     .Add("cbGSTCurr", BoDataType.dt_SHORT_TEXT, 30)
                     .Add("cbPVDat", BoDataType.dt_SHORT_TEXT, 1)
                     .Add("cbPVInv", BoDataType.dt_SHORT_TEXT, 1)
                     .Add("cbIRDat", BoDataType.dt_SHORT_TEXT, 1)
                     .Add("cbIRInv", BoDataType.dt_SHORT_TEXT, 1)
-                    .Add("cbSOAPrt", BoDataType.dt_SHORT_TEXT, 1)
+                    .Add("cbEmailTyp", BoDataType.dt_SHORT_TEXT, 1)
+                    .Add("tbNotes", BoDataType.dt_LONG_TEXT)
+                    .Add("cbInvType", BoDataType.dt_SHORT_TEXT, 1)
+                    .Add("tbInvText", BoDataType.dt_LONG_TEXT)
+                    .Add("cbRinType", BoDataType.dt_SHORT_TEXT, 1)
+                    .Add("tbRinText", BoDataType.dt_LONG_TEXT)
+                    .Add("cbDpiType", BoDataType.dt_SHORT_TEXT, 1)
+                    .Add("tbDpiText", BoDataType.dt_LONG_TEXT)
+                    .Add("cbCardOp", BoDataType.dt_SHORT_TEXT, 1)
+
                 End With
 
                 oFldr = oFormCFG.Items.Item("flOne").Specific
@@ -79,6 +91,9 @@ Public Class NCM_RPT_CONFIG_V
                 oFldr = oFormCFG.Items.Item("flThree").Specific
                 oFldr.DataBind.SetBound(True, "", "uFLTHREE")
                 oFldr.GroupWith("flTwo")
+                oFldr = oFormCFG.Items.Item("flFour").Specific
+                oFldr.DataBind.SetBound(True, "", "uFLFOUR")
+                oFldr.GroupWith("flThree")
 
                 Dim oRec As Recordset = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
                 Dim sRec As String = ""
@@ -106,22 +121,7 @@ Public Class NCM_RPT_CONFIG_V
                 End If
                 oRec = Nothing
 
-                ' ========================================================
-                'Dim dSumLineTotal As Double = 50827.48
-                'Dim dInsuranceCost As Double = 0.0
-                'Dim dFreightCost As Double = 0.0
-                'Dim dFactor As Double = 0.0
-                'Dim dOtherCost As Double = 0.0
-                'Dim dCIFFC As Double = 0.0
-                'Dim dLineTotal As Double = 0.04
-                'Dim dPOExchangeRate As Double = 1
-                'Dim dChargeFC As Double = 0.0
-                'Dim dChargeLC As Double = 0.0
 
-                'dFactor = (dLineTotal / dSumLineTotal) * 100
-                'oFormCFG.DataSources.UserDataSources.Item("tbPercent").ValueEx = Math.Round(dFactor, 4)
-
-                ' ========================================================
 
                 oCbox = oFormCFG.Items.Item("cbPVInv").Specific
                 oCbox.DataBind.SetBound(True, String.Empty, "cbPVInv")
@@ -156,6 +156,50 @@ Public Class NCM_RPT_CONFIG_V
                 oCbox.Select(0, SAPbouiCOM.BoSearchKey.psk_Index)
                 oFormCFG.Items.Item("cbSOAPrt").DisplayDesc = True
 
+                ' =============================================================
+
+
+                oCbox = oFormCFG.Items.Item("cbCardOp").Specific
+                oCbox.DataBind.SetBound(True, String.Empty, "cbCardOp")
+                oCbox.ValidValues.Add("C", "BP Code")
+                oCbox.ValidValues.Add("N", "BP Name")
+                oCbox.Select(0, SAPbouiCOM.BoSearchKey.psk_Index)
+
+                oEdit = oFormCFG.Items.Item("tbNotes").Specific
+                oEdit.DataBind.SetBound(True, String.Empty, "tbNotes")
+
+                oCbox = oFormCFG.Items.Item("cbEmailTyp").Specific
+                oCbox.DataBind.SetBound(True, String.Empty, "cbEmailTyp")
+                oCbox.ValidValues.Add("H", "HTML")
+                oCbox.ValidValues.Add("P", "Plain Text")
+                oCbox.Select(0, SAPbouiCOM.BoSearchKey.psk_Index)
+
+                oCbox = oFormCFG.Items.Item("cbInvType").Specific
+                oCbox.DataBind.SetBound(True, String.Empty, "cbInvType")
+                oCbox.ValidValues.Add("H", "HTML")
+                oCbox.ValidValues.Add("P", "Plain Text")
+                oCbox.Select(0, SAPbouiCOM.BoSearchKey.psk_Index)
+
+                oCbox = oFormCFG.Items.Item("cbRinType").Specific
+                oCbox.DataBind.SetBound(True, String.Empty, "cbRinType")
+                oCbox.ValidValues.Add("H", "HTML")
+                oCbox.ValidValues.Add("P", "Plain Text")
+                oCbox.Select(0, SAPbouiCOM.BoSearchKey.psk_Index)
+
+                oCbox = oFormCFG.Items.Item("cbDpiType").Specific
+                oCbox.DataBind.SetBound(True, String.Empty, "cbDpiType")
+                oCbox.ValidValues.Add("H", "HTML")
+                oCbox.ValidValues.Add("P", "Plain Text")
+                oCbox.Select(0, SAPbouiCOM.BoSearchKey.psk_Index)
+
+                oEdit = oFormCFG.Items.Item("tbInvText").Specific
+                oEdit.DataBind.SetBound(True, String.Empty, "tbInvText")
+                oEdit = oFormCFG.Items.Item("tbRinText").Specific
+                oEdit.DataBind.SetBound(True, String.Empty, "tbRinText")
+                oEdit = oFormCFG.Items.Item("tbDpiText").Specific
+                oEdit.DataBind.SetBound(True, String.Empty, "tbDpiText")
+
+                ' =============================================================
                 oMtrxBSC = oFormCFG.Items.Item("mxBSC").Specific
                 oCols = oMtrxBSC.Columns
                 oColn = oCols.Item("cRow")
@@ -223,7 +267,11 @@ Public Class NCM_RPT_CONFIG_V
 
             sQuery = "  SELECT  IFNULL(T0.""U_GSTCURR"",''), IFNULL(T0.""U_INVDETAIL"",'N'), "
             sQuery &= "         IFNULL(T0.""U_TAXDATE"",'Y'), IFNULL(T0.""U_IRAINVDETAIL"",'N'), "
-            sQuery &= "         IFNULL(T0.""U_IRATAXDATE"",'Y') "
+            sQuery &= "         IFNULL(T0.""U_IRATAXDATE"",'Y'), "
+            sQuery &= "         IFNULL(T0.""U_EmailType"",'H'), "
+            sQuery &= "         IFNULL(T0.""U_PlainText"",''),     IFNULL(T0.""U_InvEmailType"",'H'), IFNULL(T0.""U_InvPlainText"",''), "
+            sQuery &= "         IFNULL(T0.""U_RinEmailType"",'H'), IFNULL(T0.""U_RinPlainText"",''),  IFNULL(T0.""U_DpiEmailType"",'H'), "
+            sQuery &= "         IFNULL(T0.""U_DpiPlainText"",''),  IFNULL(T0.""U_CardOption"",'C') "
             sQuery &= " FROM    ""@NCM_NEW_SETTING"" T0"
             oRecord = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
             oRecord.DoQuery(sQuery)
@@ -237,12 +285,30 @@ Public Class NCM_RPT_CONFIG_V
                     .Item("cbPVDat").ValueEx = oRecord.Fields.Item(2).Value
                     .Item("cbIRInv").ValueEx = oRecord.Fields.Item(3).Value
                     .Item("cbIRDat").ValueEx = oRecord.Fields.Item(4).Value
+                    .Item("cbEmailTyp").ValueEx = oRecord.Fields.Item(5).Value
+                    .Item("tbNotes").ValueEx = oRecord.Fields.Item(6).Value
+                    .Item("cbInvType").ValueEx = oRecord.Fields.Item(7).Value
+                    .Item("tbInvText").ValueEx = oRecord.Fields.Item(8).Value
+                    .Item("cbRinType").ValueEx = oRecord.Fields.Item(9).Value
+                    .Item("tbRinText").ValueEx = oRecord.Fields.Item(10).Value
+                    .Item("cbDpiType").ValueEx = oRecord.Fields.Item(11).Value
+                    .Item("tbDpiText").ValueEx = oRecord.Fields.Item(12).Value
+                    .Item("cbCardOp").ValueEx = oRecord.Fields.Item(13).Value
                 Else
                     .Item("cbGSTCurr").ValueEx = oCompany.GetCompanyService.GetAdminInfo.LocalCurrency
                     .Item("cbPVInv").ValueEx = "N"
                     .Item("cbPVDat").ValueEx = "Y"
                     .Item("cbIRInv").ValueEx = "N"
                     .Item("cbIRDat").ValueEx = "Y"
+                    .Item("cbEmailTyp").ValueEx = "H"
+                    .Item("tbNotes").ValueEx = ""
+                    .Item("cbInvType").ValueEx = "H"
+                    .Item("tbInvText").ValueEx = ""
+                    .Item("cbRinType").ValueEx = "H"
+                    .Item("tbRinText").ValueEx = ""
+                    .Item("cbDpiType").ValueEx = "H"
+                    .Item("tbDpiText").ValueEx = ""
+                    .Item("cbCardOp").ValueEx = "C"
                 End If
             End With
 
@@ -323,7 +389,18 @@ Public Class NCM_RPT_CONFIG_V
                 sUpdate &= " ""U_TAXDATE""      = '" & .Item("cbPVDat").ValueEx & "', "
                 sUpdate &= " ""U_IRAINVDETAIL"" = '" & .Item("cbIRInv").ValueEx & "', "
                 sUpdate &= " ""U_IRATAXDATE""   = '" & .Item("cbIRDat").ValueEx & "', "
-                sUpdate &= " ""U_SOAPRTOPT""    = '" & .Item("cbSOAPrt").ValueEx & "' "
+                sUpdate &= " ""U_SOAPRTOPT""    = '" & .Item("cbSOAPrt").ValueEx & "', "
+                sUpdate &= " ""U_EmailType""    = '" & .Item("cbEmailTyp").ValueEx & "', "
+                sUpdate &= " ""U_PlainText""    = '" & .Item("tbNotes").ValueEx.ToString.Replace("'", "''") & "', "
+                sUpdate &= " ""U_InvEmailType"" = '" & .Item("cbInvType").ValueEx & "', "
+                sUpdate &= " ""U_InvPlainText"" = '" & .Item("tbInvText").ValueEx.ToString.Replace("'", "''") & "', "
+                sUpdate &= " ""U_RinEmailType"" = '" & .Item("cbRinType").ValueEx & "', "
+                sUpdate &= " ""U_RinPlainText"" = '" & .Item("tbRinText").ValueEx.ToString.Replace("'", "''") & "', "
+                sUpdate &= " ""U_DpiEmailType"" = '" & .Item("cbDpiType").ValueEx & "', "
+                sUpdate &= " ""U_DpiPlainText"" = '" & .Item("tbDpiText").ValueEx.ToString.Replace("'", "''") & "', "
+                sUpdate &= " ""U_CardOption""   = '" & .Item("cbCardOp").ValueEx.ToString.Trim & "' "
+
+                oUpdate = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
                 oUpdate.DoQuery(sUpdate)
 
                 ' NEW PARAMETER - U_SOAPRTOPT
@@ -734,6 +811,11 @@ Public Class NCM_RPT_CONFIG_V
                             Case "flThree"
                                 oFormCFG.PaneLevel = 3
                                 g_iPaneLvl = 3
+
+                            Case "flFour"
+                                oFormCFG.PaneLevel = 4
+                                g_iPaneLvl = 4
+
                         End Select
                     Case BoEventTypes.et_ITEM_PRESSED
                         Select Case pVal.ItemUID

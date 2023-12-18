@@ -612,6 +612,8 @@ Partial Public Class DS_SOA
         
         Private columnCounty As Global.System.Data.DataColumn
         
+        Private columnCellular As Global.System.Data.DataColumn
+        
         Private columnFax As Global.System.Data.DataColumn
         
         Private columnPhone1 As Global.System.Data.DataColumn
@@ -627,6 +629,14 @@ Partial Public Class DS_SOA
         Private columnZipCode As Global.System.Data.DataColumn
         
         Private columnStreetNo As Global.System.Data.DataColumn
+        
+        Private columnCreditLine As Global.System.Data.DataColumn
+        
+        Private columnBillToDef As Global.System.Data.DataColumn
+        
+        Private columnU_U_Retention As Global.System.Data.DataColumn
+        
+        Private columnU_SOAContact As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -721,6 +731,14 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CellularColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCellular
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property FaxColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnFax
@@ -784,6 +802,38 @@ Partial Public Class DS_SOA
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CreditLineColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCreditLine
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BillToDefColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBillToDef
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_U_RetentionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_U_Retention
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_SOAContactColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_SOAContact
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -820,9 +870,29 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOCRDRow(ByVal Address As String, ByVal Block As String, ByVal CardCode As String, ByVal CardName As String, ByVal City As String, ByVal CntctPrsn As String, ByVal County As String, ByVal Fax As String, ByVal Phone1 As String, ByVal GroupNum As Integer, ByVal SlpCode As Integer, ByVal U_SOA_Bldg As String, ByVal Phone2 As String, ByVal ZipCode As String, ByVal StreetNo As String) As OCRDRow
+        Public Overloads Function AddOCRDRow( _
+                    ByVal Address As String,  _
+                    ByVal Block As String,  _
+                    ByVal CardCode As String,  _
+                    ByVal CardName As String,  _
+                    ByVal City As String,  _
+                    ByVal CntctPrsn As String,  _
+                    ByVal County As String,  _
+                    ByVal Cellular As String,  _
+                    ByVal Fax As String,  _
+                    ByVal Phone1 As String,  _
+                    ByVal GroupNum As Integer,  _
+                    ByVal SlpCode As Integer,  _
+                    ByVal U_SOA_Bldg As String,  _
+                    ByVal Phone2 As String,  _
+                    ByVal ZipCode As String,  _
+                    ByVal StreetNo As String,  _
+                    ByVal CreditLine As Decimal,  _
+                    ByVal BillToDef As String,  _
+                    ByVal U_U_Retention As String,  _
+                    ByVal U_SOAContact As String) As OCRDRow
             Dim rowOCRDRow As OCRDRow = CType(Me.NewRow,OCRDRow)
-            Dim columnValuesArray() As Object = New Object() {Address, Block, CardCode, CardName, City, CntctPrsn, County, Fax, Phone1, GroupNum, SlpCode, U_SOA_Bldg, Phone2, ZipCode, StreetNo}
+            Dim columnValuesArray() As Object = New Object() {Address, Block, CardCode, CardName, City, CntctPrsn, County, Cellular, Fax, Phone1, GroupNum, SlpCode, U_SOA_Bldg, Phone2, ZipCode, StreetNo, CreditLine, BillToDef, U_U_Retention, U_SOAContact}
             rowOCRDRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOCRDRow)
             Return rowOCRDRow
@@ -852,6 +922,7 @@ Partial Public Class DS_SOA
             Me.columnCity = MyBase.Columns("City")
             Me.columnCntctPrsn = MyBase.Columns("CntctPrsn")
             Me.columnCounty = MyBase.Columns("County")
+            Me.columnCellular = MyBase.Columns("Cellular")
             Me.columnFax = MyBase.Columns("Fax")
             Me.columnPhone1 = MyBase.Columns("Phone1")
             Me.columnGroupNum = MyBase.Columns("GroupNum")
@@ -860,6 +931,10 @@ Partial Public Class DS_SOA
             Me.columnPhone2 = MyBase.Columns("Phone2")
             Me.columnZipCode = MyBase.Columns("ZipCode")
             Me.columnStreetNo = MyBase.Columns("StreetNo")
+            Me.columnCreditLine = MyBase.Columns("CreditLine")
+            Me.columnBillToDef = MyBase.Columns("BillToDef")
+            Me.columnU_U_Retention = MyBase.Columns("U_U_Retention")
+            Me.columnU_SOAContact = MyBase.Columns("U_SOAContact")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -879,6 +954,8 @@ Partial Public Class DS_SOA
             MyBase.Columns.Add(Me.columnCntctPrsn)
             Me.columnCounty = New Global.System.Data.DataColumn("County", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCounty)
+            Me.columnCellular = New Global.System.Data.DataColumn("Cellular", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCellular)
             Me.columnFax = New Global.System.Data.DataColumn("Fax", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFax)
             Me.columnPhone1 = New Global.System.Data.DataColumn("Phone1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -895,6 +972,14 @@ Partial Public Class DS_SOA
             MyBase.Columns.Add(Me.columnZipCode)
             Me.columnStreetNo = New Global.System.Data.DataColumn("StreetNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnStreetNo)
+            Me.columnCreditLine = New Global.System.Data.DataColumn("CreditLine", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCreditLine)
+            Me.columnBillToDef = New Global.System.Data.DataColumn("BillToDef", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBillToDef)
+            Me.columnU_U_Retention = New Global.System.Data.DataColumn("U_U_Retention", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_U_Retention)
+            Me.columnU_SOAContact = New Global.System.Data.DataColumn("U_SOAContact", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_SOAContact)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1301,6 +1386,10 @@ Partial Public Class DS_SOA
         
         Private columnSlpName As Global.System.Data.DataColumn
         
+        Private columnMemo As Global.System.Data.DataColumn
+        
+        Private columnShortName As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1353,6 +1442,22 @@ Partial Public Class DS_SOA
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MemoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMemo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ShortNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnShortName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1389,9 +1494,9 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOSLPRow(ByVal SlpCode As Integer, ByVal SlpName As String) As OSLPRow
+        Public Overloads Function AddOSLPRow(ByVal SlpCode As Integer, ByVal SlpName As String, ByVal Memo As String, ByVal ShortName As String) As OSLPRow
             Dim rowOSLPRow As OSLPRow = CType(Me.NewRow,OSLPRow)
-            Dim columnValuesArray() As Object = New Object() {SlpCode, SlpName}
+            Dim columnValuesArray() As Object = New Object() {SlpCode, SlpName, Memo, ShortName}
             rowOSLPRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOSLPRow)
             Return rowOSLPRow
@@ -1416,6 +1521,8 @@ Partial Public Class DS_SOA
         Friend Sub InitVars()
             Me.columnSlpCode = MyBase.Columns("SlpCode")
             Me.columnSlpName = MyBase.Columns("SlpName")
+            Me.columnMemo = MyBase.Columns("Memo")
+            Me.columnShortName = MyBase.Columns("ShortName")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1425,6 +1532,10 @@ Partial Public Class DS_SOA
             MyBase.Columns.Add(Me.columnSlpCode)
             Me.columnSlpName = New Global.System.Data.DataColumn("SlpName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSlpName)
+            Me.columnMemo = New Global.System.Data.DataColumn("Memo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMemo)
+            Me.columnShortName = New Global.System.Data.DataColumn("ShortName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnShortName)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1574,7 +1685,11 @@ Partial Public Class DS_SOA
         
         Private columnPhone1 As Global.System.Data.DataColumn
         
+        Private columnPhone2 As Global.System.Data.DataColumn
+        
         Private columnRevOffice As Global.System.Data.DataColumn
+        
+        Private columnDdctOffice As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -1661,9 +1776,25 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Phone2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPhone2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property RevOfficeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnRevOffice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property DdctOfficeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDdctOffice
             End Get
         End Property
         
@@ -1704,9 +1835,9 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOADMRow(ByVal CompnyAddr As String, ByVal CompnyName As String, ByVal E_Mail As String, ByVal Fax As String, ByVal FreeZoneNo As String, ByVal Phone1 As String, ByVal RevOffice As String) As OADMRow
+        Public Overloads Function AddOADMRow(ByVal CompnyAddr As String, ByVal CompnyName As String, ByVal E_Mail As String, ByVal Fax As String, ByVal FreeZoneNo As String, ByVal Phone1 As String, ByVal Phone2 As String, ByVal RevOffice As String, ByVal DdctOffice As String) As OADMRow
             Dim rowOADMRow As OADMRow = CType(Me.NewRow,OADMRow)
-            Dim columnValuesArray() As Object = New Object() {CompnyAddr, CompnyName, E_Mail, Fax, FreeZoneNo, Phone1, RevOffice}
+            Dim columnValuesArray() As Object = New Object() {CompnyAddr, CompnyName, E_Mail, Fax, FreeZoneNo, Phone1, Phone2, RevOffice, DdctOffice}
             rowOADMRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOADMRow)
             Return rowOADMRow
@@ -1735,7 +1866,9 @@ Partial Public Class DS_SOA
             Me.columnFax = MyBase.Columns("Fax")
             Me.columnFreeZoneNo = MyBase.Columns("FreeZoneNo")
             Me.columnPhone1 = MyBase.Columns("Phone1")
+            Me.columnPhone2 = MyBase.Columns("Phone2")
             Me.columnRevOffice = MyBase.Columns("RevOffice")
+            Me.columnDdctOffice = MyBase.Columns("DdctOffice")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1753,8 +1886,12 @@ Partial Public Class DS_SOA
             MyBase.Columns.Add(Me.columnFreeZoneNo)
             Me.columnPhone1 = New Global.System.Data.DataColumn("Phone1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPhone1)
+            Me.columnPhone2 = New Global.System.Data.DataColumn("Phone2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPhone2)
             Me.columnRevOffice = New Global.System.Data.DataColumn("RevOffice", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRevOffice)
+            Me.columnDdctOffice = New Global.System.Data.DataColumn("DdctOffice", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDdctOffice)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4992,6 +5129,14 @@ Partial Public Class DS_SOA
         
         Private columnZipCode As Global.System.Data.DataColumn
         
+        Private columnStreetF As Global.System.Data.DataColumn
+        
+        Private columnBlockF As Global.System.Data.DataColumn
+        
+        Private columnBuildingF As Global.System.Data.DataColumn
+        
+        Private columnZipCodeF As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -5068,6 +5213,38 @@ Partial Public Class DS_SOA
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property StreetFColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnStreetF
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BlockFColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBlockF
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BuildingFColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBuildingF
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ZipCodeFColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnZipCodeF
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -5104,9 +5281,9 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddADM1Row(ByVal Block As String, ByVal City As String, ByVal County As String, ByVal Street As String, ByVal ZipCode As String) As ADM1Row
+        Public Overloads Function AddADM1Row(ByVal Block As String, ByVal City As String, ByVal County As String, ByVal Street As String, ByVal ZipCode As String, ByVal StreetF As String, ByVal BlockF As String, ByVal BuildingF As String, ByVal ZipCodeF As String) As ADM1Row
             Dim rowADM1Row As ADM1Row = CType(Me.NewRow,ADM1Row)
-            Dim columnValuesArray() As Object = New Object() {Block, City, County, Street, ZipCode}
+            Dim columnValuesArray() As Object = New Object() {Block, City, County, Street, ZipCode, StreetF, BlockF, BuildingF, ZipCodeF}
             rowADM1Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowADM1Row)
             Return rowADM1Row
@@ -5134,6 +5311,10 @@ Partial Public Class DS_SOA
             Me.columnCounty = MyBase.Columns("County")
             Me.columnStreet = MyBase.Columns("Street")
             Me.columnZipCode = MyBase.Columns("ZipCode")
+            Me.columnStreetF = MyBase.Columns("StreetF")
+            Me.columnBlockF = MyBase.Columns("BlockF")
+            Me.columnBuildingF = MyBase.Columns("BuildingF")
+            Me.columnZipCodeF = MyBase.Columns("ZipCodeF")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5149,6 +5330,14 @@ Partial Public Class DS_SOA
             MyBase.Columns.Add(Me.columnStreet)
             Me.columnZipCode = New Global.System.Data.DataColumn("ZipCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnZipCode)
+            Me.columnStreetF = New Global.System.Data.DataColumn("StreetF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnStreetF)
+            Me.columnBlockF = New Global.System.Data.DataColumn("BlockF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBlockF)
+            Me.columnBuildingF = New Global.System.Data.DataColumn("BuildingF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBuildingF)
+            Me.columnZipCodeF = New Global.System.Data.DataColumn("ZipCodeF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnZipCodeF)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5665,6 +5854,21 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Cellular() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.CellularColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Cellular' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.CellularColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Fax() As String
             Get
                 Try 
@@ -5785,6 +5989,66 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property CreditLine() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.CreditLineColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CreditLine' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.CreditLineColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BillToDef() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.BillToDefColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BillToDef' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.BillToDefColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_U_Retention() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.U_U_RetentionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_U_Retention' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.U_U_RetentionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_SOAContact() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.U_SOAContactColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_SOAContact' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.U_SOAContactColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsAddressNull() As Boolean
             Return Me.IsNull(Me.tableOCRD.AddressColumn)
         End Function
@@ -5865,6 +6129,18 @@ Partial Public Class DS_SOA
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCountyNull()
             Me(Me.tableOCRD.CountyColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCellularNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.CellularColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCellularNull()
+            Me(Me.tableOCRD.CellularColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5961,6 +6237,54 @@ Partial Public Class DS_SOA
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetStreetNoNull()
             Me(Me.tableOCRD.StreetNoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCreditLineNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.CreditLineColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCreditLineNull()
+            Me(Me.tableOCRD.CreditLineColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBillToDefNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.BillToDefColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBillToDefNull()
+            Me(Me.tableOCRD.BillToDefColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_U_RetentionNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.U_U_RetentionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_U_RetentionNull()
+            Me(Me.tableOCRD.U_U_RetentionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_SOAContactNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.U_SOAContactColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_SOAContactNull()
+            Me(Me.tableOCRD.U_SOAContactColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -6081,6 +6405,36 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Memo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOSLP.MemoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Memo' in table 'OSLP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOSLP.MemoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ShortName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOSLP.ShortNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ShortName' in table 'OSLP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOSLP.ShortNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsSlpCodeNull() As Boolean
             Return Me.IsNull(Me.tableOSLP.SlpCodeColumn)
         End Function
@@ -6101,6 +6455,30 @@ Partial Public Class DS_SOA
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetSlpNameNull()
             Me(Me.tableOSLP.SlpNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMemoNull() As Boolean
+            Return Me.IsNull(Me.tableOSLP.MemoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMemoNull()
+            Me(Me.tableOSLP.MemoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsShortNameNull() As Boolean
+            Return Me.IsNull(Me.tableOSLP.ShortNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetShortNameNull()
+            Me(Me.tableOSLP.ShortNameColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -6211,6 +6589,21 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Phone2() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOADM.Phone2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Phone2' in table 'OADM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOADM.Phone2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property RevOffice() As String
             Get
                 Try 
@@ -6221,6 +6614,21 @@ Partial Public Class DS_SOA
             End Get
             Set
                 Me(Me.tableOADM.RevOfficeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property DdctOffice() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOADM.DdctOfficeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DdctOffice' in table 'OADM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOADM.DdctOfficeColumn) = value
             End Set
         End Property
         
@@ -6298,6 +6706,18 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPhone2Null() As Boolean
+            Return Me.IsNull(Me.tableOADM.Phone2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPhone2Null()
+            Me(Me.tableOADM.Phone2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsRevOfficeNull() As Boolean
             Return Me.IsNull(Me.tableOADM.RevOfficeColumn)
         End Function
@@ -6306,6 +6726,18 @@ Partial Public Class DS_SOA
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetRevOfficeNull()
             Me(Me.tableOADM.RevOfficeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDdctOfficeNull() As Boolean
+            Return Me.IsNull(Me.tableOADM.DdctOfficeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDdctOfficeNull()
+            Me(Me.tableOADM.DdctOfficeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -10569,6 +11001,66 @@ Partial Public Class DS_SOA
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property StreetF() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableADM1.StreetFColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'StreetF' in table 'ADM1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableADM1.StreetFColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BlockF() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableADM1.BlockFColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BlockF' in table 'ADM1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableADM1.BlockFColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BuildingF() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableADM1.BuildingFColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BuildingF' in table 'ADM1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableADM1.BuildingFColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ZipCodeF() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableADM1.ZipCodeFColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ZipCodeF' in table 'ADM1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableADM1.ZipCodeFColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsBlockNull() As Boolean
             Return Me.IsNull(Me.tableADM1.BlockColumn)
         End Function
@@ -10625,6 +11117,54 @@ Partial Public Class DS_SOA
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetZipCodeNull()
             Me(Me.tableADM1.ZipCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsStreetFNull() As Boolean
+            Return Me.IsNull(Me.tableADM1.StreetFColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetStreetFNull()
+            Me(Me.tableADM1.StreetFColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBlockFNull() As Boolean
+            Return Me.IsNull(Me.tableADM1.BlockFColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBlockFNull()
+            Me(Me.tableADM1.BlockFColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBuildingFNull() As Boolean
+            Return Me.IsNull(Me.tableADM1.BuildingFColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBuildingFNull()
+            Me(Me.tableADM1.BuildingFColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsZipCodeFNull() As Boolean
+            Return Me.IsNull(Me.tableADM1.ZipCodeFColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetZipCodeFNull()
+            Me(Me.tableADM1.ZipCodeFColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

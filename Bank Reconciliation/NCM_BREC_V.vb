@@ -280,7 +280,7 @@ Public Class NCM_BREC_V
     End Function
     Private Function SetSqlConnection() As Boolean
         Try
-            connStr = "DRIVER={HDBODBC32};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server & ";DATABASE=" & oCompany.CompanyDB & ""
+            'connStr = "DRIVER={HDBODBC32};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server & ";DATABASE=" & oCompany.CompanyDB & ""
 
             _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
             HANADbConnection = _DbProviderFactoryObject.CreateConnection()

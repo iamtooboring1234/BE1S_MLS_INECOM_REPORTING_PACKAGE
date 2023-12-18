@@ -80,7 +80,9 @@ Public Class frmArSOA
             End Select
 
             SetDatasource()
-            NotesSetup()
+
+            'Commented out in SAP HANA10 because it cannot CREATE TABLE.
+            'NotesSetup()
             RetrieveNotes()
             SetupChooseFromList()
 
@@ -363,13 +365,13 @@ Public Class frmArSOA
     Private Sub LoadViewer()
         oFormARSOA.Items.Item("btnExecute").Enabled = False
         Try
-            Dim sAttachPath As String = ""
-            Dim frm As New Hydac_FormViewer
             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             Dim sTempDirectory As String = ""
             Dim bIsContinue As Boolean = False
             Dim sPathFormat As String = "{0}\{1}_SOA_{2}.pdf"
             Dim sCurrTime As String = DateTime.Now.ToString("HHMMss")
+            Dim sAttachPath As String = ""
+            Dim frm2 As New Hydac_FormViewer
 
             oRec.DoQuery("SELECT CAST(current_timestamp AS NVARCHAR(24)), IFNULL(""AttachPath"",'')  FROM ""OADP"" ")
             If oRec.RecordCount > 0 Then
@@ -377,9 +379,6 @@ Public Class frmArSOA
                 g_sARSOARunningDate = Convert.ToString(oRec.Fields.Item(0).Value).Trim
                 sAttachPath = Convert.ToString(oRec.Fields.Item(1).Value).Trim
             End If
-
-            frm.DatabaseServer = oCompany.Server
-            frm.DatabaseName = oCompany.CompanyDB
 
             Try
                 If SaveSettings() Then
@@ -412,7 +411,6 @@ Public Class frmArSOA
                             ' IF USE EMAIL TO SEND SOA
                             If IsIncludeModule(ReportName.SOA_Email_Config) Then
 
-
                                 iCount = 0
                                 iCount = SBO_Application.MessageBox("Please select your option." & vbNewLine & "1. Click ""Yes"" to send email." & vbNewLine & "2. Click ""No"" to preview only.", 1, "Yes", "No", String.Empty)
                                 If iCount = 1 Then
@@ -430,9 +428,12 @@ Public Class frmArSOA
                                         End If
 
                                         While Not oRecord.EoF
-                                            sOutput = oRecord.Fields.Item(0).Value
 
+                                            sOutput = oRecord.Fields.Item(0).Value
                                             al.Add(sOutput)
+
+                                            Dim frm As New Hydac_FormViewer
+
                                             oCombo = oFormARSOA.Items.Item("cbDateType").Specific
                                             If oCombo.Selected Is Nothing Then
                                                 oCombo.Select("0", SAPbouiCOM.BoSearchKey.psk_ByValue)
@@ -460,6 +461,8 @@ Public Class frmArSOA
                                             oCheck = oFormARSOA.Items.Item("ckHFN").Specific
                                             frm.IsHFN = IIf(oCheck.Checked, 1, 0)
 
+                                            frm.DatabaseServer = oCompany.Server
+                                            frm.DatabaseName = oCompany.CompanyDB
                                             frm.Dataset = dsSOA
                                             frm.IsShared = g_bIsShared
                                             frm.SharedReportName = g_sReportFilename
@@ -476,6 +479,7 @@ Public Class frmArSOA
                                             frm.CrystalReportExportType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
                                             frm.CrystalReportExportPath = String.Format(sPathFormat, di.FullName, sOutput, AsAtDate.ToString("ddMMyyyy"))
                                             frm.OPEN_HANADS_ARSOA()
+                                            frm.Close()
 
                                             oRecord.MoveNext()
                                         End While
@@ -530,46 +534,49 @@ Public Class frmArSOA
                             If oCombo.Selected Is Nothing Then
                                 oCombo.Select("0", SAPbouiCOM.BoSearchKey.psk_ByValue)
                             End If
-                            frm.Report = oCombo.Selected.Value
+                            frm2.Report = oCombo.Selected.Value
 
                             oCombo = oFormARSOA.Items.Item("cbPrdType").Specific
                             If oCombo.Selected Is Nothing Then
                                 oCombo.Select("0", SAPbouiCOM.BoSearchKey.psk_ByValue)
                             End If
-                            frm.Period = oCombo.Selected.Value
-                            frm.Dataset = dsSOA
-                            frm.IsShared = g_bIsShared
-                            frm.SharedReportName = g_sReportFilename
-                            frm.DBUsernameViewer = DBUsername
-                            frm.DBPasswordViewer = DBPassword
-                            frm.Username = oCompany.UserName
-                            frm.AsAtDate = AsAtDate.ToString("yyyyMMdd")
-                            frm.ReportName = ReportName.ARSoa
-                            frm.CompanySOA = ClientCompany
-                            frm.Landscape = oFormARSOA.DataSources.UserDataSources.Item("ckLayout").ValueEx
-                            frm.ARSOARunningDate = g_sARSOARunningDate & oCompany.UserName
+                            frm2.Period = oCombo.Selected.Value
+
+                            frm2.DatabaseServer = oCompany.Server
+                            frm2.DatabaseName = oCompany.CompanyDB
+                            frm2.Dataset = dsSOA
+                            frm2.IsShared = g_bIsShared
+                            frm2.SharedReportName = g_sReportFilename
+                            frm2.DBUsernameViewer = DBUsername
+                            frm2.DBPasswordViewer = DBPassword
+                            frm2.Username = oCompany.UserName
+                            frm2.AsAtDate = AsAtDate.ToString("yyyyMMdd")
+                            frm2.ReportName = ReportName.ARSoa
+                            frm2.CompanySOA = ClientCompany
+                            frm2.Landscape = oFormARSOA.DataSources.UserDataSources.Item("ckLayout").ValueEx
+                            frm2.ARSOARunningDate = g_sARSOARunningDate & oCompany.UserName
 
                             Select Case SBO_Application.ClientType
                                 Case SAPbouiCOM.BoClientType.ct_Desktop
-                                    frm.ClientType = "D"
+                                    frm2.ClientType = "D"
                                 Case SAPbouiCOM.BoClientType.ct_Browser
-                                    frm.ClientType = "S"
+                                    frm2.ClientType = "S"
                             End Select
 
                             oCheck = oFormARSOA.Items.Item("ckLogo").Specific
-                            frm.HideLogo = IIf(oCheck.Checked, True, False)
+                            frm2.HideLogo = IIf(oCheck.Checked, True, False)
                             oCheck = oFormARSOA.Items.Item("ckHDR").Specific
-                            frm.HideHeader = IIf(oCheck.Checked, True, False)
+                            frm2.HideHeader = IIf(oCheck.Checked, True, False)
                             oCheck = oFormARSOA.Items.Item("ckBBF").Specific
-                            frm.IsBBF = IIf(oCheck.Checked, 1, 0)
+                            frm2.IsBBF = IIf(oCheck.Checked, 1, 0)
                             oCheck = oFormARSOA.Items.Item("ckSNP").Specific
-                            frm.IsSNP = IIf(oCheck.Checked, 1, 0)
+                            frm2.IsSNP = IIf(oCheck.Checked, 1, 0)
                             oCheck = oFormARSOA.Items.Item("ckGAT").Specific
-                            frm.IsGAT = IIf(oCheck.Checked, 1, 0)
+                            frm2.IsGAT = IIf(oCheck.Checked, 1, 0)
                             oCheck = oFormARSOA.Items.Item("ckHAS").Specific
-                            frm.IsHAS = IIf(oCheck.Checked, 1, 0)
+                            frm2.IsHAS = IIf(oCheck.Checked, 1, 0)
                             oCheck = oFormARSOA.Items.Item("ckHFN").Specific
-                            frm.IsHFN = IIf(oCheck.Checked, 1, 0)
+                            frm2.IsHFN = IIf(oCheck.Checked, 1, 0)
 
                             bIsContinue = True
                             oRecord = Nothing
@@ -587,7 +594,7 @@ Public Class frmArSOA
             If bIsContinue Then
                 Select Case SBO_Application.ClientType
                     Case SAPbouiCOM.BoClientType.ct_Desktop
-                        frm.ShowDialog()
+                        frm2.ShowDialog()
 
                     Case SAPbouiCOM.BoClientType.ct_Browser
                         Dim sFileName As String = ""
@@ -597,10 +604,11 @@ Public Class frmArSOA
                         End If
 
                         sFileName = String.Format(sPathFormat, di.FullName, oFormARSOA.DataSources.UserDataSources.Item("txtBPFr").ValueEx.Trim & "_" & oFormARSOA.DataSources.UserDataSources.Item("txtBPTo").ValueEx.Trim, AsAtDate.ToString("ddMMyyyy") & "_" & sCurrTime)
-                        frm.IsExport = True
-                        frm.CrystalReportExportType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
-                        frm.CrystalReportExportPath = sFileName
-                        frm.OPEN_HANADS_ARSOA()
+                        frm2.IsExport = True
+                        frm2.CrystalReportExportType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
+                        frm2.CrystalReportExportPath = sFileName
+                        frm2.OPEN_HANADS_ARSOA()
+                        frm2.Close()
 
                         If File.Exists(sFileName) Then
                             SBO_Application.SendFileToBrowser(sFileName)
@@ -615,13 +623,13 @@ Public Class frmArSOA
     Private Sub LoadViewer2()
         oFormARSOA.Items.Item("btnExecute").Enabled = False
         Try
-            Dim sAttachPath As String = ""
-            Dim frm As New Hydac_FormViewer
             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
             Dim sTempDirectory As String = ""
             Dim bIsContinue As Boolean = False
             Dim sPathFormat As String = "{0}\{1}_SOA_{2}.pdf"
             Dim sCurrTime As String = DateTime.Now.ToString("HHMMss")
+            Dim sAttachPath As String = ""
+            Dim frm2 As New Hydac_FormViewer
 
             oRec.DoQuery("SELECT CAST(current_timestamp AS NVARCHAR(24)), IFNULL(""AttachPath"",'')  FROM ""OADP"" ")
             If oRec.RecordCount > 0 Then
@@ -629,9 +637,6 @@ Public Class frmArSOA
                 g_sARSOARunningDate = Convert.ToString(oRec.Fields.Item(0).Value).Trim
                 sAttachPath = Convert.ToString(oRec.Fields.Item(1).Value).Trim
             End If
-
-            frm.DatabaseServer = oCompany.Server
-            frm.DatabaseName = oCompany.CompanyDB
 
             Try
                 If SaveSettings() Then
@@ -686,8 +691,12 @@ Public Class frmArSOA
 
                                         While Not oRecord.EoF
                                             sOutput = oRecord.Fields.Item(0).Value
-
                                             al.Add(sOutput)
+
+                                            Dim frm As New Hydac_FormViewer
+                                            frm.DatabaseServer = oCompany.Server
+                                            frm.DatabaseName = oCompany.CompanyDB
+
                                             oCombo = oFormARSOA.Items.Item("cbDateType").Specific
                                             If oCombo.Selected Is Nothing Then
                                                 oCombo.Select("0", SAPbouiCOM.BoSearchKey.psk_ByValue)
@@ -731,6 +740,7 @@ Public Class frmArSOA
                                             frm.CrystalReportExportType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
                                             frm.CrystalReportExportPath = String.Format(sPathFormat, di.FullName, sOutput, AsAtDate.ToString("ddMMyyyy"))
                                             frm.OPEN_HANADS_ARSOA()
+                                            frm.Close()
 
                                             oRecord.MoveNext()
                                         End While
@@ -780,101 +790,108 @@ Public Class frmArSOA
 
                                 Case "2"    'PREVIEW ALL
 
+                                    frm2.DatabaseServer = oCompany.Server
+                                    frm2.DatabaseName = oCompany.CompanyDB
+
                                     oCombo = oFormARSOA.Items.Item("cbDateType").Specific
                                     If oCombo.Selected Is Nothing Then
                                         oCombo.Select("0", SAPbouiCOM.BoSearchKey.psk_ByValue)
                                     End If
-                                    frm.Report = oCombo.Selected.Value
+                                    frm2.Report = oCombo.Selected.Value
 
                                     oCombo = oFormARSOA.Items.Item("cbPrdType").Specific
                                     If oCombo.Selected Is Nothing Then
                                         oCombo.Select("0", SAPbouiCOM.BoSearchKey.psk_ByValue)
                                     End If
-                                    frm.Period = oCombo.Selected.Value
-                                    frm.Dataset = dsSOA
-                                    frm.IsShared = g_bIsShared
-                                    frm.SharedReportName = g_sReportFilename
-                                    frm.DBUsernameViewer = DBUsername
-                                    frm.DBPasswordViewer = DBPassword
-                                    frm.Username = oCompany.UserName
-                                    frm.AsAtDate = AsAtDate.ToString("yyyyMMdd")
-                                    frm.ReportName = ReportName.ARSoa
-                                    frm.CompanySOA = ClientCompany
-                                    frm.Landscape = oFormARSOA.DataSources.UserDataSources.Item("ckLayout").ValueEx
-                                    frm.ARSOARunningDate = g_sARSOARunningDate & oCompany.UserName
+                                    frm2.Period = oCombo.Selected.Value
+
+                                    frm2.Dataset = dsSOA
+                                    frm2.IsShared = g_bIsShared
+                                    frm2.SharedReportName = g_sReportFilename
+                                    frm2.DBUsernameViewer = DBUsername
+                                    frm2.DBPasswordViewer = DBPassword
+                                    frm2.Username = oCompany.UserName
+                                    frm2.AsAtDate = AsAtDate.ToString("yyyyMMdd")
+                                    frm2.ReportName = ReportName.ARSoa
+                                    frm2.CompanySOA = ClientCompany
+                                    frm2.Landscape = oFormARSOA.DataSources.UserDataSources.Item("ckLayout").ValueEx
+                                    frm2.ARSOARunningDate = g_sARSOARunningDate & oCompany.UserName
 
                                     Select Case SBO_Application.ClientType
                                         Case SAPbouiCOM.BoClientType.ct_Desktop
-                                            frm.ClientType = "D"
+                                            frm2.ClientType = "D"
                                         Case SAPbouiCOM.BoClientType.ct_Browser
-                                            frm.ClientType = "S"
+                                            frm2.ClientType = "S"
                                     End Select
 
                                     oCheck = oFormARSOA.Items.Item("ckLogo").Specific
-                                    frm.HideLogo = IIf(oCheck.Checked, True, False)
+                                    frm2.HideLogo = IIf(oCheck.Checked, True, False)
                                     oCheck = oFormARSOA.Items.Item("ckHDR").Specific
-                                    frm.HideHeader = IIf(oCheck.Checked, True, False)
+                                    frm2.HideHeader = IIf(oCheck.Checked, True, False)
                                     oCheck = oFormARSOA.Items.Item("ckBBF").Specific
-                                    frm.IsBBF = IIf(oCheck.Checked, 1, 0)
+                                    frm2.IsBBF = IIf(oCheck.Checked, 1, 0)
                                     oCheck = oFormARSOA.Items.Item("ckSNP").Specific
-                                    frm.IsSNP = IIf(oCheck.Checked, 1, 0)
+                                    frm2.IsSNP = IIf(oCheck.Checked, 1, 0)
                                     oCheck = oFormARSOA.Items.Item("ckGAT").Specific
-                                    frm.IsGAT = IIf(oCheck.Checked, 1, 0)
+                                    frm2.IsGAT = IIf(oCheck.Checked, 1, 0)
                                     oCheck = oFormARSOA.Items.Item("ckHAS").Specific
-                                    frm.IsHAS = IIf(oCheck.Checked, 1, 0)
+                                    frm2.IsHAS = IIf(oCheck.Checked, 1, 0)
                                     oCheck = oFormARSOA.Items.Item("ckHFN").Specific
-                                    frm.IsHFN = IIf(oCheck.Checked, 1, 0)
+                                    frm2.IsHFN = IIf(oCheck.Checked, 1, 0)
 
                                     bIsContinue = True
                                     oRecord = Nothing
 
                                 Case "3"    'PREVIEW NONEMAIL
 
+                                    frm2.DatabaseServer = oCompany.Server
+                                    frm2.DatabaseName = oCompany.CompanyDB
 
                                     oCombo = oFormARSOA.Items.Item("cbDateType").Specific
                                     If oCombo.Selected Is Nothing Then
                                         oCombo.Select("0", SAPbouiCOM.BoSearchKey.psk_ByValue)
                                     End If
-                                    frm.Report = oCombo.Selected.Value
+                                    frm2.Report = oCombo.Selected.Value
 
                                     oCombo = oFormARSOA.Items.Item("cbPrdType").Specific
                                     If oCombo.Selected Is Nothing Then
                                         oCombo.Select("0", SAPbouiCOM.BoSearchKey.psk_ByValue)
                                     End If
-                                    frm.Period = oCombo.Selected.Value
-                                    frm.Dataset = dsSOA
-                                    frm.IsShared = g_bIsShared
-                                    frm.SharedReportName = g_sReportFilename
-                                    frm.DBUsernameViewer = DBUsername
-                                    frm.DBPasswordViewer = DBPassword
-                                    frm.Username = oCompany.UserName
-                                    frm.AsAtDate = AsAtDate.ToString("yyyyMMdd")
-                                    frm.ReportName = ReportName.ARSoa
-                                    frm.CompanySOA = ClientCompany
-                                    frm.Landscape = oFormARSOA.DataSources.UserDataSources.Item("ckLayout").ValueEx
-                                    frm.ARSOARunningDate = g_sARSOARunningDate & oCompany.UserName
+                                    frm2.Period = oCombo.Selected.Value
+
+                                    frm2.Dataset = dsSOA
+                                    frm2.IsShared = g_bIsShared
+                                    frm2.SharedReportName = g_sReportFilename
+                                    frm2.DBUsernameViewer = DBUsername
+                                    frm2.DBPasswordViewer = DBPassword
+                                    frm2.Username = oCompany.UserName
+                                    frm2.AsAtDate = AsAtDate.ToString("yyyyMMdd")
+                                    frm2.ReportName = ReportName.ARSoa
+                                    frm2.CompanySOA = ClientCompany
+                                    frm2.Landscape = oFormARSOA.DataSources.UserDataSources.Item("ckLayout").ValueEx
+                                    frm2.ARSOARunningDate = g_sARSOARunningDate & oCompany.UserName
 
                                     Select Case SBO_Application.ClientType
                                         Case SAPbouiCOM.BoClientType.ct_Desktop
-                                            frm.ClientType = "D"
+                                            frm2.ClientType = "D"
                                         Case SAPbouiCOM.BoClientType.ct_Browser
-                                            frm.ClientType = "S"
+                                            frm2.ClientType = "S"
                                     End Select
 
                                     oCheck = oFormARSOA.Items.Item("ckLogo").Specific
-                                    frm.HideLogo = IIf(oCheck.Checked, True, False)
+                                    frm2.HideLogo = IIf(oCheck.Checked, True, False)
                                     oCheck = oFormARSOA.Items.Item("ckHDR").Specific
-                                    frm.HideHeader = IIf(oCheck.Checked, True, False)
+                                    frm2.HideHeader = IIf(oCheck.Checked, True, False)
                                     oCheck = oFormARSOA.Items.Item("ckBBF").Specific
-                                    frm.IsBBF = IIf(oCheck.Checked, 1, 0)
+                                    frm2.IsBBF = IIf(oCheck.Checked, 1, 0)
                                     oCheck = oFormARSOA.Items.Item("ckSNP").Specific
-                                    frm.IsSNP = IIf(oCheck.Checked, 1, 0)
+                                    frm2.IsSNP = IIf(oCheck.Checked, 1, 0)
                                     oCheck = oFormARSOA.Items.Item("ckGAT").Specific
-                                    frm.IsGAT = IIf(oCheck.Checked, 1, 0)
+                                    frm2.IsGAT = IIf(oCheck.Checked, 1, 0)
                                     oCheck = oFormARSOA.Items.Item("ckHAS").Specific
-                                    frm.IsHAS = IIf(oCheck.Checked, 1, 0)
+                                    frm2.IsHAS = IIf(oCheck.Checked, 1, 0)
                                     oCheck = oFormARSOA.Items.Item("ckHFN").Specific
-                                    frm.IsHFN = IIf(oCheck.Checked, 1, 0)
+                                    frm2.IsHFN = IIf(oCheck.Checked, 1, 0)
 
                                     bIsContinue = True
                                     oRecord = Nothing
@@ -893,7 +910,7 @@ Public Class frmArSOA
             If bIsContinue Then
                 Select Case SBO_Application.ClientType
                     Case SAPbouiCOM.BoClientType.ct_Desktop
-                        frm.ShowDialog()
+                        frm2.ShowDialog()
 
                     Case SAPbouiCOM.BoClientType.ct_Browser
                         Dim sFileName As String = ""
@@ -903,10 +920,11 @@ Public Class frmArSOA
                         End If
 
                         sFileName = String.Format(sPathFormat, di.FullName, oFormARSOA.DataSources.UserDataSources.Item("txtBPFr").ValueEx.Trim & "_" & oFormARSOA.DataSources.UserDataSources.Item("txtBPTo").ValueEx.Trim, AsAtDate.ToString("ddMMyyyy") & "_" & sCurrTime)
-                        frm.IsExport = True
-                        frm.CrystalReportExportType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
-                        frm.CrystalReportExportPath = sFileName
-                        frm.OPEN_HANADS_ARSOA()
+                        frm2.IsExport = True
+                        frm2.CrystalReportExportType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat
+                        frm2.CrystalReportExportPath = sFileName
+                        frm2.OPEN_HANADS_ARSOA()
+                        frm2.Close()
 
                         If File.Exists(sFileName) Then
                             SBO_Application.SendFileToBrowser(sFileName)
@@ -1056,18 +1074,31 @@ Public Class frmArSOA
             '--------------------------------------------------------
             'OCRD (Customer)
             '--------------------------------------------------------
-            sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
-            dtOCRD = dsSOA.Tables("OCRD")
-            HANAcmd = dbConn.CreateCommand()
-            HANAcmd.CommandText = sQuery
-            HANAcmd.ExecuteNonQuery()
-            HANAda.SelectCommand = HANAcmd
-            HANAda.Fill(dtOCRD)
+            Try
+                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""U_U_Retention"", ""U_SOAContact"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                dtOCRD = dsSOA.Tables("OCRD")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOCRD)
+
+            Catch ex As Exception
+
+                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                dtOCRD = dsSOA.Tables("OCRD")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOCRD)
+
+            End Try
 
             '--------------------------------------------------------
             'OADM (Company Details)
             '--------------------------------------------------------
-            sQuery = "SELECT ""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""RevOffice"",""Phone1"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
+            sQuery = "SELECT ""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""RevOffice"",""Phone1"", ""Phone2"", ""DdctOffice"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
             dtOADM = dsSOA.Tables("OADM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -1078,7 +1109,7 @@ Public Class frmArSOA
             '--------------------------------------------------------
             'ADM1 (Company Details)
             '--------------------------------------------------------
-            sQuery = "SELECT ""Block"",""City"",""Country"",""County"",""ZipCode"",""Street"" FROM """ & oCompany.CompanyDB & """.""ADM1"" "
+            sQuery = "SELECT ""Block"",""City"",""Country"",""County"",""ZipCode"",""Street"", ""StreetF"", ""BuildingF"", ""BlockF"", ""ZipCodeF"" FROM """ & oCompany.CompanyDB & """.""ADM1"" "
             dtADM1 = dsSOA.Tables("ADM1")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -1111,13 +1142,25 @@ Public Class frmArSOA
             '--------------------------------------------------------
             'OSLP
             '--------------------------------------------------------
-            sQuery = "SELECT ""SlpCode"",""SlpName"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
-            dtOSLP = dsSOA.Tables("OSLP")
-            HANAcmd = dbConn.CreateCommand()
-            HANAcmd.CommandText = sQuery
-            HANAcmd.ExecuteNonQuery()
-            HANAda.SelectCommand = HANAcmd
-            HANAda.Fill(dtOSLP)
+            Try
+                sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"", IFNULL(""U_ShortName"",'') AS ""ShortName"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
+                dtOSLP = dsSOA.Tables("OSLP")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOSLP)
+
+            Catch ex As Exception
+                sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"", '' ""ShortName"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
+                dtOSLP = dsSOA.Tables("OSLP")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOSLP)
+            End Try
+
 
             '--------------------------------------------------------
             'NCM_SOC2
@@ -1222,7 +1265,8 @@ Public Class frmArSOA
             End If
             oRec = Nothing
         Catch ex As Exception
-            SBO_Application.MessageBox("[ARSOA].[RetrieveNotes] : " & vbNewLine & ex.Message)
+            oFormARSOA.DataSources.UserDataSources.Item("Notes").ValueEx = ""
+            SBO_Application.StatusBar.SetText("Default Note is not found in table @NCM_SOC2. Set to blank.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
         End Try
     End Sub
     Private Function SaveSettings() As Boolean
@@ -1545,6 +1589,24 @@ Public Class frmArSOA
                 End Select
             Else
                 Select Case pVal.EventType
+                    Case SAPbouiCOM.BoEventTypes.et_FORM_RESIZE
+                        Dim iSpace As Integer = 18
+
+                        oFormARSOA.Items.Item("26").Left = oFormARSOA.Items.Item("txtBPFr").Left + 120
+                        oFormARSOA.Items.Item("32").Left = oFormARSOA.Items.Item("txtBPGFr").Left + 120
+                        oFormARSOA.Items.Item("33").Left = oFormARSOA.Items.Item("txtSlsFr").Left + 120
+
+                        oFormARSOA.Items.Item("txtBPTo").Left = oFormARSOA.Items.Item("txtBPFr").Left + 145
+                        oFormARSOA.Items.Item("txtBPGTo").Left = oFormARSOA.Items.Item("txtBPGFr").Left + 145
+                        oFormARSOA.Items.Item("txtSlsTo").Left = oFormARSOA.Items.Item("txtSlsFr").Left + 145
+
+                        oFormARSOA.Items.Item("ckSNP").Top = oFormARSOA.Items.Item("ckGAT").Top + (iSpace * 1)
+                        oFormARSOA.Items.Item("ckHAS").Top = oFormARSOA.Items.Item("ckGAT").Top + (iSpace * 2)
+                        oFormARSOA.Items.Item("ckHFN").Top = oFormARSOA.Items.Item("ckGAT").Top + (iSpace * 3)
+                        oFormARSOA.Items.Item("ckExc").Top = oFormARSOA.Items.Item("ckGAT").Top + (iSpace * 4)
+                        oFormARSOA.Items.Item("ckLayout").Top = oFormARSOA.Items.Item("ckGAT").Top + (iSpace * 5)
+                        oFormARSOA.Items.Item("etNotes").Top = oFormARSOA.Items.Item("ckGAT").Top + (iSpace * 6)
+
                     Case SAPbouiCOM.BoEventTypes.et_CHOOSE_FROM_LIST
                         Dim oCFLEvent As SAPbouiCOM.IChooseFromListEvent
                         oCFLEvent = pVal

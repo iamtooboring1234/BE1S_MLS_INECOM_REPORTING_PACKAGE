@@ -92,8 +92,8 @@ Public Class frmSendEmail
             .Add("txtAsAt", SAPbouiCOM.BoDataType.dt_DATE, 254)
             .Add("Col00", SAPbouiCOM.BoDataType.dt_SHORT_NUMBER, 254)
             .Add("Col01", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
-            .Add("Col02", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 20)
-            .Add("Col03", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 100)
+            .Add("Col02", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 50)
+            .Add("Col03", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 200)
             .Add("Col04", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 5)
             .Add("Col05", SAPbouiCOM.BoDataType.dt_SUM, 254)
             .Add("Col06", SAPbouiCOM.BoDataType.dt_LONG_TEXT, 254)
@@ -187,6 +187,7 @@ Public Class frmSendEmail
 
                                 s.Attachment = .Item("Col07").ValueEx
                                 s.EmailTo = .Item("Col06").ValueEx
+                                s.CardCode = .Item("Col02").ValueEx
                                 s.CardName = .Item("Col03").ValueEx
 
                                 If s.SendEmail(sOutput, AsAtDate) Then

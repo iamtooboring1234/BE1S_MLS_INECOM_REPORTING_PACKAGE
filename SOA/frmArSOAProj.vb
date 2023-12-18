@@ -662,18 +662,31 @@ Public Class frmArSOAProj
             '--------------------------------------------------------
             'OCRD (Customer)
             '--------------------------------------------------------
-            sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
-            dtOCRD = dsSOA.Tables("OCRD")
-            HANAcmd = dbConn.CreateCommand()
-            HANAcmd.CommandText = sQuery
-            HANAcmd.ExecuteNonQuery()
-            HANAda.SelectCommand = HANAcmd
-            HANAda.Fill(dtOCRD)
+            Try
+                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""U_U_Retention"", ""U_SOAContact"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                dtOCRD = dsSOA.Tables("OCRD")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOCRD)
+
+            Catch ex As Exception
+
+                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                dtOCRD = dsSOA.Tables("OCRD")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOCRD)
+
+            End Try
 
             '--------------------------------------------------------
             'OADM (Company Details)
             '--------------------------------------------------------
-            sQuery = "SELECT ""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""RevOffice"",""Phone1"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
+            sQuery = "SELECT ""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""RevOffice"",""Phone1"", ""DdctOffice"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
             dtOADM = dsSOA.Tables("OADM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -684,7 +697,7 @@ Public Class frmArSOAProj
             '--------------------------------------------------------
             'ADM1 (Company Details)
             '--------------------------------------------------------
-            sQuery = "SELECT ""Block"",""City"",""Country"",""County"",""ZipCode"",""Street"" FROM """ & oCompany.CompanyDB & """.""ADM1"" "
+            sQuery = "SELECT ""Block"",""City"",""Country"",""County"",""ZipCode"",""Street"", ""StreetF"", ""BuildingF"", ""BlockF"", ""ZipCodeF"" FROM """ & oCompany.CompanyDB & """.""ADM1"" "
             dtADM1 = dsSOA.Tables("ADM1")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -706,7 +719,7 @@ Public Class frmArSOAProj
             '--------------------------------------------------------
             'OSLP
             '--------------------------------------------------------
-            sQuery = "SELECT ""SlpCode"",""SlpName"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
+            sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
             dtOSLP = dsSOA.Tables("OSLP")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery

@@ -411,6 +411,12 @@ Partial Public Class GST_Report_XML
         
         Private columnLineNettSG As Global.System.Data.DataColumn
         
+        Private columnRoundDif As Global.System.Data.DataColumn
+        
+        Private columnRoundDifFC As Global.System.Data.DataColumn
+        
+        Private columnRoundDifSy As Global.System.Data.DataColumn
+        
         Private columnVatCode As Global.System.Data.DataColumn
         
         Private columnVatPercent As Global.System.Data.DataColumn
@@ -448,6 +454,14 @@ Partial Public Class GST_Report_XML
         Private columnUShipCode As Global.System.Data.DataColumn
         
         Private columnUShipAddr As Global.System.Data.DataColumn
+        
+        Private columnBillToCode As Global.System.Data.DataColumn
+        
+        Private columnBillToAddress As Global.System.Data.DataColumn
+        
+        Private columnShipToCode As Global.System.Data.DataColumn
+        
+        Private columnShipToAddress As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -718,6 +732,30 @@ Partial Public Class GST_Report_XML
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property RoundDifColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRoundDif
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property RoundDifFCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRoundDifFC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property RoundDifSyColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRoundDifSy
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property VatCodeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnVatCode
@@ -869,6 +907,38 @@ Partial Public Class GST_Report_XML
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BillToCodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBillToCode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BillToAddressColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBillToAddress
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ShipToCodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnShipToCode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ShipToAddressColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnShipToAddress
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -935,6 +1005,9 @@ Partial Public Class GST_Report_XML
                     ByVal LineTotalSG As Decimal,  _
                     ByVal LineVATSG As Decimal,  _
                     ByVal LineNettSG As Decimal,  _
+                    ByVal RoundDif As Decimal,  _
+                    ByVal RoundDifFC As Decimal,  _
+                    ByVal RoundDifSy As Decimal,  _
                     ByVal VatCode As String,  _
                     ByVal VatPercent As Decimal,  _
                     ByVal VatAcctCode As String,  _
@@ -953,9 +1026,13 @@ Partial Public Class GST_Report_XML
                     ByVal UOrderType As String,  _
                     ByVal UOutAirwayBill As String,  _
                     ByVal UShipCode As String,  _
-                    ByVal UShipAddr As String) As DS_RPT_GSTRow
+                    ByVal UShipAddr As String,  _
+                    ByVal BillToCode As String,  _
+                    ByVal BillToAddress As String,  _
+                    ByVal ShipToCode As String,  _
+                    ByVal ShipToAddress As String) As DS_RPT_GSTRow
             Dim rowDS_RPT_GSTRow As DS_RPT_GSTRow = CType(Me.NewRow,DS_RPT_GSTRow)
-            Dim columnValuesArray() As Object = New Object() {Username, DocType, AbType, DocNum, DocEntry, LineNum, TransId, PosDate, DocDate, DocDueDate, CardCode, CardName, DocCurr, LocalCurr, SysCurr, DocRate, SysRate, LineTotal, LineVat, LineNett, LineTotalFC, LineVatFC, LineNettFC, LineTotalSY, LineVatSY, LineNettSY, LineTotalSG, LineVATSG, LineNettSG, VatCode, VatPercent, VatAcctCode, VatFormatCode, DebitRemark, CreditRemark, VatAcctName, BPGstRegNo, IsGST, NumAtCard, GSTCurr, GSTRate, URemarks, UFRTFwder, UCustomVal, UOrderType, UOutAirwayBill, UShipCode, UShipAddr}
+            Dim columnValuesArray() As Object = New Object() {Username, DocType, AbType, DocNum, DocEntry, LineNum, TransId, PosDate, DocDate, DocDueDate, CardCode, CardName, DocCurr, LocalCurr, SysCurr, DocRate, SysRate, LineTotal, LineVat, LineNett, LineTotalFC, LineVatFC, LineNettFC, LineTotalSY, LineVatSY, LineNettSY, LineTotalSG, LineVATSG, LineNettSG, RoundDif, RoundDifFC, RoundDifSy, VatCode, VatPercent, VatAcctCode, VatFormatCode, DebitRemark, CreditRemark, VatAcctName, BPGstRegNo, IsGST, NumAtCard, GSTCurr, GSTRate, URemarks, UFRTFwder, UCustomVal, UOrderType, UOutAirwayBill, UShipCode, UShipAddr, BillToCode, BillToAddress, ShipToCode, ShipToAddress}
             rowDS_RPT_GSTRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowDS_RPT_GSTRow)
             Return rowDS_RPT_GSTRow
@@ -1007,6 +1084,9 @@ Partial Public Class GST_Report_XML
             Me.columnLineTotalSG = MyBase.Columns("LineTotalSG")
             Me.columnLineVATSG = MyBase.Columns("LineVATSG")
             Me.columnLineNettSG = MyBase.Columns("LineNettSG")
+            Me.columnRoundDif = MyBase.Columns("RoundDif")
+            Me.columnRoundDifFC = MyBase.Columns("RoundDifFC")
+            Me.columnRoundDifSy = MyBase.Columns("RoundDifSy")
             Me.columnVatCode = MyBase.Columns("VatCode")
             Me.columnVatPercent = MyBase.Columns("VatPercent")
             Me.columnVatAcctCode = MyBase.Columns("VatAcctCode")
@@ -1026,6 +1106,10 @@ Partial Public Class GST_Report_XML
             Me.columnUOutAirwayBill = MyBase.Columns("UOutAirwayBill")
             Me.columnUShipCode = MyBase.Columns("UShipCode")
             Me.columnUShipAddr = MyBase.Columns("UShipAddr")
+            Me.columnBillToCode = MyBase.Columns("BillToCode")
+            Me.columnBillToAddress = MyBase.Columns("BillToAddress")
+            Me.columnShipToCode = MyBase.Columns("ShipToCode")
+            Me.columnShipToAddress = MyBase.Columns("ShipToAddress")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1089,6 +1173,12 @@ Partial Public Class GST_Report_XML
             MyBase.Columns.Add(Me.columnLineVATSG)
             Me.columnLineNettSG = New Global.System.Data.DataColumn("LineNettSG", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLineNettSG)
+            Me.columnRoundDif = New Global.System.Data.DataColumn("RoundDif", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRoundDif)
+            Me.columnRoundDifFC = New Global.System.Data.DataColumn("RoundDifFC", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRoundDifFC)
+            Me.columnRoundDifSy = New Global.System.Data.DataColumn("RoundDifSy", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRoundDifSy)
             Me.columnVatCode = New Global.System.Data.DataColumn("VatCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnVatCode)
             Me.columnVatPercent = New Global.System.Data.DataColumn("VatPercent", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
@@ -1127,6 +1217,14 @@ Partial Public Class GST_Report_XML
             MyBase.Columns.Add(Me.columnUShipCode)
             Me.columnUShipAddr = New Global.System.Data.DataColumn("UShipAddr", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUShipAddr)
+            Me.columnBillToCode = New Global.System.Data.DataColumn("BillToCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBillToCode)
+            Me.columnBillToAddress = New Global.System.Data.DataColumn("BillToAddress", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBillToAddress)
+            Me.columnShipToCode = New Global.System.Data.DataColumn("ShipToCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnShipToCode)
+            Me.columnShipToAddress = New Global.System.Data.DataColumn("ShipToAddress", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnShipToAddress)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2381,6 +2479,51 @@ Partial Public Class GST_Report_XML
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property RoundDif() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDS_RPT_GST.RoundDifColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RoundDif' in table 'DS_RPT_GST' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDS_RPT_GST.RoundDifColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property RoundDifFC() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDS_RPT_GST.RoundDifFCColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RoundDifFC' in table 'DS_RPT_GST' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDS_RPT_GST.RoundDifFCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property RoundDifSy() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDS_RPT_GST.RoundDifSyColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RoundDifSy' in table 'DS_RPT_GST' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDS_RPT_GST.RoundDifSyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property VatCode() As String
             Get
                 Try 
@@ -2661,6 +2804,66 @@ Partial Public Class GST_Report_XML
             End Get
             Set
                 Me(Me.tableDS_RPT_GST.UShipAddrColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BillToCode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDS_RPT_GST.BillToCodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BillToCode' in table 'DS_RPT_GST' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDS_RPT_GST.BillToCodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BillToAddress() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDS_RPT_GST.BillToAddressColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BillToAddress' in table 'DS_RPT_GST' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDS_RPT_GST.BillToAddressColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ShipToCode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDS_RPT_GST.ShipToCodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ShipToCode' in table 'DS_RPT_GST' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDS_RPT_GST.ShipToCodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ShipToAddress() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDS_RPT_GST.ShipToAddressColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ShipToAddress' in table 'DS_RPT_GST' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDS_RPT_GST.ShipToAddressColumn) = value
             End Set
         End Property
         
@@ -3014,6 +3217,42 @@ Partial Public Class GST_Report_XML
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsRoundDifNull() As Boolean
+            Return Me.IsNull(Me.tableDS_RPT_GST.RoundDifColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetRoundDifNull()
+            Me(Me.tableDS_RPT_GST.RoundDifColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsRoundDifFCNull() As Boolean
+            Return Me.IsNull(Me.tableDS_RPT_GST.RoundDifFCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetRoundDifFCNull()
+            Me(Me.tableDS_RPT_GST.RoundDifFCColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsRoundDifSyNull() As Boolean
+            Return Me.IsNull(Me.tableDS_RPT_GST.RoundDifSyColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetRoundDifSyNull()
+            Me(Me.tableDS_RPT_GST.RoundDifSyColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsVatCodeNull() As Boolean
             Return Me.IsNull(Me.tableDS_RPT_GST.VatCodeColumn)
         End Function
@@ -3238,6 +3477,54 @@ Partial Public Class GST_Report_XML
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetUShipAddrNull()
             Me(Me.tableDS_RPT_GST.UShipAddrColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBillToCodeNull() As Boolean
+            Return Me.IsNull(Me.tableDS_RPT_GST.BillToCodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBillToCodeNull()
+            Me(Me.tableDS_RPT_GST.BillToCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBillToAddressNull() As Boolean
+            Return Me.IsNull(Me.tableDS_RPT_GST.BillToAddressColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBillToAddressNull()
+            Me(Me.tableDS_RPT_GST.BillToAddressColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsShipToCodeNull() As Boolean
+            Return Me.IsNull(Me.tableDS_RPT_GST.ShipToCodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetShipToCodeNull()
+            Me(Me.tableDS_RPT_GST.ShipToCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsShipToAddressNull() As Boolean
+            Return Me.IsNull(Me.tableDS_RPT_GST.ShipToAddressColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetShipToAddressNull()
+            Me(Me.tableDS_RPT_GST.ShipToAddressColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

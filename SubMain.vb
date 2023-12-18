@@ -2,7 +2,7 @@
 '' =============================================================
 
 Option Strict Off
-Option Explicit On 
+Option Explicit On
 
 Imports System.IO
 Imports SAPbobsCOM
@@ -92,6 +92,13 @@ Public Enum ReportName
     PV_Email_Config = 52    'AT added on 04.05.2019
     PV_Mass_Email = 53      'AT added on 04.05.2019
     CHANGE_LOG_AUDIT = 55         'ES added on 03.10.2019
+    AR_Invoice = 59
+    ARAging_DetailsLC = 60
+    ARAging_DetailsFC = 61
+    ARAging_SummaryLC = 62
+    ARAging_SummaryFC = 63
+    RA_Range = 64
+
 End Enum
 Public Enum CompanyCode
     General = 0
@@ -148,6 +155,7 @@ Module SubMain
     Private oGPA As FRM_GPA         'ES added on 31.08.2011
     Private oFrmPVEmail As frmPVEmail   'AT Added on 04.05.2019
     Private oPVEmailParam As NCM_PV_Email_Param
+    Private oNCM_INV As NCM_INV_V
 
     Friend oStockAudit_Out As NCM_StockAuditTrail_Out
     Friend oFrmSendEmail As frmSendEmail
@@ -210,6 +218,8 @@ Module SubMain
 
     Friend Const MNU_NCM_GLL As String = "MNU_NCM_GLL"
     Friend Const FRM_NCM_GLL As String = "NCM_GLL"
+    Friend Const FRM_NCM_INV As String = "NCM_INV"
+    Friend Const MNU_NCM_INV As String = "MNU_NCM_INV"
 
     Friend Const MNU_NCM_BREC As String = "MNU_NCM_BREC"
     Friend Const MNU_HYD As String = "MNU_HYD"
@@ -258,27 +268,27 @@ Module SubMain
             oCompany = New SAPbobsCOM.Company
             oCompany = SBO_Application.Company.GetDICompany()
 
-#If DEBUG Then
-                        global_DBUsername = "SYSTEM"
-                        global_DBPassword = "Hana#sg1"
-                        connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & ";DATABASE=" & oCompany.CompanyDB & ""
-
-
-                        Dim ProviderName As String = "System.Data.Odbc"
-                        Dim dbConn As DbConnection = Nothing
-                        Dim _DbProviderFactoryObject As DbProviderFactory
-                        Dim sQuery As String = ""
-
-                        _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
-                        dbConn = _DbProviderFactoryObject.CreateConnection()
-                        dbConn.ConnectionString = connStr
-                        dbConn.Open()
-#Else
+            '#If DEBUG Then
+            '            global_DBUsername = "SYSTEM"
+            '            global_DBPassword = "Hana#sg1"
+            '            connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & ";DATABASE=" & oCompany.CompanyDB & ""
+            '            Dim ProviderName As String = "System.Data.Odbc"
+            '            Dim dbConn As DbConnection = Nothing
+            '            Dim _DbProviderFactoryObject As DbProviderFactory
+            '            Dim sQuery As String = ""
+            '            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+            '            dbConn = _DbProviderFactoryObject.CreateConnection()
+            '            dbConn.ConnectionString = connStr
+            '            dbConn.Open()
+            '#Else
+            '                                                If CheckLicense() = False Then
+            '                                                        SBO_Application.MessageBox("Failed to find license for this add-on.")
+            '                                                    End If 'terminating add on
+            '#End If
 
             If CheckLicense() = False Then
-                    SBO_Application.MessageBox("Failed to find license for this add-on.")
-                End If 'terminating add on
-#End If
+                SBO_Application.MessageBox("Failed to find license for this add-on.")
+            End If 'terminating add on
 
             GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmInecom.bmp").Save("ncmInecom.bmp")
             GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmMenu.bmp").Save("ncmMenu.bmp")
@@ -301,6 +311,7 @@ Module SubMain
             oNCM_BREC = New NCM_BREC_V
             oNCM_CHG_LOG_AUDIT = New NCM_CHG_LOG_AUDIT
 
+            oNCM_INV = New NCM_INV_V
             oSOA_TOS = New frmSOA_TOS
             oGPA = New FRM_GPA
             oNCM_IAR = New CLS_NCM_IAR
@@ -470,6 +481,17 @@ Module SubMain
             '    oNewMenuItem.String = "PV Email"
             '    oMenus.AddEx(oNewMenuItem)
             'End If
+
+            oMenuItem = SBO_Application.Menus.Item("12800") ' Sales Report - Invoice Email 
+            If (IsIncludeModule(ReportName.AR_Invoice)) Then
+                oMenus = oMenuItem.SubMenus
+                oNewMenuItem = SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_MenuCreationParams)
+                oNewMenuItem.Type = SAPbouiCOM.BoMenuType.mt_STRING
+                oNewMenuItem.UniqueID = MNU_NCM_INV
+                oNewMenuItem.String = "AR Documents - Email"
+                oMenus.AddEx(oNewMenuItem)
+            End If
+
 
             oMenuItem = SBO_Application.Menus.Item("12800") ' Sales Report 
             If (IsIncludeModule(ReportName.ARAging_Details_Proj)) Then
@@ -708,7 +730,7 @@ Module SubMain
                 oMenus.AddEx(oNewMenuItem)
             End If
 
-            
+
 
             Return True
         Catch ex As Exception
@@ -726,6 +748,10 @@ Module SubMain
 
             If oMenus.Exists("NCM_ARAgeing_Proj") Then
                 oMenus.RemoveEx("NCM_ARAgeing_Proj")
+            End If
+
+            If oMenus.Exists(MNU_NCM_INV) Then
+                oMenus.RemoveEx(MNU_NCM_INV)
             End If
 
             If oMenus.Exists(MNU_NCM_SO_PROJ) Then
@@ -833,9 +859,9 @@ Module SubMain
                     If (oRecordSet.RecordCount > 0) Then
                         oRecordSet.MoveFirst()
                         Dim server, passport, lickey As String
-                        server = oRecordSet.Fields.Item(0).Value
-                        passport = oRecordSet.Fields.Item(1).Value
-                        lickey = oRecordSet.Fields.Item(2).Value
+                        server = oRecordSet.Fields.Item(0).Value.ToString.Trim
+                        passport = oRecordSet.Fields.Item(1).Value.ToString.Trim
+                        lickey = oRecordSet.Fields.Item(2).Value.ToString.Trim
 
                         Dim licAddOn As New LicenseClient.LicClient
                         Dim flLicensed As Boolean
@@ -850,8 +876,11 @@ Module SubMain
                             '32 bit connstring
                             'connStr = "DRIVER={HDBODBC32};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server & ";DATABASE=" & oCompany.CompanyDB & ""
 
-                            '64 bit connstring
+                            '64 bit connstring - for normal installation
                             connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & ";DATABASE=" & oCompany.CompanyDB & ""
+
+                            '64 bit connstring - for CCC
+                            'connStr = "DRIVER={HDBODBC};UID=" & global_DBUsername & ";PWD=" & global_DBPassword & ";SERVERNODE=" & server & ";DATABASE=" & oCompany.CompanyDB & ""
 
                             _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
                             HANADbConnection = _DbProviderFactoryObject.CreateConnection()
@@ -1079,8 +1108,17 @@ Module SubMain
             Dim oRec As Recordset = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
             Dim sRptCode As String = GetReportCode(RptName)
             Dim sQry As String = ""
-            sQry &= " SELECT IFNULL(""INCLUDED"",'N') FROM ""@NCM_RPT_CONFIG"" WHERE ""RPTCODE"" = '" & sRptCode & "'"
-            oRec.DoQuery(sQry)
+
+            Try
+                sQry = " SELECT IFNULL(""INCLUDED"",'N') FROM ""@NCM_RPT_CONFIG"" WHERE ""RPTCODE"" = '" & sRptCode & "'"
+                oRec.DoQuery(sQry)
+            Catch ex As Exception
+                sQry = " SELECT IFNULL(""Included"",'N') FROM ""@NCM_RPT_CONFIG"" WHERE ""RptCode"" = '" & sRptCode & "'"
+                oRec.DoQuery(sQry)
+
+            End Try
+
+
             If oRec.RecordCount > 0 Then
                 oRec.MoveFirst()
                 Select Case oRec.Fields.Item(0).Value
@@ -1117,6 +1155,8 @@ Module SubMain
                 Return "PAYMENT_VOUCHER_RANGE"
             Case ReportName.RA                              '6
                 Return "REMITTANCE_ADVICE"
+            Case ReportName.RA_Range                             '6
+                Return "REMITTANCE_ADVICE_RANGE"
             Case ReportName.OMARSoa                         '7
                 Return "AR_SOA_OM"
             Case ReportName.SAR_FIFO_SUMMARY                '8
@@ -1195,6 +1235,16 @@ Module SubMain
                 Return "ARSOA_BY_PROJECT"
             Case ReportName.PV_Mass_Email                          '51
                 Return "PV_MASS_EMAIL"
+            Case ReportName.AR_Invoice
+                Return "AR_INVOICE_EMAIL"               '50
+            Case ReportName.ARAging_DetailsLC
+                Return "AR_AGEING_DETAILS_LC"
+            Case ReportName.ARAging_DetailsFC
+                Return "AR_AGEING_DETAILS_FC"
+            Case ReportName.ARAging_SummaryLC
+                Return "AR_AGEING_SUMMARY_LC"
+            Case ReportName.ARAging_SummaryFC
+                Return "AR_AGEING_SUMMARY_FC"
         End Select
         Return "NULL"
     End Function
@@ -1369,6 +1419,8 @@ Module SubMain
     Private Sub SBO_Application_ItemEvent(ByVal FormUID As String, ByRef pVal As SAPbouiCOM.ItemEvent, ByRef BubbleEvent As Boolean) Handles SBO_Application.ItemEvent
         Try
             Select Case FormUID
+                Case FRM_NCM_INV
+                    BubbleEvent = oNCM_INV.SBO_Application_ItemEvent(pVal)
                 Case FRM_CHG_LOG_AUDIT
                     BubbleEvent = oNCM_CHG_LOG_AUDIT.ItemEvent(pVal)
                 Case FRM_NCM_BREC
@@ -1476,6 +1528,11 @@ Module SubMain
                 End Select
             Else
                 Select Case pVal.MenuUID
+                    Case MNU_NCM_INV
+                        oNCM_INV.LoadForm()
+                        BubbleEvent = False
+                        Exit Select
+
                     Case MNU_CHG_LOG_AUDIT
                         oNCM_CHG_LOG_AUDIT.LoadForm()
                         BubbleEvent = False

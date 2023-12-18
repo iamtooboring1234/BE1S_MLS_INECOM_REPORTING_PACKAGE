@@ -1728,6 +1728,14 @@ Partial Public Class DS_PAYMENT
         
         Private columnCardName As Global.System.Data.DataColumn
         
+        Private columnBankCode As Global.System.Data.DataColumn
+        
+        Private columnBankName As Global.System.Data.DataColumn
+        
+        Private columnINTERNAL_K As Global.System.Data.DataColumn
+        
+        Private columnU_NAME As Global.System.Data.DataColumn
+        
         Private columnCashAcct As Global.System.Data.DataColumn
         
         Private columnCashSum As Global.System.Data.DataColumn
@@ -1737,6 +1745,10 @@ Partial Public Class DS_PAYMENT
         Private columnComments As Global.System.Data.DataColumn
         
         Private columnCounterRef As Global.System.Data.DataColumn
+        
+        Private columnNoDocSum As Global.System.Data.DataColumn
+        
+        Private columnNoDocSumFC As Global.System.Data.DataColumn
         
         Private columnDocCurr As Global.System.Data.DataColumn
         
@@ -1787,6 +1799,10 @@ Partial Public Class DS_PAYMENT
         Private columnJrnlMemo As Global.System.Data.DataColumn
         
         Private columnContactPerson As Global.System.Data.DataColumn
+        
+        Private columnPayToCode As Global.System.Data.DataColumn
+        
+        Private columnUserSign As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -1865,6 +1881,38 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BankCodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBankCode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BankNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBankName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property INTERNAL_KColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnINTERNAL_K
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_NAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property CashAcctColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCashAcct
@@ -1900,6 +1948,22 @@ Partial Public Class DS_PAYMENT
         Public ReadOnly Property CounterRefColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCounterRef
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NoDocSumColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNoDocSum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NoDocSumFCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNoDocSumFC
             End Get
         End Property
         
@@ -2104,6 +2168,22 @@ Partial Public Class DS_PAYMENT
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PayToCodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPayToCode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property UserSignColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUserSign
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2146,11 +2226,17 @@ Partial Public Class DS_PAYMENT
                     ByVal BcgSumFC As Decimal,  _
                     ByVal CardCode As String,  _
                     ByVal CardName As String,  _
+                    ByVal BankCode As String,  _
+                    ByVal BankName As String,  _
+                    ByVal INTERNAL_K As String,  _
+                    ByVal U_NAME As String,  _
                     ByVal CashAcct As String,  _
                     ByVal CashSum As Decimal,  _
                     ByVal CashSumFC As Decimal,  _
                     ByVal Comments As String,  _
                     ByVal CounterRef As String,  _
+                    ByVal NoDocSum As Decimal,  _
+                    ByVal NoDocSumFC As Decimal,  _
                     ByVal DocCurr As String,  _
                     ByVal DocDate As Date,  _
                     ByVal DocDueDate As Date,  _
@@ -2175,9 +2261,11 @@ Partial Public Class DS_PAYMENT
                     ByVal DiffCurr As String,  _
                     ByVal PrjCode As String,  _
                     ByVal JrnlMemo As String,  _
-                    ByVal ContactPerson As String) As OVPMRow
+                    ByVal ContactPerson As String,  _
+                    ByVal PayToCode As String,  _
+                    ByVal UserSign As String) As OVPMRow
             Dim rowOVPMRow As OVPMRow = CType(Me.NewRow,OVPMRow)
-            Dim columnValuesArray() As Object = New Object() {Address, BcgSum, BcgSumFC, CardCode, CardName, CashAcct, CashSum, CashSumFC, Comments, CounterRef, DocCurr, DocDate, DocDueDate, DocEntry, DocNum, DocRate, DocTotal, DocTotalFC, DocType, Ref1, Ref2, Series, SeriesStr, TaxDate, TransId, TrsfrAcct, TrsfrDate, TrsfrRef, TrsfrSum, TrsfrSumFC, LogInstanc, DiffCurr, PrjCode, JrnlMemo, ContactPerson}
+            Dim columnValuesArray() As Object = New Object() {Address, BcgSum, BcgSumFC, CardCode, CardName, BankCode, BankName, INTERNAL_K, U_NAME, CashAcct, CashSum, CashSumFC, Comments, CounterRef, NoDocSum, NoDocSumFC, DocCurr, DocDate, DocDueDate, DocEntry, DocNum, DocRate, DocTotal, DocTotalFC, DocType, Ref1, Ref2, Series, SeriesStr, TaxDate, TransId, TrsfrAcct, TrsfrDate, TrsfrRef, TrsfrSum, TrsfrSumFC, LogInstanc, DiffCurr, PrjCode, JrnlMemo, ContactPerson, PayToCode, UserSign}
             rowOVPMRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOVPMRow)
             Return rowOVPMRow
@@ -2205,11 +2293,17 @@ Partial Public Class DS_PAYMENT
             Me.columnBcgSumFC = MyBase.Columns("BcgSumFC")
             Me.columnCardCode = MyBase.Columns("CardCode")
             Me.columnCardName = MyBase.Columns("CardName")
+            Me.columnBankCode = MyBase.Columns("BankCode")
+            Me.columnBankName = MyBase.Columns("BankName")
+            Me.columnINTERNAL_K = MyBase.Columns("INTERNAL_K")
+            Me.columnU_NAME = MyBase.Columns("U_NAME")
             Me.columnCashAcct = MyBase.Columns("CashAcct")
             Me.columnCashSum = MyBase.Columns("CashSum")
             Me.columnCashSumFC = MyBase.Columns("CashSumFC")
             Me.columnComments = MyBase.Columns("Comments")
             Me.columnCounterRef = MyBase.Columns("CounterRef")
+            Me.columnNoDocSum = MyBase.Columns("NoDocSum")
+            Me.columnNoDocSumFC = MyBase.Columns("NoDocSumFC")
             Me.columnDocCurr = MyBase.Columns("DocCurr")
             Me.columnDocDate = MyBase.Columns("DocDate")
             Me.columnDocDueDate = MyBase.Columns("DocDueDate")
@@ -2235,6 +2329,8 @@ Partial Public Class DS_PAYMENT
             Me.columnPrjCode = MyBase.Columns("PrjCode")
             Me.columnJrnlMemo = MyBase.Columns("JrnlMemo")
             Me.columnContactPerson = MyBase.Columns("ContactPerson")
+            Me.columnPayToCode = MyBase.Columns("PayToCode")
+            Me.columnUserSign = MyBase.Columns("UserSign")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2250,6 +2346,14 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnCardCode)
             Me.columnCardName = New Global.System.Data.DataColumn("CardName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCardName)
+            Me.columnBankCode = New Global.System.Data.DataColumn("BankCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBankCode)
+            Me.columnBankName = New Global.System.Data.DataColumn("BankName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBankName)
+            Me.columnINTERNAL_K = New Global.System.Data.DataColumn("INTERNAL_K", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnINTERNAL_K)
+            Me.columnU_NAME = New Global.System.Data.DataColumn("U_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_NAME)
             Me.columnCashAcct = New Global.System.Data.DataColumn("CashAcct", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCashAcct)
             Me.columnCashSum = New Global.System.Data.DataColumn("CashSum", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
@@ -2260,6 +2364,10 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnComments)
             Me.columnCounterRef = New Global.System.Data.DataColumn("CounterRef", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCounterRef)
+            Me.columnNoDocSum = New Global.System.Data.DataColumn("NoDocSum", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNoDocSum)
+            Me.columnNoDocSumFC = New Global.System.Data.DataColumn("NoDocSumFC", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNoDocSumFC)
             Me.columnDocCurr = New Global.System.Data.DataColumn("DocCurr", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDocCurr)
             Me.columnDocDate = New Global.System.Data.DataColumn("DocDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
@@ -2310,6 +2418,10 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnJrnlMemo)
             Me.columnContactPerson = New Global.System.Data.DataColumn("ContactPerson", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnContactPerson)
+            Me.columnPayToCode = New Global.System.Data.DataColumn("PayToCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPayToCode)
+            Me.columnUserSign = New Global.System.Data.DataColumn("UserSign", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUserSign)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2465,6 +2577,14 @@ Partial Public Class DS_PAYMENT
         
         Private columnZipCode As Global.System.Data.DataColumn
         
+        Private columnStreetF As Global.System.Data.DataColumn
+        
+        Private columnBlockF As Global.System.Data.DataColumn
+        
+        Private columnZipCodeF As Global.System.Data.DataColumn
+        
+        Private columnBuildingF As Global.System.Data.DataColumn
+        
         Private columnLogInstanc As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2576,6 +2696,38 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property StreetFColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnStreetF
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BlockFColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBlockF
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ZipCodeFColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnZipCodeF
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BuildingFColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBuildingF
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property LogInstancColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnLogInstanc
@@ -2619,9 +2771,9 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddADM1Row(ByVal Block As String, ByVal City As String, ByVal Code As Integer, ByVal County As String, ByVal Country As String, ByVal IntrntAdrs As String, ByVal State As String, ByVal Street As String, ByVal ZipCode As String, ByVal LogInstanc As Integer) As ADM1Row
+        Public Overloads Function AddADM1Row(ByVal Block As String, ByVal City As String, ByVal Code As Integer, ByVal County As String, ByVal Country As String, ByVal IntrntAdrs As String, ByVal State As String, ByVal Street As String, ByVal ZipCode As String, ByVal StreetF As String, ByVal BlockF As String, ByVal ZipCodeF As String, ByVal BuildingF As String, ByVal LogInstanc As Integer) As ADM1Row
             Dim rowADM1Row As ADM1Row = CType(Me.NewRow,ADM1Row)
-            Dim columnValuesArray() As Object = New Object() {Block, City, Code, County, Country, IntrntAdrs, State, Street, ZipCode, LogInstanc}
+            Dim columnValuesArray() As Object = New Object() {Block, City, Code, County, Country, IntrntAdrs, State, Street, ZipCode, StreetF, BlockF, ZipCodeF, BuildingF, LogInstanc}
             rowADM1Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowADM1Row)
             Return rowADM1Row
@@ -2653,6 +2805,10 @@ Partial Public Class DS_PAYMENT
             Me.columnState = MyBase.Columns("State")
             Me.columnStreet = MyBase.Columns("Street")
             Me.columnZipCode = MyBase.Columns("ZipCode")
+            Me.columnStreetF = MyBase.Columns("StreetF")
+            Me.columnBlockF = MyBase.Columns("BlockF")
+            Me.columnZipCodeF = MyBase.Columns("ZipCodeF")
+            Me.columnBuildingF = MyBase.Columns("BuildingF")
             Me.columnLogInstanc = MyBase.Columns("LogInstanc")
         End Sub
         
@@ -2677,6 +2833,14 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnStreet)
             Me.columnZipCode = New Global.System.Data.DataColumn("ZipCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnZipCode)
+            Me.columnStreetF = New Global.System.Data.DataColumn("StreetF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnStreetF)
+            Me.columnBlockF = New Global.System.Data.DataColumn("BlockF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBlockF)
+            Me.columnZipCodeF = New Global.System.Data.DataColumn("ZipCodeF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnZipCodeF)
+            Me.columnBuildingF = New Global.System.Data.DataColumn("BuildingF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBuildingF)
             Me.columnLogInstanc = New Global.System.Data.DataColumn("LogInstanc", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLogInstanc)
         End Sub
@@ -2840,6 +3004,8 @@ Partial Public Class DS_PAYMENT
         
         Private columnRevOffice As Global.System.Data.DataColumn
         
+        Private columnDdctOffice As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -2972,6 +3138,14 @@ Partial Public Class DS_PAYMENT
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property DdctOfficeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDdctOffice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -3008,9 +3182,9 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOADMRow(ByVal Code As Integer, ByVal CompnyAddr As String, ByVal CompnyName As String, ByVal E_Mail As String, ByVal Fax As String, ByVal FaxF As String, ByVal FreeZoneNo As String, ByVal MainCurncy As String, ByVal Phone1 As String, ByVal Phone1F As String, ByVal Phone2 As String, ByVal RevOffice As String) As OADMRow
+        Public Overloads Function AddOADMRow(ByVal Code As Integer, ByVal CompnyAddr As String, ByVal CompnyName As String, ByVal E_Mail As String, ByVal Fax As String, ByVal FaxF As String, ByVal FreeZoneNo As String, ByVal MainCurncy As String, ByVal Phone1 As String, ByVal Phone1F As String, ByVal Phone2 As String, ByVal RevOffice As String, ByVal DdctOffice As String) As OADMRow
             Dim rowOADMRow As OADMRow = CType(Me.NewRow,OADMRow)
-            Dim columnValuesArray() As Object = New Object() {Code, CompnyAddr, CompnyName, E_Mail, Fax, FaxF, FreeZoneNo, MainCurncy, Phone1, Phone1F, Phone2, RevOffice}
+            Dim columnValuesArray() As Object = New Object() {Code, CompnyAddr, CompnyName, E_Mail, Fax, FaxF, FreeZoneNo, MainCurncy, Phone1, Phone1F, Phone2, RevOffice, DdctOffice}
             rowOADMRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOADMRow)
             Return rowOADMRow
@@ -3045,6 +3219,7 @@ Partial Public Class DS_PAYMENT
             Me.columnPhone1F = MyBase.Columns("Phone1F")
             Me.columnPhone2 = MyBase.Columns("Phone2")
             Me.columnRevOffice = MyBase.Columns("RevOffice")
+            Me.columnDdctOffice = MyBase.Columns("DdctOffice")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3074,6 +3249,8 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnPhone2)
             Me.columnRevOffice = New Global.System.Data.DataColumn("RevOffice", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRevOffice)
+            Me.columnDdctOffice = New Global.System.Data.DataColumn("DdctOffice", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDdctOffice)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -13322,6 +13499,14 @@ Partial Public Class DS_PAYMENT
         
         Private columnCardName As Global.System.Data.DataColumn
         
+        Private columnBankCode As Global.System.Data.DataColumn
+        
+        Private columnBankName As Global.System.Data.DataColumn
+        
+        Private columnINTERNAL_K As Global.System.Data.DataColumn
+        
+        Private columnU_NAME As Global.System.Data.DataColumn
+        
         Private columnCashAcct As Global.System.Data.DataColumn
         
         Private columnCashSum As Global.System.Data.DataColumn
@@ -13331,6 +13516,10 @@ Partial Public Class DS_PAYMENT
         Private columnComments As Global.System.Data.DataColumn
         
         Private columnCounterRef As Global.System.Data.DataColumn
+        
+        Private columnNoDocSum As Global.System.Data.DataColumn
+        
+        Private columnNoDocSumFC As Global.System.Data.DataColumn
         
         Private columnDocCurr As Global.System.Data.DataColumn
         
@@ -13381,6 +13570,10 @@ Partial Public Class DS_PAYMENT
         Private columnJrnlMemo As Global.System.Data.DataColumn
         
         Private columnContactPerson As Global.System.Data.DataColumn
+        
+        Private columnPayToCode As Global.System.Data.DataColumn
+        
+        Private columnUserSign As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -13459,6 +13652,38 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BankCodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBankCode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BankNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBankName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property INTERNAL_KColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnINTERNAL_K
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_NAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property CashAcctColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCashAcct
@@ -13494,6 +13719,22 @@ Partial Public Class DS_PAYMENT
         Public ReadOnly Property CounterRefColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCounterRef
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NoDocSumColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNoDocSum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NoDocSumFCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNoDocSumFC
             End Get
         End Property
         
@@ -13698,6 +13939,22 @@ Partial Public Class DS_PAYMENT
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PayToCodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPayToCode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property UserSignColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUserSign
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -13740,11 +13997,17 @@ Partial Public Class DS_PAYMENT
                     ByVal BcgSumFC As Decimal,  _
                     ByVal CardCode As String,  _
                     ByVal CardName As String,  _
+                    ByVal BankCode As String,  _
+                    ByVal BankName As String,  _
+                    ByVal INTERNAL_K As String,  _
+                    ByVal U_NAME As String,  _
                     ByVal CashAcct As String,  _
                     ByVal CashSum As Decimal,  _
                     ByVal CashSumFC As Decimal,  _
                     ByVal Comments As String,  _
                     ByVal CounterRef As String,  _
+                    ByVal NoDocSum As Decimal,  _
+                    ByVal NoDocSumFC As Decimal,  _
                     ByVal DocCurr As String,  _
                     ByVal DocDate As Date,  _
                     ByVal DocDueDate As Date,  _
@@ -13769,9 +14032,11 @@ Partial Public Class DS_PAYMENT
                     ByVal DiffCurr As String,  _
                     ByVal PrjCode As String,  _
                     ByVal JrnlMemo As String,  _
-                    ByVal ContactPerson As String) As OPDFRow
+                    ByVal ContactPerson As String,  _
+                    ByVal PayToCode As String,  _
+                    ByVal UserSign As String) As OPDFRow
             Dim rowOPDFRow As OPDFRow = CType(Me.NewRow,OPDFRow)
-            Dim columnValuesArray() As Object = New Object() {Address, BcgSum, BcgSumFC, CardCode, CardName, CashAcct, CashSum, CashSumFC, Comments, CounterRef, DocCurr, DocDate, DocDueDate, DocEntry, DocNum, DocRate, DocTotal, DocTotalFC, DocType, Ref1, Ref2, Series, SeriesStr, TaxDate, TransId, TrsfrAcct, TrsfrDate, TrsfrRef, TrsfrSum, TrsfrSumFC, LogInstanc, DiffCurr, PrjCode, JrnlMemo, ContactPerson}
+            Dim columnValuesArray() As Object = New Object() {Address, BcgSum, BcgSumFC, CardCode, CardName, BankCode, BankName, INTERNAL_K, U_NAME, CashAcct, CashSum, CashSumFC, Comments, CounterRef, NoDocSum, NoDocSumFC, DocCurr, DocDate, DocDueDate, DocEntry, DocNum, DocRate, DocTotal, DocTotalFC, DocType, Ref1, Ref2, Series, SeriesStr, TaxDate, TransId, TrsfrAcct, TrsfrDate, TrsfrRef, TrsfrSum, TrsfrSumFC, LogInstanc, DiffCurr, PrjCode, JrnlMemo, ContactPerson, PayToCode, UserSign}
             rowOPDFRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOPDFRow)
             Return rowOPDFRow
@@ -13799,11 +14064,17 @@ Partial Public Class DS_PAYMENT
             Me.columnBcgSumFC = MyBase.Columns("BcgSumFC")
             Me.columnCardCode = MyBase.Columns("CardCode")
             Me.columnCardName = MyBase.Columns("CardName")
+            Me.columnBankCode = MyBase.Columns("BankCode")
+            Me.columnBankName = MyBase.Columns("BankName")
+            Me.columnINTERNAL_K = MyBase.Columns("INTERNAL_K")
+            Me.columnU_NAME = MyBase.Columns("U_NAME")
             Me.columnCashAcct = MyBase.Columns("CashAcct")
             Me.columnCashSum = MyBase.Columns("CashSum")
             Me.columnCashSumFC = MyBase.Columns("CashSumFC")
             Me.columnComments = MyBase.Columns("Comments")
             Me.columnCounterRef = MyBase.Columns("CounterRef")
+            Me.columnNoDocSum = MyBase.Columns("NoDocSum")
+            Me.columnNoDocSumFC = MyBase.Columns("NoDocSumFC")
             Me.columnDocCurr = MyBase.Columns("DocCurr")
             Me.columnDocDate = MyBase.Columns("DocDate")
             Me.columnDocDueDate = MyBase.Columns("DocDueDate")
@@ -13829,6 +14100,8 @@ Partial Public Class DS_PAYMENT
             Me.columnPrjCode = MyBase.Columns("PrjCode")
             Me.columnJrnlMemo = MyBase.Columns("JrnlMemo")
             Me.columnContactPerson = MyBase.Columns("ContactPerson")
+            Me.columnPayToCode = MyBase.Columns("PayToCode")
+            Me.columnUserSign = MyBase.Columns("UserSign")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -13844,6 +14117,14 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnCardCode)
             Me.columnCardName = New Global.System.Data.DataColumn("CardName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCardName)
+            Me.columnBankCode = New Global.System.Data.DataColumn("BankCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBankCode)
+            Me.columnBankName = New Global.System.Data.DataColumn("BankName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBankName)
+            Me.columnINTERNAL_K = New Global.System.Data.DataColumn("INTERNAL_K", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnINTERNAL_K)
+            Me.columnU_NAME = New Global.System.Data.DataColumn("U_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_NAME)
             Me.columnCashAcct = New Global.System.Data.DataColumn("CashAcct", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCashAcct)
             Me.columnCashSum = New Global.System.Data.DataColumn("CashSum", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
@@ -13854,6 +14135,10 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnComments)
             Me.columnCounterRef = New Global.System.Data.DataColumn("CounterRef", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCounterRef)
+            Me.columnNoDocSum = New Global.System.Data.DataColumn("NoDocSum", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNoDocSum)
+            Me.columnNoDocSumFC = New Global.System.Data.DataColumn("NoDocSumFC", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNoDocSumFC)
             Me.columnDocCurr = New Global.System.Data.DataColumn("DocCurr", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDocCurr)
             Me.columnDocDate = New Global.System.Data.DataColumn("DocDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
@@ -13904,6 +14189,10 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnJrnlMemo)
             Me.columnContactPerson = New Global.System.Data.DataColumn("ContactPerson", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnContactPerson)
+            Me.columnPayToCode = New Global.System.Data.DataColumn("PayToCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPayToCode)
+            Me.columnUserSign = New Global.System.Data.DataColumn("UserSign", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUserSign)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -15592,6 +15881,10 @@ Partial Public Class DS_PAYMENT
         
         Private columnPaymentDocNum As Global.System.Data.DataColumn
         
+        Private columnNoDocSum As Global.System.Data.DataColumn
+        
+        Private columnNoDocSumFC As Global.System.Data.DataColumn
+        
         Private columnInvType As Global.System.Data.DataColumn
         
         Private columnInvoiceId As Global.System.Data.DataColumn
@@ -15708,6 +16001,22 @@ Partial Public Class DS_PAYMENT
         Public ReadOnly Property PaymentDocNumColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPaymentDocNum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NoDocSumColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNoDocSum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NoDocSumFCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNoDocSumFC
             End Get
         End Property
         
@@ -15992,6 +16301,8 @@ Partial Public Class DS_PAYMENT
                     ByVal PaymentDocType As String,  _
                     ByVal PaymentDocEntry As Long,  _
                     ByVal PaymentDocNum As Long,  _
+                    ByVal NoDocSum As Decimal,  _
+                    ByVal NoDocSumFC As Decimal,  _
                     ByVal InvType As String,  _
                     ByVal InvoiceId As Long,  _
                     ByVal SumApplied As Decimal,  _
@@ -16023,7 +16334,7 @@ Partial Public Class DS_PAYMENT
                     ByVal VatSumFC As Decimal,  _
                     ByVal SeriesName As String) As NCM_VIEW_DRAFTPV_INVOICERow
             Dim rowNCM_VIEW_DRAFTPV_INVOICERow As NCM_VIEW_DRAFTPV_INVOICERow = CType(Me.NewRow,NCM_VIEW_DRAFTPV_INVOICERow)
-            Dim columnValuesArray() As Object = New Object() {PaymentDocType, PaymentDocEntry, PaymentDocNum, InvType, InvoiceId, SumApplied, AppliedFC, PaymentDocRate, PaymentObjType, vatApplied, vatAppldFC, VisOrder, ItemCode, Dscription, Quantity, Price, LineTotal, TotalFrgn, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, SeriesName}
+            Dim columnValuesArray() As Object = New Object() {PaymentDocType, PaymentDocEntry, PaymentDocNum, NoDocSum, NoDocSumFC, InvType, InvoiceId, SumApplied, AppliedFC, PaymentDocRate, PaymentObjType, vatApplied, vatAppldFC, VisOrder, ItemCode, Dscription, Quantity, Price, LineTotal, TotalFrgn, DocEntry, DocNum, DocDate, DocDueDate, DocRate, DocCur, DocTotal, DocTotalFC, DocType, NumAtCard, ObjType, TaxDate, VatSum, VatSumFC, SeriesName}
             rowNCM_VIEW_DRAFTPV_INVOICERow.ItemArray = columnValuesArray
             Me.Rows.Add(rowNCM_VIEW_DRAFTPV_INVOICERow)
             Return rowNCM_VIEW_DRAFTPV_INVOICERow
@@ -16049,6 +16360,8 @@ Partial Public Class DS_PAYMENT
             Me.columnPaymentDocType = MyBase.Columns("PaymentDocType")
             Me.columnPaymentDocEntry = MyBase.Columns("PaymentDocEntry")
             Me.columnPaymentDocNum = MyBase.Columns("PaymentDocNum")
+            Me.columnNoDocSum = MyBase.Columns("NoDocSum")
+            Me.columnNoDocSumFC = MyBase.Columns("NoDocSumFC")
             Me.columnInvType = MyBase.Columns("InvType")
             Me.columnInvoiceId = MyBase.Columns("InvoiceId")
             Me.columnSumApplied = MyBase.Columns("SumApplied")
@@ -16090,6 +16403,10 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnPaymentDocEntry)
             Me.columnPaymentDocNum = New Global.System.Data.DataColumn("PaymentDocNum", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPaymentDocNum)
+            Me.columnNoDocSum = New Global.System.Data.DataColumn("NoDocSum", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNoDocSum)
+            Me.columnNoDocSumFC = New Global.System.Data.DataColumn("NoDocSumFC", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNoDocSumFC)
             Me.columnInvType = New Global.System.Data.DataColumn("InvType", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnInvType)
             Me.columnInvoiceId = New Global.System.Data.DataColumn("InvoiceId", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
@@ -16297,6 +16614,14 @@ Partial Public Class DS_PAYMENT
         
         Private columnCardName As Global.System.Data.DataColumn
         
+        Private columnBankCode As Global.System.Data.DataColumn
+        
+        Private columnBankName As Global.System.Data.DataColumn
+        
+        Private columnINTERNAL_K As Global.System.Data.DataColumn
+        
+        Private columnU_NAME As Global.System.Data.DataColumn
+        
         Private columnCashAcct As Global.System.Data.DataColumn
         
         Private columnCashSum As Global.System.Data.DataColumn
@@ -16435,6 +16760,38 @@ Partial Public Class DS_PAYMENT
         Public ReadOnly Property CardNameColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCardName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BankCodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBankCode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BankNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBankName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property INTERNAL_KColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnINTERNAL_K
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_NAME
             End Get
         End Property
         
@@ -16745,6 +17102,10 @@ Partial Public Class DS_PAYMENT
                     ByVal BcgSumFC As Decimal,  _
                     ByVal CardCode As String,  _
                     ByVal CardName As String,  _
+                    ByVal BankCode As String,  _
+                    ByVal BankName As String,  _
+                    ByVal INTERNAL_K As String,  _
+                    ByVal U_NAME As String,  _
                     ByVal CashAcct As String,  _
                     ByVal CashSum As Decimal,  _
                     ByVal CashSumFC As Decimal,  _
@@ -16779,7 +17140,7 @@ Partial Public Class DS_PAYMENT
                     ByVal JrnlMemo As String,  _
                     ByVal ContactPerson As String) As ORCTRow
             Dim rowORCTRow As ORCTRow = CType(Me.NewRow,ORCTRow)
-            Dim columnValuesArray() As Object = New Object() {Address, BcgSum, BcgSumFC, CardCode, CardName, CashAcct, CashSum, CashSumFC, Comments, CounterRef, DocCurr, DocDate, DocDueDate, DocEntry, DocNum, DocRate, DocTotal, DocTotalFC, DocType, Ref1, Ref2, Series, SeriesStr, TaxDate, TransId, TrsfrAcct, TrsfrDate, TrsfrRef, TrsfrSum, TrsfrSumFC, LogInstanc, UserSign, PayToCode, NoDocSum, NoDocSumFC, PrjCode, JrnlMemo, ContactPerson}
+            Dim columnValuesArray() As Object = New Object() {Address, BcgSum, BcgSumFC, CardCode, CardName, BankCode, BankName, INTERNAL_K, U_NAME, CashAcct, CashSum, CashSumFC, Comments, CounterRef, DocCurr, DocDate, DocDueDate, DocEntry, DocNum, DocRate, DocTotal, DocTotalFC, DocType, Ref1, Ref2, Series, SeriesStr, TaxDate, TransId, TrsfrAcct, TrsfrDate, TrsfrRef, TrsfrSum, TrsfrSumFC, LogInstanc, UserSign, PayToCode, NoDocSum, NoDocSumFC, PrjCode, JrnlMemo, ContactPerson}
             rowORCTRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowORCTRow)
             Return rowORCTRow
@@ -16807,6 +17168,10 @@ Partial Public Class DS_PAYMENT
             Me.columnBcgSumFC = MyBase.Columns("BcgSumFC")
             Me.columnCardCode = MyBase.Columns("CardCode")
             Me.columnCardName = MyBase.Columns("CardName")
+            Me.columnBankCode = MyBase.Columns("BankCode")
+            Me.columnBankName = MyBase.Columns("BankName")
+            Me.columnINTERNAL_K = MyBase.Columns("INTERNAL_K")
+            Me.columnU_NAME = MyBase.Columns("U_NAME")
             Me.columnCashAcct = MyBase.Columns("CashAcct")
             Me.columnCashSum = MyBase.Columns("CashSum")
             Me.columnCashSumFC = MyBase.Columns("CashSumFC")
@@ -16855,6 +17220,14 @@ Partial Public Class DS_PAYMENT
             MyBase.Columns.Add(Me.columnCardCode)
             Me.columnCardName = New Global.System.Data.DataColumn("CardName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCardName)
+            Me.columnBankCode = New Global.System.Data.DataColumn("BankCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBankCode)
+            Me.columnBankName = New Global.System.Data.DataColumn("BankName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBankName)
+            Me.columnINTERNAL_K = New Global.System.Data.DataColumn("INTERNAL_K", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnINTERNAL_K)
+            Me.columnU_NAME = New Global.System.Data.DataColumn("U_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_NAME)
             Me.columnCashAcct = New Global.System.Data.DataColumn("CashAcct", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCashAcct)
             Me.columnCashSum = New Global.System.Data.DataColumn("CashSum", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
@@ -18952,6 +19325,66 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BankCode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOVPM.BankCodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BankCode' in table 'OVPM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOVPM.BankCodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BankName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOVPM.BankNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BankName' in table 'OVPM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOVPM.BankNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property INTERNAL_K() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOVPM.INTERNAL_KColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'INTERNAL_K' in table 'OVPM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOVPM.INTERNAL_KColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOVPM.U_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_NAME' in table 'OVPM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOVPM.U_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property CashAcct() As String
             Get
                 Try 
@@ -19022,6 +19455,36 @@ Partial Public Class DS_PAYMENT
             End Get
             Set
                 Me(Me.tableOVPM.CounterRefColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NoDocSum() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableOVPM.NoDocSumColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NoDocSum' in table 'OVPM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOVPM.NoDocSumColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NoDocSumFC() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableOVPM.NoDocSumFCColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NoDocSumFC' in table 'OVPM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOVPM.NoDocSumFCColumn) = value
             End Set
         End Property
         
@@ -19402,6 +19865,36 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PayToCode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOVPM.PayToCodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PayToCode' in table 'OVPM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOVPM.PayToCodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property UserSign() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOVPM.UserSignColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'UserSign' in table 'OVPM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOVPM.UserSignColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsAddressNull() As Boolean
             Return Me.IsNull(Me.tableOVPM.AddressColumn)
         End Function
@@ -19462,6 +19955,54 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBankCodeNull() As Boolean
+            Return Me.IsNull(Me.tableOVPM.BankCodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBankCodeNull()
+            Me(Me.tableOVPM.BankCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBankNameNull() As Boolean
+            Return Me.IsNull(Me.tableOVPM.BankNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBankNameNull()
+            Me(Me.tableOVPM.BankNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsINTERNAL_KNull() As Boolean
+            Return Me.IsNull(Me.tableOVPM.INTERNAL_KColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetINTERNAL_KNull()
+            Me(Me.tableOVPM.INTERNAL_KColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableOVPM.U_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_NAMENull()
+            Me(Me.tableOVPM.U_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCashAcctNull() As Boolean
             Return Me.IsNull(Me.tableOVPM.CashAcctColumn)
         End Function
@@ -19518,6 +20059,30 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCounterRefNull()
             Me(Me.tableOVPM.CounterRefColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNoDocSumNull() As Boolean
+            Return Me.IsNull(Me.tableOVPM.NoDocSumColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNoDocSumNull()
+            Me(Me.tableOVPM.NoDocSumColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNoDocSumFCNull() As Boolean
+            Return Me.IsNull(Me.tableOVPM.NoDocSumFCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNoDocSumFCNull()
+            Me(Me.tableOVPM.NoDocSumFCColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -19819,6 +20384,30 @@ Partial Public Class DS_PAYMENT
         Public Sub SetContactPersonNull()
             Me(Me.tableOVPM.ContactPersonColumn) = Global.System.Convert.DBNull
         End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPayToCodeNull() As Boolean
+            Return Me.IsNull(Me.tableOVPM.PayToCodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPayToCodeNull()
+            Me(Me.tableOVPM.PayToCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUserSignNull() As Boolean
+            Return Me.IsNull(Me.tableOVPM.UserSignColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUserSignNull()
+            Me(Me.tableOVPM.UserSignColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
@@ -19973,6 +20562,66 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property StreetF() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableADM1.StreetFColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'StreetF' in table 'ADM1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableADM1.StreetFColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BlockF() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableADM1.BlockFColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BlockF' in table 'ADM1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableADM1.BlockFColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ZipCodeF() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableADM1.ZipCodeFColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ZipCodeF' in table 'ADM1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableADM1.ZipCodeFColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BuildingF() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableADM1.BuildingFColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BuildingF' in table 'ADM1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableADM1.BuildingFColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property LogInstanc() As Integer
             Get
                 Try 
@@ -20092,6 +20741,54 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetZipCodeNull()
             Me(Me.tableADM1.ZipCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsStreetFNull() As Boolean
+            Return Me.IsNull(Me.tableADM1.StreetFColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetStreetFNull()
+            Me(Me.tableADM1.StreetFColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBlockFNull() As Boolean
+            Return Me.IsNull(Me.tableADM1.BlockFColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBlockFNull()
+            Me(Me.tableADM1.BlockFColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsZipCodeFNull() As Boolean
+            Return Me.IsNull(Me.tableADM1.ZipCodeFColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetZipCodeFNull()
+            Me(Me.tableADM1.ZipCodeFColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBuildingFNull() As Boolean
+            Return Me.IsNull(Me.tableADM1.BuildingFColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBuildingFNull()
+            Me(Me.tableADM1.BuildingFColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -20304,6 +21001,21 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property DdctOffice() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOADM.DdctOfficeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DdctOffice' in table 'OADM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOADM.DdctOfficeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCodeNull() As Boolean
             Return Me.IsNull(Me.tableOADM.CodeColumn)
         End Function
@@ -20444,6 +21156,18 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetRevOfficeNull()
             Me(Me.tableOADM.RevOfficeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDdctOfficeNull() As Boolean
+            Return Me.IsNull(Me.tableOADM.DdctOfficeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDdctOfficeNull()
+            Me(Me.tableOADM.DdctOfficeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -28288,6 +29012,66 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BankCode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOPDF.BankCodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BankCode' in table 'OPDF' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOPDF.BankCodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BankName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOPDF.BankNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BankName' in table 'OPDF' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOPDF.BankNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property INTERNAL_K() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOPDF.INTERNAL_KColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'INTERNAL_K' in table 'OPDF' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOPDF.INTERNAL_KColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOPDF.U_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_NAME' in table 'OPDF' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOPDF.U_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property CashAcct() As String
             Get
                 Try 
@@ -28358,6 +29142,36 @@ Partial Public Class DS_PAYMENT
             End Get
             Set
                 Me(Me.tableOPDF.CounterRefColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NoDocSum() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableOPDF.NoDocSumColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NoDocSum' in table 'OPDF' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOPDF.NoDocSumColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NoDocSumFC() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableOPDF.NoDocSumFCColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NoDocSumFC' in table 'OPDF' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOPDF.NoDocSumFCColumn) = value
             End Set
         End Property
         
@@ -28738,6 +29552,36 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PayToCode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOPDF.PayToCodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PayToCode' in table 'OPDF' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOPDF.PayToCodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property UserSign() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOPDF.UserSignColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'UserSign' in table 'OPDF' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOPDF.UserSignColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsAddressNull() As Boolean
             Return Me.IsNull(Me.tableOPDF.AddressColumn)
         End Function
@@ -28798,6 +29642,54 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBankCodeNull() As Boolean
+            Return Me.IsNull(Me.tableOPDF.BankCodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBankCodeNull()
+            Me(Me.tableOPDF.BankCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBankNameNull() As Boolean
+            Return Me.IsNull(Me.tableOPDF.BankNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBankNameNull()
+            Me(Me.tableOPDF.BankNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsINTERNAL_KNull() As Boolean
+            Return Me.IsNull(Me.tableOPDF.INTERNAL_KColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetINTERNAL_KNull()
+            Me(Me.tableOPDF.INTERNAL_KColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableOPDF.U_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_NAMENull()
+            Me(Me.tableOPDF.U_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCashAcctNull() As Boolean
             Return Me.IsNull(Me.tableOPDF.CashAcctColumn)
         End Function
@@ -28854,6 +29746,30 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCounterRefNull()
             Me(Me.tableOPDF.CounterRefColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNoDocSumNull() As Boolean
+            Return Me.IsNull(Me.tableOPDF.NoDocSumColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNoDocSumNull()
+            Me(Me.tableOPDF.NoDocSumColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNoDocSumFCNull() As Boolean
+            Return Me.IsNull(Me.tableOPDF.NoDocSumFCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNoDocSumFCNull()
+            Me(Me.tableOPDF.NoDocSumFCColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -29154,6 +30070,30 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetContactPersonNull()
             Me(Me.tableOPDF.ContactPersonColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPayToCodeNull() As Boolean
+            Return Me.IsNull(Me.tableOPDF.PayToCodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPayToCodeNull()
+            Me(Me.tableOPDF.PayToCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUserSignNull() As Boolean
+            Return Me.IsNull(Me.tableOPDF.UserSignColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUserSignNull()
+            Me(Me.tableOPDF.UserSignColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -30501,6 +31441,36 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NoDocSum() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableNCM_VIEW_DRAFTPV_INVOICE.NoDocSumColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NoDocSum' in table 'NCM_VIEW_DRAFTPV_INVOICE' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNCM_VIEW_DRAFTPV_INVOICE.NoDocSumColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NoDocSumFC() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableNCM_VIEW_DRAFTPV_INVOICE.NoDocSumFCColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NoDocSumFC' in table 'NCM_VIEW_DRAFTPV_INVOICE' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNCM_VIEW_DRAFTPV_INVOICE.NoDocSumFCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property InvType() As String
             Get
                 Try 
@@ -30989,6 +31959,30 @@ Partial Public Class DS_PAYMENT
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNoDocSumNull() As Boolean
+            Return Me.IsNull(Me.tableNCM_VIEW_DRAFTPV_INVOICE.NoDocSumColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNoDocSumNull()
+            Me(Me.tableNCM_VIEW_DRAFTPV_INVOICE.NoDocSumColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNoDocSumFCNull() As Boolean
+            Return Me.IsNull(Me.tableNCM_VIEW_DRAFTPV_INVOICE.NoDocSumFCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNoDocSumFCNull()
+            Me(Me.tableNCM_VIEW_DRAFTPV_INVOICE.NoDocSumFCColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsInvTypeNull() As Boolean
             Return Me.IsNull(Me.tableNCM_VIEW_DRAFTPV_INVOICE.InvTypeColumn)
         End Function
@@ -31435,6 +32429,66 @@ Partial Public Class DS_PAYMENT
             End Get
             Set
                 Me(Me.tableORCT.CardNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BankCode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableORCT.BankCodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BankCode' in table 'ORCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableORCT.BankCodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BankName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableORCT.BankNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BankName' in table 'ORCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableORCT.BankNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property INTERNAL_K() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableORCT.INTERNAL_KColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'INTERNAL_K' in table 'ORCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableORCT.INTERNAL_KColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableORCT.U_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_NAME' in table 'ORCT' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableORCT.U_NAMEColumn) = value
             End Set
         End Property
         
@@ -31991,6 +33045,54 @@ Partial Public Class DS_PAYMENT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCardNameNull()
             Me(Me.tableORCT.CardNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBankCodeNull() As Boolean
+            Return Me.IsNull(Me.tableORCT.BankCodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBankCodeNull()
+            Me(Me.tableORCT.BankCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBankNameNull() As Boolean
+            Return Me.IsNull(Me.tableORCT.BankNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBankNameNull()
+            Me(Me.tableORCT.BankNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsINTERNAL_KNull() As Boolean
+            Return Me.IsNull(Me.tableORCT.INTERNAL_KColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetINTERNAL_KNull()
+            Me(Me.tableORCT.INTERNAL_KColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableORCT.U_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_NAMENull()
+            Me(Me.tableORCT.U_NAMEColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

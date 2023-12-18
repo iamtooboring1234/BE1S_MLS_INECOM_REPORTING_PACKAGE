@@ -338,7 +338,12 @@ Public Class OutgoingPayment
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtOJDT)
             '--------------------------------------------------------
-            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""OVPM"" WHERE ""DocNum"" = '" & g_sDocNum & "' AND ""Series"" = '" & g_sSeries & "' AND ""DocEntry"" = '" & g_sDocEntry & "' "
+            sQuery = "  SELECT T1.*, T2.""CardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
+            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "
+            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 ON T1.""UserSign"" = T4.""INTERNAL_K"" "
+            sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""Series"" = '" & g_sSeries & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' "
             dtOVPM = dsPAYMENT.Tables("OVPM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -410,8 +415,9 @@ Public Class OutgoingPayment
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtNNM1)
 
+
             '--------------------------------------------------------
-            sQuery = "SELECT  ""Block"", ""City"", ""County"",""Country"",""Code"",""State"",""ZipCode"",""Street"",""IntrntAdrs"",""LogInstanc"" FROM """ & oCompany.CompanyDB & """.""ADM1""  "
+            sQuery = "SELECT  ""Block"", ""City"", ""County"",""Country"",""Code"",""State"",""ZipCode"",""Street"",""IntrntAdrs"",""LogInstanc"", ""StreetF"", ""BlockF"", ""ZipCodeF"", ""BuildingF"" FROM """ & oCompany.CompanyDB & """.""ADM1""  "
             dtADM1 = dsPAYMENT.Tables("ADM1")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -420,7 +426,7 @@ Public Class OutgoingPayment
             HANAda.Fill(dtADM1)
 
             '--------------------------------------------------------
-            sQuery = "SELECT ""Code"",""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""MainCurncy"",""RevOffice"",""Phone1"",""Phone2"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
+            sQuery = "SELECT ""FaxF"",""Phone1F"",""Code"",""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""MainCurncy"",""RevOffice"",""Phone1"",""Phone2"",""DdctOffice"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
             dtOADM = dsPAYMENT.Tables("OADM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery

@@ -21,6 +21,7 @@ Public Class FRM_PaymentVoucher_Range
     Private g_sDocNum As String = ""
     Private g_sDocEntry As String = ""
     Private g_sSeries As String = ""
+    Private g_sDocType As String = ""
     Private AsAtDate As DateTime
 
     Private g_StructureFilename As String = ""
@@ -69,8 +70,8 @@ Public Class FRM_PaymentVoucher_Range
                 oForm.EnableMenu(MenuID.Copy, True)
                 oForm.EnableMenu(MenuID.Cut, True)
 
-                oForm.Items.Item("20").Visible = False
-                oForm.Items.Item("cbLayout").Visible = False
+                oForm.Items.Item("20").Visible = True
+                oForm.Items.Item("cbLayout").Visible = True
 
                 InitializeItem()
 
@@ -244,6 +245,7 @@ Public Class FRM_PaymentVoucher_Range
             .Add("tbEntTo", SAPbouiCOM.BoDataType.dt_LONG_NUMBER, 10)
             .Add("cbWizard", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 100)
             .Add("ckWizard", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
+            .Add("cbLayout", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 2)
 
             .Add(GetItemUID(PaymentVoucherRangeItems.TXT_StartingBPCode), SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 30)
             .Add(GetItemUID(PaymentVoucherRangeItems.TXT_EndingBPCode), SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 30)
@@ -333,6 +335,13 @@ Public Class FRM_PaymentVoucher_Range
         oCombo.ValidValues.Add(GetDocType(PaymentVoucherRangeDocTypes.Customer), "Customer")
         oCombo.ValidValues.Add(GetDocType(PaymentVoucherRangeDocTypes.Supplier), "Supplier")
         oCombo.Select(0, SAPbouiCOM.BoSearchKey.psk_Index)
+
+        oCombo = oForm.Items.Item("cbLayout").Specific
+        oCombo.DataBind.SetBound(True, "", "cbLayout")
+        oCombo.ValidValues.Add("PV", "Payment Voucher")
+        oCombo.ValidValues.Add("RA", "Remittance Advice")
+        oCombo.Select(0, SAPbouiCOM.BoSearchKey.psk_Index)
+        oForm.DataSources.UserDataSources.Item("cbLayout").ValueEx = "PV"
 
         oCheck = oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.CHK_IncludeCancel)).Specific
         oCheck.DataBind.SetBound(True, String.Empty, GetItemUID(PaymentVoucherRangeItems.CHK_IncludeCancel))
@@ -425,107 +434,46 @@ Public Class FRM_PaymentVoucher_Range
 #End Region
 
 #Region "Print Report"
-    Private Function IsSharedFileExist() As Boolean
-        Try
-            Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-            Dim sQuery As String = ""
 
+    Private Function IsSharedFileExist(ByVal sAction As String) As Boolean
+        Try
+            Dim sLayoutType As String = oForm.DataSources.UserDataSources.Item("cbLayout").ValueEx
             g_sReportFilename = ""
             g_StructureFilename = ""
 
-            sQuery = " SELECT IFNULL(""STRUCTUREPATH"",'') FROM ""@NCM_RPT_STRUCTURE"" "
-            sQuery &= " WHERE ""RPTCODE"" ='" & GetReportCode(ReportName.PV_Range) & "'"
+            Select Case sLayoutType
+                Case "PV"
+                    Select Case sAction
+                        Case "Preview"
+                            g_sReportFilename = GetSharedFilePath(ReportName.PV_Range)
+                        Case "Email"
+                            g_sReportFilename = GetSharedFilePath(ReportName.PV)
+                    End Select
 
-            g_sReportFilename = GetSharedFilePath(ReportName.PV_Range)
+                Case "RA"
+                    Select Case sAction
+                        Case "Preview"
+                            g_sReportFilename = GetSharedFilePath(ReportName.RA_Range)
+                        Case "Email"
+                            g_sReportFilename = GetSharedFilePath(ReportName.RA)
+                    End Select
+
+            End Select
             If g_sReportFilename <> "" Then
                 If IsSharedFilePathExists(g_sReportFilename) Then
-                    'Return True
+                    Return True
                 End If
             End If
 
-
-            Dim sCheck As String = ""
-            Dim oCheck As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-
-            sCheck = "  SELECT ""OBJECT_NAME"" FROM SYS.OBJECTS  "
-            sCheck &= " WHERE ""SCHEMA_NAME"" = '" & oCompany.CompanyDB & "' "
-            sCheck &= " AND ""OBJECT_TYPE"" = 'TABLE' "
-            sCheck &= " AND ""OBJECT_NAME"" ='@NCM_RPT_STRUCTURE' "
-            oCheck.DoQuery(sCheck)
-            If oCheck.RecordCount > 0 Then
-                oCheck = Nothing
-
-                oRec.DoQuery(sQuery)
-                If oRec.RecordCount > 0 Then
-                    oRec.MoveFirst()
-                    g_StructureFilename = oRec.Fields.Item(0).Value.ToString
-                    If File.Exists(g_StructureFilename) = False Then
-                        g_StructureFilename = ""
-                    End If
-                End If
-            Else
-                oCheck = Nothing
-            End If
-
-            Return True
+            Return False
         Catch ex As Exception
             g_sReportFilename = " "
-            SBO_Application.StatusBar.SetText("[RPV].[GetPath] :" & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            SBO_Application.StatusBar.SetText("[RPV.GetPath] :" & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
             Return False
         End Try
     End Function
-
-    Private Function IsSharedFileExistEmail() As Boolean
-        Try
-            Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-            Dim sQuery As String = ""
-
-            g_sReportFilename_Email = ""
-            g_StructureFilename = ""
-
-            sQuery = " SELECT IFNULL(""STRUCTUREPATH"",'') FROM ""@NCM_RPT_STRUCTURE"" "
-            sQuery &= " WHERE ""RPTCODE"" ='" & GetReportCode(ReportName.PV) & "'"
-
-            g_sReportFilename_Email = GetSharedFilePath(ReportName.PV)
-            If g_sReportFilename_Email <> "" Then
-                If IsSharedFilePathExists(g_sReportFilename_Email) Then
-                    'Return True
-                End If
-            End If
-
-
-            Dim sCheck As String = ""
-            Dim oCheck As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-
-            sCheck = "  SELECT ""OBJECT_NAME"" FROM SYS.OBJECTS  "
-            sCheck &= " WHERE ""SCHEMA_NAME"" = '" & oCompany.CompanyDB & "' "
-            sCheck &= " AND ""OBJECT_TYPE"" = 'TABLE' "
-            sCheck &= " AND ""OBJECT_NAME"" ='@NCM_RPT_STRUCTURE' "
-            oCheck.DoQuery(sCheck)
-            If oCheck.RecordCount > 0 Then
-                oCheck = Nothing
-
-                oRec.DoQuery(sQuery)
-                If oRec.RecordCount > 0 Then
-                    oRec.MoveFirst()
-                    g_StructureFilename = oRec.Fields.Item(0).Value.ToString
-                    If File.Exists(g_StructureFilename) = False Then
-                        g_StructureFilename = ""
-                    End If
-                End If
-            Else
-                oCheck = Nothing
-            End If
-
-            Return True
-        Catch ex As Exception
-            g_sReportFilename = " "
-            SBO_Application.StatusBar.SetText("[PV].[GetPath] :" & ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
-            Return False
-        End Try
-    End Function
-
     Private Sub Print_Report()
+
         oForm.Items.Item(GetItemUID(PaymentVoucherRangeItems.BTN_PRINT)).Enabled = False
         Dim sFinalExportPath As String = ""
         Dim sFinalFileName As String = ""
@@ -558,41 +506,26 @@ Public Class FRM_PaymentVoucher_Range
             ' get the folder of the current DB Name
             ' set to local
             sTempDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\RPV\" & oCompany.CompanyDB
+
+            If oForm.DataSources.UserDataSources.Item("cbLayout").ValueEx.Trim = "RA" Then
+                sPathFormat = "{0}\RRA_{1}.pdf"
+                sPathFormatSingle = "{0}\RRA_{1}_{2}_{3}.pdf"
+                sTempDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\RRA\" & oCompany.CompanyDB
+            End If
+
             Dim di As New System.IO.DirectoryInfo(sTempDirectory)
             If Not di.Exists Then
                 di.Create()
             End If
             sFinalExportPath = String.Format(sPathFormat, di.FullName, sCurrDate & "_" & sCurrTime)
             sFinalFileName = di.FullName & "\RPV_" & sCurrDate & "_" & sCurrTime & ".pdf"
+
+            If oForm.DataSources.UserDataSources.Item("cbLayout").ValueEx.Trim = "RA" Then
+                sFinalFileName = di.FullName & "\RRA_" & sCurrDate & "_" & sCurrTime & ".pdf"
+            End If
             ' ===============================================================================
 
             Try
-
-                g_bIsShared = IsSharedFileExist()
-                If (g_bIsShared) Then
-                    If g_sReportFilename.Trim.Length > 0 Then
-                        If (Not File.Exists(g_sReportFilename)) Then
-                            g_bIsShared = False
-                            g_sReportFilename = ""
-                        End If
-                    Else
-                        g_bIsShared = False
-                        g_sReportFilename = ""
-                    End If
-                End If
-
-                g_bIsShared_Email = IsSharedFileExistEmail()
-                If (g_bIsShared_Email) Then
-                    If g_sReportFilename_Email.Trim.Length > 0 Then
-                        If (Not File.Exists(g_sReportFilename_Email)) Then
-                            g_bIsShared_Email = False
-                            g_sReportFilename_Email = ""
-                        End If
-                    Else
-                        g_bIsShared_Email = False
-                        g_sReportFilename_Email = ""
-                    End If
-                End If
 
                 Dim sTemp As String = String.Empty
                 Dim iTemp As Integer = 0
@@ -639,19 +572,23 @@ Public Class FRM_PaymentVoucher_Range
 
                 Select Case bIsWizard
                     Case True
-                        sLoop = "  SELECT T1.""DocEntry"", T1.""DocNum"", T1.""Series"", T1.""CardCode"", T2.""CardName"", "
-                        sLoop &= " T1.""DocCurr"", IFNULL(T2.""U_PV_MailTo"",'') ""EmailTo"", T0.""PymAmount"" ""DocTotal"", T0.""PymNum"" "
+                        sLoop = "  SELECT   T1.""DocEntry"", T1.""DocNum"", T1.""DocType"", T1.""Series"", T1.""CardCode"", T2.""CardName"", "
+                        sLoop &= "          T1.""DocCurr"", IFNULL(T2.""U_PV_MailTo"",'') ""EmailTo"", T0.""PymAmount"" ""DocTotal"", T0.""PymNum"", "
+                        sLoop &= "          IFNULL(T1.""U_AcctMailTo"",'') ""AcctEmailTo"" "
                         sLoop &= " FROM """ & oCompany.CompanyDB & """.""PWZ4"" T0 "
-                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OVPM"" T1 ON T0.""RctId""     = T1.""DocNum"" "
-                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode""  = T2.""CardCode""  "
-                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T3 ON T2.""GroupCode"" = T3.""GroupCode"" "
+                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OVPM"" T1 On T0.""RctId""     = T1.""DocNum"" "
+                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 On T1.""CardCode""  = T2.""CardCode""  "
+                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T3 On T2.""GroupCode"" = T3.""GroupCode"" "
                         sLoop &= " WHERE 1=1 "
-                        sLoop &= " AND T0.""IdEntry"" = '" & sWizardCode & "' "
+                        sLoop &= " And T0.""IdEntry"" = '" & sWizardCode & "' "
                         sLoop &= " AND T0.""ObjType"" = 46 "
                         sLoop &= " ORDER BY T0.""PymNum"" "
 
                     Case False
-                        sLoop = "  Select T1.""DocEntry"", T1.""DocNum"", T1.""Series"", T1.""CardCode"", T2.""CardName"", T1.""DocCurr"", IFNULL(T2.""U_PV_MailTo"",'') ""EmailTo"", SUM(T1.""DocTotal"") ""DocTotal""  "
+                        sLoop = "  SELECT   T1.""DocEntry"", T1.""DocNum"", T1.""DocType"", T1.""Series"", T1.""CardCode"", T2.""CardName"", "
+                        sLoop &= "          T1.""DocCurr"", IFNULL(T2.""U_PV_MailTo"",'') ""EmailTo"", "
+                        sLoop &= "          IFNULL(T1.""U_AcctMailTo"",'') ""AcctEmailTo"", "
+                        sLoop &= "          SUM(T1.""DocTotal"") ""DocTotal""  "
                         sLoop &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
                         sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode""  = T2.""CardCode""  "
                         sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T3 ON T2.""GroupCode"" = T3.""GroupCode"" "
@@ -701,13 +638,26 @@ Public Class FRM_PaymentVoucher_Range
                             sLoop &= " AND T1.""DocDate"" <= '" & sDocDateE.Trim & "' "
                         End If
 
-                        sLoop &= " GROUP BY T1.""DocEntry"", T1.""DocNum"", T1.""Series"", T1.""CardCode"", T2.""CardName"", T1.""DocCurr"", T2.""U_PV_MailTo""  "
-
+                        sLoop &= " GROUP BY T1.""DocEntry"", T1.""DocNum"", T1.""DocType"", T1.""Series"", T1.""CardCode"", T2.""CardName"", T1.""DocCurr"", T2.""U_PV_MailTo"", T1.""U_AcctMailTo""  "
+                        sLoop &= " ORDER BY T1.""DocEntry"", T1.""DocNum"", T1.""DocType"", T1.""Series"", T1.""CardCode"", T2.""CardName"", T1.""DocCurr"", T2.""U_PV_MailTo"", T1.""U_AcctMailTo""  "
                 End Select
 
                 iCount = SBO_Application.MessageBox("Please select your option." & vbNewLine & "1. Click ""Yes"" to send email." & vbNewLine & "2. Click ""No"" to preview only.", 1, "Yes", "No", String.Empty)
                 Select Case iCount
                     Case 1
+                        g_bIsShared = IsSharedFileExist("Email")
+                        If (g_bIsShared) Then
+                            If g_sReportFilename.Trim.Length > 0 Then
+                                If (Not File.Exists(g_sReportFilename)) Then
+                                    g_bIsShared = False
+                                    g_sReportFilename = ""
+                                End If
+                            Else
+                                g_bIsShared = False
+                                g_sReportFilename = ""
+                            End If
+                        End If
+
                         ' EMAIL
                         oLoop = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                         oLoop.DoQuery(sLoop)
@@ -721,12 +671,24 @@ Public Class FRM_PaymentVoucher_Range
                                 g_sDocEntry = oLoop.Fields.Item("DocEntry").Value.ToString()
                                 g_sDocNum = oLoop.Fields.Item("DocNum").Value.ToString()
                                 g_sSeries = oLoop.Fields.Item("Series").Value.ToString()
+                                g_sDocType = oLoop.Fields.Item("DocType").Value.ToString()
 
-                                SBO_Application.StatusBar.SetText("Generating PV #" & g_sDocNum & "...", SAPbouiCOM.BoMessageTime.bmt_Long, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                                SBO_Application.StatusBar.SetText("Generating " & oForm.DataSources.UserDataSources.Item("cbLayout").ValueEx.Trim & " #" & g_sDocNum & "...", SAPbouiCOM.BoMessageTime.bmt_Long, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
 
                                 If PrepareDatasetSingle() Then
                                     With frm
-                                        .ReportName = ReportName.PV
+                                        .LayoutType = oForm.DataSources.UserDataSources.Item("cbLayout").ValueEx.Trim
+
+                                        Select Case oForm.DataSources.UserDataSources.Item("cbLayout").ValueEx.Trim
+                                            Case "PV"
+                                                .ReportName = ReportName.PV
+                                                .ReportNamePV = g_sReportFilename
+                                            Case "RA"
+                                                .ReportName = ReportName.RA
+                                                .ReportNameRA = g_sReportFilename
+                                        End Select
+
+                                        .IsShared = g_bIsShared
                                         .ExportPath = sFinalFileName
                                         .Dataset = dsPAYMENT
                                         .DocNum = g_sDocNum
@@ -736,8 +698,6 @@ Public Class FRM_PaymentVoucher_Range
                                         .DBPasswordViewer = DBPassword
                                         .ShowDetails = g_bShowDetails
                                         .ShowTaxDate = g_sShowTaxDate
-                                        .IsShared = g_bIsShared_Email
-                                        .ReportNamePV = g_sReportFilename_Email
                                         .DatabaseServer = oCompany.Server
                                         .DatabaseName = oCompany.CompanyDB
                                         .IsIncludeCancel = iIsIncludeCancel
@@ -755,7 +715,14 @@ Public Class FRM_PaymentVoucher_Range
                                     dr.CardCode = oLoop.Fields.Item("CardCode").Value
                                     dr.CardName = oLoop.Fields.Item("CardName").Value
                                     dr.Currency = oLoop.Fields.Item("DocCurr").Value
-                                    dr.EmailTo = oLoop.Fields.Item("EmailTo").Value
+
+                                    Select Case g_sDocType
+                                        Case "A"
+                                            dr.EmailTo = oLoop.Fields.Item("AcctEmailTo").Value.ToString.Trim
+                                        Case Else
+                                            dr.EmailTo = oLoop.Fields.Item("EmailTo").Value.ToString.Trim
+                                    End Select
+
                                     dr.DocEntry = oLoop.Fields.Item("DocEntry").Value
                                     dr.DocNum = oLoop.Fields.Item("DocNum").Value
                                     dr.IsEmail = IIf(dr.Balance > 0, 1, 0)
@@ -782,6 +749,23 @@ Public Class FRM_PaymentVoucher_Range
 
                     Case Else
                         ' PREVIEW
+                        ' No need HTML 
+                        ' No need email - only change Title
+
+                        g_bIsShared = IsSharedFileExist("Preview")
+                        If (g_bIsShared) Then
+                            If g_sReportFilename.Trim.Length > 0 Then
+                                If (Not File.Exists(g_sReportFilename)) Then
+                                    g_bIsShared = False
+                                    g_sReportFilename = ""
+                                End If
+                            Else
+                                g_bIsShared = False
+                                g_sReportFilename = ""
+                            End If
+                        End If
+
+
                         oLoop.DoQuery(sLoop)
                         If oLoop.RecordCount > 0 Then
                             Dim sListDocNum As String = "("
@@ -814,7 +798,19 @@ Public Class FRM_PaymentVoucher_Range
 
                                     .ExportPath = sFinalFileName
                                     .Dataset = dsPAYMENT
-                                    .Text = "Payment Voucher Range Report"
+
+                                    Select Case oForm.DataSources.UserDataSources.Item("cbLayout").ValueEx.Trim
+                                        Case "PV"
+                                            .Text = "Payment Voucher Range Report"
+                                            .ReportName = ReportName.PV_Range
+                                            .ReportNamePV = g_sReportFilename
+                                        Case "RA"
+                                            .Text = "Remittance Advice Range Report"
+                                            .ReportName = ReportName.RA_Range
+                                            .ReportNameRA = g_sReportFilename
+                                    End Select
+
+                                    .LayoutType = oForm.DataSources.UserDataSources.Item("cbLayout").ValueEx
                                     .ReportName = ReportName.PV_Range
                                     .DBUsernameViewer = DBUsername
                                     .DBPasswordViewer = DBPassword
@@ -832,8 +828,6 @@ Public Class FRM_PaymentVoucher_Range
                                     .DocDateEnd = dtDocDateE
                                     .IsIncludeCancel = iIsIncludeCancel
                                     .PVRangeDocType = myPaymentVoucherDocType
-
-
 
                                 End With
                                 bIsContinue = True
@@ -1111,7 +1105,13 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtOJDT)
             '--------------------------------------------------------
-            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""OVPM"" WHERE ""DocNum"" = '" & g_sDocNum & "' AND ""Series"" = '" & g_sSeries & "' AND ""DocEntry"" = '" & g_sDocEntry & "' "
+            sQuery = "  SELECT T1.*, T2.""CardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
+            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "
+            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 ON T1.""UserSign"" = T4.""INTERNAL_K"" "
+            sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""Series"" = '" & g_sSeries & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' "
+
             dtOVPM = dsPAYMENT.Tables("OVPM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -1184,7 +1184,7 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.Fill(dtNNM1)
 
             '--------------------------------------------------------
-            sQuery = "SELECT  ""Block"", ""City"", ""County"",""Country"",""Code"",""State"",""ZipCode"",""Street"",""IntrntAdrs"",""LogInstanc"" FROM """ & oCompany.CompanyDB & """.""ADM1""  "
+            sQuery = "SELECT  ""Block"", ""City"", ""County"",""Country"",""Code"",""State"",""ZipCode"",""Street"",""IntrntAdrs"",""LogInstanc"", ""StreetF"", ""BlockF"", ""ZipCodeF"", ""BuildingF""  FROM """ & oCompany.CompanyDB & """.""ADM1""  "
             dtADM1 = dsPAYMENT.Tables("ADM1")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -1193,7 +1193,7 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.Fill(dtADM1)
 
             '--------------------------------------------------------
-            sQuery = "SELECT ""Code"",""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""MainCurncy"",""RevOffice"",""Phone1"",""Phone2"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
+            sQuery = "SELECT ""FaxF"",""Phone1F"", ""Code"",""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""MainCurncy"",""RevOffice"",""Phone1"",""Phone2"", ""DdctOffice"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
             dtOADM = dsPAYMENT.Tables("OADM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -1308,7 +1308,7 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtIMAGE)
             '--------------------------------------------------------
-            sQuery = "SELECT  ""Block"", ""City"", ""County"",""Country"",""Code"",""State"",""ZipCode"",""Street"",""IntrntAdrs"",""LogInstanc"" FROM """ & oCompany.CompanyDB & """.""ADM1""  "
+            sQuery = "SELECT  ""Block"", ""City"", ""County"",""Country"",""Code"",""State"",""ZipCode"",""Street"",""IntrntAdrs"",""LogInstanc"", ""StreetF"", ""BlockF"", ""ZipCodeF"", ""BuildingF"" FROM """ & oCompany.CompanyDB & """.""ADM1""  "
             dtADM1 = dsPAYMENT.Tables("ADM1")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -1329,13 +1329,23 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtNNM1)
             '--------------------------------------------------------
-            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""OVPM"" WHERE ""DocEntry"" IN " & sListDocEntry & " "
+            sQuery = " SELECT T1.*, T2.""CardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
+            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
+            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "
+            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 ON T1.""UserSign"" = T4.""INTERNAL_K"" "
+            sQuery &= " WHERE T1.""DocEntry"" IN " & sListDocEntry & " "
+
             dtOPDF = dsPAYMENT.Tables("OPDF")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
             HANAcmd.ExecuteNonQuery()
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtOPDF)
+
+            If dtOPDF.Rows.Count > 0 Then
+                SBO_Application.StatusBar.SetText("OVPM Records found : " & dtOPDF.Rows.Count, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+            End If
             '--------------------------------------------------------
             sQuery = " SELECT ""AcctNum"",""BankCode"",""CheckNum"",""CheckSum"",""Currency"",""DocNum"",""DueDate"",""LogInstanc""  FROM """ & oCompany.CompanyDB & """.""VPM1"" WHERE ""DocNum"" IN " & sListDocEntry & " "
             dtPDF1 = dsPAYMENT.Tables("PDF1")
@@ -1369,7 +1379,7 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtOACT)
             '--------------------------------------------------------
-            sQuery = "SELECT ""Code"",""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""MainCurncy"",""RevOffice"",""Phone1"",""Phone2"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
+            sQuery = "SELECT ""FaxF"",""Phone1F"",""Code"",""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""MainCurncy"",""RevOffice"",""Phone1"",""Phone2"", ""DdctOffice"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
             dtOADM = dsPAYMENT.Tables("OADM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -1391,6 +1401,10 @@ Public Class FRM_PaymentVoucher_Range
             HANAcmd.ExecuteNonQuery()
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtVIEW)
+
+            If dtVIEW.Rows.Count > 0 Then
+                SBO_Application.StatusBar.SetText("VIEW Records found : " & dtVIEW.Rows.Count, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+            End If
             '--------------------------------------------------------
             dbConn.Close()
 

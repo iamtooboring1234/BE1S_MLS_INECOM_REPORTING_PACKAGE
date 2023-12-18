@@ -354,7 +354,7 @@ Public Class frmRecpPaym
                 sQuery &= "  	ELSE '' END)  " & vbCrLf
                 sQuery &= "  ELSE '' END) AS ""PayMeanRemarks"",  " & vbCrLf
                 sQuery &= " '' AS ""PayTo"", T0.""Comments"",  " & vbCrLf
-                sQuery &= "         CAST(T0.""ObjType"" AS varchar(3)) || ' ' || CAST(T0.""DocNum"" AS varchar(10)) AS ""OF_Link""  " & vbCrLf
+                sQuery &= "         CAST(T0.""ObjType"" AS varchar(3)) || ' ' || CAST(T0.""DocEntry"" AS varchar(10)) AS ""OF_Link""  " & vbCrLf
                 sQuery &= "  FROM """ & oCompany.CompanyDB & """.ORCT T0 " & vbCrLf
                 sQuery &= "         INNER JOIN """ & oCompany.CompanyDB & """.JDT1 T1 ON T0.""TransId"" = T1.""TransId""  " & vbCrLf
                 sQuery &= "         INNER JOIN """ & oCompany.CompanyDB & """.OACT T2 ON T1.""Account"" = T2.""AcctCode""  " & vbCrLf
@@ -452,7 +452,7 @@ Public Class frmRecpPaym
                 sQuery &= " ELSE ''    " & vbCrLf
                 sQuery &= " END) AS ""PayMeanRemarks"",  " & vbCrLf
                 sQuery &= "  'Pay To : ' || T0.""Address"" AS ""PayTo"", T0.""Comments"",   " & vbCrLf
-                sQuery &= "  CAST(T0.""ObjType"" AS varchar(3)) || ' ' || CAST(T0.""DocNum"" AS varchar(10)) AS ""OF_Link""   " & vbCrLf
+                sQuery &= "  CAST(T0.""ObjType"" AS varchar(3)) || ' ' || CAST(T0.""DocEntry"" AS varchar(10)) AS ""OF_Link""   " & vbCrLf
                 sQuery &= "      FROM """ & oCompany.CompanyDB & """.OVPM T0  " & vbCrLf
                 sQuery &= "         INNER JOIN """ & oCompany.CompanyDB & """.JDT1 T1 ON T0.""TransId"" = T1.""TransId""   " & vbCrLf
                 sQuery &= "         INNER JOIN """ & oCompany.CompanyDB & """.OACT T2 ON T1.""Account"" = T2.""AcctCode""  " & vbCrLf
@@ -545,7 +545,7 @@ Public Class frmRecpPaym
                 sQuery &= "  	    END) " & vbCrLf
                 sQuery &= "      ELSE ''END)  " & vbCrLf
                 sQuery &= " ELSE '' END) AS ""PayMeanRemarks""  " & vbCrLf
-                sQuery &= " , '' AS ""PayTo"", T0.""Comments"", CAST(T0.""ObjType"" AS varchar(3)) || ' ' || CAST(T0.""DocNum"" AS varchar(10)) AS ""OF_Link""   " & vbCrLf
+                sQuery &= " , '' AS ""PayTo"", T0.""Comments"", CAST(T0.""ObjType"" AS varchar(3)) || ' ' || CAST(T0.""DocEntry"" AS varchar(10)) AS ""OF_Link""   " & vbCrLf
                 sQuery &= "  FROM """ & oCompany.CompanyDB & """.ORCT T0   " & vbCrLf
                 sQuery &= "  INNER JOIN """ & oCompany.CompanyDB & """.OJDT J ON T0.""TransId"" = J.""StornoToTr""  " & vbCrLf
                 sQuery &= "  INNER JOIN """ & oCompany.CompanyDB & """.JDT1 T1 ON J.""TransId"" = T1.""TransId""  " & vbCrLf
@@ -644,7 +644,7 @@ Public Class frmRecpPaym
                 sQuery &= " ELSE ''   " & vbCrLf
                 sQuery &= " END) AS ""PayMeanRemarks""  " & vbCrLf
                 sQuery &= " , 'Pay To : ' || T0.""Address"" AS ""PayTo"", T0.""Comments"",   " & vbCrLf
-                sQuery &= "  CAST(T0.""ObjType"" AS varchar(3)) || ' ' || CAST(T0.""DocNum"" AS varchar(10)) AS ""OF_Link""  " & vbCrLf
+                sQuery &= "  CAST(T0.""ObjType"" AS varchar(3)) || ' ' || CAST(T0.""DocEntry"" AS varchar(10)) AS ""OF_Link""  " & vbCrLf
                 sQuery &= "  FROM """ & oCompany.CompanyDB & """.OVPM T0  " & vbCrLf
                 sQuery &= "          INNER JOIN """ & oCompany.CompanyDB & """.OJDT J ON T0.""TransId"" = J.""StornoToTr""  " & vbCrLf
                 sQuery &= "          INNER JOIN """ & oCompany.CompanyDB & """.JDT1 T1 ON J.""TransId"" = T1.""TransId""  " & vbCrLf
@@ -697,6 +697,7 @@ Public Class frmRecpPaym
 
             ' HANA
             SBO_Application.StatusBar.SetText("Collecting Details...", SAPbouiCOM.BoMessageTime.bmt_Medium, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+
             sSelect &= " SELECT T1.""ObjType"", T0.""DocNum"",  "
             sSelect &= "     CASE T0.""InvType""  "
             sSelect &= "         WHEN 13 THEN 'IN'  "
@@ -806,9 +807,9 @@ Public Class frmRecpPaym
             sSelect &= "          WHEN 14 THEN T0.""SumApplied"" * -1  "
             sSelect &= "         ELSE T0.""SumApplied""   "
             sSelect &= "      END AS ""OF_LCAmt"", CAST(T0.""ObjType"" AS varchar(3)) || ' ' || CAST(T0.""DocNum"" AS varchar(10)) AS ""OF_Link""  "
-            sSelect &= "  FROM " & oCompany.CompanyDB & ".RCT2 T0 "
-            sSelect &= "  LEFT OUTER JOIN " & oCompany.CompanyDB & ".ORCT T1 "
-            sSelect &= "  ON T0.""DocNum"" = T1.""DocNum""  "
+            sSelect &= "  FROM """ & oCompany.CompanyDB & """.""RCT2"" T0 "
+            sSelect &= "  LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""ORCT"" T1 "
+            sSelect &= "  ON T0.""DocNum"" = T1.""DocEntry""   "
             sSelect &= " WHERE T1.""DocDate"" >= '" & oForm.DataSources.UserDataSources.Item("dtPostFrom").ValueEx & "' "
             sSelect &= " AND T1.""DocDate"" <= '" & oForm.DataSources.UserDataSources.Item("dtPostTo").ValueEx & "' "
             sSelect &= " AND T1.""DocNum"" >= '" & sSORCT & "' "
@@ -925,8 +926,9 @@ Public Class frmRecpPaym
             sSelect &= "         WHEN 19 THEN T0.""SumApplied"" * -1   "
             sSelect &= "         ELSE T0.""SumApplied""   "
             sSelect &= "     END AS ""OF_LCAmt"", CAST(T0.""ObjType"" AS varchar(3)) || ' ' || CAST(T0.""DocNum"" AS varchar(10)) AS ""OF_Link""   "
-            sSelect &= " FROM " & oCompany.CompanyDB & ".VPM2 T0 LEFT OUTER JOIN   "
-            sSelect &= "     " & oCompany.CompanyDB & ".OVPM T1 ON T0.""DocNum"" = T1.""DocNum""  "
+            sSelect &= " FROM """ & oCompany.CompanyDB & """.""VPM2"" T0 LEFT OUTER JOIN   "
+            sSelect &= "      """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+            sSelect &= "  ON T0.""DocNum"" = T1.""DocEntry""   "
             sSelect &= " WHERE T1.""DocDate"" >= '" & oForm.DataSources.UserDataSources.Item("dtPostFrom").ValueEx & "' "
             sSelect &= " AND T1.""DocDate"" <= '" & oForm.DataSources.UserDataSources.Item("dtPostTo").ValueEx & "' "
             sSelect &= " AND T1.""DocNum"" >= '" & sSOVPM & "' "

@@ -489,8 +489,21 @@ Public Class frmAPAgeing
             '--------------------------------------------------------
             'NCM_AR_AGEING
             '--------------------------------------------------------
-            sQuery = " SELECT * FROM """ & oCompany.CompanyDB & """.""@NCM_AP_AGEING"" "
-            sQuery &= " WHERE ""USERNAME"" = '" & g_sAPAGERunningDate & oCompany.UserName & "' "
+            sQuery = "  SELECT T1.*, "
+            sQuery &= " IFNULL(T2.""Phone1"",'') ""PHONE1"", IFNULL(T2.""Phone2"",'') ""PHONE2"", "
+            sQuery &= " IFNULL(T2.""CntctPrsn"",'') ""CONTACTPERSON"", "
+            sQuery &= " T2.""GroupNum"" AS ""GROUPNUM"", "
+            sQuery &= " IFNULL(T3.""PymntGroup"",'') AS ""PYMNTGROUP"", "
+            sQuery &= " IFNULL(T4.""PrjName"",'') ""PRJNAME"", "
+            sQuery &= " IFNULL(T2.""ProjectCod"",'') ""BPPRJCODE"", "
+            sQuery &= " IFNULL(T2A.""PrjName"",'') ""BPPRJNAME"" "
+            sQuery &= " FROM   """ & oCompany.CompanyDB & """.""@NCM_AP_AGEING"" T1 "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CARDCODE"" = T2.""CardCode"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OPRJ"" T2A ON T2.""ProjectCod"" = T2A.""PrjCode"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCTG"" T3 ON T2.""GroupNum"" = T3.""GroupNum"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OPRJ"" T4 On T1.""PROJECT""  = T4.""PrjCode"" "
+            sQuery &= " WHERE  T1.""USERNAME"" = '" & g_sAPAGERunningDate & oCompany.UserName & "' "
+
             dtAGE = ds.Tables("@NCM_AP_AGEING")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery

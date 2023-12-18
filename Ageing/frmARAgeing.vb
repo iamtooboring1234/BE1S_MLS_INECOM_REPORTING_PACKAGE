@@ -577,27 +577,63 @@ Public Class frmARAgeing
             '--------------------------------------------------------
             'OCRD
             '--------------------------------------------------------
-            sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"" "
-            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
-            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T2 "
-            sQuery &= " ON T1.""GroupCode"" = T2.""GroupCode"" "
-            sQuery &= " WHERE T1.""CardType"" = 'C' "
-            dtOCRD = ds.Tables("OCRD")
-            HANAcmd = dbConn.CreateCommand()
-            HANAcmd.CommandText = sQuery
-            HANAcmd.ExecuteNonQuery()
-            HANAda.SelectCommand = HANAcmd
-            HANAda.Fill(dtOCRD)
+            Try
+                sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", "
+                sQuery &= " IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"", "
+                sQuery &= " IFNULL(T1.""U_U_Retention"",'0') AS ""U_U_Retention"" "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
+                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T2 "
+                sQuery &= " ON T1.""GroupCode"" = T2.""GroupCode"" "
+                sQuery &= " WHERE T1.""CardType"" = 'C' "
+
+                dtOCRD = ds.Tables("OCRD")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOCRD)
+
+            Catch ex As Exception
+
+                sQuery = "  SELECT T1.""CardCode"", T1.""CardName"", "
+                sQuery &= " IFNULL(T1.""GroupCode"",0) ""GroupCode"", IFNULL(T2.""GroupName"",'') ""GroupName"" "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" T1 "
+                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T2 "
+                sQuery &= " ON T1.""GroupCode"" = T2.""GroupCode"" "
+                sQuery &= " WHERE T1.""CardType"" = 'C' "
+
+                dtOCRD = ds.Tables("OCRD")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOCRD)
+
+            End Try
+
 
             '--------------------------------------------------------
             'NCM_AR_AGEING
             '--------------------------------------------------------
             sQuery = "  SELECT T1.*, "
-            sQuery &= " IFNULL(T2.""Phone1"",'') ""PHONE1"", IFNULL(T2.""Phone2"",'') ""PHONE2"", "
-            sQuery &= " IFNULL(T2.""CntctPrsn"",'') ""CONTACTPERSON"" "
+            sQuery &= " IFNULL(T2.""Phone1"",'') ""PHONE1"", "
+            sQuery &= " IFNULL(T2.""Phone2"",'') ""PHONE2"", "
+            sQuery &= " IFNULL(T2.""CntctPrsn"",'') ""CONTACTPERSON"", "
+            sQuery &= " T2.""GroupNum"" AS ""GROUPNUM"", "
+            sQuery &= " IFNULL(T3.""PymntGroup"",'') AS ""PYMNTGROUP"", "
+            sQuery &= " IFNULL(T4.""PrjName"",'') ""PRJNAME"", "
+            sQuery &= " IFNULL(T5.""SlpName"",'') ""SLPNAME"", "
+            sQuery &= " IFNULL(T5.""Memo"",'') ""MEMO"", "
+            sQuery &= " IFNULL(T2.""ProjectCod"",'') ""BPPRJCODE"", "
+            sQuery &= " IFNULL(T2A.""PrjName"",'') ""BPPRJNAME"" "
             sQuery &= " FROM   """ & oCompany.CompanyDB & """.""@NCM_AR_AGEING"" T1 "
-            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CARDCODE"" = T2.""CardCode"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2  ON T1.""CARDCODE""   = T2.""CardCode"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OPRJ"" T2A ON T2.""ProjectCod"" = T2A.""PrjCode"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCTG"" T3  ON T2.""GroupNum""   = T3.""GroupNum"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OPRJ"" T4  ON T1.""PROJECT""    = T4.""PrjCode"" "
+            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OSLP"" T5  ON T1.""SLPCODE""    = T5.""SlpCode"" "
             sQuery &= " WHERE  T1.""USERNAME"" = '" & g_sARAGERunningDate & oCompany.UserName & "' "
+
             dtAGE = ds.Tables("@NCM_AR_AGEING")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery

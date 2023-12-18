@@ -500,18 +500,31 @@ Public Class frmApSOA
             '--------------------------------------------------------
             'OCRD (Customer)
             '--------------------------------------------------------
-            sQuery = "SELECT  ""StreetNo"", ""ZipCode"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'S' "
-            dtOCRD = dsSOA.Tables("OCRD")
-            HANAcmd = dbConn.CreateCommand()
-            HANAcmd.CommandText = sQuery
-            HANAcmd.ExecuteNonQuery()
-            HANAda.SelectCommand = HANAcmd
-            HANAda.Fill(dtOCRD)
+            Try
+                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""U_U_Retention"", ""U_SOAContact"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'S' "
+                dtOCRD = dsSOA.Tables("OCRD")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOCRD)
+
+            Catch ex As Exception
+
+                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'S' "
+                dtOCRD = dsSOA.Tables("OCRD")
+                HANAcmd = dbConn.CreateCommand()
+                HANAcmd.CommandText = sQuery
+                HANAcmd.ExecuteNonQuery()
+                HANAda.SelectCommand = HANAcmd
+                HANAda.Fill(dtOCRD)
+
+            End Try
 
             '--------------------------------------------------------
             'OADM (Company Details)
             '--------------------------------------------------------
-            sQuery = "SELECT ""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""RevOffice"",""Phone1"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
+            sQuery = "SELECT ""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""RevOffice"",""Phone1"", ""DdctOffice"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
             dtOADM = dsSOA.Tables("OADM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -522,7 +535,7 @@ Public Class frmApSOA
             '--------------------------------------------------------
             'ADM1 (Company Details)
             '--------------------------------------------------------
-            sQuery = "SELECT ""Block"",""City"",""Country"",""County"",""ZipCode"",""Street"" FROM """ & oCompany.CompanyDB & """.""ADM1"" "
+            sQuery = "SELECT ""Block"",""City"",""Country"",""County"",""ZipCode"",""Street"", ""StreetF"", ""BuildingF"", ""BlockF"", ""ZipCodeF"" FROM """ & oCompany.CompanyDB & """.""ADM1"" "
             dtADM1 = dsSOA.Tables("ADM1")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -544,7 +557,7 @@ Public Class frmApSOA
             '--------------------------------------------------------
             'OSLP
             '--------------------------------------------------------
-            sQuery = "SELECT ""SlpCode"",""SlpName"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
+            sQuery = "SELECT ""SlpCode"",""SlpName"", ""Memo"" FROM """ & oCompany.CompanyDB & """.""OSLP"" "
             dtOSLP = dsSOA.Tables("OSLP")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
@@ -576,78 +589,6 @@ Public Class frmApSOA
 #End Region
 
 #Region "Logic Function"
-    Private Function Setup_Notes() As Boolean
-        ' HANA
-        Dim bSuccess As Boolean = False
-        Dim sQuery As String = ""
-        Dim sCurrSchema As String = ""
-        Dim iCount As Integer = 0
-        Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-
-        Try
-            sQuery = " SELECT current_schema FROM DUMMY "
-            oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-            oRec.DoQuery(sQuery)
-            If oRec.RecordCount > 0 Then
-                sCurrSchema = oRec.Fields.Item(0).Value
-            End If
-
-            If sCurrSchema.Trim <> "" Then
-                sQuery = "  select Count(*) from sys.objects "
-                sQuery &= " where ""SCHEMA_NAME"" = '" & sCurrSchema & "' "
-                sQuery &= " AND ""OBJECT_TYPE"" = 'TABLE '"
-                sQuery &= " AND ""OBJECT_NAME"" = '@NCM_SOC2' "
-                oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                oRec.DoQuery(sQuery)
-                If oRec.RecordCount > 0 Then
-                    iCount = oRec.Fields.Item(0).Value
-                End If
-
-                If iCount <= 0 Then
-                    sQuery = " CREATE TABLE ""@NCM_SOC2"" "
-                    sQuery &= " (ID         NVARCHAR(8)         NOT NULL,"
-                    sQuery &= " Notes      NVARCHAR(2000)      NOT NULL,"
-                    sQuery &= " Image    BLOB)"
-                    oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                    oRec.DoQuery(sQuery)
-
-                    sQuery = " INSERT INTO """ & oCompany.CompanyDB & """.""@NCM_SOC2"" "
-                    sQuery &= " VALUES ("
-                    sQuery &= " '1',"
-                    sQuery &= " 'Note:   Any payments received after end of the month will be shown in next month''s statement."
-                    sQuery &= "          If you do not agree with the above statement, please inform us immediately.'"
-                    sQuery &= " , NULL) "
-                    oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                    oRec.DoQuery(sQuery)
-                Else
-                    iCount = 0
-                    sQuery = " Select Count(*) from """ & oCompany.CompanyDB & """.""@NCM_SOC2"" WHERE ""ID"" = '1' "
-                    oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                    oRec.DoQuery(sQuery)
-                    If oRec.RecordCount > 0 Then
-                        iCount = Convert.ToInt32(oRec.Fields.Item(0).Value)
-                    End If
-
-                    If iCount <= 0 Then
-                        sQuery = " INSERT INTO """ & oCompany.CompanyDB & """.""@NCM_SOC2"" "
-                        sQuery &= " VALUES ("
-                        sQuery &= " '1',"
-                        sQuery &= " 'Note:   Any payments received after end of the month will be shown in next month''s statement."
-                        sQuery &= "          If you do not agree with the above statement, please inform us immediately.'"
-                        sQuery &= " , NULL) "
-                        oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
-                        oRec.DoQuery(sQuery)
-                    End If
-                End If
-            End If
-
-            oRec = Nothing
-            Return True
-        Catch ex As Exception
-            SBO_Application.MessageBox("[ARSOA].[NotesSetup] : " & vbNewLine & ex.Message)
-            Return False
-        End Try
-    End Function
     Private Function Retrieve_Notes() As Boolean
         Try
             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
@@ -659,7 +600,8 @@ Public Class frmApSOA
             oRec = Nothing
             Return True
         Catch ex As Exception
-            SBO_Application.MessageBox("[APSOA].[Retrieve_Notes]:" & ex.ToString)
+            oForm.DataSources.UserDataSources.Item("Notes").ValueEx = ""
+            SBO_Application.StatusBar.SetText("Default Note is not found in table @NCM_SOC2. Set to blank.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
             Return False
         End Try
     End Function

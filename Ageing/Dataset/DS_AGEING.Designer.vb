@@ -431,6 +431,8 @@ Partial Public Class DS_AGEING
         
         Private columnGroupName As Global.System.Data.DataColumn
         
+        Private columnU_U_Retention As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -499,6 +501,14 @@ Partial Public Class DS_AGEING
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property U_U_RetentionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnU_U_Retention
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -535,9 +545,9 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOCRDRow(ByVal CardCode As String, ByVal CardName As String, ByVal GroupCode As Integer, ByVal GroupName As String) As OCRDRow
+        Public Overloads Function AddOCRDRow(ByVal CardCode As String, ByVal CardName As String, ByVal GroupCode As Integer, ByVal GroupName As String, ByVal U_U_Retention As String) As OCRDRow
             Dim rowOCRDRow As OCRDRow = CType(Me.NewRow,OCRDRow)
-            Dim columnValuesArray() As Object = New Object() {CardCode, CardName, GroupCode, GroupName}
+            Dim columnValuesArray() As Object = New Object() {CardCode, CardName, GroupCode, GroupName, U_U_Retention}
             rowOCRDRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowOCRDRow)
             Return rowOCRDRow
@@ -564,6 +574,7 @@ Partial Public Class DS_AGEING
             Me.columnCardName = MyBase.Columns("CardName")
             Me.columnGroupCode = MyBase.Columns("GroupCode")
             Me.columnGroupName = MyBase.Columns("GroupName")
+            Me.columnU_U_Retention = MyBase.Columns("U_U_Retention")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -577,6 +588,8 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnGroupCode)
             Me.columnGroupName = New Global.System.Data.DataColumn("GroupName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGroupName)
+            Me.columnU_U_Retention = New Global.System.Data.DataColumn("U_U_Retention", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnU_U_Retention)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -772,6 +785,16 @@ Partial Public Class DS_AGEING
         
         Private columnPROJECT As Global.System.Data.DataColumn
         
+        Private columnPRJNAME As Global.System.Data.DataColumn
+        
+        Private columnBPPRJCODE As Global.System.Data.DataColumn
+        
+        Private columnBPPRJNAME As Global.System.Data.DataColumn
+        
+        Private columnGROUPNUM As Global.System.Data.DataColumn
+        
+        Private columnPYMNTGROUP As Global.System.Data.DataColumn
+        
         Private columnFAKTURPAJAK As Global.System.Data.DataColumn
         
         Private columnREF1 As Global.System.Data.DataColumn
@@ -783,6 +806,10 @@ Partial Public Class DS_AGEING
         Private columnREF4 As Global.System.Data.DataColumn
         
         Private columnSLPCODE As Global.System.Data.DataColumn
+        
+        Private columnSLPNAME As Global.System.Data.DataColumn
+        
+        Private columnMEMO As Global.System.Data.DataColumn
         
         Private columnTRANSID As Global.System.Data.DataColumn
         
@@ -810,9 +837,13 @@ Partial Public Class DS_AGEING
         
         Private columnSERIESNAME As Global.System.Data.DataColumn
         
+        Private columnSERIESREMARK As Global.System.Data.DataColumn
+        
         Private columnPAYMENTTERM As Global.System.Data.DataColumn
         
         Private columnCREDITLIMIT As Global.System.Data.DataColumn
+        
+        Private columnSAMPLEINV As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -1083,6 +1114,46 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PRJNAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPRJNAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BPPRJCODEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBPPRJCODE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BPPRJNAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBPPRJNAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property GROUPNUMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGROUPNUM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PYMNTGROUPColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPYMNTGROUP
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property FAKTURPAJAKColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnFAKTURPAJAK
@@ -1126,6 +1197,22 @@ Partial Public Class DS_AGEING
         Public ReadOnly Property SLPCODEColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnSLPCODE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SLPNAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSLPNAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MEMOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMEMO
             End Get
         End Property
         
@@ -1235,6 +1322,14 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SERIESREMARKColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSERIESREMARK
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property PAYMENTTERMColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPAYMENTTERM
@@ -1246,6 +1341,14 @@ Partial Public Class DS_AGEING
         Public ReadOnly Property CREDITLIMITColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCREDITLIMIT
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SAMPLEINVColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSAMPLEINV
             End Get
         End Property
         
@@ -1316,12 +1419,19 @@ Partial Public Class DS_AGEING
                     ByVal POSAGEMTHS As Integer,  _
                     ByVal POSDATE As Date,  _
                     ByVal PROJECT As String,  _
+                    ByVal PRJNAME As String,  _
+                    ByVal BPPRJCODE As String,  _
+                    ByVal BPPRJNAME As String,  _
+                    ByVal GROUPNUM As String,  _
+                    ByVal PYMNTGROUP As String,  _
                     ByVal FAKTURPAJAK As String,  _
                     ByVal REF1 As String,  _
                     ByVal REF2 As String,  _
                     ByVal REF3 As String,  _
                     ByVal REF4 As String,  _
                     ByVal SLPCODE As Integer,  _
+                    ByVal SLPNAME As String,  _
+                    ByVal MEMO As String,  _
                     ByVal TRANSID As String,  _
                     ByVal USERNAME As String,  _
                     ByVal BRANCH As String,  _
@@ -1335,10 +1445,12 @@ Partial Public Class DS_AGEING
                     ByVal LASTRECDATE As Date,  _
                     ByVal SERIES As String,  _
                     ByVal SERIESNAME As String,  _
+                    ByVal SERIESREMARK As String,  _
                     ByVal PAYMENTTERM As String,  _
-                    ByVal CREDITLIMIT As Decimal) As __NCM_AR_AGEINGRow
+                    ByVal CREDITLIMIT As Decimal,  _
+                    ByVal SAMPLEINV As String) As __NCM_AR_AGEINGRow
             Dim row__NCM_AR_AGEINGRow As __NCM_AR_AGEINGRow = CType(Me.NewRow,__NCM_AR_AGEINGRow)
-            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, REF3, REF4, SLPCODE, TRANSID, USERNAME, BRANCH, OFFICE, PAYMENTCUR, PAYMENTAMT, PAYMENTDATE, PHONE1, PHONE2, CONTACTPERSON, LASTRECDATE, SERIES, SERIESNAME, PAYMENTTERM, CREDITLIMIT}
+            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, PRJNAME, BPPRJCODE, BPPRJNAME, GROUPNUM, PYMNTGROUP, FAKTURPAJAK, REF1, REF2, REF3, REF4, SLPCODE, SLPNAME, MEMO, TRANSID, USERNAME, BRANCH, OFFICE, PAYMENTCUR, PAYMENTAMT, PAYMENTDATE, PHONE1, PHONE2, CONTACTPERSON, LASTRECDATE, SERIES, SERIESNAME, SERIESREMARK, PAYMENTTERM, CREDITLIMIT, SAMPLEINV}
             row__NCM_AR_AGEINGRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_AR_AGEINGRow)
             Return row__NCM_AR_AGEINGRow
@@ -1390,12 +1502,19 @@ Partial Public Class DS_AGEING
             Me.columnPOSAGEMTHS = MyBase.Columns("POSAGEMTHS")
             Me.columnPOSDATE = MyBase.Columns("POSDATE")
             Me.columnPROJECT = MyBase.Columns("PROJECT")
+            Me.columnPRJNAME = MyBase.Columns("PRJNAME")
+            Me.columnBPPRJCODE = MyBase.Columns("BPPRJCODE")
+            Me.columnBPPRJNAME = MyBase.Columns("BPPRJNAME")
+            Me.columnGROUPNUM = MyBase.Columns("GROUPNUM")
+            Me.columnPYMNTGROUP = MyBase.Columns("PYMNTGROUP")
             Me.columnFAKTURPAJAK = MyBase.Columns("FAKTURPAJAK")
             Me.columnREF1 = MyBase.Columns("REF1")
             Me.columnREF2 = MyBase.Columns("REF2")
             Me.columnREF3 = MyBase.Columns("REF3")
             Me.columnREF4 = MyBase.Columns("REF4")
             Me.columnSLPCODE = MyBase.Columns("SLPCODE")
+            Me.columnSLPNAME = MyBase.Columns("SLPNAME")
+            Me.columnMEMO = MyBase.Columns("MEMO")
             Me.columnTRANSID = MyBase.Columns("TRANSID")
             Me.columnUSERNAME = MyBase.Columns("USERNAME")
             Me.columnBRANCH = MyBase.Columns("BRANCH")
@@ -1409,8 +1528,10 @@ Partial Public Class DS_AGEING
             Me.columnLASTRECDATE = MyBase.Columns("LASTRECDATE")
             Me.columnSERIES = MyBase.Columns("SERIES")
             Me.columnSERIESNAME = MyBase.Columns("SERIESNAME")
+            Me.columnSERIESREMARK = MyBase.Columns("SERIESREMARK")
             Me.columnPAYMENTTERM = MyBase.Columns("PAYMENTTERM")
             Me.columnCREDITLIMIT = MyBase.Columns("CREDITLIMIT")
+            Me.columnSAMPLEINV = MyBase.Columns("SAMPLEINV")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1474,6 +1595,16 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnPOSDATE)
             Me.columnPROJECT = New Global.System.Data.DataColumn("PROJECT", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPROJECT)
+            Me.columnPRJNAME = New Global.System.Data.DataColumn("PRJNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPRJNAME)
+            Me.columnBPPRJCODE = New Global.System.Data.DataColumn("BPPRJCODE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBPPRJCODE)
+            Me.columnBPPRJNAME = New Global.System.Data.DataColumn("BPPRJNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBPPRJNAME)
+            Me.columnGROUPNUM = New Global.System.Data.DataColumn("GROUPNUM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGROUPNUM)
+            Me.columnPYMNTGROUP = New Global.System.Data.DataColumn("PYMNTGROUP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPYMNTGROUP)
             Me.columnFAKTURPAJAK = New Global.System.Data.DataColumn("FAKTURPAJAK", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFAKTURPAJAK)
             Me.columnREF1 = New Global.System.Data.DataColumn("REF1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -1486,6 +1617,10 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnREF4)
             Me.columnSLPCODE = New Global.System.Data.DataColumn("SLPCODE", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSLPCODE)
+            Me.columnSLPNAME = New Global.System.Data.DataColumn("SLPNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSLPNAME)
+            Me.columnMEMO = New Global.System.Data.DataColumn("MEMO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMEMO)
             Me.columnTRANSID = New Global.System.Data.DataColumn("TRANSID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTRANSID)
             Me.columnUSERNAME = New Global.System.Data.DataColumn("USERNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -1512,10 +1647,14 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnSERIES)
             Me.columnSERIESNAME = New Global.System.Data.DataColumn("SERIESNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSERIESNAME)
+            Me.columnSERIESREMARK = New Global.System.Data.DataColumn("SERIESREMARK", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSERIESREMARK)
             Me.columnPAYMENTTERM = New Global.System.Data.DataColumn("PAYMENTTERM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPAYMENTTERM)
             Me.columnCREDITLIMIT = New Global.System.Data.DataColumn("CREDITLIMIT", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCREDITLIMIT)
+            Me.columnSAMPLEINV = New Global.System.Data.DataColumn("SAMPLEINV", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSAMPLEINV)
             Me.columnSERIESNAME.DefaultValue = CType("",String)
             Me.columnPAYMENTTERM.DefaultValue = CType("",String)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_AR_AGEING")
@@ -1715,6 +1854,16 @@ Partial Public Class DS_AGEING
         
         Private columnPROJECT As Global.System.Data.DataColumn
         
+        Private columnPRJNAME As Global.System.Data.DataColumn
+        
+        Private columnBPPRJCODE As Global.System.Data.DataColumn
+        
+        Private columnBPPRJNAME As Global.System.Data.DataColumn
+        
+        Private columnGROUPNUM As Global.System.Data.DataColumn
+        
+        Private columnPYMNTGROUP As Global.System.Data.DataColumn
+        
         Private columnFAKTURPAJAK As Global.System.Data.DataColumn
         
         Private columnREF1 As Global.System.Data.DataColumn
@@ -1722,6 +1871,10 @@ Partial Public Class DS_AGEING
         Private columnREF2 As Global.System.Data.DataColumn
         
         Private columnSLPCODE As Global.System.Data.DataColumn
+        
+        Private columnSLPNAME As Global.System.Data.DataColumn
+        
+        Private columnMEMO As Global.System.Data.DataColumn
         
         Private columnTRANSID As Global.System.Data.DataColumn
         
@@ -1737,9 +1890,13 @@ Partial Public Class DS_AGEING
         
         Private columnSERIESNAME As Global.System.Data.DataColumn
         
+        Private columnSERIESREMARK As Global.System.Data.DataColumn
+        
         Private columnPAYMENTTERM As Global.System.Data.DataColumn
         
         Private columnCREDITLIMIT As Global.System.Data.DataColumn
+        
+        Private columnSAMPLEINV As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -2010,6 +2167,46 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PRJNAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPRJNAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BPPRJCODEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBPPRJCODE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BPPRJNAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBPPRJNAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property GROUPNUMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGROUPNUM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PYMNTGROUPColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPYMNTGROUP
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property FAKTURPAJAKColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnFAKTURPAJAK
@@ -2037,6 +2234,22 @@ Partial Public Class DS_AGEING
         Public ReadOnly Property SLPCODEColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnSLPCODE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SLPNAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSLPNAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MEMOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMEMO
             End Get
         End Property
         
@@ -2098,6 +2311,14 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SERIESREMARKColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSERIESREMARK
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property PAYMENTTERMColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPAYMENTTERM
@@ -2109,6 +2330,14 @@ Partial Public Class DS_AGEING
         Public ReadOnly Property CREDITLIMITColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCREDITLIMIT
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SAMPLEINVColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSAMPLEINV
             End Get
         End Property
         
@@ -2179,10 +2408,17 @@ Partial Public Class DS_AGEING
                     ByVal POSAGEMTHS As Integer,  _
                     ByVal POSDATE As Date,  _
                     ByVal PROJECT As String,  _
+                    ByVal PRJNAME As String,  _
+                    ByVal BPPRJCODE As String,  _
+                    ByVal BPPRJNAME As String,  _
+                    ByVal GROUPNUM As String,  _
+                    ByVal PYMNTGROUP As String,  _
                     ByVal FAKTURPAJAK As String,  _
                     ByVal REF1 As String,  _
                     ByVal REF2 As String,  _
                     ByVal SLPCODE As Integer,  _
+                    ByVal SLPNAME As String,  _
+                    ByVal MEMO As String,  _
                     ByVal TRANSID As String,  _
                     ByVal USERNAME As String,  _
                     ByVal VENDORREF As String,  _
@@ -2190,10 +2426,12 @@ Partial Public Class DS_AGEING
                     ByVal OFFICE As String,  _
                     ByVal SERIES As String,  _
                     ByVal SERIESNAME As String,  _
+                    ByVal SERIESREMARK As String,  _
                     ByVal PAYMENTTERM As String,  _
-                    ByVal CREDITLIMIT As Decimal) As __NCM_AP_AGEINGRow
+                    ByVal CREDITLIMIT As Decimal,  _
+                    ByVal SAMPLEINV As String) As __NCM_AP_AGEINGRow
             Dim row__NCM_AP_AGEINGRow As __NCM_AP_AGEINGRow = CType(Me.NewRow,__NCM_AP_AGEINGRow)
-            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, FAKTURPAJAK, REF1, REF2, SLPCODE, TRANSID, USERNAME, VENDORREF, BRANCH, OFFICE, SERIES, SERIESNAME, PAYMENTTERM, CREDITLIMIT}
+            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, PRJNAME, BPPRJCODE, BPPRJNAME, GROUPNUM, PYMNTGROUP, FAKTURPAJAK, REF1, REF2, SLPCODE, SLPNAME, MEMO, TRANSID, USERNAME, VENDORREF, BRANCH, OFFICE, SERIES, SERIESNAME, SERIESREMARK, PAYMENTTERM, CREDITLIMIT, SAMPLEINV}
             row__NCM_AP_AGEINGRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_AP_AGEINGRow)
             Return row__NCM_AP_AGEINGRow
@@ -2245,10 +2483,17 @@ Partial Public Class DS_AGEING
             Me.columnPOSAGEMTHS = MyBase.Columns("POSAGEMTHS")
             Me.columnPOSDATE = MyBase.Columns("POSDATE")
             Me.columnPROJECT = MyBase.Columns("PROJECT")
+            Me.columnPRJNAME = MyBase.Columns("PRJNAME")
+            Me.columnBPPRJCODE = MyBase.Columns("BPPRJCODE")
+            Me.columnBPPRJNAME = MyBase.Columns("BPPRJNAME")
+            Me.columnGROUPNUM = MyBase.Columns("GROUPNUM")
+            Me.columnPYMNTGROUP = MyBase.Columns("PYMNTGROUP")
             Me.columnFAKTURPAJAK = MyBase.Columns("FAKTURPAJAK")
             Me.columnREF1 = MyBase.Columns("REF1")
             Me.columnREF2 = MyBase.Columns("REF2")
             Me.columnSLPCODE = MyBase.Columns("SLPCODE")
+            Me.columnSLPNAME = MyBase.Columns("SLPNAME")
+            Me.columnMEMO = MyBase.Columns("MEMO")
             Me.columnTRANSID = MyBase.Columns("TRANSID")
             Me.columnUSERNAME = MyBase.Columns("USERNAME")
             Me.columnVENDORREF = MyBase.Columns("VENDORREF")
@@ -2256,8 +2501,10 @@ Partial Public Class DS_AGEING
             Me.columnOFFICE = MyBase.Columns("OFFICE")
             Me.columnSERIES = MyBase.Columns("SERIES")
             Me.columnSERIESNAME = MyBase.Columns("SERIESNAME")
+            Me.columnSERIESREMARK = MyBase.Columns("SERIESREMARK")
             Me.columnPAYMENTTERM = MyBase.Columns("PAYMENTTERM")
             Me.columnCREDITLIMIT = MyBase.Columns("CREDITLIMIT")
+            Me.columnSAMPLEINV = MyBase.Columns("SAMPLEINV")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2321,6 +2568,16 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnPOSDATE)
             Me.columnPROJECT = New Global.System.Data.DataColumn("PROJECT", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPROJECT)
+            Me.columnPRJNAME = New Global.System.Data.DataColumn("PRJNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPRJNAME)
+            Me.columnBPPRJCODE = New Global.System.Data.DataColumn("BPPRJCODE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBPPRJCODE)
+            Me.columnBPPRJNAME = New Global.System.Data.DataColumn("BPPRJNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBPPRJNAME)
+            Me.columnGROUPNUM = New Global.System.Data.DataColumn("GROUPNUM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGROUPNUM)
+            Me.columnPYMNTGROUP = New Global.System.Data.DataColumn("PYMNTGROUP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPYMNTGROUP)
             Me.columnFAKTURPAJAK = New Global.System.Data.DataColumn("FAKTURPAJAK", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFAKTURPAJAK)
             Me.columnREF1 = New Global.System.Data.DataColumn("REF1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -2329,6 +2586,10 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnREF2)
             Me.columnSLPCODE = New Global.System.Data.DataColumn("SLPCODE", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSLPCODE)
+            Me.columnSLPNAME = New Global.System.Data.DataColumn("SLPNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSLPNAME)
+            Me.columnMEMO = New Global.System.Data.DataColumn("MEMO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMEMO)
             Me.columnTRANSID = New Global.System.Data.DataColumn("TRANSID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTRANSID)
             Me.columnUSERNAME = New Global.System.Data.DataColumn("USERNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -2343,10 +2604,14 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnSERIES)
             Me.columnSERIESNAME = New Global.System.Data.DataColumn("SERIESNAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSERIESNAME)
+            Me.columnSERIESREMARK = New Global.System.Data.DataColumn("SERIESREMARK", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSERIESREMARK)
             Me.columnPAYMENTTERM = New Global.System.Data.DataColumn("PAYMENTTERM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPAYMENTTERM)
             Me.columnCREDITLIMIT = New Global.System.Data.DataColumn("CREDITLIMIT", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCREDITLIMIT)
+            Me.columnSAMPLEINV = New Global.System.Data.DataColumn("SAMPLEINV", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSAMPLEINV)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_AP_AGEING")
             Me.ExtendedProperties.Add("Generator_UserTableName", "@NCM_AP_AGEING")
         End Sub
@@ -3124,6 +3389,21 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property U_U_Retention() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableOCRD.U_U_RetentionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'U_U_Retention' in table 'OCRD' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableOCRD.U_U_RetentionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCardCodeNull() As Boolean
             Return Me.IsNull(Me.tableOCRD.CardCodeColumn)
         End Function
@@ -3168,6 +3448,18 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetGroupNameNull()
             Me(Me.tableOCRD.GroupNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsU_U_RetentionNull() As Boolean
+            Return Me.IsNull(Me.tableOCRD.U_U_RetentionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetU_U_RetentionNull()
+            Me(Me.tableOCRD.U_U_RetentionColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -3623,6 +3915,81 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PRJNAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.PRJNAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PRJNAME' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.PRJNAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BPPRJCODE() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.BPPRJCODEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BPPRJCODE' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.BPPRJCODEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BPPRJNAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.BPPRJNAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BPPRJNAME' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.BPPRJNAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property GROUPNUM() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.GROUPNUMColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'GROUPNUM' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.GROUPNUMColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PYMNTGROUP() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.PYMNTGROUPColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PYMNTGROUP' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.PYMNTGROUPColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property FAKTURPAJAK() As String
             Get
                 Try 
@@ -3708,6 +4075,36 @@ Partial Public Class DS_AGEING
             End Get
             Set
                 Me(Me._table_NCM_AR_AGEING.SLPCODEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SLPNAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.SLPNAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SLPNAME' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.SLPNAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property MEMO() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.MEMOColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MEMO' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.MEMOColumn) = value
             End Set
         End Property
         
@@ -3908,6 +4305,21 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SERIESREMARK() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.SERIESREMARKColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SERIESREMARK' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.SERIESREMARKColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PAYMENTTERM() As String
             Get
                 Try 
@@ -3933,6 +4345,21 @@ Partial Public Class DS_AGEING
             End Get
             Set
                 Me(Me._table_NCM_AR_AGEING.CREDITLIMITColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SAMPLEINV() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.SAMPLEINVColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SAMPLEINV' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.SAMPLEINVColumn) = value
             End Set
         End Property
         
@@ -4286,6 +4713,66 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPRJNAMENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.PRJNAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPRJNAMENull()
+            Me(Me._table_NCM_AR_AGEING.PRJNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBPPRJCODENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.BPPRJCODEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBPPRJCODENull()
+            Me(Me._table_NCM_AR_AGEING.BPPRJCODEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBPPRJNAMENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.BPPRJNAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBPPRJNAMENull()
+            Me(Me._table_NCM_AR_AGEING.BPPRJNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsGROUPNUMNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.GROUPNUMColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetGROUPNUMNull()
+            Me(Me._table_NCM_AR_AGEING.GROUPNUMColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPYMNTGROUPNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.PYMNTGROUPColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPYMNTGROUPNull()
+            Me(Me._table_NCM_AR_AGEING.PYMNTGROUPColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsFAKTURPAJAKNull() As Boolean
             Return Me.IsNull(Me._table_NCM_AR_AGEING.FAKTURPAJAKColumn)
         End Function
@@ -4354,6 +4841,30 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetSLPCODENull()
             Me(Me._table_NCM_AR_AGEING.SLPCODEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSLPNAMENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.SLPNAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSLPNAMENull()
+            Me(Me._table_NCM_AR_AGEING.SLPNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMEMONull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.MEMOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMEMONull()
+            Me(Me._table_NCM_AR_AGEING.MEMOColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4514,6 +5025,18 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSERIESREMARKNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.SERIESREMARKColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSERIESREMARKNull()
+            Me(Me._table_NCM_AR_AGEING.SERIESREMARKColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsPAYMENTTERMNull() As Boolean
             Return Me.IsNull(Me._table_NCM_AR_AGEING.PAYMENTTERMColumn)
         End Function
@@ -4534,6 +5057,18 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCREDITLIMITNull()
             Me(Me._table_NCM_AR_AGEING.CREDITLIMITColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSAMPLEINVNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.SAMPLEINVColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSAMPLEINVNull()
+            Me(Me._table_NCM_AR_AGEING.SAMPLEINVColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -4989,6 +5524,81 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PRJNAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.PRJNAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PRJNAME' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.PRJNAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BPPRJCODE() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.BPPRJCODEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BPPRJCODE' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.BPPRJCODEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BPPRJNAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.BPPRJNAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BPPRJNAME' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.BPPRJNAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property GROUPNUM() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.GROUPNUMColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'GROUPNUM' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.GROUPNUMColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PYMNTGROUP() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.PYMNTGROUPColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PYMNTGROUP' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.PYMNTGROUPColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property FAKTURPAJAK() As String
             Get
                 Try 
@@ -5044,6 +5654,36 @@ Partial Public Class DS_AGEING
             End Get
             Set
                 Me(Me._table_NCM_AP_AGEING.SLPCODEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SLPNAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.SLPNAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SLPNAME' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.SLPNAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property MEMO() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.MEMOColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MEMO' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.MEMOColumn) = value
             End Set
         End Property
         
@@ -5154,6 +5794,21 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SERIESREMARK() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.SERIESREMARKColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SERIESREMARK' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.SERIESREMARKColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PAYMENTTERM() As String
             Get
                 Try 
@@ -5179,6 +5834,21 @@ Partial Public Class DS_AGEING
             End Get
             Set
                 Me(Me._table_NCM_AP_AGEING.CREDITLIMITColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SAMPLEINV() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AP_AGEING.SAMPLEINVColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SAMPLEINV' in table '@NCM_AP_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AP_AGEING.SAMPLEINVColumn) = value
             End Set
         End Property
         
@@ -5532,6 +6202,66 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPRJNAMENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.PRJNAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPRJNAMENull()
+            Me(Me._table_NCM_AP_AGEING.PRJNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBPPRJCODENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.BPPRJCODEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBPPRJCODENull()
+            Me(Me._table_NCM_AP_AGEING.BPPRJCODEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBPPRJNAMENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.BPPRJNAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBPPRJNAMENull()
+            Me(Me._table_NCM_AP_AGEING.BPPRJNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsGROUPNUMNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.GROUPNUMColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetGROUPNUMNull()
+            Me(Me._table_NCM_AP_AGEING.GROUPNUMColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPYMNTGROUPNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.PYMNTGROUPColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPYMNTGROUPNull()
+            Me(Me._table_NCM_AP_AGEING.PYMNTGROUPColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsFAKTURPAJAKNull() As Boolean
             Return Me.IsNull(Me._table_NCM_AP_AGEING.FAKTURPAJAKColumn)
         End Function
@@ -5576,6 +6306,30 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetSLPCODENull()
             Me(Me._table_NCM_AP_AGEING.SLPCODEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSLPNAMENull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.SLPNAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSLPNAMENull()
+            Me(Me._table_NCM_AP_AGEING.SLPNAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMEMONull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.MEMOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMEMONull()
+            Me(Me._table_NCM_AP_AGEING.MEMOColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5664,6 +6418,18 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSERIESREMARKNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.SERIESREMARKColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSERIESREMARKNull()
+            Me(Me._table_NCM_AP_AGEING.SERIESREMARKColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsPAYMENTTERMNull() As Boolean
             Return Me.IsNull(Me._table_NCM_AP_AGEING.PAYMENTTERMColumn)
         End Function
@@ -5684,6 +6450,18 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCREDITLIMITNull()
             Me(Me._table_NCM_AP_AGEING.CREDITLIMITColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSAMPLEINVNull() As Boolean
+            Return Me.IsNull(Me._table_NCM_AP_AGEING.SAMPLEINVColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSAMPLEINVNull()
+            Me(Me._table_NCM_AP_AGEING.SAMPLEINVColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Inecom Reporting Package")>
 <Assembly: AssemblyCompany("Inecom Pte Ltd")>
 <Assembly: AssemblyProduct("IRP")>
-<Assembly: AssemblyCopyright("© Copyright © 2020, Inecom Pte Ltd, All rights reserved.")>
+<Assembly: AssemblyCopyright("© Copyright © 2021, Inecom Pte Ltd, All rights reserved.")>
 <Assembly: AssemblyTrademark("")> 
 <Assembly: CLSCompliant(True)> 
 
