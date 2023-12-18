@@ -99,13 +99,7 @@ Public Class FRM_PaymentVoucher_Range
     End Sub
     Private Sub SetupChooseFromList(ByVal sInputDocumentType As String)
         Dim oEditLn As SAPbouiCOM.EditText
-        Dim oCFL As SAPbouiCOM.ChooseFromList
-        Dim oCFLs As SAPbouiCOM.ChooseFromListCollection
-        Dim oCFLCreation As SAPbouiCOM.ChooseFromListCreationParams
-        Dim oCons As SAPbouiCOM.Conditions
-        Dim oCon As SAPbouiCOM.Condition
         Dim sDocType As String = "C"
-
 
         Try
             Select Case sInputDocumentType
@@ -576,11 +570,11 @@ Public Class FRM_PaymentVoucher_Range
                         sLoop &= "          T1.""DocCurr"", IFNULL(T2.""U_PV_MailTo"",'') ""EmailTo"", T0.""PymAmount"" ""DocTotal"", T0.""PymNum"", "
                         sLoop &= "          IFNULL(T1.""U_AcctMailTo"",'') ""AcctEmailTo"" "
                         sLoop &= " FROM """ & oCompany.CompanyDB & """.""PWZ4"" T0 "
-                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OVPM"" T1 On T0.""RctId""     = T1.""DocNum"" "
+                        sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OVPM"" T1 On T0.""RctId""     = T1.""DocEntry"" "
                         sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 On T1.""CardCode""  = T2.""CardCode""  "
                         sLoop &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRG"" T3 On T2.""GroupCode"" = T3.""GroupCode"" "
                         sLoop &= " WHERE 1=1 "
-                        sLoop &= " And T0.""IdEntry"" = '" & sWizardCode & "' "
+                        sLoop &= " AND T0.""IdEntry"" = '" & sWizardCode & "' "
                         sLoop &= " AND T0.""ObjType"" = 46 "
                         sLoop &= " ORDER BY T0.""PymNum"" "
 

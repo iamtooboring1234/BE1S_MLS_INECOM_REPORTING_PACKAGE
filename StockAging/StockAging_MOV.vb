@@ -546,14 +546,15 @@ Public Class StockAging_MOV
                 Try
                     'sQuery = "  SELECT  T1.""ItemCode"", T1.""ItemName"", IFNULL(T1.""InvntryUom"",'') ""InvntryUom"", "
                     'sQuery &= "         IFNULL(T1.""U_MQ_BU"",'') AS ""U_MQ_BU"", "
-                    'sQuery &= "         IFNULL(T1.""U_MQ_SUPPLIER"",'') AS ""U_MQ_SUPPLIER"", "
-                    'sQuery &= "         IFNULL(T1.""U_MQ_BRAND"",'') AS ""U_MQ_BRAND"", "
+                    'sQuery &= "         IFNULL(T1.""U_MQ_Supplier"",'') AS ""U_MQ_SUPPLIER"", "
+                    'sQuery &= "         IFNULL(T1.""U_MQ_Brand"",'') AS ""U_MQ_BRAND"", "
                     'sQuery &= "         IFNULL(T2.""Name"",'') AS ""U_MQ_BRANDNAME"" "
                     'sQuery &= " FROM    """ & oCompany.CompanyDB & """.""OITM"" T1 "
-                    'sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""@MQ_ITM_BRAND"" T2 ON T1.""U_MQ_BRAND"" = T2.""Code"" "
+                    'sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""@MQ_ITM_BRAND"" T2 ON T1.""U_MQ_Brand"" = T2.""Code"" "
 
                     sQuery = "  SELECT  ""ItemCode"", ""ItemName"", IFNULL(""InvntryUom"",'') ""InvntryUom"", "
-                    sQuery &= "         '' ""U_MQ_BU"", ""U_MQ_SUPPLIER"", '' ""U_MQ_BRAND"", '' ""U_MQ_BRANDNAME"" "
+                    sQuery &= "         '' ""U_MQ_BU"", IFNULL(""U_MQ_Supplier"",'') AS ""U_MQ_SUPPLIER"", "
+                    sQuery &= "         '' ""U_MQ_BRAND"", '' ""U_MQ_BRANDNAME"" "
                     sQuery &= " FROM    """ & oCompany.CompanyDB & """.""OITM"" "
 
                     dtOITM = ds.Tables("OITM")
