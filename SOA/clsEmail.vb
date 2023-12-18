@@ -870,6 +870,49 @@ Public Class clsEmail
                     OutlookMessage.HTMLBody = sOutput2
                     OutlookMessage.Attachments.Add(_Attachment)
                     OutlookMessage.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account "
+
+                    ' ======================================================================
+                    ' For LCS - 
+                    ' <LCS SOA – APR’22 – {customer full name}> as I had made some editing.
+                    ' FEB'22 SOA - ....
+                    ' ======================================================================
+
+                    If oCompany.CompanyDB.ToString.Trim.ToUpper.Contains("LAUCHOYSENG") Or oCompany.CompanyDB.ToString.Trim.ToUpper.Contains("LAU CHOY SENG") Or oCompany.CompanyDB.ToString.Trim.ToUpper.Contains("LCS") Then
+                        Dim sMonth As String = ""
+                        Dim sYear As String = ""
+
+                        sYear = AsAtDate.Year.ToString.Substring(2, 2)
+                        Select Case AsAtDate.Month
+                            Case "1", "01"
+                                sMonth = "JAN'"
+                            Case "2", "02"
+                                sMonth = "FEB'"
+                            Case "3", "03"
+                                sMonth = "MAR'"
+                            Case "4", "04"
+                                sMonth = "APR'"
+                            Case "5", "05"
+                                sMonth = "MAY'"
+                            Case "6", "06"
+                                sMonth = "JUN'"
+                            Case "7", "07"
+                                sMonth = "JUL'"
+                            Case "8", "08"
+                                sMonth = "AUG'"
+                            Case "9", "09"
+                                sMonth = "SEP'"
+                            Case "10", "10"
+                                sMonth = "OCT'"
+                            Case "11", "11"
+                                sMonth = "NOV'"
+                            Case "12", "12"
+                                sMonth = "DEC'"
+                        End Select
+
+                        OutlookMessage.Subject = "<LCS SOA - " & sMonth & sYear & " - " & _BPName.Trim.ToUpper & ">" ' HANA
+                    End If
+                    ' ======================================================================
+
                     OutlookMessage.Send()
 
                     attachments = Nothing
@@ -914,6 +957,48 @@ Public Class clsEmail
 
                     a.Subject = oCompany.CompanyName & " - Statement Of Account - " & _BPName       ' HANA
                     a.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account "
+
+                    ' ======================================================================
+                    ' For LCS - 
+                    ' <LCS SOA – APR’22 – {customer full name}> as I had made some editing.
+                    ' FEB'22 SOA - ....
+                    ' ======================================================================
+
+                    If oCompany.CompanyDB.ToString.Trim.ToUpper.Contains("LAUCHOYSENG") Or oCompany.CompanyDB.ToString.Trim.ToUpper.Contains("LAU CHOY SENG") Or oCompany.CompanyDB.ToString.Trim.ToUpper.Contains("LCS") Then
+                        Dim sMonth As String = ""
+                        Dim sYear As String = ""
+
+                        sYear = AsAtDate.Year.ToString.Substring(2, 2)
+                        Select Case AsAtDate.Month
+                            Case "1", "01"
+                                sMonth = "JAN'"
+                            Case "2", "02"
+                                sMonth = "FEB'"
+                            Case "3", "03"
+                                sMonth = "MAR'"
+                            Case "4", "04"
+                                sMonth = "APR'"
+                            Case "5", "05"
+                                sMonth = "MAY'"
+                            Case "6", "06"
+                                sMonth = "JUN'"
+                            Case "7", "07"
+                                sMonth = "JUL'"
+                            Case "8", "08"
+                                sMonth = "AUG'"
+                            Case "9", "09"
+                                sMonth = "SEP'"
+                            Case "10", "10"
+                                sMonth = "OCT'"
+                            Case "11", "11"
+                                sMonth = "NOV'"
+                            Case "12", "12"
+                                sMonth = "DEC'"
+                        End Select
+
+                        a.Subject = "<LCS SOA - " & sMonth & sYear & " - " & _BPName.Trim.ToUpper & ">" ' HANA
+                    End If
+                    ' ======================================================================
 
                     bIsHTML = False
                     Select Case _EmailType

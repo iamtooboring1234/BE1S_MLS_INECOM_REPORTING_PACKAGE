@@ -706,7 +706,14 @@ Public Class NCM_PV_Email_Param
             ' sQuery &= " WHERE ""DocNum"" = '" & g_sDocNum & "' AND ""Series"" = '" & g_sSeries & "' AND ""DocEntry"" = '" & g_sDocEntry & "' "
 
             If g_sCompanySign.Contains("CEH") Then
-                sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"", IFNULL(T1.""U_Bank_Info"",'') AS ""UDF_Bank_Info"" "
+                sQuery = " SELECT  T1.""Address"", T1.""CardCode"", T1.""CashAcct"", T1.""CashSum"", T1.""CashSumFC"", T1.""Comments"", "
+                sQuery &= "     T1.""CounterRef"", T1.""NoDocSum"", T1.""NoDocSumFC"", T1.""DocCurr"", T1.""DocDate"", T1.""DocDueDate"", "
+                sQuery &= "     T1.""DocEntry"", T1.""DocNum"", T1.""DocRate"", T1.""DocTotal"", T1.""DocTotalFC"", T1.""DocType"", "
+                sQuery &= "     T1.""Ref1"", T1.""Ref2"", T1.""Series"", T1.""SeriesStr"", T1.""TaxDate"", T1.""TransId"", T1.""TrsfrAcct"", "
+                sQuery &= "     T1.""TrsfrDate"", T1.""TrsfrRef"", T1.""TrsfrSum"", T1.""TrsfrSumFC"", T1.""LogInstanc"", T1.""DiffCurr"", "
+                sQuery &= "     T1.""PrjCode"", T1.""JrnlMemo"", IFNULL(T5.""Name"",'') AS ""ContactPerson"", T1.""PayToCode"", T1.""UserSign"", "
+                sQuery &= "     T1.""BcgSum"", T1.""BcgSumFC"", "
+                sQuery &= "     T1.""CardName"", IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"", IFNULL(T1.""U_Bank_Info"",'') AS ""UDF_Bank_Info"" "
                 sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
                 sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 On T1.""CardCode"" = T2.""CardCode"" "
                 sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 On T2.""BankCode"" = T3.""BankCode"" "
@@ -714,7 +721,14 @@ Public Class NCM_PV_Email_Param
                 sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' AND T1.""Series"" = '" & g_sSeries & "'"
 
             Else
-                sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
+                sQuery = " SELECT  T1.""Address"", T1.""CardCode"", T1.""CashAcct"", T1.""CashSum"", T1.""CashSumFC"", T1.""Comments"", "
+                sQuery &= "     T1.""CounterRef"", T1.""NoDocSum"", T1.""NoDocSumFC"", T1.""DocCurr"", T1.""DocDate"", T1.""DocDueDate"", "
+                sQuery &= "     T1.""DocEntry"", T1.""DocNum"", T1.""DocRate"", T1.""DocTotal"", T1.""DocTotalFC"", T1.""DocType"", "
+                sQuery &= "     T1.""Ref1"", T1.""Ref2"", T1.""Series"", T1.""SeriesStr"", T1.""TaxDate"", T1.""TransId"", T1.""TrsfrAcct"", "
+                sQuery &= "     T1.""TrsfrDate"", T1.""TrsfrRef"", T1.""TrsfrSum"", T1.""TrsfrSumFC"", T1.""LogInstanc"", T1.""DiffCurr"", "
+                sQuery &= "     T1.""PrjCode"", T1.""JrnlMemo"", IFNULL(T5.""Name"",'') AS ""ContactPerson"", T1.""PayToCode"", T1.""UserSign"", "
+                sQuery &= "     T1.""BcgSum"", T1.""BcgSumFC"", "
+                sQuery &= "     T1.""CardName"", IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
                 sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
                 sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 On T1.""CardCode"" = T2.""CardCode"" "
                 sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 On T2.""BankCode"" = T3.""BankCode"" "

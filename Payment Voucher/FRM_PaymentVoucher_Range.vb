@@ -14,6 +14,7 @@ Public Class FRM_PaymentVoucher_Range
     Private g_sReportFilename As String
     Private g_bIsShared As Boolean = False
 
+    Private g_sCompanySign As String = "GENERIC"
     Private g_sReportFilename_Email As String = ""
     Private g_bIsShared_Email As Boolean = False
 
@@ -496,7 +497,15 @@ Public Class FRM_PaymentVoucher_Range
             Dim sCurrTime As String = DateTime.Now.ToString("HHMMss")
             Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
 
-            oRec.DoQuery("SELECT  TO_CHAR(current_timestamp, 'YYYYMMDD') FROM DUMMY")
+            g_sCompanySign = "GENERIC"
+            oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+            oRec.DoQuery(" SELECT TOP 1 ""Code"" FROM """ & oCompany.CompanyDB & """.""@NCM_SETTING"" ")
+            If oRec.RecordCount > 0 Then
+                g_sCompanySign = oRec.Fields.Item(0).Value.ToString.Trim
+            End If
+
+            oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+            oRec.DoQuery("SELECT TO_CHAR(current_timestamp, 'YYYYMMDD') FROM DUMMY")
             If oRec.RecordCount > 0 Then
                 oRec.MoveFirst()
                 sCurrDate = Convert.ToString(oRec.Fields.Item(0).Value).Trim
@@ -1117,12 +1126,21 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.SelectCommand = HANAcmd
             HANAda.Fill(dtOJDT)
             '--------------------------------------------------------
-            sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
-            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
-            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
-            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "
-            sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 ON T1.""UserSign"" = T4.""INTERNAL_K"" "
-            sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""Series"" = '" & g_sSeries & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' "
+            If g_sCompanySign.Contains("CEH") Then
+                sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"", IFNULL(T1.""U_Bank_Info"",'') AS ""UDF_Bank_Info"" "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 ON T1.""UserSign"" = T4.""INTERNAL_K"" "
+                sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""Series"" = '" & g_sSeries & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' "
+            Else
+                sQuery = "  SELECT T1.*, IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OCRD"" T2 ON T1.""CardCode"" = T2.""CardCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""ODSC"" T3 ON T2.""BankCode"" = T3.""BankCode"" "
+                sQuery &= " LEFT OUTER JOIN  """ & oCompany.CompanyDB & """.""OUSR"" T4 ON T1.""UserSign"" = T4.""INTERNAL_K"" "
+                sQuery &= " WHERE T1.""DocNum"" = '" & g_sDocNum & "' AND T1.""Series"" = '" & g_sSeries & "' AND T1.""DocEntry"" = '" & g_sDocEntry & "' "
+            End If
 
             dtOVPM = dsPAYMENT.Tables("OVPM")
             HANAcmd = dbConn.CreateCommand()
@@ -1342,20 +1360,38 @@ Public Class FRM_PaymentVoucher_Range
             HANAda.Fill(dtNNM1)
 
             '--------------------------------------------------------
-            sQuery = " SELECT  T1.""Address"", T1.""CardCode"", T1.""CashAcct"", T1.""CashSum"", T1.""CashSumFC"", T1.""Comments"", "
-            sQuery &= "     T1.""CounterRef"", T1.""NoDocSum"", T1.""NoDocSumFC"", T1.""DocCurr"", T1.""DocDate"", T1.""DocDueDate"", "
-            sQuery &= "     T1.""DocEntry"", T1.""DocNum"", T1.""DocRate"", T1.""DocTotal"", T1.""DocTotalFC"", T1.""DocType"", "
-            sQuery &= "     T1.""Ref1"", T1.""Ref2"", T1.""Series"", T1.""SeriesStr"", T1.""TaxDate"", T1.""TransId"", T1.""TrsfrAcct"", "
-            sQuery &= "     T1.""TrsfrDate"", T1.""TrsfrRef"", T1.""TrsfrSum"", T1.""TrsfrSumFC"", T1.""LogInstanc"", T1.""DiffCurr"", "
-            sQuery &= "     T1.""PrjCode"", T1.""JrnlMemo"", IFNULL(T5.""Name"",'') AS ""ContactPerson"", T1.""PayToCode"", T1.""UserSign"", "
-            sQuery &= "     T1.""BcgSum"", T1.""BcgSumFC"", "
-            sQuery &= "     T1.""CardName"", IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
-            sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
-            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 On T1.""CardCode"" = T2.""CardCode"" "
-            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""ODSC"" T3 On T2.""BankCode"" = T3.""BankCode"" "
-            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OUSR"" T4 On T1.""UserSign"" = T4.""INTERNAL_K"" "
-            sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCPR"" T5 On T1.""CardCode"" = T5.""CardCode"" AND T1.""CntctCode"" = T5.""CntctCode"" "
-            sQuery &= " WHERE T1.""DocEntry"" In " & sListDocEntry & " "
+            If g_sCompanySign.Contains("CEH") Then
+                sQuery = " SELECT  T1.""Address"", T1.""CardCode"", T1.""CashAcct"", T1.""CashSum"", T1.""CashSumFC"", T1.""Comments"", "
+                sQuery &= "     T1.""CounterRef"", T1.""NoDocSum"", T1.""NoDocSumFC"", T1.""DocCurr"", T1.""DocDate"", T1.""DocDueDate"", "
+                sQuery &= "     T1.""DocEntry"", T1.""DocNum"", T1.""DocRate"", T1.""DocTotal"", T1.""DocTotalFC"", T1.""DocType"", "
+                sQuery &= "     T1.""Ref1"", T1.""Ref2"", T1.""Series"", T1.""SeriesStr"", T1.""TaxDate"", T1.""TransId"", T1.""TrsfrAcct"", "
+                sQuery &= "     T1.""TrsfrDate"", T1.""TrsfrRef"", T1.""TrsfrSum"", T1.""TrsfrSumFC"", T1.""LogInstanc"", T1.""DiffCurr"", "
+                sQuery &= "     T1.""PrjCode"", T1.""JrnlMemo"", IFNULL(T5.""Name"",'') AS ""ContactPerson"", T1.""PayToCode"", T1.""UserSign"", "
+                sQuery &= "     T1.""BcgSum"", T1.""BcgSumFC"", "
+                sQuery &= "     T1.""CardName"", IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"", IFNULL(T1.""U_Bank_Info"",'') AS ""UDF_Bank_Info"" "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 On T1.""CardCode"" = T2.""CardCode"" "
+                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""ODSC"" T3 On T2.""BankCode"" = T3.""BankCode"" "
+                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OUSR"" T4 On T1.""UserSign"" = T4.""INTERNAL_K"" "
+                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCPR"" T5 On T1.""CardCode"" = T5.""CardCode"" AND T1.""CntctCode"" = T5.""CntctCode"" "
+                sQuery &= " WHERE T1.""DocEntry"" In " & sListDocEntry & " "
+            Else
+                sQuery = " SELECT  T1.""Address"", T1.""CardCode"", T1.""CashAcct"", T1.""CashSum"", T1.""CashSumFC"", T1.""Comments"", "
+                sQuery &= "     T1.""CounterRef"", T1.""NoDocSum"", T1.""NoDocSumFC"", T1.""DocCurr"", T1.""DocDate"", T1.""DocDueDate"", "
+                sQuery &= "     T1.""DocEntry"", T1.""DocNum"", T1.""DocRate"", T1.""DocTotal"", T1.""DocTotalFC"", T1.""DocType"", "
+                sQuery &= "     T1.""Ref1"", T1.""Ref2"", T1.""Series"", T1.""SeriesStr"", T1.""TaxDate"", T1.""TransId"", T1.""TrsfrAcct"", "
+                sQuery &= "     T1.""TrsfrDate"", T1.""TrsfrRef"", T1.""TrsfrSum"", T1.""TrsfrSumFC"", T1.""LogInstanc"", T1.""DiffCurr"", "
+                sQuery &= "     T1.""PrjCode"", T1.""JrnlMemo"", IFNULL(T5.""Name"",'') AS ""ContactPerson"", T1.""PayToCode"", T1.""UserSign"", "
+                sQuery &= "     T1.""BcgSum"", T1.""BcgSumFC"", "
+                sQuery &= "     T1.""CardName"", IFNULL(T2.""CardName"",'') AS ""OrigCardName"", T2.""BankCode"", T3.""BankName"", T4.""INTERNAL_K"", T4.""U_NAME"" "
+                sQuery &= " FROM """ & oCompany.CompanyDB & """.""OVPM"" T1 "
+                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCRD"" T2 On T1.""CardCode"" = T2.""CardCode"" "
+                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""ODSC"" T3 On T2.""BankCode"" = T3.""BankCode"" "
+                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OUSR"" T4 On T1.""UserSign"" = T4.""INTERNAL_K"" "
+                sQuery &= " LEFT OUTER JOIN """ & oCompany.CompanyDB & """.""OCPR"" T5 On T1.""CardCode"" = T5.""CardCode"" AND T1.""CntctCode"" = T5.""CntctCode"" "
+                sQuery &= " WHERE T1.""DocEntry"" In " & sListDocEntry & " "
+            End If
+
 
             dtOPDF = dsPAYMENT.Tables("OPDF")
             HANAcmd = dbConn.CreateCommand()
