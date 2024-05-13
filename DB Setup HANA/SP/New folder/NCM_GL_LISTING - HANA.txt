@@ -1,0 +1,83 @@
+
+CREATE PROCEDURE NCM_GL_LISTING
+(	IN FirstAcct varchar(50),
+	IN LastAcct varchar(50),
+	IN FirstDate varchar(10),
+	IN LastDate  varchar(10)
+
+) 
+LANGUAGE SQLSCRIPT
+AS
+
+BEGIN 
+    SELECT T6."Name" AS "FinancialPeriodName", T0."TransId" AS "Number", T0."RefDate", 
+            
+        CASE 
+            WHEN 
+            (SELECT TOP 1 IFNULL(T0."EnbSgmnAct", 'N') 
+            FROM CINF T0) = 'Y' THEN IFNULL(T7."Segment_0", '') || IFNULL('-' || T7."Segment_1", '') || IFNULL('-' || T7
+            ."Segment_2", '') || IFNULL('-' || T7."Segment_3", '') || IFNULL('-' || T7."Segment_4", '') || IFNULL('-' 
+            || T7."Segment_5", '') || IFNULL('-' || T7."Segment_6", '') || IFNULL('-' || T7."Segment_7", '') || IFNULL
+            ('-' || T7."Segment_8", '') || IFNULL('-' || T7."Segment_9", '') 
+            ELSE T0."Account" 
+        END AS "GLAccount", T7."AcctName" AS "AcctName", T0."ProfitCode" AS "Dim1", T0."OcrCode2" AS "Dim2", 
+        T0."OcrCode3" AS "Dim3", T0."OcrCode4" AS "Dim4", T0."OcrCode5" AS "Dim5", T0."Ref1", T0."Ref2", 
+        T0."Ref3Line" AS "Ref3", T0."FCDebit" - T0."FCCredit" AS "AmountFC", T0."Debit" - T0."Credit" AS "AmountLC", 
+        0 AS "UnitPriceFC", 0 AS "UnitPriceLC", 
+        CASE 
+            WHEN IFNULL(T0."U_DocDesc", '') = '' THEN T0."LineMemo" 
+            ELSE T0."U_DocDesc" 
+        END AS "LineMemo", 
+        CASE T0."TransType" 
+            WHEN '15' THEN 'DN' 
+            WHEN '16' THEN 'RE' 
+            WHEN '203' THEN 'DT' 
+            WHEN '13' THEN 'IN' 
+            WHEN '14' THEN 'CN' 
+            WHEN '20' THEN 'PD' 
+            WHEN '21' THEN 'PR' 
+            WHEN '204' THEN 'DT' 
+            WHEN '18' THEN 'PU' 
+            WHEN '19' THEN 'PC' 
+            WHEN '24' THEN 'RC' 
+            WHEN '46' THEN 'PS' 
+            WHEN '30' THEN 'JE' 
+            WHEN '69' THEN 'IF' 
+            WHEN '59' THEN 'SI' 
+            WHEN '60' THEN 'SO' 
+            WHEN '67' THEN 'IM' 
+            WHEN '162' THEN 'MR' 
+            WHEN '-3' THEN 'BC' 
+            WHEN '58' THEN 'ST' 
+            WHEN '10000046' THEN 'DA' 
+            WHEN '-2' THEN 'OB' 
+        END AS "DocTypeDesc", T0."Project" AS "ProjectCode", T0."BaseRef" AS "DocNum", T5."SeriesName", 
+        (SELECT TOP 1 IFNULL("DimDesc", '') 
+        FROM ODIM 
+        WHERE "DimCode" = 1) AS "DimDesc1", 
+        (SELECT TOP 1 IFNULL("DimDesc", '') 
+        FROM ODIM 
+        WHERE "DimCode" = 2) AS "DimDesc2", 
+        (SELECT TOP 1 IFNULL("DimDesc", '') 
+        FROM ODIM 
+        WHERE "DimCode" = 3) AS "DimDesc3", 
+        (SELECT TOP 1 IFNULL("DimDesc", '') 
+        FROM ODIM 
+        WHERE "DimCode" = 4) AS "DimDesc4", 
+        (SELECT TOP 1 IFNULL("DimDesc", '') 
+        FROM ODIM 
+        WHERE "DimCode" = 5) AS "DimDesc5" 
+    FROM "JDT1" T0 
+        INNER JOIN "OJDT" T1 ON T1."TransId" = T0."TransId" 
+        LEFT OUTER JOIN "OPRJ" T2 ON T2."PrjCode" = T0."Project" 
+        LEFT OUTER JOIN "OACT" T3 ON T3."AcctCode" = T0."ContraAct" 
+        LEFT OUTER JOIN "OCRD" T4 ON T4."CardCode" = T0."ContraAct" 
+        LEFT OUTER JOIN "NNM1" T5 ON T1."DocSeries" = T5."Series" 
+        LEFT OUTER JOIN "OFPR" T6 ON T0."FinncPriod" = T6."AbsEntry" 
+        LEFT OUTER JOIN "OACT" T7 ON T0."Account" = T7."AcctCode" 
+    WHERE T0."Account" >= LTRIM(RTRIM(FirstAcct))
+    	 AND T0."Account" <= LTRIM(RTRIM(LastAcct)) AND
+         T0."RefDate" >= LTRIM(RTRIM(FirstDate)) AND 
+         T0."RefDate" <= LTRIM(RTRIM(LastDate)) 
+    ORDER BY T0."Account", T0."RefDate";
+END;

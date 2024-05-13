@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "OCRD" Desc = "BP Master Data" Type = "1" System="Y">
+		<Field ID = "SOA_Bldg">
+			<Description>SOA Building</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID="SOA_MailTo">
+			<Description>SOA Email To</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="SOAContact">
+			<Description>SOA Contact</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="U_Retention">
+			<Description>Retention</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="PayTerm">
+			<Description>Payment Terms</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Dim2">
+			<Description>Business Unit Code</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="PV_MailTo">
+			<Description>PV Email To</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID = "CreateTS">
+			<Description>CreateTS</Description>
+			<Type>3</Type>
+			<SubType>84</SubType>
+			<Length>0</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "UpdateTS">
+			<Description>UpdateTS</Description>
+			<Type>3</Type>
+			<SubType>84</SubType>
+			<Length>0</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "IRPBPField1">
+			<Description>IRP BP UDF 1</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "IRPBPField2">
+			<Description>IRP BP UDF 2</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "IRPBPField3">
+			<Description>IRP BP UDF 3</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "IRPBPField4">
+			<Description>IRP BP UDF 4</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "IRPBPField5">
+			<Description>IRP BP UDF 5</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+	<Table ID="NCM_SOA_BANK" Desc="SDK SOA - Bank Detail" Type="0" System="N">
+		<Field ID="Address1">
+			<Description>Address Line 1</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Address2">
+			<Description>Address Line 2</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Address3">
+			<Description>Address Line 3</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="SwiftCode">
+			<Description>Swift Code</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>15</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Account1">
+			<Description>Bank Account 1</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Account2">
+			<Description>Bank Account 2</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Account3">
+			<Description>Bank Account 3</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Account4">
+			<Description>Bank Account 4</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Account5">
+			<Description>Bank Account 5</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Print">
+			<Description>Print in SOA</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues>
+				<ValidValue ID="Y">Yes</ValidValue>
+				<ValidValue ID="N">No</ValidValue>
+			</ValidValues>
+			<DefValue>Y</DefValue>
+		</Field>
+	</Table>
+</Settings>

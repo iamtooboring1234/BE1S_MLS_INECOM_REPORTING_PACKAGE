@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "OJDT" Desc = "Journal Entry" Type = "1" System="Y">
+		<Field ID = "SOA_Excl">
+			<Description>SOA Exclude</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues>
+				<ValidValue ID = "Y" >To Exclude from SOA</ValidValue>
+				<ValidValue ID = "N" >To Include in SOA</ValidValue>
+			</ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "BusinessUnit">
+			<Description>Business Unit</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "CreateTS">
+			<Description>CreateTS</Description>
+			<Type>3</Type>
+			<SubType>84</SubType>
+			<Length>0</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "UpdateTS">
+			<Description>UpdateTS</Description>
+			<Type>3</Type>
+			<SubType>84</SubType>
+			<Length>0</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

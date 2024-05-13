@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+	<Table ID="NCM_EMAIL_CONFIG" Desc="SDK - Email Configuration" Type="0" System="N">
+		<Field ID="Type">
+			<Description>Type</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="AuthType">
+			<Description>Authentication Type</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues>
+				<ValidValue ID="0">None</ValidValue>
+				<ValidValue ID="1">Basic</ValidValue>
+			</ValidValues>
+			<DefValue>0</DefValue>
+		</Field>
+		<Field ID="MailFrom">
+			<Description>Mail From</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="SMTP">
+			<Description>SMTP Server</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Username">
+			<Description>SMTP Username</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Password">
+			<Description>SMTP Password</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID = "LocalIP">
+			<Description>Local IP Address</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID = "PortNum">
+			<Description>Port Number</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "EmailPath">
+			<Description>Email Body FilePath</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="EnableSSL">
+			<Description>Enable SSL</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues>
+				<ValidValue ID="N">NO</ValidValue>
+				<ValidValue ID="Y">YES</ValidValue>
+			</ValidValues>
+			<DefValue>N</DefValue>
+		</Field>
+		<Field ID="Office365">
+			<Description>Run Office365</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues>
+				<ValidValue ID="N">NO</ValidValue>
+				<ValidValue ID="Y">YES</ValidValue>
+			</ValidValues>
+			<DefValue>N</DefValue>
+		</Field>
+		<Field ID="Outlook">
+			<Description>Use MSOutlook</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues>
+				<ValidValue ID="N">NO</ValidValue>
+				<ValidValue ID="Y">YES</ValidValue>
+			</ValidValues>
+			<DefValue>N</DefValue>
+		</Field>
+		<Field ID="EmailSub">
+			<Description>Prefix Email Subject</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+	</Table>
+</Settings>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "ORPC" Desc = "Outgoing Payment" Type = "1" System="Y">
+		<Field ID = "GSTSGDRate">
+			<Description>GST SGD Rate</Description>
+			<Type>4</Type>
+			<SubType>82</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "GSTSGDAmt">
+			<Description>GST SGD Amount</Description>
+			<Type>4</Type>
+			<SubType>83</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

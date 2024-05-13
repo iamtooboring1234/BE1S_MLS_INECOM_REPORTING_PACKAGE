@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "JDT1" Desc = "Journal Entry - Rows" Type = "0" System="Y">
+		<Field ID="DocDesc">
+			<Description>Doc. Desc.</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+	</Table>
+</Settings>

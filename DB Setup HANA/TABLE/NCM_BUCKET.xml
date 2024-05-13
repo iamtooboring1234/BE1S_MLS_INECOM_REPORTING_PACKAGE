@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+	<Table ID="NCM_BUCKET" Desc="Inecom Aging BUCKET" Type="0" System="N">
+		<Field ID="Type">
+			<Description>Report Type</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Bucket1Txt">
+			<Description>Bucket 1 Text</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field> 
+		<Field ID="Bucket2Txt">
+			<Description>Bucket 2 Text</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Bucket3Txt">
+			<Description>Bucket 3 Text</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field> 
+		<Field ID="Bucket4Txt">
+			<Description>Bucket 4 Text</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field> 
+		<Field ID="Bucket5Txt">
+			<Description>Bucket 5 Text</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field> 
+		<Field ID="Bucket6Txt">
+			<Description>Bucket 6 Text</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field> 
+		<Field ID="Bucket7Txt">
+			<Description>Bucket 7 Text</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field> 
+		<Field ID="Bucket8Txt">
+			<Description>Bucket 8 Text</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field> 
+		<Field ID="Bucket9Txt">
+			<Description>Bucket 9 Text</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>  
+		<Field ID = "Bucket1Val">
+			<Description>Bucket 1 Value</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Bucket2Val">
+			<Description>Bucket 2 Value</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Bucket3Val">
+			<Description>Bucket 3 Value</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Bucket4Val">
+			<Description>Bucket 4 Value</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Bucket5Val">
+			<Description>Bucket 5 Value</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Bucket6Val">
+			<Description>Bucket 6 Value</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Bucket7Val">
+			<Description>Bucket 7 Value </Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Bucket8Val">
+			<Description>Bucket 8 Value</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Bucket9Val">
+			<Description>Bucket 9 Value</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

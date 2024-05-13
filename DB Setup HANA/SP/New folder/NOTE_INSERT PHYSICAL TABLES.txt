@@ -1,0 +1,310 @@
+
+-- RUN AT ONCE (START) THIS IS TO INSERT RECORDS INTO @NCM_BUCKET, FOR AGEING PURPOSE
+-- THE TABLE IS CREATED VIA DB SETUP, THIS IS ONLY TO INSERT RECORDS INTO THE UDT
+
+	INSERT INTO "@NCM_BUCKET" ("Code", "Name", "U_Type", "U_Bucket1Txt", "U_Bucket2Txt", "U_Bucket3Txt", 
+	"U_Bucket4Txt", "U_Bucket5Txt", "U_Bucket6Txt", "U_Bucket7Txt", "U_Bucket8Txt", "U_Bucket9Txt", 
+	"U_Bucket1Val", "U_Bucket2Val", "U_Bucket3Val", "U_Bucket4Val", "U_Bucket5Val", "U_Bucket6Val", 
+	"U_Bucket7Val", "U_Bucket8Val", "U_Bucket9Val") 
+	VALUES ('00000001','00000001','NCM_SAR_MOV1', '0-30 Days', '31-60 Days'
+	, '61-90 Days', '91-120 Days', '121-150 Days', '151-180 Days', '181-270 Days', '271-365 Days'
+	, '>365 Days', 30, 60, 90, 120, 150, 180, 270, 365, 365);
+
+	INSERT INTO "@NCM_BUCKET" ("Code", "Name", "U_Type", "U_Bucket1Txt", "U_Bucket2Txt", "U_Bucket3Txt", 
+	"U_Bucket4Txt", "U_Bucket5Txt", "U_Bucket6Txt", "U_Bucket7Txt", "U_Bucket8Txt", "U_Bucket9Txt", 
+	"U_Bucket1Val", "U_Bucket2Val", "U_Bucket3Val", "U_Bucket4Val", "U_Bucket5Val", "U_Bucket6Val", 
+	"U_Bucket7Val", "U_Bucket8Val", "U_Bucket9Val") 
+	VALUES ('00000002','00000002','NCM_AR_AGEING', '0-30', '31-60'
+	, '61-90', '91-120', '>120', '', '', ''
+	, '>365 Days', 30, 60, 90, 120, 120, 120, 120, 120, 120);
+
+	INSERT INTO "@NCM_BUCKET" ("Code", "Name", "U_Type", "U_Bucket1Txt", "U_Bucket2Txt", "U_Bucket3Txt", 
+	"U_Bucket4Txt", "U_Bucket5Txt", "U_Bucket6Txt", "U_Bucket7Txt", "U_Bucket8Txt", "U_Bucket9Txt", 
+	"U_Bucket1Val", "U_Bucket2Val", "U_Bucket3Val", "U_Bucket4Val", "U_Bucket5Val", "U_Bucket6Val", 
+	"U_Bucket7Val", "U_Bucket8Val", "U_Bucket9Val") 
+	VALUES ('00000003','00000003','NCM_AP_AGEING', '0-30', '31-60'
+	, '61-90', '91-120', '>120', '', '', ''
+	, '>365 Days', 30, 60, 90, 120, 120, 120, 120, 120, 120);
+
+	INSERT INTO "@NCM_BUCKET" ("Code", "Name", "U_Type", "U_Bucket1Txt", "U_Bucket2Txt", "U_Bucket3Txt", 
+	"U_Bucket4Txt", "U_Bucket5Txt", "U_Bucket6Txt", "U_Bucket7Txt", "U_Bucket8Txt", "U_Bucket9Txt", 
+	"U_Bucket1Val", "U_Bucket2Val", "U_Bucket3Val", "U_Bucket4Val", "U_Bucket5Val", "U_Bucket6Val", 
+	"U_Bucket7Val", "U_Bucket8Val", "U_Bucket9Val") 
+	VALUES ('00000004','00000004','NCM_AR_AGINGP_6B', '0-30', '31-60'
+	, '61-90', '91-120', '120-180', '>180', '', ''
+	, '>365 Days', 30, 60, 90, 120, 180, 180, 180, 180, 180);
+
+	INSERT INTO "@NCM_BUCKET" ("Code", "Name", "U_Type", "U_Bucket1Txt", "U_Bucket2Txt", "U_Bucket3Txt", 
+	"U_Bucket4Txt", "U_Bucket5Txt", "U_Bucket6Txt", "U_Bucket7Txt", "U_Bucket8Txt", "U_Bucket9Txt", 
+	"U_Bucket1Val", "U_Bucket2Val", "U_Bucket3Val", "U_Bucket4Val", "U_Bucket5Val", "U_Bucket6Val", 
+	"U_Bucket7Val", "U_Bucket8Val", "U_Bucket9Val") 
+	VALUES ('00000005','00000005','NCM_AR_AGEING_7B' 
+	, '0-30', '31-60', '61-90', '91-120', '120-150', '151-180', '>180', '', '>365 Days'
+	, 30, 60, 90, 120, 150, 180, 180, 180, 180);
+ 
+-- RUN AT ONCE (END) THIS IS TO INSERT RECORDS INTO @NCM_BUCKET, FOR AGEING PURPOSE
+
+CREATE TABLE "NCM_BATCH_ITEM" (
+	UserCode nvarchar(8) NOT NULL,
+	ServiceCallNo nvarchar(30) NOT NULL,
+	PickListNo int NULL,
+	LineNum int NULL,
+	ItemCode nvarchar(30) NULL,
+	WhseCode nvarchar(30) NULL,
+	Quantity numeric(19, 6) NULL,
+	BatchNum nvarchar(36) NOT NULL,
+	BatchQty numeric(19, 6) NULL) ;
+
+CREATE TABLE "NCM_SERIAL_ITEM" (
+	UserCode nvarchar(8) NOT NULL,
+	ServiceCallNo nvarchar(30) NOT NULL,
+	PickListNo int NULL,
+	LineNum int NULL,
+	ItemCode nvarchar(30) NULL,
+	WhseCode nvarchar(30) NULL,
+	Quantity numeric(19, 6) NULL,
+	SerialNum nvarchar(36) NOT NULL);
+
+CREATE TABLE "NCM_DISC_ADDON" (
+	UserSign integer NOT NULL,
+	UpdDate timestamp NULL,
+	DocType nvarchar(20) NULL,
+	DocEntry nvarchar(20) NULL) ;
+
+CREATE TABLE "NCM_MISC_CONFIG" (
+	CONFIGCODE nvarchar(100) NULL,
+	CONFIGVALUE nvarchar(100) NULL,
+	REMARKS nvarchar(254) NULL) ;
+
+CREATE TABLE "@NCM_NEW_SETTING" (
+	U_GSTCurr  	nvarchar(10)	NULL,
+	U_InvDetail  	nvarchar(1)	NULL,
+	U_TaxDate  	nvarchar(1)	NULL,
+	U_IRAInvDetail 	nvarchar(1)	NULL,
+	U_IRATaxDate 	nvarchar(1)	NULL,
+	U_SOAPRTOPT	nvarchar(1)	NULL);
+
+
+
+CREATE TABLE "@NCM_RPT_STRUCTURE" (
+	RptCode  	nvarchar(254)	NOT NULL PRIMARY KEY,
+	StructurePath 	nvarchar(254)	NULL);
+
+CREATE TABLE "@NCM_IMAGE" (
+	SrNo         	Numeric(9)         NOT NULL,
+	Flag         	Numeric(9),
+	Img1    	BLOB,
+	Img2    	BLOB);
+
+CREATE TABLE "@NCM_SOC2" (
+	ID         	NVARCHAR(8)         NOT NULL,
+	Notes      	NVARCHAR(1000)      NOT NULL,
+	Image    	BLOB);
+
+-- EITHER COPY FROM OTHER EXISTING DATABASE OR INSERT THE IMAGE
+
+-- 1. TO COPY FROM OTHER EXISTING DB, RUN THE COMMENTED QUERY BELOW:
+-- -- REPLACE <<...>> WITH DATABASE NAME
+-- USING THIS METHOD, THERE IS NO NEED TO DO MANUAL UPDATE FOR FIELDS 'INCLUDED' AND 'FILEPATH', IF THE EXISTING DB ALREADY HAS IT.
+-- 
+
+-- INSERT INTO <<DESTINATION_DATABASE_NAME>>."@NCM_IMAGE"
+-- SELECT * FROM <<SOURCE_DATABASE_NAME>>."@NCM_IMAGE"
+
+
+-- 2. TO INSERT, COPY THE INSERTION STATEMENT AND EXECUTE IN HANA STUDIO
+INSERT INTO "@NCM_IMAGE" 	VALUES (1,0,NULL,NULL);
+
+INSERT INTO "@NCM_NEW_SETTING" 	VALUES ('SGD','N','D','N','D','2');
+
+-- NEED TO DEFINE THE VALUE FOR FIELD 'CONFIGVALUE'; THE VALUE SHOULD BE THEIR CURRENT SMTP PASSWORD.
+INSERT INTO "NCM_MISC_CONFIG" 	VALUES ('COGS_JE_SMTP_PASS','','');
+	 
+INSERT INTO "@NCM_SOC2" 	VALUES ('1',
+	 'Note:   Any payments received after end of the month will be shown in next month''s statement.
+		  If you do not agree with the above statement, please inform us immediately.', NULL);
+
+-- EITHER COPY FROM OTHER EXISTING DATABASE OR INSERT THE REPORT CODE ONE BY ONE 
+
+-- 1. TO COPY FROM OTHER EXISTING DB, RUN THE COMMENTED QUERY BELOW:
+-- -- REPLACE <<...>> WITH DATABASE NAME
+-- USING THIS METHOD, THERE IS NO NEED TO DO MANUAL UPDATE FOR FIELDS 'INCLUDED' AND 'FILEPATH', IF THE EXISTING DB ALREADY HAS IT.
+-- 
+
+-- INSERT INTO <<DESTINATION_DATABASE_NAME>>."@NCM_RPT_CONFIG"
+-- SELECT * FROM <<SOURCE_DATABASE_NAME>>."@NCM_RPT_CONFIG"
+
+
+CREATE TABLE "@NCM_RPT_CONFIG" (
+	RptType  nvarchar(10)	NOT NULL,
+	RptCode  nvarchar(254)	NOT NULL PRIMARY KEY,
+	RptName  nvarchar(254)	NULL,
+	Included nvarchar(1)	NULL,
+	FilePath nvarchar(254)	NULL,
+	UpdDate  timestamp);
+
+-- 2. TO INSERT, COPY THE WHOLE QUERY BELOW (ALL INSERTION) AND EXECUTE IN HANA STUDIO
+-- DOING THIS, YOU NEED TO MANUALLY UPDATE FIELD 'INCLUDED' FROM "N" TO "Y" IF THE REPORT IS INCLUDED FOR THE COMPANY.
+-- ONCE FIELD 'INCLUDED' = 'Y', YOU ALSO NEED TO GO TO IRP - DEFINE CONFIGURATION MODULE TO UPDATE THE EXTERNAL RPT FILE FOR THE INCLUDED REPORTS.
+
+	insert into "@NCM_RPT_CONFIG" values ('BSC','ARSOA_BY_PROJECT','AR Statement of Accounts (Group By Project)','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','BANK_RECONCILIATION','Bank Reconciliation','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_INVOICE_EMAIL','AR Invoice Email','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','OFFICIAL_RECEIPT','Official Receipt','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AP_AGEING_SUMMARY','AP Ageing Summary','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AP_AGEING_DETAILS','AP Ageing Details','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_AGEING_SUMMARY','AR Ageing Summary','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_AGEING_DETAILS','AR Ageing Details','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_AGEING_DETAILS_CRM','AR Ageing Details with CRM Notes','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_AGEING_6B_SUMMARY','AR Ageing 6 Buckets Summary','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_AGEING_6B_DETAILS','AR Ageing 6 Buckets Details','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_AGEING_7B_SUMMARY','AR Ageing 7 Buckets Summary','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_AGEING_7B_DETAILS','AR Ageing 7 Buckets Details','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','SAR_FIFO_DETAILS','Stock Ageing FIFO Details','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','SAR_FIFO_SUMMARY','Stock Ageing FIFO Summary','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','SAR_MOVAVG_SUMMARY','Stock Ageing Moving Average Summary','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','SAR_MOVAVG_DETAILS','Stock Ageing Moving Average Details','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','SAR_TM_V1','Stock Ageing Original','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','SAR_TM_V2','Stock Ageing Sort By Warehouse','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','SAR_TM_V3','Stock Ageing Sort By Item','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_PAYMENT','AR Payment Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AP_PAYMENT','AP Payment Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_SOA','AR Statement of Accounts','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','AR_SOA_LANDSCAPE','AR Statement of Accounts (Landscape)','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AP_SOA','AP Statement of Accounts','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_SOA_EMAIL','AR SOA Email','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','AR_SOA_PROJECT','AR SOA By Project','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','DRAFT_PAYMENT_VOUCHER','Draft Payment Voucher','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','GL_LISTING','GL Listing Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','PAYMENT_VOUCHER','Payment Voucher','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','PAYMENT_VOUCHER_RANGE','Payment Voucher Range','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','REMITTANCE_ADVICE','Remittance Advice','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','REMITTANCE_ADVICE_RANGE','Remittance Advice Range','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','RECEIPT_PAYMENT','Receipt and Payment Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','RPT_GPA','Gross Profit Analysis Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','RPT_GST','GST Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('BSC','SAR_MOVAVG_AUDIT_ENQUIRY','Stock Audit Enquiry Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','RPT_IAR','Items ABC Analysis Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','RPT_RLR','Re-Order Level Recommendation Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','RPT_WAR','Weighted Average Demand Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','MRP_RPT','MRP Supply Demand Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','AP_AGEING_PROJ_DETAILS','AP Ageing Details with Project Code','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','AR_AGEING_PROJ_DETAILS','AR Ageing Details with Project Code','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','AP_AGEING_PROJ_SUMMARY','AP Ageing Summary with Project Code','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','AR_AGEING_PROJ_SUMMARY','AR Ageing Summary with Project Code','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','PO_DETAILS_BY_CUSTOMER','PO Details by Vendor Report','N','',current_timestamp);
+	insert into "@NCM_RPT_CONFIG" values ('ADV','SO_DETAILS_BY_CUSTOMER','SO Details by Customer Report','N','',current_timestamp)
+	INSERT INTO "@NCM_RPT_CONFIG" VALUES ('BSC','PV_MASS_EMAIL','PV Email','Y','',CURRENT_DATE)
+	INSERT INTO "@NCM_RPT_CONFIG" VALUES ('BSC','CHANGE_LOG_AUDIT','Change Log Audit Report','Y','',CURRENT_DATE)
+	INSERT INTO "@NCM_RPT_CONFIG" VALUES ('BSC','BANK_RECONCILIATION','Bank Reconciliation','N','',current_timestamp)
+
+3. Insert XML Structure File
+
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_INVOICE_EMAIL','');
+	insert into "@NCM_RPT_STRUCTURE" values ('OFFICIAL_RECEIPT','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AP_AGEING_SUMMARY','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AP_AGEING_DETAILS','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_AGEING_SUMMARY','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_AGEING_DETAILS','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_AGEING_DETAILS_CRM','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_AGEING_6B_SUMMARY','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_AGEING_6B_DETAILS','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_AGEING_7B_SUMMARY','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_AGEING_7B_DETAILS','');
+	insert into "@NCM_RPT_STRUCTURE" values ('SAR_FIFO_DETAILS','');
+	insert into "@NCM_RPT_STRUCTURE" values ('SAR_FIFO_SUMMARY','');
+	insert into "@NCM_RPT_STRUCTURE" values ('SAR_MOVAVG_SUMMARY','');
+	insert into "@NCM_RPT_STRUCTURE" values ('SAR_MOVAVG_DETAILS','');
+	insert into "@NCM_RPT_STRUCTURE" values ('SAR_TM_V1','');
+	insert into "@NCM_RPT_STRUCTURE" values ('SAR_TM_V2','');
+	insert into "@NCM_RPT_STRUCTURE" values ('SAR_TM_V3','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_PAYMENT','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AP_PAYMENT','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_SOA','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_SOA_LANDSCAPE','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AP_SOA','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_SOA_EMAIL','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_SOA_PROJECT','');
+	insert into "@NCM_RPT_STRUCTURE" values ('DRAFT_PAYMENT_VOUCHER','');
+	insert into "@NCM_RPT_STRUCTURE" values ('GL_LISTING','');
+	insert into "@NCM_RPT_STRUCTURE" values ('PAYMENT_VOUCHER','');
+	insert into "@NCM_RPT_STRUCTURE" values ('PAYMENT_VOUCHER_RANGE','');
+	insert into "@NCM_RPT_STRUCTURE" values ('REMITTANCE_ADVICE','');
+	insert into "@NCM_RPT_STRUCTURE" values ('REMITTANCE_ADVICE_RANGE','');
+	insert into "@NCM_RPT_STRUCTURE" values ('RECEIPT_PAYMENT','');
+	insert into "@NCM_RPT_STRUCTURE" values ('SAR_MOVAVG_AUDIT_ENQUIRY','');
+	insert into "@NCM_RPT_STRUCTURE" values ('RPT_GPA','');
+	insert into "@NCM_RPT_STRUCTURE" values ('RPT_GST','');
+	insert into "@NCM_RPT_STRUCTURE" values ('RPT_IAR','');
+	insert into "@NCM_RPT_STRUCTURE" values ('RPT_RLR','');
+	insert into "@NCM_RPT_STRUCTURE" values ('RPT_WAR','');
+	insert into "@NCM_RPT_STRUCTURE" values ('MRP_RPT','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AP_AGEING_PROJ_DETAILS','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_AGEING_PROJ_DETAILS','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AP_AGEING_PROJ_SUMMARY','');
+	insert into "@NCM_RPT_STRUCTURE" values ('AR_AGEING_PROJ_SUMMARY','');
+	insert into "@NCM_RPT_STRUCTURE" values ('PO_DETAILS_BY_CUSTOMER','');
+	insert into "@NCM_RPT_STRUCTURE" values ('SO_DETAILS_BY_CUSTOMER','');
+
+
+
+CREATE VIEW NCM_NNM1_1 AS 
+SELECT "ObjectCode","Series","SeriesName" FROM "NNM1"
+UNION ALL
+SELECT DISTINCT "ObjectCode",-1,'' FROM "NNM1"
+
+CREATE VIEW NCM_NNM1_2 AS 
+SELECT "ObjectCode","Series","SeriesName" FROM "NNM1"
+UNION ALL
+SELECT DISTINCT "ObjectCode",-1,'' FROM "NNM1"
+
+CREATE VIEW NCM_NNM1_3 AS 
+SELECT "ObjectCode","Series","SeriesName" FROM "NNM1"
+UNION ALL
+SELECT DISTINCT "ObjectCode",-1,'' FROM "NNM1"
+
+CREATE VIEW NCM_NNM1_4 AS 
+SELECT "ObjectCode","Series","SeriesName" FROM "NNM1"
+UNION ALL
+SELECT DISTINCT "ObjectCode",-1,'' FROM "NNM1"
+
+CREATE VIEW NCM_NNM1_5 AS 
+SELECT "ObjectCode","Series","SeriesName" FROM "NNM1"
+UNION ALL
+SELECT DISTINCT "ObjectCode",-1,'' FROM "NNM1"
+
+CREATE VIEW NCM_NNM1_6 AS 
+SELECT "ObjectCode","Series","SeriesName" FROM "NNM1"
+UNION ALL
+SELECT DISTINCT "ObjectCode",-1,'' FROM "NNM1"
+
+CREATE VIEW NCM_NNM1_7 AS 
+SELECT "ObjectCode","Series","SeriesName" FROM "NNM1"
+UNION ALL
+SELECT DISTINCT "ObjectCode",-1,'' FROM "NNM1"
+
+
+CREATE VIEW NCM_OPRJ_1 AS 
+SELECT "PrjCode", "PrjName" FROM "OPRJ" 
+
+CREATE VIEW NCM_OPRJ_2 AS 
+SELECT "PrjCode", "PrjName" FROM "OPRJ" 
+
+CREATE VIEW NCM_OPRJ_3 AS 
+SELECT "PrjCode", "PrjName" FROM "OPRJ" 
+
+CREATE VIEW NCM_OPRJ_4 AS 
+SELECT "PrjCode", "PrjName" FROM "OPRJ" 
+
+CREATE VIEW NCM_OPRJ_5 AS 
+SELECT "PrjCode", "PrjName" FROM "OPRJ" 
+
+CREATE VIEW NCM_OPRJ_6 AS 
+SELECT "PrjCode", "PrjName" FROM "OPRJ" 
+
+CREATE VIEW NCM_OPRJ_7 AS 
+SELECT "PrjCode", "PrjName" FROM "OPRJ" 
+
+
+ 
+

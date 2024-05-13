@@ -1,0 +1,4 @@
+CREATE TABLE "NCM_SDK_CLOUD" (
+	ISCLOUD nvarchar(1) NULL,
+	SYSNAME nvarchar(100) NULL,
+	SYSPASS nvarchar(254) NULL)

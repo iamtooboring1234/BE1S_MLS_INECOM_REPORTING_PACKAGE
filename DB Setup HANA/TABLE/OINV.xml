@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "OINV" Desc = "AR Invoice" Type = "1" System="Y">
+		<Field ID = "Vessel">
+			<Description>Vessel</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID="SampleInv">
+			<Description>Sample Invoice</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues>
+				<ValidValue ID="YES">YES</ValidValue>
+				<ValidValue ID="NO">NO</ValidValue>
+			</ValidValues>
+			<DefValue>NO</DefValue>
+		</Field>
+		<Field ID = "LineBusiness">
+			<Description>Line Business</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "GSTSGDRate">
+			<Description>GST SGD Rate</Description>
+			<Type>4</Type>
+			<SubType>82</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "GSTSGDAmt">
+			<Description>GST SGD Amount</Description>
+			<Type>4</Type>
+			<SubType>83</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "IRPField1">
+			<Description>IRP UDF Field1</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "IRPField2">
+			<Description>IRP UDF Field2</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "IRPField3">
+			<Description>IRP UDF Field3</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "IRPField4">
+			<Description>IRP UDF Field4</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "IRPField5">
+			<Description>IRP UDF Field5</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

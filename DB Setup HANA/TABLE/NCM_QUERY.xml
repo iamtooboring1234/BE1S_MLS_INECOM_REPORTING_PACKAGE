@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "NCM_QUERY" Desc = "SDK - Approval Query" Type = "0" System = "N">
+		<Field ID = "Type">
+			<Description>Type</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Query">
+			<Description>Query</Description>
+			<Type>1</Type>
+			<SubType>0</SubType>
+			<Length>0</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

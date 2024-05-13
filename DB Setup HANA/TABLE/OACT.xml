@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "OACT" Desc = "G/L Accounts" Type = "1" System="Y">
+		<Field ID = "Excl_AC">
+			<Description>Exclude from SOA and Ageing</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

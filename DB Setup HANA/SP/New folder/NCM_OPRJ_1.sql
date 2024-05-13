@@ -1,0 +1,6 @@
+CREATE VIEW [NCM_OPRJ_1] AS 
+SELECT PrjCode, PrjName FROM [OPRJ] 
+
+
+
+

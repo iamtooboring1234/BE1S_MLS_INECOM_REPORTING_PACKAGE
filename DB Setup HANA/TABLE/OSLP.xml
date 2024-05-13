@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "OSLP" Desc = "Sales Employee" Type = "1" System="Y">
+		<Field ID = "ShortName">
+			<Description>Short Name</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "SalesTeam">
+			<Description>Sales Team</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

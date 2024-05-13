@@ -1,0 +1,1 @@
+INSERT INTO "@NCM_RPT_CONFIG" VALUES ('BSC','BANK_RECONCILIATION','Bank Reconciliation','N','',current_timestamp)

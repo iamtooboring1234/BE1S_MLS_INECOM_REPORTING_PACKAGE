@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "NCMCCEMAIL" Desc = "SDKTABLENCMCCEMAIL" Type = "0" System = "N">
+		<Field ID = "EmailAdd">
+			<Description>EmailAddress</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

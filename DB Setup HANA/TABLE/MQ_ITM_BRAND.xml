@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "MQ_ITM_BRAND" Desc = "Item Brand" Type = "0" System = "N">
+		<Field ID = "Desc">
+			<Description>Description</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>254</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

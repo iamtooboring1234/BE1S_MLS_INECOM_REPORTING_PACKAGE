@@ -1,0 +1,37 @@
+CREATE FUNCTION NCM_GETOBJTYPENAME
+(
+	IN VOBJTYPE NVARCHAR(20)
+)
+RETURNS VOTNAME NVARCHAR(255)
+LANGUAGE SQLSCRIPT
+--WITH ENCRYPTION
+AS
+BEGIN
+
+	VOTNAME := CASE  
+		WHEN VOBJTYPE = 2 THEN 'BP Master Data'
+		WHEN VOBJTYPE = 4  THEN 'Item Master Data'
+		WHEN VOBJTYPE = 23 THEN 'Sales Quotation'
+		WHEN VOBJTYPE = 17 THEN 'Sales Order'
+		WHEN VOBJTYPE = 15 THEN 'Delivery'
+		WHEN VOBJTYPE = 16 THEN 'Returns'
+		WHEN VOBJTYPE = 203 THEN 'A/R Down Payment'
+		WHEN VOBJTYPE = 13 THEN 'A/R Invoice'
+		WHEN VOBJTYPE = 14 THEN 'A/R Credit Memo'
+		WHEN VOBJTYPE = 59 THEN 'Goods Receipt'
+		WHEN VOBJTYPE = 60 THEN 'Goods Issue'
+		WHEN VOBJTYPE = 1250000001 THEN 'Inventory Trans Req'
+		WHEN VOBJTYPE = 67 THEN 'Inventory Transfer'
+		WHEN VOBJTYPE = 1470000113 THEN 'Purchase Request'
+		WHEN VOBJTYPE = 540000006 THEN 'Purchase Quotation'
+		WHEN VOBJTYPE = 22 Then 'Purchase Order'
+		WHEN VOBJTYPE = 20 Then 'Goods Receipt PO'
+		WHEN VOBJTYPE = 21 Then 'Goods Return'
+		WHEN VOBJTYPE = 204 Then 'A/P Down Payment'
+		WHEN VOBJTYPE = 18 Then 'A/P Invoice'
+		WHEN VOBJTYPE = 19 Then 'A/P Credit Memo'
+		When VOBJTYPE = 30 Then 'Manual JE'
+		ELSE ''
+	END;
+
+END;

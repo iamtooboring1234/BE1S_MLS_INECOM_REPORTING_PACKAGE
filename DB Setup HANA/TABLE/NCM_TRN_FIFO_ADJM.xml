@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+	<Table ID="NCM_TRN_FIFO_ADJM" Desc="Stock Ageing Adjustments" Type="0" System="N">
+		<Field ID="TransSeq">
+			<Description>TransSeq</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="QtyAdj">
+			<Description>Adjusted Qty</Description>
+			<Type>4</Type>
+			<SubType>81</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>	
+		</Field> 
+		<Field ID="TransValueAdj">
+			<Description>Adjusted TransValue</Description>
+			<Type>4</Type>
+			<SubType>83</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>	
+		</Field>
+	</Table>
+</Settings>

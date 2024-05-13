@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "OITM" Desc = "Items" Type = "1" System="Y">
+		<Field ID = "ItemCat">
+			<Description>Item Classification</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "CreateTS">
+			<Description>CreateTS</Description>
+			<Type>3</Type>
+			<SubType>84</SubType>
+			<Length>0</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "UpdateTS">
+			<Description>UpdateTS</Description>
+			<Type>3</Type>
+			<SubType>84</SubType>
+			<Length>0</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "MQ_BU">
+			<Description>Extra Business Unit Code</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "MQ_BRAND">
+			<Description>Extra Brand Code</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "MQ_SUPPLIER">
+			<Description>Extra Supplier Code</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

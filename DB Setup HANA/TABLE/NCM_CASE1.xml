@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "NCM_CASE1" Desc = "Inecom IRP CASE1 Solution" Type = "0" System="N">
+		<Field ID = "CardType">
+			<Description>Card Type</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>			
+		</Field>
+		<Field ID = "CardCode">
+			<Description>Card Code</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>			
+		</Field>
+		<Field ID = "Transid">
+			<Description>Journal TransID</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>	
+		</Field>
+		<Field ID = "DocType">
+			<Description>Document Type</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>3</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>			
+		</Field>
+		<Field ID = "DocNum">
+			<Description>Document No</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>20</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>			
+		</Field>
+		<Field ID = "PosDate">
+			<Description>Posting Date</Description>
+			<Type>3</Type>
+			<SubType>0</SubType>
+			<Length>0</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "DocDate">
+			<Description>Document Date</Description>
+			<Type>3</Type>
+			<SubType>0</SubType>
+			<Length>0</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "AmtApplied">
+			<Description>Amount Applied LC</Description>
+			<Type>4</Type>
+			<SubType>83</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID = "AmtAppliedFC">
+			<Description>Amount Applied FC</Description>
+			<Type>4</Type>
+			<SubType>83</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID = "InstlmntId">
+			<Description>Installment ID</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>3</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>	
+		</Field>
+		<Field ID = "BaseTransid">
+			<Description>Base Journal TransID</Description>
+			<Type>2</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>	
+		</Field>
+		<Field ID = "RptType">
+			<Description>Reporrt Type</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>			
+		</Field>
+	</Table>
+</Settings>

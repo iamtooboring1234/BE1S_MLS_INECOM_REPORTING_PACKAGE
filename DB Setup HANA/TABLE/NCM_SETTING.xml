@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+	<Table ID="NCM_SETTING" Desc="Inecom General Settings" Type="0" System="N">
+		<Field ID="FilSlpFr">
+			<Description>Filter Salesperson From</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="GSTCurr">
+			<Description>GST Currency</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>30</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="InvDetail">
+			<Description>PV - Print Invoice Details</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues>
+				<ValidValue ID="Y">Yes</ValidValue>
+				<ValidValue ID="N">No</ValidValue>
+			</ValidValues>
+			<DefValue>N</DefValue>
+		</Field>
+		<Field ID="TaxDate">
+			<Description>PV - Date Type</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues>
+				<ValidValue ID="Y">Document Date</ValidValue>
+				<ValidValue ID="N">Posting Date</ValidValue>
+				<ValidValue ID="D">Due Date</ValidValue>
+			</ValidValues>
+			<DefValue>N</DefValue>
+		</Field>
+		<Field ID="IRAInvDetail">
+			<Description>IRA - Print Invoice Details</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>10</Length>
+			<ValidValues>
+				<ValidValue ID="Y">Yes</ValidValue>
+				<ValidValue ID="N">No</ValidValue>
+			</ValidValues>
+			<DefValue>N</DefValue>
+		</Field>
+		<Field ID="IRATaxDate">
+			<Description>IRA - Date Type</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>1</Length>
+			<ValidValues>
+				<ValidValue ID="Y">Document Date</ValidValue>
+				<ValidValue ID="N">Posting Date</ValidValue>
+				<ValidValue ID="D">Due Date</ValidValue>
+			</ValidValues>
+			<DefValue>N</DefValue>
+		</Field>
+	</Table>
+</Settings>
