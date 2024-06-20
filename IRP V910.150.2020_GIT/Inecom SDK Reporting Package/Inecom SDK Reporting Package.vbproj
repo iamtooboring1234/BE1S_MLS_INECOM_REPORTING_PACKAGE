@@ -1,0 +1,2384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>B1Version = 2009</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>Inecom SDK Reporting Package.xml</DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>B1Version = 2009</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>Inecom SDK Reporting Package.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3ABA7DF6-8F66-4A09-9979-164CB51B7DEF}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Inecom SDK Reporting Package</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>Inecom_SDK_Reporting_Package</RootNamespace>
+    <StartupObject>Inecom_SDK_Reporting_Package.SubMain</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Inecom SDK Reporting Package.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>B1Version = 2005</DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Inecom SDK Reporting Package.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>B1Version = 2009</DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>B1Version = 2009</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>Inecom SDK Reporting Package.xml</DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>B1Version = 2009</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>Inecom SDK Reporting Package.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.SAPbobsCOM, Version=10.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Interop.SAPbobsCOM.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.SAPbouiCOM, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="LicenseClient, Version=2.0.5400.25868, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\LicenseClient.dll</HintPath>
+    </Reference>
+    <Reference Include="LicenseLib, Version=2.0.5400.24151, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\LicenseLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Outlook.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Outlook.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ageing\Dataset\DS_AGEING.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS_AGEING.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Ageing\Dataset\DS_AGEING.vb">
+      <DependentUpon>DS_AGEING.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Ageing\frmARAgeingBRN.vb" />
+    <Compile Include="Ageing\frmARAgeingCRM.vb" />
+    <Compile Include="Ageing\frmARAgeing7B.vb" />
+    <Compile Include="Ageing\frmAPAgeing.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ageing\frmAPAgeing_Proj.vb" />
+    <Compile Include="Ageing\frmARAgeing.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ageing\frmARAgeing6B.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ageing\frmARAgeing_Proj.vb" />
+    <Compile Include="Ageing\Report\Dataset Report\NewRptARAgeing_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewRptARAgeing_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptAPAgeingSummary_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptAPAgeingSummary_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptAPAgeing_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptAPAgeing_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing7B_HANADS_EASTWIN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing7B_HANADS_EASTWIN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary7B_HANADS_EASTWIN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary7B_HANADS_EASTWIN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_BRNGROUP.vb">
+      <DependentUpon>rptARAgeingSummary_HANADS_BRNGROUP.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_BRN.vb">
+      <DependentUpon>rptARAgeingSummary_HANADS_BRN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_AT.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary_HANADS_AT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_FT.vb">
+      <DependentUpon>rptARAgeingSummary_HANADS_FT.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing6B_HANADS.vb">
+      <DependentUpon>rptARAgeing6B_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary6B_HANADS.vb">
+      <DependentUpon>rptARAgeingSummary6B_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary7B_HANADS.vb">
+      <DependentUpon>rptARAgeingSummary7B_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing7B_HANADS.vb">
+      <DependentUpon>rptARAgeing7B_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptAPAgeingSummary_HANADS_DTDS.vb">
+      <DependentUpon>rptAPAgeingSummary_HANADS_DTDS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptAPAgeing_HANADS_DTDS.vb">
+      <DependentUpon>rptAPAgeing_HANADS_DTDS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_DTDS.vb">
+      <DependentUpon>rptARAgeingSummary_HANADS_DTDS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_WA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary_HANADS_WA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_BRN.vb">
+      <DependentUpon>rptARAgeing_HANADS_BRN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_AT.vb">
+      <DependentUpon>rptARAgeing_HANADS_AT.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_DTDS.vb">
+      <DependentUpon>rptARAgeing_HANADS_DTDS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_WA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_HANADS_WA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_TOA_HANADS.vb">
+      <DependentUpon>rptARAgeing_TOA_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\NewRptARAgeing_HANADS.vb">
+      <DependentUpon>NewRptARAgeing_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptAPAgeingSummary_HANADS.vb">
+      <DependentUpon>rptAPAgeingSummary_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptAPAgeing_HANADS.vb">
+      <DependentUpon>rptAPAgeing_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS.vb">
+      <DependentUpon>rptARAgeingSummary_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_CRM_HANADS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_CRM_HANADS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_HANADS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\Dataset Report\rptARAgeing_HANADSWIP_Inecom_20150828.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_HANADSWIP_Inecom_20150828.RPT</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\PageHeader.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PageHeader.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptAPAgeing_PROJ_HANA.vb">
+      <DependentUpon>rptAPAgeing_PROJ_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptAPAgeingSummary_PROJ_HANA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptAPAgeingSummary_PROJ_HANA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeing6B_HANA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing6B_HANA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeing7B_HANA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing7B_HANA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeingSummary6B_HANA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary6B_HANA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeingSummary7B_HANA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary7B_HANA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeingSummary_PROJ_HANA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeingSummary_PROJ_HANA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeing_HANA.vb">
+      <DependentUpon>rptARAgeing_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptAPAgeingSummary_HANA.vb">
+      <DependentUpon>rptAPAgeingSummary_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeingSummary_HANA.vb">
+      <DependentUpon>rptARAgeingSummary_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\PageHeader_HANA.vb">
+      <DependentUpon>PageHeader_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptAPAgeing_HANA.vb">
+      <DependentUpon>rptAPAgeing_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeing_HANA_2014.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_HANA_2014.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeing_HANA_CRM.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_HANA_CRM.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeing_HANA_Inecom.vb">
+      <DependentUpon>rptARAgeing_HANA_Inecom.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeing_HANA_Inecom_20150828.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_HANA_Inecom_20150828.RPT</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ageing\Report\HANA\rptARAgeing_PROJ_HANA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_PROJ_HANA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bank Reconciliation\Bank Reconciliation Report.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Bank Reconciliation Report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank Reconciliation\RPT_BANK_RECON.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_BANK_RECON.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank Reconciliation\NCM_BREC_V.vb" />
+    <Compile Include="Bank Reconciliation\RPT_BANK_RECON_NEW.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_BANK_RECON_NEW.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Change Log\DataSet\DatasetLog.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetLog.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Change Log\NCM_CHG_LOG_AUDIT.vb" />
+    <Compile Include="Change Log\rptChgLogAudit.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptChgLogAudit.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Change Log\rptChgLogAudit1.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptChgLogAudit1.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="GL Listing\RPT_GLL_NEW.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_GLL_NEW.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GL Listing\XML_GLL.vb">
+      <DependentUpon>XML_GLL.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GST Report\RPT\RPT_GST_GLDET.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_GST_GLDET.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GST Report\RPT\RPT_GST_WO_REMARKS.vb">
+      <DependentUpon>RPT_GST_WO_REMARKS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="GST Report\RPT\RPT_GST_SF.vb">
+      <DependentUpon>RPT_GST_SF.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Hydac Reports\Datasets\Dataset_Hydac.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Dataset_Hydac.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\A1_Item_Invoice.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\Dataset\A1 Item Credit Memo CR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Item Credit Memo CR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\Dataset\DataSet2.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\Dataset\EInvoice.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EInvoice.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\Dataset\EInvoice.vb">
+      <DependentUpon>EInvoice.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\Dataset\ESerInvoice.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ESerInvoice.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice\Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invoice\Logo\RPT_INV_ITEM_BK.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\NCM_INV_V.vb" />
+    <Compile Include="Invoice\RPT Dataset\A1 Item Credit Memo CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Item Credit Memo CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A1 Item DP Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Item DP Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A1 Item Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Item Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A1 Service Credit Memo CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Service Credit Memo CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A1 Service Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A1 Service Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A2 Item Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A2 Item Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A2 Service Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A2 Service Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Invoice\RPT Dataset\A3 Item Invoice CR DS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>A3 Item Invoice CR DS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="JCS Reports\CLS_NCM_PO_PROJ.vb" />
+    <Compile Include="JCS Reports\CLS_NCM_SO_PROJ.vb" />
+    <Compile Include="JCS Reports\DataSet\dsPODetailByVendor.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPODetailByVendor.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="JCS Reports\DataSet\dsSODetailbyCustRpt.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSODetailbyCustRpt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="JCS Reports\Report\RPT_PO_PROJ.vb">
+      <DependentUpon>RPT_PO_PROJ.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="JCS Reports\Report\RPT_SO_PROJ.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_SO_PROJ.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Payment Voucher\Dataset\DS_PAYMENT.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS_PAYMENT.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Payment Voucher\Dataset\DS_PAYMENT.vb">
+      <DependentUpon>DS_PAYMENT.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\DPV_HANADS_SAFRAN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DPV_HANADS_SAFRAN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\PV_HANADS_SAFRAN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PV_HANADS_SAFRAN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_SS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPV_HANADS_SS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_WA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPV_HANADS_WA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RRA_HANADS.vb">
+      <DependentUpon>RRA_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_BAR.vb">
+      <DependentUpon>RPV_HANADS_BAR.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_OAK.vb">
+      <DependentUpon>RPV_HANADS_OAK.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\DPV_HANADS_MP.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DPV_HANADS_MP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\PV_HANADS_MP.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PV_HANADS_MP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RA_HANADS_MP.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RA_HANADS_MP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS.vb">
+      <DependentUpon>RPV_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\DPV_HANADS.vb">
+      <DependentUpon>DPV_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\PV_HANADS.vb">
+      <DependentUpon>PV_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RA_HANADS.vb">
+      <DependentUpon>RA_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_MP.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPV_HANADS_MP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_SAFRAN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPV_HANADS_SAFRAN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DS REPORT\RRA_HANADS_WA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RRA_HANADS_WA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\PV_DS_HANA.vb">
+      <DependentUpon>PV_DS_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\DPV_HANA.vb">
+      <DependentUpon>DPV_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\PV_HANA.vb">
+      <DependentUpon>PV_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\PV_HANA - Ine.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PV_HANA - Ine.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\Report\RA_HANA.vb">
+      <DependentUpon>RA_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="PV Mail\frmPVEmail.vb" />
+    <Compile Include="PV Mail\frmPVSendEmail.vb" />
+    <Compile Include="PV Mail\NCM_PV_Email_Param.vb" />
+    <Compile Include="Receipt\Report\RptReceipt_HANA.vb">
+      <DependentUpon>RptReceipt_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Receipt\Report\OR_HANADS.vb">
+      <DependentUpon>OR_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Safran HANADS\rptAPAgeing_HANA_2014.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptAPAgeing_HANA_2014.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Safran HANADS\rptARAgeing_HANA_SAFRAN_NUMATCARD_MINV.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptARAgeing_HANA_SAFRAN_NUMATCARD_MINV.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Safran HANADS\SA_SAF_HANA_2014.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_SAF_HANA_2014.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Safran HANADS\SA_SAF_HANA_2014_HANADS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_SAF_HANA_2014_HANADS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Safran HANADS\SA_SAF_HANA_2014_ORI.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_SAF_HANA_2014_ORI.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PV Mail\Dataset\dsPVEmail.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPVEmail.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SOA\frmSendEmailProj.vb" />
+    <Compile Include="SOA\frmArSOAProj.vb" />
+    <Compile Include="SOA\Dataset\DS_SOA.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS_SOA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_HANADS_NEO_SG.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_HANADS_NEO_SG.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_HANADS_SG.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_HANADS_SG.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_LANDSCAPE_HANADS_DTDS.vb">
+      <DependentUpon>SA_LANDSCAPE_HANADS_DTDS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_AP_HANADS_DTDS.vb">
+      <DependentUpon>SA_AP_HANADS_DTDS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_HANADS_DTDS.vb">
+      <DependentUpon>SA_HANADS_DTDS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_ALPHA_HANADS.vb">
+      <DependentUpon>SA_ALPHA_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_PROJ_HANADS.vb">
+      <DependentUpon>SA_PROJ_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_AP_HANADS.vb">
+      <DependentUpon>SA_AP_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_AP_INECOM_HANADS.vb">
+      <DependentUpon>SA_AP_INECOM_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_CUSTNAME_HANADS.vb">
+      <DependentUpon>SA_CUSTNAME_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_HANADS.vb">
+      <DependentUpon>SA_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_INECOM_HANADS.vb">
+      <DependentUpon>SA_INECOM_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_LANDSCAPE_HANADS.vb">
+      <DependentUpon>SA_LANDSCAPE_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_OM_HANADS.vb">
+      <DependentUpon>SA_OM_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_SAF_HANADS.vb">
+      <DependentUpon>SA_SAF_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Dataset Report\SA_TOS_HANADS.vb">
+      <DependentUpon>SA_TOS_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\Notes.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Notes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOA\Report\Notes_AP.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Notes_AP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOA\Report\SA_CUSTNAME_HANA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_CUSTNAME_HANA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOA\Report\SA_HANADS_EASTWIN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_HANADS_EASTWIN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOA\Report\SA_LANDSCAPE_HANA_TEST.vb">
+      <DependentUpon>SA_LANDSCAPE_HANA_TEST.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\SA_AP_HANA_Inecom.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_AP_HANA_Inecom.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOA\Report\SA_HANA_Inecom.vb">
+      <DependentUpon>SA_HANA_Inecom.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\SA_HANA_TEST.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_HANA_TEST.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOA\Report\SA_LANDSCAPE_HANA.vb">
+      <DependentUpon>SA_LANDSCAPE_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\SA_HANA.vb">
+      <DependentUpon>SA_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\SA_AP_HANA.vb">
+      <DependentUpon>SA_AP_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\SA_OM.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_OM.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOA\Report\SA_SAF_HANA.vb">
+      <DependentUpon>SA_SAF_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SOA\Report\SA_TOS_HANA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SA_TOS_HANA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StockAging\Report\FIFO_COM_DET_HANADS.vb">
+      <DependentUpon>FIFO_COM_DET_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="StockAging\Report\FIFO_COM_DET_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FIFO_COM_DET_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StockAging\Report\FIFO_COM_SUMM_HANADS.vb">
+      <DependentUpon>FIFO_COM_SUMM_HANADS.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="StockAging\Report\FIFO_COM_SUMM_HANA.vb">
+      <DependentUpon>FIFO_COM_SUMM_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="StockAging\Report\FIFO_COM_DET_HANA.vb">
+      <DependentUpon>FIFO_COM_DET_HANA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="StockAging\Report\FIFO_COM_SUMM_HANADS_MED.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FIFO_COM_SUMM_HANADS_MED.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TM SAR\frmTMSAR.vb" />
+    <Compile Include="TM SAR\Report\frmTMSAR_2.Designer.vb">
+      <DependentUpon>frmTMSAR_2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TM SAR\Report\frmTMSAR_2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TM SAR\Report\rptTM_SAR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTM_SAR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TM SAR\Report\rptTM_SAR_V2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTM_SAR_V2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TM SAR\Report\rptTM_SAR_V3.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTM_SAR_V3.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GL Listing\VIEWER_GLL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GL Listing\XML_GLL.Designer.vb">
+      <DependentUpon>XML_GLL.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="GL Listing\NCM_GLL_V.vb" />
+    <Compile Include="GL Listing\RPT_GLL.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_GLL.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GPA Report\Dataset\dsRpt.Designer.vb" />
+    <Compile Include="GPA Report\FRM_GPA.vb" />
+    <Compile Include="GPA Report\rptGPA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptGPA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GST Report\Dataset\GST_Report_XML.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GST_Report_XML.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GST Report\Dataset\GST_Report_XML.vb">
+      <DependentUpon>GST_Report_XML.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GST Report\GST_FrmViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GST Report\NCM_GST.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GST Report\RPT\RPT_GST.vb">
+      <DependentUpon>RPT_GST.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="GST Report\RPT\RPT_GST_IN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_GST_IN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GST Report\RPT\RPT_GST_INHWA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_GST_INHWA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GST Report\RPT\RPT_GST_INHWA_MY.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_GST_INHWA_MY.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GST Report\RPT\RPT_GST_KITS.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_GST_KITS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GST Report\RPT\RPT_GST_WA.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_GST_WA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Hydac Reports\CLS_NCM_IAR.vb" />
+    <Compile Include="Hydac Reports\CLS_NCM_RLR.vb" />
+    <Compile Include="Hydac Reports\CLS_NCM_WAR.vb" />
+    <Compile Include="Hydac Reports\DataSet1.designer.vb">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Hydac Reports\DataSet1.vb">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Hydac Reports\RPT_ABC.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_ABC.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Hydac Reports\RPT_RLR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_RLR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Hydac Reports\RPT_WAR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_WAR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MRP Report\Dataset\dsMRP_RPT.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsMRP_RPT.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MRP Report\MRPDemandandSupplyRpt.vb" />
+    <Compile Include="MRP Report\RPT_MRP.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_MRP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NCM_RPT_CONFIG_V.vb" />
+    <Compile Include="Payment Draft\PaymentDraft.vb" />
+    <Compile Include="Payment Voucher\FRM_PaymentVoucher_Range.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Payment Voucher\OutgoingPayment.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Payment\Dataset\dsPayment.Designer.vb" />
+    <Compile Include="Payment\frmApPayment.vb" />
+    <Compile Include="Payment\frmArPayment.vb" />
+    <Compile Include="Payment\Report\RptPayment.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptPayment.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Receipt Payment Report\dsRecpPaym.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRecpPaym.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Receipt Payment Report\dsRecpPaym.vb">
+      <DependentUpon>dsRecpPaym.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Receipt Payment Report\frmRecpPaym.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Receipt Payment Report\RecpPaym_FrmViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receipt Payment Report\rptRecpPaym.vb">
+      <DependentUpon>rptRecpPaym.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Receipt Payment Report\rptRecpPaymSummary.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptRecpPaymSummary.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Receipt\IncomingPayment.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SOA\clsEmail.vb" />
+    <Compile Include="SOA\Dataset\dsEmail.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsEmail.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SOA\Dataset\dsEmail.vb">
+      <DependentUpon>dsEmail.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SOA\frmEmail.vb" />
+    <Compile Include="SOA\frmApSOA.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SOA\frmArSOA.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SOA\frmOMArSOA.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SOA\frmSendEmail.vb" />
+    <Compile Include="SOA\frmSOA_TOS.vb" />
+    <Compile Include="StockAging\Dataset\SAR_FIFO1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SAR_FIFO1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="StockAging\frmSaveDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockAging\NCM_StockAuditTrail.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StockAging\NCM_StockAuditTrail_Out.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StockAging\SARVwr.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockAging\StockAging_FIFO_NonBatch.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StockAging\StockAging_MOV.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SubMain.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web References\TESTWS\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\NewRptARAgeing_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>NewRptARAgeing_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptAPAgeingSummary_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeingSummary_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptAPAgeing_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeing_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing7B_HANADS_EASTWIN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing7B_HANADS_EASTWIN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary7B_HANADS_EASTWIN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary7B_HANADS_EASTWIN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_BRNGROUP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_BRNGROUP.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_BRN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_BRN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_AT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_AT.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_FT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_FT.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing6B_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing6B_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary6B_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary6B_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary7B_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary7B_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing7B_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing7B_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptAPAgeingSummary_HANADS_DTDS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeingSummary_HANADS_DTDS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptAPAgeing_HANADS_DTDS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeing_HANADS_DTDS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_DTDS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_DTDS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS_WA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS_WA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_BRN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADS_BRN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_AT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADS_AT.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_DTDS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADS_DTDS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS_WA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADS_WA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_TOA_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_TOA_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\NewRptARAgeing_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>NewRptARAgeing_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptAPAgeingSummary_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeingSummary_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptAPAgeing_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeing_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeingSummary_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_CRM_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_CRM_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\Dataset Report\rptARAgeing_HANADSWIP_Inecom_20150828.RPT">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANADSWIP_Inecom_20150828.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\PageHeader.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PageHeader.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptAPAgeing_PROJ_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeing_PROJ_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptAPAgeingSummary_PROJ_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeingSummary_PROJ_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeing6B_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing6B_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeing7B_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing7B_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeingSummary6B_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary6B_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeingSummary7B_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary7B_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeingSummary_PROJ_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_PROJ_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeing_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptAPAgeingSummary_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeingSummary_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeingSummary_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeingSummary_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\PageHeader_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PageHeader_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptAPAgeing_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeing_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeing_HANA_2014.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANA_2014.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeing_HANA_CRM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANA_CRM.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeing_HANA_Inecom.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANA_Inecom.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeing_HANA_Inecom_20150828.RPT">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANA_Inecom_20150828.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\Report\HANA\rptARAgeing_PROJ_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_PROJ_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ageing\SRF\ncmAPAgeing.srf" />
+    <EmbeddedResource Include="Ageing\SRF\ncmARAgeing.srf" />
+    <EmbeddedResource Include="Ageing\SRF\ncmARAging6B.srf" />
+    <EmbeddedResource Include="Bank Reconciliation\Bank Reconciliation Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Bank Reconciliation Report.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank Reconciliation\RPT_BANK_RECON.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_BANK_RECON.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank Reconciliation\RPT_BANK_RECON_NEW.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_BANK_RECON_NEW.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Change Log\rptChgLogAudit.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptChgLogAudit.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Change Log\rptChgLogAudit1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptChgLogAudit1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GL Listing\RPT_GLL_NEW.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GLL_NEW.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\RPT\RPT_GST_GLDET.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GST_GLDET.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\RPT\RPT_GST_WO_REMARKS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GST_WO_REMARKS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\RPT\RPT_GST_SF.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GST_SF.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\Dataset\A1 Item Credit Memo CR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Item Credit Memo CR.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\Form2.resx">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A1 Item Credit Memo CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Item Credit Memo CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A1 Item DP Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Item DP Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A1 Item Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Item Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A1 Service Credit Memo CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Service Credit Memo CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A1 Service Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A1 Service Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A2 Item Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A2 Item Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A2 Service Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A2 Service Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\RPT Dataset\A3 Item Invoice CR DS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>A3 Item Invoice CR DS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JCS Reports\Report\RPT_PO_PROJ.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PO_PROJ.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JCS Reports\Report\RPT_SO_PROJ.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SO_PROJ.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\DPV_HANADS_SAFRAN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DPV_HANADS_SAFRAN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\PV_HANADS_SAFRAN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PV_HANADS_SAFRAN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_SS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPV_HANADS_SS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_WA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPV_HANADS_WA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RRA_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RRA_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_BAR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPV_HANADS_BAR.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_OAK.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPV_HANADS_OAK.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\DPV_HANADS_MP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DPV_HANADS_MP.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\PV_HANADS_MP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PV_HANADS_MP.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RA_HANADS_MP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RA_HANADS_MP.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPV_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\DPV_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DPV_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\PV_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PV_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RA_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RA_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_MP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPV_HANADS_MP.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RPV_HANADS_SAFRAN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPV_HANADS_SAFRAN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DS REPORT\RRA_HANADS_WA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RRA_HANADS_WA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\PV_DS_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PV_DS_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\DPV_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DPV_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\PV_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PV_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\PV_HANA - Ine.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PV_HANA - Ine.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\Report\RA_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RA_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receipt\Report\RptReceipt_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptReceipt_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receipt\Report\OR_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OR_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Safran HANADS\rptAPAgeing_HANA_2014.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAPAgeing_HANA_2014.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Safran HANADS\rptARAgeing_HANA_SAFRAN_NUMATCARD_MINV.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptARAgeing_HANA_SAFRAN_NUMATCARD_MINV.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Safran HANADS\SA_SAF_HANA_2014.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_SAF_HANA_2014.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Safran HANADS\SA_SAF_HANA_2014_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_SAF_HANA_2014_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Safran HANADS\SA_SAF_HANA_2014_ORI.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_SAF_HANA_2014_ORI.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_HANADS_NEO_SG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANADS_NEO_SG.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_HANADS_SG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANADS_SG.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_LANDSCAPE_HANADS_DTDS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_LANDSCAPE_HANADS_DTDS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_AP_HANADS_DTDS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_AP_HANADS_DTDS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_HANADS_DTDS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANADS_DTDS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_ALPHA_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_ALPHA_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_PROJ_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_PROJ_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_AP_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_AP_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_AP_INECOM_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_AP_INECOM_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_CUSTNAME_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_CUSTNAME_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_INECOM_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_INECOM_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_LANDSCAPE_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_LANDSCAPE_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_OM_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_OM_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_SAF_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_SAF_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Dataset Report\SA_TOS_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_TOS_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Notes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Notes.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\Notes_AP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Notes_AP.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_CUSTNAME_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_CUSTNAME_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_HANADS_EASTWIN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANADS_EASTWIN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_LANDSCAPE_HANA_TEST.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_LANDSCAPE_HANA_TEST.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_AP_HANA_Inecom.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_AP_HANA_Inecom.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_HANA_Inecom.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANA_Inecom.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_HANA_TEST.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANA_TEST.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_LANDSCAPE_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_LANDSCAPE_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_AP_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_AP_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_OM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_OM.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_SAF_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_SAF_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOA\Report\SA_TOS_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SA_TOS_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\Report\FIFO_COM_DET_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FIFO_COM_DET_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\Report\FIFO_COM_DET_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FIFO_COM_DET_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\Report\FIFO_COM_SUMM_HANADS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FIFO_COM_SUMM_HANADS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\Report\FIFO_COM_SUMM_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FIFO_COM_SUMM_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\Report\FIFO_COM_DET_HANA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FIFO_COM_DET_HANA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\Report\FIFO_COM_SUMM_HANADS_MED.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FIFO_COM_SUMM_HANADS_MED.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TM SAR\Report\frmTMSAR_2.resx">
+      <DependentUpon>frmTMSAR_2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TM SAR\Report\rptTM_SAR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTM_SAR.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TM SAR\Report\rptTM_SAR_V2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTM_SAR_V2.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TM SAR\Report\rptTM_SAR_V3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTM_SAR_V3.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmViewer.resx">
+      <DependentUpon>frmViewer.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GL Listing\VIEWER_GLL.en-GB.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>VIEWER_GLL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GL Listing\VIEWER_GLL.resx">
+      <DependentUpon>VIEWER_GLL.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GL Listing\RPT_GLL.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GLL.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GPA Report\rptGPA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptGPA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\GST_FrmViewer.resx">
+      <DependentUpon>GST_FrmViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\RPT\RPT_GST.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GST.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\RPT\RPT_GST_IN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GST_IN.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\RPT\RPT_GST_INHWA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GST_INHWA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\RPT\RPT_GST_INHWA_MY.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GST_INHWA_MY.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\RPT\RPT_GST_KITS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GST_KITS.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\RPT\RPT_GST_WA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GST_WA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GST Report\SRF\SRF_NCM_RPT_GST.srf" />
+    <EmbeddedResource Include="Hydac Reports\RPT_ABC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_ABC.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hydac Reports\RPT_RLR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_RLR.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hydac Reports\RPT_WAR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_WAR.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MRP Report\RPT_MRP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_MRP.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment Voucher\SRF\SRF_NCM_PAYCHER.srf" />
+    <EmbeddedResource Include="Payment\Report\RptPayment.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptPayment.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receipt Payment Report\RecpPaym_FrmViewer.resx">
+      <DependentUpon>RecpPaym_FrmViewer.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receipt Payment Report\rptRecpPaym.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptRecpPaym.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receipt Payment Report\rptRecpPaymSummary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptRecpPaymSummary.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reference\ncmInecom.bmp" />
+    <EmbeddedResource Include="SOA\SRF\ncmSOA_AP.srf" />
+    <EmbeddedResource Include="SOA\SRF\NCM_ARSOA.srf" />
+    <EmbeddedResource Include="SOA\SRF\NCM_OMARSOA.srf" />
+    <EmbeddedResource Include="StockAging\frmSaveDialog.resx">
+      <DependentUpon>frmSaveDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\SARVwr.resx">
+      <DependentUpon>SARVwr.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\SRF\NCM_FIFO1.srf" />
+    <EmbeddedResource Include="StockAging\SRF\NCM_MOV1.srf">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAging\SRF\NCM_SES1.srf" />
+    <EmbeddedResource Include="StockAging\SRF\NCM_SES2.srf" />
+    <EmbeddedResource Include="TM SAR\Embedded Resource\ncmTM_StockAging.srf" />
+    <EmbeddedResource Include="TM SAR\Embedded Resource\TM_SAR.sql" />
+    <EmbeddedResource Include="GL Listing\NCM_GLL.srf" />
+    <EmbeddedResource Include="GPA Report\NCM_GPA.srf" />
+    <EmbeddedResource Include="Ageing\SRF\ncmAPAgeing_Proj.srf" />
+    <EmbeddedResource Include="Ageing\SRF\ncmARAgeing_Proj.srf" />
+    <EmbeddedResource Include="Ageing\SRF\NCM_ARAGEING_7B.srf" />
+    <EmbeddedResource Include="Ageing\SRF\ncmARAgeingCRM.srf" />
+    <EmbeddedResource Include="Bank Reconciliation\NCM_BREC.srf" />
+    <EmbeddedResource Include="Change Log\FIL_CHG_LOG_AUDIT.srf" />
+    <EmbeddedResource Include="Ageing\SRF\ncmARAgeingBRN.srf" />
+    <Content Include="GST Report\Dataset\GST_Report_XML.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GST_Report_XML.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="SOA\SRF\ncmSOA_Email.srf" />
+    <EmbeddedResource Include="SOA\SRF\ncmSOA_SendEmail.srf" />
+    <EmbeddedResource Include="Hydac Reports\NCM_RLR.srf" />
+    <EmbeddedResource Include="NCM_RPT_CONFIG.srf" />
+    <EmbeddedResource Include="Payment\SRF\NCM_AP_PAYMENT.srf" />
+    <EmbeddedResource Include="Payment\SRF\NCM_AR_PAYMENT.srf" />
+    <EmbeddedResource Include="Receipt Payment Report\ncmRecpPaymList.srf" />
+    <EmbeddedResource Include="SOA\SRF\NCM_SOA_TOS.srf" />
+    <EmbeddedResource Include="MRP Report\ncmMRPDemandandSupplyRpt.srf" />
+    <EmbeddedResource Include="JCS Reports\SRF\NCM_PO_PROJ.srf" />
+    <EmbeddedResource Include="JCS Reports\SRF\NCM_SO_PROJ.srf" />
+    <EmbeddedResource Include="SOA\SRF\NCM_ARSOA_PROJ.srf" />
+    <EmbeddedResource Include="SOA\SRF\ncmSOA_SendEmailProj.srf" />
+    <EmbeddedResource Include="PV Mail\SRF\ncmPV_Email.srf" />
+    <EmbeddedResource Include="PV Mail\SRF\ncmPV_Email_Param.srf" />
+    <EmbeddedResource Include="PV Mail\SRF\ncmPV_SendEmail.srf" />
+    <EmbeddedResource Include="Logo\ncmMenu.bmp" />
+    <Content Include="Invoice\Logo\1. bizSAFe Star.png" />
+    <Content Include="Invoice\Logo\1. HSS ISO.png" />
+    <Content Include="Invoice\Logo\1. SLA Logo.jpg" />
+    <Content Include="Invoice\Logo\2. SBFlogo 2018 _NEW.jpg" />
+    <Content Include="Invoice\Logo\2. SBFlogo 2018.jpg" />
+    <Content Include="Invoice\Logo\2. Trans Orient- logo.png" />
+    <Content Include="Invoice\Logo\3. Hoy San Services Logo.png" />
+    <Content Include="Invoice\Logo\3a. HST %28ISO QS Cert 45001 -2018%29.png" />
+    <Content Include="Invoice\Logo\3b. HST 9001-UKAS-JPEG.jpg" />
+    <Content Include="Invoice\Logo\3c. SLA Logo.jpg" />
+    <Content Include="Invoice\Logo\7. Uni Logo .jpg" />
+    <Content Include="Invoice\Logo\8. RS Machinery Logo.png" />
+    <Content Include="Invoice\Logo\HST_BizSafe4.png" />
+    <Content Include="Invoice\Logo\HST_ISO.png" />
+    <Content Include="Invoice\Logo\HST_ISO_45001.png" />
+    <Content Include="Invoice\Logo\HS_LOGO_TAG_RGB-LR%28small%29 .jpg" />
+    <EmbeddedResource Include="Invoice\NCM_INV.srf" />
+    <Content Include="StockAging\Dataset\SAR_FIFO1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SAR_FIFO1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="GL Listing\XML_GLL.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>XML_GLL.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Ageing\Dataset\DS_AGEING.xsc">
+      <DependentUpon>DS_AGEING.xsd</DependentUpon>
+    </None>
+    <Content Include="Ageing\Dataset\DS_AGEING.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS_AGEING.Designer.vb</LastGenOutput>
+    </Content>
+    <None Include="Ageing\Dataset\DS_AGEING.xss">
+      <DependentUpon>DS_AGEING.xsd</DependentUpon>
+    </None>
+    <None Include="app.config" />
+    <None Include="Change Log\DataSet\DatasetLog.xsc">
+      <DependentUpon>DatasetLog.xsd</DependentUpon>
+    </None>
+    <None Include="Change Log\DataSet\DatasetLog.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetLog.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Change Log\DataSet\DatasetLog.xss">
+      <DependentUpon>DatasetLog.xsd</DependentUpon>
+    </None>
+    <None Include="GL Listing\XML_GLL.xsc">
+      <DependentUpon>XML_GLL.xsd</DependentUpon>
+    </None>
+    <None Include="GL Listing\XML_GLL.xss">
+      <DependentUpon>XML_GLL.xsd</DependentUpon>
+    </None>
+    <None Include="GL Listing\XML_GLL.xsx">
+      <DependentUpon>XML_GLL.xsd</DependentUpon>
+    </None>
+    <None Include="GPA Report\Dataset\dsRpt.xsc">
+      <DependentUpon>dsRpt.xsd</DependentUpon>
+    </None>
+    <None Include="GPA Report\Dataset\dsRpt.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GPA Report\Dataset\dsRpt.xss">
+      <DependentUpon>dsRpt.xsd</DependentUpon>
+    </None>
+    <None Include="GPA Report\Dataset\dsRpt.xsx">
+      <DependentUpon>dsRpt.xsd</DependentUpon>
+    </None>
+    <None Include="GST Report\Dataset\GST_Report_XML.xsc">
+      <DependentUpon>GST_Report_XML.xsd</DependentUpon>
+    </None>
+    <None Include="GST Report\Dataset\GST_Report_XML.xss">
+      <DependentUpon>GST_Report_XML.xsd</DependentUpon>
+    </None>
+    <None Include="GST Report\Dataset\GST_Report_XML.xsx">
+      <DependentUpon>GST_Report_XML.xsd</DependentUpon>
+    </None>
+    <None Include="Hydac Reports\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Hydac Reports\DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Hydac Reports\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Hydac Reports\Datasets\Dataset_Hydac.xsc">
+      <DependentUpon>Dataset_Hydac.xsd</DependentUpon>
+    </None>
+    <None Include="Hydac Reports\Datasets\Dataset_Hydac.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Dataset_Hydac.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Hydac Reports\Datasets\Dataset_Hydac.xss">
+      <DependentUpon>Dataset_Hydac.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\A1 Item Credit Memo CR BK.rpt" />
+    <None Include="Invoice\A1 Item Invoice CR HANADS.rpt" />
+    <None Include="Invoice\A1 Item Invoice CR.rpt" />
+    <None Include="Invoice\A1 Service Credit Memo CR.rpt" />
+    <None Include="Invoice\A1 Service Invoice CR.rpt" />
+    <None Include="Invoice\A1_Delivery Order_CDMS.rpt" />
+    <None Include="Invoice\A1_Item_Invoice.rpt" />
+    <None Include="Invoice\A2 Item Invoice CR.rpt" />
+    <None Include="Invoice\A2 Service Invoice CR.rpt" />
+    <None Include="Invoice\A3 Item Invoice CR.rpt" />
+    <None Include="Invoice\Dataset\DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Dataset\DataSet2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Invoice\Dataset\DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Dataset\EInvoice.xsc">
+      <DependentUpon>EInvoice.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Dataset\EInvoice.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EInvoice.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Invoice\Dataset\EInvoice.xss">
+      <DependentUpon>EInvoice.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Dataset\ESerInvoice.xsc">
+      <DependentUpon>ESerInvoice.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Dataset\ESerInvoice.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ESerInvoice.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Invoice\Dataset\ESerInvoice.xss">
+      <DependentUpon>ESerInvoice.xsd</DependentUpon>
+    </None>
+    <None Include="Invoice\Logo\RPT_INV_ITEM_BK.rpt" />
+    <None Include="JCS Reports\DataSet\dsPODetailByVendor.xsc">
+      <DependentUpon>dsPODetailByVendor.xsd</DependentUpon>
+    </None>
+    <None Include="JCS Reports\DataSet\dsPODetailByVendor.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPODetailByVendor.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="JCS Reports\DataSet\dsPODetailByVendor.xss">
+      <DependentUpon>dsPODetailByVendor.xsd</DependentUpon>
+    </None>
+    <None Include="JCS Reports\DataSet\dsSODetailbyCustRpt.xsc">
+      <DependentUpon>dsSODetailbyCustRpt.xsd</DependentUpon>
+    </None>
+    <None Include="JCS Reports\DataSet\dsSODetailbyCustRpt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSODetailbyCustRpt.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="JCS Reports\DataSet\dsSODetailbyCustRpt.xss">
+      <DependentUpon>dsSODetailbyCustRpt.xsd</DependentUpon>
+    </None>
+    <None Include="MRP Report\Dataset\dsMRP_RPT.xsc">
+      <DependentUpon>dsMRP_RPT.xsd</DependentUpon>
+    </None>
+    <None Include="MRP Report\Dataset\dsMRP_RPT.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMRP_RPT.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="MRP Report\Dataset\dsMRP_RPT.xss">
+      <DependentUpon>dsMRP_RPT.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Payment Voucher\Dataset\DS_PAYMENT.xsc">
+      <DependentUpon>DS_PAYMENT.xsd</DependentUpon>
+    </None>
+    <Content Include="Payment Voucher\Dataset\DS_PAYMENT.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS_PAYMENT.Designer.vb</LastGenOutput>
+    </Content>
+    <None Include="Payment Voucher\Dataset\DS_PAYMENT.xss">
+      <DependentUpon>DS_PAYMENT.xsd</DependentUpon>
+    </None>
+    <None Include="Payment\Dataset\dsPayment.xsc">
+      <DependentUpon>dsPayment.xsd</DependentUpon>
+    </None>
+    <None Include="Payment\Dataset\dsPayment.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Payment\Dataset\dsPayment.xss">
+      <DependentUpon>dsPayment.xsd</DependentUpon>
+    </None>
+    <None Include="Receipt Payment Report\dsRecpPaym.xsc">
+      <DependentUpon>dsRecpPaym.xsd</DependentUpon>
+    </None>
+    <None Include="Receipt Payment Report\dsRecpPaym.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRecpPaym.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Receipt Payment Report\dsRecpPaym.xss">
+      <DependentUpon>dsRecpPaym.xsd</DependentUpon>
+    </None>
+    <None Include="SOA\Dataset\dsEmail.xsc">
+      <DependentUpon>dsEmail.xsd</DependentUpon>
+    </None>
+    <None Include="SOA\Dataset\dsEmail.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEmail.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="SOA\Dataset\dsEmail.xss">
+      <DependentUpon>dsEmail.xsd</DependentUpon>
+    </None>
+    <None Include="PV Mail\Dataset\dsPVEmail.xsc">
+      <DependentUpon>dsPVEmail.xsd</DependentUpon>
+    </None>
+    <None Include="PV Mail\Dataset\dsPVEmail.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPVEmail.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="PV Mail\Dataset\dsPVEmail.xss">
+      <DependentUpon>dsPVEmail.xsd</DependentUpon>
+    </None>
+    <None Include="SOA\Dataset\DS_SOA.xsc">
+      <DependentUpon>DS_SOA.xsd</DependentUpon>
+    </None>
+    <Content Include="SOA\Dataset\DS_SOA.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS_SOA.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web References\TESTWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <None Include="Web References\TESTWS\Service.disco" />
+    <None Include="SOA\Dataset\DS_SOA.xss">
+      <DependentUpon>DS_SOA.xsd</DependentUpon>
+    </None>
+    <None Include="StockAging\Dataset\SAR_FIFO1.xsc">
+      <DependentUpon>SAR_FIFO1.xsd</DependentUpon>
+    </None>
+    <None Include="StockAging\Dataset\SAR_FIFO1.xss">
+      <DependentUpon>SAR_FIFO1.xsd</DependentUpon>
+    </None>
+    <None Include="StockAging\Dataset\SAR_FIFO1.xsx">
+      <DependentUpon>SAR_FIFO1.xsd</DependentUpon>
+    </None>
+    <None Include="Web References\TESTWS\Service.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+    <Service Include="{CF845C55-C321-4742-B673-E6212D061ED9}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/TESTWS/">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\TESTWS\</RelPath>
+      <UpdateFromURL>http://localhost/TESTWS/</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Inecom_SDK_Reporting_Package_localhost_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="Receipt\Dataset\" />
+    <Folder Include="TM SAR\Dataset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
