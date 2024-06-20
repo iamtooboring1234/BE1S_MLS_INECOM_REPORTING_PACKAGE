@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Inecom SDK Reporting Package">
+</Property><Property Name="Solution File" Value="C:\Visual Studio Projects\Inecom SDK Reporting Package V03.15.2005\Inecom SDK Reporting Package\Inecom SDK Reporting Package.sln">
+</Property><Property Name="Date" Value="18 December 2009">
+</Property><Property Name="Time" Value="16:19">
+</Property></Properties><Event ErrorLevel="0" Project="Inecom SDK Reporting Package" Source="Inecom SDK Reporting Package.vbproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Inecom SDK Reporting Package" Source="Inecom SDK Reporting Package.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Inecom SDK Reporting Package.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Inecom SDK Reporting Package.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Inecom SDK Reporting Package" Source="Inecom SDK Reporting Package.vbproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

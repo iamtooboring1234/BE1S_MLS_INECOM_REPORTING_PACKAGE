@@ -1,0 +1,21 @@
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\bin\Inecom SDK Reporting Package.exe.config
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom SDK Reporting Package.vbproj.ResolveComReference.cache
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\bin\Inecom SDK Reporting Package.exe
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\bin\Inecom SDK Reporting Package.pdb
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\bin\Inecom SDK Reporting Package.xml
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\bin\en-GB\Inecom SDK Reporting Package.resources.dll
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom_SDK_Reporting_Package.frmTMSAR_2.resources
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom_SDK_Reporting_Package.Hydac_FormViewer.resources
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom_SDK_Reporting_Package.VIEWER_GLL.resources
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom_SDK_Reporting_Package.GST_FrmViewer.resources
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom_SDK_Reporting_Package.RecpPaym_FrmViewer.resources
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom_SDK_Reporting_Package.frmSaveDialog.resources
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom_SDK_Reporting_Package.SARVwr.resources
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom_SDK_Reporting_Package.VIEWER_GLL.en-GB.resources
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom SDK Reporting Package.vbproj.GenerateResource.Cache
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\en-GB\Inecom SDK Reporting Package.resources.dll
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom SDK Reporting Package.exe
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom SDK Reporting Package.xml
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom SDK Reporting Package.pdb
+C:\Visual Studio Projects - ES\IRP V910.102.2020_GIT\Inecom SDK Reporting Package\obj\Debug\Inecom SDK Reporting Package.vbprojResolveAssemblyReference.cache
