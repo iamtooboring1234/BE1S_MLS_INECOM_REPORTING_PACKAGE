@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsPVEmail" targetNamespace="http://tempuri.org/dsPVEmail.xsd" xmlns:mstns="http://tempuri.org/dsPVEmail.xsd" xmlns="http://tempuri.org/dsPVEmail.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsPVEmail" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsPVEmail" msprop:Generator_DataSetName="dsPVEmail">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PreviewDT" msprop:Generator_UserTableName="PreviewDT" msprop:Generator_RowDeletedName="PreviewDTRowDeleted" msprop:Generator_TableClassName="PreviewDTDataTable" msprop:Generator_RowChangedName="PreviewDTRowChanged" msprop:Generator_RowClassName="PreviewDTRow" msprop:Generator_RowChangingName="PreviewDTRowChanging" msprop:Generator_RowEvArgName="PreviewDTRowChangeEvent" msprop:Generator_RowEvHandlerName="PreviewDTRowChangeEventHandler" msprop:Generator_TablePropName="PreviewDT" msprop:Generator_TableVarName="tablePreviewDT" msprop:Generator_RowDeletingName="PreviewDTRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CardCode" msdata:Caption="Customer" msprop:Generator_UserColumnName="CardCode" msprop:Generator_ColumnPropNameInRow="CardCode" msprop:Generator_ColumnVarNameInTable="columnCardCode" msprop:Generator_ColumnPropNameInTable="CardCodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Currency" msprop:Generator_UserColumnName="Currency" msprop:Generator_ColumnPropNameInRow="Currency" msprop:Generator_ColumnVarNameInTable="columnCurrency" msprop:Generator_ColumnPropNameInTable="CurrencyColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Balance" msprop:Generator_UserColumnName="Balance" msprop:Generator_ColumnPropNameInRow="Balance" msprop:Generator_ColumnVarNameInTable="columnBalance" msprop:Generator_ColumnPropNameInTable="BalanceColumn" type="xs:decimal" default="0" minOccurs="0" />
+              <xs:element name="EmailTo" msprop:Generator_UserColumnName="EmailTo" msprop:Generator_ColumnPropNameInRow="EmailTo" msprop:Generator_ColumnVarNameInTable="columnEmailTo" msprop:Generator_ColumnPropNameInTable="EmailToColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInTable="StatusColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Attachment" msprop:Generator_UserColumnName="Attachment" msprop:Generator_ColumnPropNameInRow="Attachment" msprop:Generator_ColumnVarNameInTable="columnAttachment" msprop:Generator_ColumnPropNameInTable="AttachmentColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Remark" msprop:Generator_UserColumnName="Remark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="IsEmail" msdata:Caption="Send Email?" msprop:Generator_UserColumnName="IsEmail" msprop:Generator_ColumnPropNameInRow="IsEmail" msprop:Generator_ColumnVarNameInTable="columnIsEmail" msprop:Generator_ColumnPropNameInTable="IsEmailColumn" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="CardName" msdata:Caption="Customer Name" msprop:Generator_UserColumnName="CardName" msprop:Generator_ColumnPropNameInRow="CardName" msprop:Generator_ColumnVarNameInTable="columnCardName" msprop:Generator_ColumnPropNameInTable="CardNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DocEntry" msprop:Generator_UserColumnName="DocEntry" msprop:Generator_ColumnPropNameInRow="DocEntry" msprop:Generator_ColumnVarNameInTable="columnDocEntry" msprop:Generator_ColumnPropNameInTable="DocEntryColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DocNum" msprop:Generator_UserColumnName="DocNum" msprop:Generator_ColumnPropNameInRow="DocNum" msprop:Generator_ColumnVarNameInTable="columnDocNum" msprop:Generator_ColumnPropNameInTable="DocNumColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

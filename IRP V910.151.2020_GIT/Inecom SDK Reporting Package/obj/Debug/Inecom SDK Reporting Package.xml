@@ -1,0 +1,1167 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+InecomSDKReportingPackage
+</name>
+</assembly>
+<members>
+<member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_ARIWOAPIDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_APIWOARDDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_GPADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_PROJDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_ARIWOAPIRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_APIWOARDRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_GPARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_PROJRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_ARIWOAPIRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_APIWOARDRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_GPARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt.TMP_PROJRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRpt">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPayment.dtPaymentDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPayment.dtPaymentRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPayment.dtPaymentRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPayment">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.XML_GLL.CommandDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.XML_GLL._NCM_BANKRECON_1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.XML_GLL.CommandRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.XML_GLL._NCM_BANKRECON_1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.XML_GLL.CommandRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.XML_GLL._NCM_BANKRECON_1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.XML_GLL">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="M:Inecom_SDK_Reporting_Package.TESTWS.Service.#ctor">
+	<remarks/>
+</member><member name="E:Inecom_SDK_Reporting_Package.TESTWS.Service.HelloWorldCompleted">
+	<remarks/>
+</member><member name="M:Inecom_SDK_Reporting_Package.TESTWS.Service.HelloWorld">
+	<remarks/>
+</member><member name="M:Inecom_SDK_Reporting_Package.TESTWS.Service.HelloWorldAsync">
+	<remarks/>
+</member><member name="M:Inecom_SDK_Reporting_Package.TESTWS.Service.HelloWorldAsync(System.Object)">
+	<remarks/>
+</member><member name="M:Inecom_SDK_Reporting_Package.TESTWS.Service.CancelAsync(System.Object)">
+	<remarks/>
+</member><member name="T:Inecom_SDK_Reporting_Package.TESTWS.Service">
+	<remarks/>
+</member><member name="T:Inecom_SDK_Reporting_Package.TESTWS.HelloWorldCompletedEventHandler">
+	<remarks/>
+</member><member name="P:Inecom_SDK_Reporting_Package.TESTWS.HelloWorldCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:Inecom_SDK_Reporting_Package.TESTWS.HelloWorldCompletedEventArgs">
+	<remarks/>
+</member><member name="T:Inecom_SDK_Reporting_Package.DatasetLog.RPT_CHG_LOGDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DatasetLog.RPT_CHG_LOGRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DatasetLog.RPT_CHG_LOGRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DatasetLog">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPODetailByVendor.GeneralDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPODetailByVendor.TableReportDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPODetailByVendor.GeneralRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPODetailByVendor.TableReportRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPODetailByVendor.GeneralRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPODetailByVendor.TableReportRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPODetailByVendor">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsEmail.PreviewDTDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsEmail.PreviewDTRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsEmail.PreviewDTRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsEmail">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.OCRDDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.__NCM_AR_AGEINGDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.__NCM_AP_AGEINGDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.OCLTDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.OCLGDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.OCRDRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.__NCM_AR_AGEINGRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.__NCM_AP_AGEINGRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.OCLTRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.OCLGRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.OCRDRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.__NCM_AR_AGEINGRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.__NCM_AP_AGEINGRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.OCLTRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING.OCLGRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_AGEING">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsSODetailbyCustRpt.GeneralDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsSODetailbyCustRpt.TableReportDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsSODetailbyCustRpt.GeneralRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsSODetailbyCustRpt.TableReportRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsSODetailbyCustRpt.GeneralRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsSODetailbyCustRpt.TableReportRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsSODetailbyCustRpt">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac.NCM_OITMDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac.NCM_DOCDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac.NCM_WARDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac.NCM_OITMRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac.NCM_DOCRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac.NCM_WARRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac.NCM_OITMRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac.NCM_DOCRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac.NCM_WARRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OVPMDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ADM1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OADMDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OACTDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM4DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM3DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM2DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_2DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_3DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_4DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_5DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_6DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_7DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OJDTDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.INV1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RIN1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PCH1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.DPO1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RPC1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.DPI1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OINVDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ORPCDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ORINDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OPCHDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ODPIDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ODPODataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NNM1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.__NCM_IMAGEDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OPDFDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF4DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF2DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF3DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_VIEW_DRAFTPV_INVOICEDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ORCTDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OUSRDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT2DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT3DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT4DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OVPMRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ADM1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OADMRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OACTRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM4Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM3Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM2Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_2Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_3Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_4Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_5Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_6Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_7Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OJDTRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.INV1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RIN1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PCH1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.DPO1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RPC1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.DPI1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OINVRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ORPCRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ORINRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OPCHRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ODPIRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ODPORow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NNM1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.__NCM_IMAGERow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OPDFRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF4Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF2Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF3Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_VIEW_DRAFTPV_INVOICERow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ORCTRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OUSRRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT2Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT3Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT4Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OVPMRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ADM1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OADMRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OACTRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM4RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM3RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.VPM2RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_2RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_3RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_4RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_5RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_6RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_NNM1_7RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OJDTRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.INV1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RIN1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PCH1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.DPO1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RPC1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.DPI1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OINVRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ORPCRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ORINRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OPCHRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ODPIRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ODPORowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NNM1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.__NCM_IMAGERowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OPDFRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF4RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF2RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.PDF3RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.NCM_VIEW_DRAFTPV_INVOICERowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.ORCTRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.OUSRRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT2RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT3RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT4RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT.RCT1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_PAYMENT">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.DS_FIFODataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.Excel_OutputDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.OADMDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.OITMDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.OITBDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.DS_FIFORow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.Excel_OutputRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.OADMRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.OITMRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.OITBRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.DS_FIFORowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.Excel_OutputRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.OADMRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.OITMRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1.OITBRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.SAR_FIFO1">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsMRP_RPT.TableReportDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsMRP_RPT.GeneralDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsMRP_RPT.TableReportRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsMRP_RPT.GeneralRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsMRP_RPT.TableReportRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsMRP_RPT.GeneralRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsMRP_RPT">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OCRDDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OCTGDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OSLPDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OADMDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOCDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOC_APDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOC2DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOC_TOSDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.ADM1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OPRJDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OCRDRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OCTGRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OSLPRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OADMRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOCRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOC_APRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOC2Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOC_TOSRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.ADM1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OPRJRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OCRDRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OCTGRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OSLPRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OADMRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOCRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOC_APRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOC2RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__NCM_SOC_TOSRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.ADM1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OPRJRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DS_SOA">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRecpPaym.DS_RPT_RECPPAYMDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRecpPaym.DS_RPT_DETAILSDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRecpPaym.DS_RPT_RECPPAYMRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRecpPaym.DS_RPT_DETAILSRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRecpPaym.DS_RPT_RECPPAYMRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRecpPaym.DS_RPT_DETAILSRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsRecpPaym">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPVEmail.PreviewDTDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPVEmail.PreviewDTRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPVEmail.PreviewDTRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.dsPVEmail">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.GST_Report_XML.DS_RPT_GSTDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.GST_Report_XML.DS_OVTGDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.GST_Report_XML.DS_OADMDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.GST_Report_XML.DS_RPT_GSTRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.GST_Report_XML.DS_OVTGRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.GST_Report_XML.DS_OADMRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.GST_Report_XML.DS_RPT_GSTRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.GST_Report_XML.DS_OVTGRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.GST_Report_XML.DS_OADMRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.GST_Report_XML">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DataSet1.NCM_OITMDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DataSet1.NCM_DOCDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DataSet1.NCM_WARDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DataSet1.NCM_OITMRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DataSet1.NCM_DOCRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DataSet1.NCM_WARRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DataSet1.NCM_OITMRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DataSet1.NCM_DOCRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DataSet1.NCM_WARRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Inecom_SDK_Reporting_Package.DataSet1">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+</members>
+</doc>

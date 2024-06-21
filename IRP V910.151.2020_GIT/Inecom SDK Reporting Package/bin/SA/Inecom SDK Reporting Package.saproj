@@ -1,0 +1,304 @@
+<SmartAssemblyProject ProjectId="{fdade0b5-1073-4a36-a985-d13d222df99b}" Version="2.0">
+    <MainAssemblyFileName>..\Inecom SDK Reporting Package.exe</MainAssemblyFileName>
+    <Configuration Name="Release">
+        <Options>
+            <ExceptionReporting Template="res:{SmartExceptions}.1033.dll" />
+            <FeatureUsageReporting Template="res:SmartUsageWithUIConsentFirstRun1033.dll" />
+            <StringsEncoding />
+            <StrongNameSigning />
+            <OtherOptimizations ManageMemory="1" />
+            <Obfuscation FieldsNameMangling="2" NameMangling="3" />
+            <OtherProtections SuppressIldasm="1" />
+            <Debugging />
+        </Options>
+        <ApplicationName />
+        <Destination DestinationFileName=".\Inecom SDK Reporting Package.exe" />
+        <Assemblies>
+            <Assembly AssemblyName="Inecom SDK Reporting Package, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning Prune="1">
+                        <Exclusion />
+                    </Pruning>
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="2" />
+                </Merging>
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Interop.SAPbouiCOM, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.CrystalReports.Engine, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.Shared, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.ClientDoc, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.CommonObjectModel, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.DataDefModel, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.CommLayer, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.Controllers, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.ReportDefModel, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.CubeDefModel, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.CommonControls, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.Enterprise.Framework, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.Enterprise.PluginManager, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.Enterprise.InfoStore, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.DataSetConversion, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.XmlSerialize, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.KeyCode, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.ObjectFactory, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportSource, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.Windows.Forms, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Interop.SAPbobsCOM, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="LicenseClient, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="LicenseLib, Culture=neutral, PublicKeyToken=null" NotAvailable="1">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="mscorlib, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.VisualBasic, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Deployment, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Configuration, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Xml, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Data.SqlXml, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Security, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Drawing, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Accessibility, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Runtime.Serialization.Formatters.Soap, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Runtime.Remoting, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Web, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Data, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.VisualC, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Transactions, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.EnterpriseServices, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.DirectoryServices, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Web.Services, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Design, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Drawing.Design, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Data.OracleClient, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Web.RegularExpressions, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.DirectoryServices.Protocols, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.ServiceProcess, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Configuration.Install, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Management, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.JScript, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Vsa, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="stdole, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="PoweredBySmartAssembly, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="SmartAssembly.MemoryManagement, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
+                <Merging>
+                    <Obfuscation>
+                        <Exclusion />
+                    </Obfuscation>
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="Inecom SDK Reporting Package.resources, Culture=en-GB, PublicKeyToken=null">
+                <Merging>
+                    <Pruning />
+                    <Obfuscation />
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="EASendMail, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Office.Interop.Outlook, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="office, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="log4net, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.Prompting, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="AxShockwaveFlashObjects, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="ShockwaveFlashObjects, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="System.Core, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Numerics, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Runtime.Serialization, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.ServiceModel.Internals, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="SMDiagnostics, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Xml.Linq, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Web.ApplicationServices, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.ComponentModel.DataAnnotations, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Runtime.Caching, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Build.Utilities.v4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Build.Framework, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Xaml, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Build.Tasks.v4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Data.DataSetExtensions, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+        </Assemblies>
+    </Configuration>
+</SmartAssemblyProject>
