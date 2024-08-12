@@ -1,2 +1,0 @@
-20161019 by sh
-rename the customize rpt from (NPE) SOA.rpt to (NPE)SA_HANA.rpt to fix ticket 20162885
