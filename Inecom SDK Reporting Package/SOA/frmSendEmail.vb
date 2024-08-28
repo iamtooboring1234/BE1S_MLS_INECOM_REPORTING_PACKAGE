@@ -68,11 +68,13 @@ Public Class frmSendEmail
     Public Sub LoadForm()
         If LoadFromXML("Inecom_SDK_Reporting_Package.ncmSOA_SendEmail.srf") Then
             oForm = SBO_Application.Forms.Item("ncmSOA_SendEmail")
+
             AddDataSource()
             SetDatasource()
             InitializeForm()
             oForm.Visible = True
             g_s_Selection = "0"
+
         Else
             Try
                 oForm = SBO_Application.Forms.Item("ncmSOA_SendEmail")
@@ -96,6 +98,7 @@ Public Class frmSendEmail
             .Add("Col03", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 200)
             .Add("Col04", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 5)
             .Add("Col05", SAPbouiCOM.BoDataType.dt_SUM, 254)
+            '.Add("Col05", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 50)
             .Add("Col06", SAPbouiCOM.BoDataType.dt_LONG_TEXT, 254)
             .Add("Col07", SAPbouiCOM.BoDataType.dt_LONG_TEXT, 254)
             .Add("Col08", SAPbouiCOM.BoDataType.dt_LONG_TEXT, 1000)
@@ -129,6 +132,9 @@ Public Class frmSendEmail
         oCol.DataBind.SetBound(True, "", "Col08")
     End Sub
     Private Sub InitializeForm()
+        Dim sBalance As String = "5243,25"
+        Dim sNewBalance As String = ""
+
         Try
             oForm.Freeze(True)
         Catch ex As Exception
@@ -145,16 +151,24 @@ Public Class frmSendEmail
                     .Item("Col02").ValueEx = dt.Rows(i - 1)("CardCode")
                     .Item("Col03").ValueEx = dt.Rows(i - 1)("CardName")
                     .Item("Col04").ValueEx = dt.Rows(i - 1)("Currency")
-                    .Item("Col05").ValueEx = dt.Rows(i - 1)("Balance")
+                    .Item("Col05").ValueEx = dt.Rows(i - 1)("Balance").ToString.Trim
                     .Item("Col06").ValueEx = dt.Rows(i - 1)("EmailTo")
                     .Item("Col07").ValueEx = dt.Rows(i - 1)("Attachment")
                     .Item("Col08").ValueEx = "Ready"
+
+                    ' sBalance = ""
+                    ' sNewBalance = ""
+                    ' sBalance = "5243,25"
+                    ' sNewBalance = sBalance.Replace(",", ".")
+                    ' SBO_Application.StatusBar.SetText("Converting balance from: " & sBalance & " to new balance: " & sNewBalance & ".", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+                    ' .Item("Col05").ValueEx = Convert.ToDecimal(sNewBalance)
+
                 End With
                 oMrx.AddRow(1, -1)
             Next
             oMrx.AutoResizeColumns()
         Catch ex As Exception
-            Throw ex
+            MsgBox(ex.ToString)
         Finally
             oForm.Freeze(False)
         End Try

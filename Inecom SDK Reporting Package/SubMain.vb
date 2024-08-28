@@ -269,6 +269,17 @@ Module SubMain
 #Region "Initialize Application"
     Public Sub Main()
         Try
+            'Dim ds As New dsEmail()
+            'Dim dr As dsEmail.PreviewDTRow
+            'dr = ds.PreviewDT.NewPreviewDTRow()
+            'dr.Attachment = "C:\abc.txt"
+            'dr.Balance = Convert.ToDecimal("11000.15")
+            'dr.CardCode = "ABC"
+            'dr.CardName = "ABC"
+            'dr.Currency = "SGD"
+            'dr.EmailTo = "erwine.sukary@beonesolutions.com"
+            'dr.IsEmail = IIf(dr.Balance > 0, 1, 0)
+            'dr.Table.Rows.Add(dr)
             ' =========================================================
             SetApplication()
             oCompany = New SAPbobsCOM.Company
@@ -349,6 +360,24 @@ Module SubMain
             oFrmPVEmail = New frmPVEmail 'AT Added on 04.05.2019
             oFrmPVSendEmail = New frmPVSendEmail
             oPVEmailParam = New NCM_PV_Email_Param
+
+            'Dim ds As New dsEmail()
+            'Dim dr As dsEmail.PreviewDTRow
+            'dr = ds.PreviewDT.NewPreviewDTRow()
+            'Dim dBalance As Decimal = Math.Round(Convert.ToDecimal("5255.25"), 2)
+            'dr.Attachment = "C:\abc.txt"
+            'dr.Balance = dBalance
+            'dr.CardCode = "C001"
+            'dr.CardName = "C001 Name"
+            'dr.Currency = "SGD"
+            'dr.EmailTo = "erwine.sukardy@beonesolutions.com"
+            'dr.IsEmail = 0
+            'dr.Table.Rows.Add(dr)
+
+            'SBO_Application.StatusBar.SetText("Opening Send Email form...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
+            'SubMain.oFrmSendEmail.StatementAsAtDate = GetDateObject("20240101")
+            'SubMain.oFrmSendEmail.StatementDataTable = ds.PreviewDT
+            'SubMain.oFrmSendEmail.LoadForm()
 
             SBO_Application.StatusBar.SetText("Inecom SDK Reporting Package add-on connected.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
             System.Windows.Forms.Application.Run()

@@ -36,7 +36,7 @@ CREATE TABLE "@NCM_NEW_SETTING" (
 	"U_InvEmailType"  nvarchar(10)	  NULL,
 	"U_RinEmailType"  nvarchar(10)	  NULL,
 	"U_DpiEmailType"  nvarchar(10)	  NULL,
-	"U_PlainText"     NVARCHAR(1000)	NULL,
+	"U_PlainText"     VVARCHAR(1000)	NULL,
 	"U_InvPlainText"  NVARCHAR(1000)	NULL,
 	"U_RinPlainText"  NVARCHAR(1000)	NULL,
 	"U_DpiPlainText"  NVARCHAR(1000)	NULL);

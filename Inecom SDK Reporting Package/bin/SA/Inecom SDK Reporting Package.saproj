@@ -299,6 +299,10 @@
             <Assembly AssemblyName="System.Data.DataSetExtensions, Culture=neutral, PublicKeyToken=b77a5c561934e089">
                 <Merging />
             </Assembly>
+            <Assembly AssemblyName="log4net, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a">
+                <Merging />
+                <Embedding />
+            </Assembly>
         </Assemblies>
     </Configuration>
 </SmartAssemblyProject>
