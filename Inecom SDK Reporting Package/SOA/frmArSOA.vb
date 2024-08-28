@@ -1134,7 +1134,7 @@ Public Class frmArSOA
             'OCRD (Customer)
             '--------------------------------------------------------
             Try
-                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""U_U_Retention"", ""U_SOAContact"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"", ""Country"", ""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""U_U_Retention"", ""U_SOAContact"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
                 dtOCRD = dsSOA.Tables("OCRD")
                 HANAcmd = dbConn.CreateCommand()
                 HANAcmd.CommandText = sQuery
@@ -1144,7 +1144,7 @@ Public Class frmArSOA
 
             Catch ex As Exception
 
-                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"",""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"", ""Country"", ""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
                 dtOCRD = dsSOA.Tables("OCRD")
                 HANAcmd = dbConn.CreateCommand()
                 HANAcmd.CommandText = sQuery
