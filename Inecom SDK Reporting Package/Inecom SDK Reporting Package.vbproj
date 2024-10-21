@@ -909,6 +909,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsPVEmail.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SOA\Dataset\DS_SOA.vb">
+      <DependentUpon>DS_SOA.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SOA\frmSendEmailProj.vb" />
     <Compile Include="SOA\frmArSOAProj.vb" />
     <Compile Include="SOA\Dataset\DS_SOA.Designer.vb">

@@ -100,13 +100,7 @@ Public Class FRM_PaymentVoucher_Range
     End Sub
     Private Sub SetupChooseFromList(ByVal sInputDocumentType As String)
         Dim oEditLn As SAPbouiCOM.EditText
-        Dim oCFL As SAPbouiCOM.ChooseFromList
-        Dim oCFLs As SAPbouiCOM.ChooseFromListCollection
-        Dim oCFLCreation As SAPbouiCOM.ChooseFromListCreationParams
-        Dim oCons As SAPbouiCOM.Conditions
-        Dim oCon As SAPbouiCOM.Condition
         Dim sDocType As String = "C"
-
 
         Try
             Select Case sInputDocumentType

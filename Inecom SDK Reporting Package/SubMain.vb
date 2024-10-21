@@ -281,24 +281,25 @@ Module SubMain
             'dr.IsEmail = IIf(dr.Balance > 0, 1, 0)
             'dr.Table.Rows.Add(dr)
             ' =========================================================
+
             SetApplication()
             oCompany = New SAPbobsCOM.Company
             oCompany = SBO_Application.Company.GetDICompany()
 
             '#If DEBUG Then
-            '            global_DBUsername = "SAPB1"
-            '            global_DBPassword = "6jL}L\UA?&V7"
-            '            global_DBPassword = global_DBPassword.Replace("}", "}}")
+            'global_DBUsername = "SAPB1"
+            'global_DBPassword = "6jL}L\UA?&V7"
+            'global_DBPassword = global_DBPassword.Replace("}", "}}")
 
-            '            connStr = "DRIVER={HDBODBC};UID={" & global_DBUsername & "};PWD={" & global_DBPassword & "};SERVERNODE={" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & "};DATABASE={" & oCompany.CompanyDB & "}"
-            '            Dim ProviderName As String = "System.Data.Odbc"
-            '            Dim dbConn As DbConnection = Nothing
-            '            Dim _DbProviderFactoryObject As DbProviderFactory
-            '            Dim sQuery As String = ""
-            '            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
-            '            dbConn = _DbProviderFactoryObject.CreateConnection()
-            '            dbConn.ConnectionString = connStr
-            '            dbConn.Open()
+            'connStr = "DRIVER={HDBODBC};UID={" & global_DBUsername & "};PWD={" & global_DBPassword & "};SERVERNODE={" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & "};DATABASE={" & oCompany.CompanyDB & "}"
+            'Dim ProviderName As String = "System.Data.Odbc"
+            'Dim dbConn As DbConnection = Nothing
+            'Dim _DbProviderFactoryObject As DbProviderFactory
+            'Dim sQuery As String = ""
+            '_DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+            'dbConn = _DbProviderFactoryObject.CreateConnection()
+            'dbConn.ConnectionString = connStr
+            'dbConn.Open()
             '#Else
             '            If CheckLicense() = False Then
             '                SBO_Application.MessageBox("Failed to find license for this add-on.")

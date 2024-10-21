@@ -29,6 +29,7 @@ Public Class frmArSOA
     Private g_sARSOAPrintOption As String = "2"
     Private g_bProjectSite As Boolean = False
     Private g_bProjectOnly As Boolean = False
+    Private g_sCompanySign As String = ""
 
 #End Region
 
@@ -92,6 +93,20 @@ Public Class frmArSOA
                 oRec.DoQuery(sQuery)
                 If oRec.RecordCount > 0 Then
                     g_bProjectOnly = True
+                End If
+            Catch ex As Exception
+
+            End Try
+
+            Try
+                Dim sQuery As String = ""
+                Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+
+                g_sCompanySign = "GENERIC"
+                oRec = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
+                oRec.DoQuery(" SELECT TOP 1 ""Code"" FROM """ & oCompany.CompanyDB & """.""@NCM_SETTING"" ")
+                If oRec.RecordCount > 0 Then
+                    g_sCompanySign = oRec.Fields.Item(0).Value.ToString.Trim
                 End If
             Catch ex As Exception
 
@@ -1074,6 +1089,8 @@ Public Class frmArSOA
             Dim dtOPRJ As System.Data.DataTable
             Dim dtSOC1 As System.Data.DataTable
             Dim dtSOC2 As System.Data.DataTable
+            Dim dtCEH_BRANCH_ADDR As System.Data.DataTable
+            Dim dtCEH_TERRMAPADDR As System.Data.DataTable
 
             _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
             dbConn = _DbProviderFactoryObject.CreateConnection()
@@ -1133,31 +1150,93 @@ Public Class frmArSOA
             '--------------------------------------------------------
             'OCRD (Customer)
             '--------------------------------------------------------
-            Try
-                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"", ""Country"", ""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""U_U_Retention"", ""U_SOAContact"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
-                dtOCRD = dsSOA.Tables("OCRD")
-                HANAcmd = dbConn.CreateCommand()
-                HANAcmd.CommandText = sQuery
-                HANAcmd.ExecuteNonQuery()
-                HANAda.SelectCommand = HANAcmd
-                HANAda.Fill(dtOCRD)
+            If g_sCompanySign.Contains("FAS") Then
+                Try
+                    sQuery = "  SELECT T1.* FROM """ & oCompany.CompanyDB & """.""@CEH_TERRMAPADDR"" T1 "
+                    sQuery &= " ORDER BY T1.""Code"" "
 
-            Catch ex As Exception
+                    dtCEH_TERRMAPADDR = dsSOA.Tables("@CEH_TERRMAPADDR")
+                    HANAcmd = dbConn.CreateCommand()
+                    HANAcmd.CommandText = sQuery
+                    HANAcmd.ExecuteNonQuery()
+                    HANAda.SelectCommand = HANAcmd
+                    HANAda.Fill(dtCEH_TERRMAPADDR)
 
-                sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"", ""Country"", ""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", ""CreditLine"", ""BillToDef"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
-                dtOCRD = dsSOA.Tables("OCRD")
-                HANAcmd = dbConn.CreateCommand()
-                HANAcmd.CommandText = sQuery
-                HANAcmd.ExecuteNonQuery()
-                HANAda.SelectCommand = HANAcmd
-                HANAda.Fill(dtOCRD)
+                    sQuery = "  SELECT T1.* FROM """ & oCompany.CompanyDB & """.""@CEH_BRANCH_ADDR"" T1 "
+                    sQuery &= " ORDER BY T1.""Code"" "
 
-            End Try
+                    dtCEH_BRANCH_ADDR = dsSOA.Tables("@CEH_BRANCH_ADDR")
+                    HANAcmd = dbConn.CreateCommand()
+                    HANAcmd.CommandText = sQuery
+                    HANAcmd.ExecuteNonQuery()
+                    HANAda.SelectCommand = HANAcmd
+                    HANAda.Fill(dtCEH_BRANCH_ADDR)
+
+                    sQuery = "  SELECT  ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", "
+                    sQuery &= "         ""City"", ""County"", ""Country"", ""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"","
+                    sQuery &= "         ""GroupNum"",""SlpCode"",""CreditLine"",""BillToDef"","
+                    sQuery &= "         IFNULL(""U_SOA_Bldg"",'')   AS ""U_SOA_Bldg"", "
+                    sQuery &= "         IFNULL(""U_SOA_MailTo"",'') AS ""U_SOA_MailTo"", "
+                    sQuery &= "         IFNULL(""U_SOAContact"",'') AS ""U_SOAContact"", "
+                    sQuery &= "         IFNULL(""U_PayTerm"",'')    AS ""U_PayTerm"", "
+                    sQuery &= "         IFNULL(""U_Dim2"",'')       AS ""U_Dim2"", "
+                    sQuery &= "         IFNULL(""U_DimTerrDef"",'') AS ""U_DimTerrDef"", "
+                    sQuery &= "         ""U_U_Retention"", ""U_LOB"",""U_Fin_Group"",""U_Prev_Comp_Name"", ""U_Grade"", "
+                    sQuery &= "         ""U_Status"",""U_Origin"", "
+                    sQuery &= "         ""U_GST_GSTRegNum"",""U_GST_BRN"",""U_ShippingTerms"",""U_Delivery_Crew"", "
+                    sQuery &= "         ""U_Bank_Info"",""U_SIC_Country"" "
+                    sQuery &= " FROM    """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                    dtOCRD = dsSOA.Tables("OCRD")
+                    HANAcmd = dbConn.CreateCommand()
+                    HANAcmd.CommandText = sQuery
+                    HANAcmd.ExecuteNonQuery()
+                    HANAda.SelectCommand = HANAcmd
+                    HANAda.Fill(dtOCRD)
+
+                Catch ex As Exception
+                    sQuery = "  SELECT  ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", "
+                    sQuery &= "         ""City"", ""County"", ""Country"", ""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"","
+                    sQuery &= "         ""GroupNum"",""SlpCode"", ""CreditLine"", ""BillToDef"", "
+                    sQuery &= "         IFNULL(""U_SOA_Bldg"",'')   AS ""U_SOA_Bldg"", "
+                    sQuery &= "         IFNULL(""U_SOA_MailTo"",'') AS ""U_SOA_MailTo"", "
+                    sQuery &= "         IFNULL(""U_SOAContact"",'') AS ""U_SOAContact"", "
+                    sQuery &= "         IFNULL(""U_PayTerm"",'')    AS ""U_PayTerm"", "
+                    sQuery &= "         IFNULL(""U_Dim2"",'')       AS ""U_Dim2"", "
+                    sQuery &= "         IFNULL(""U_DimTerrDef"",'') AS ""U_DimTerrDef"" "
+                    sQuery &= " FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                    dtOCRD = dsSOA.Tables("OCRD")
+                    HANAcmd = dbConn.CreateCommand()
+                    HANAcmd.CommandText = sQuery
+                    HANAcmd.ExecuteNonQuery()
+                    HANAda.SelectCommand = HANAcmd
+                    HANAda.Fill(dtOCRD)
+                End Try
+            Else
+                Try
+                    sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"", ""Country"", ""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", IFNULL(""U_SOA_MailTo"",'') AS ""U_SOA_MailTo"", ""CreditLine"", ""U_U_Retention"", ""U_SOAContact"", ""BillToDef"", IFNULL(""U_PayTerm"",'') AS ""U_PayTerm"", IFNULL(""U_Dim2"",'') AS ""U_Dim2"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                    dtOCRD = dsSOA.Tables("OCRD")
+                    HANAcmd = dbConn.CreateCommand()
+                    HANAcmd.CommandText = sQuery
+                    HANAcmd.ExecuteNonQuery()
+                    HANAda.SelectCommand = HANAcmd
+                    HANAda.Fill(dtOCRD)
+                Catch ex As Exception
+                    sQuery = "SELECT ""StreetNo"", ""ZipCode"", ""Phone2"", IFNULL(""Cellular"",'') AS ""Cellular"", ""Address"", ""Block"", ""City"", ""County"", ""Country"", ""CardCode"",""CardName"",""CardFName"",""CntctPrsn"",""Fax"",""Phone1"",""GroupNum"",""SlpCode"",IFNULL(""U_SOA_Bldg"",'') AS ""U_SOA_Bldg"", IFNULL(""U_SOA_MailTo"",'') AS ""U_SOA_MailTo"", ""CreditLine"", ""BillToDef"", IFNULL(""U_PayTerm"",'') AS ""U_PayTerm"", IFNULL(""U_Dim2"",'') AS ""U_Dim2"" FROM """ & oCompany.CompanyDB & """.""OCRD"" WHERE ""CardType"" = 'C' "
+                    dtOCRD = dsSOA.Tables("OCRD")
+                    HANAcmd = dbConn.CreateCommand()
+                    HANAcmd.CommandText = sQuery
+                    HANAcmd.ExecuteNonQuery()
+                    HANAda.SelectCommand = HANAcmd
+                    HANAda.Fill(dtOCRD)
+                End Try
+            End If
+
+
 
             '--------------------------------------------------------
             'OADM (Company Details)
             '--------------------------------------------------------
-            sQuery = "SELECT ""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""RevOffice"",""Phone1"", ""Phone2"", ""DdctOffice"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
+            sQuery = "SELECT ""CompnyAddr"",""CompnyName"",""E_Mail"",""Fax"",""FreeZoneNo"",""RevOffice"",""Phone1"", ""Phone2"", ""DdctOffice"",""PrintHdrF"" FROM """ & oCompany.CompanyDB & """.""OADM"" "
             dtOADM = dsSOA.Tables("OADM")
             HANAcmd = dbConn.CreateCommand()
             HANAcmd.CommandText = sQuery
