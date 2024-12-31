@@ -269,41 +269,28 @@ Module SubMain
 #Region "Initialize Application"
     Public Sub Main()
         Try
-            'Dim ds As New dsEmail()
-            'Dim dr As dsEmail.PreviewDTRow
-            'dr = ds.PreviewDT.NewPreviewDTRow()
-            'dr.Attachment = "C:\abc.txt"
-            'dr.Balance = Convert.ToDecimal("11000.15")
-            'dr.CardCode = "ABC"
-            'dr.CardName = "ABC"
-            'dr.Currency = "SGD"
-            'dr.EmailTo = "erwine.sukary@beonesolutions.com"
-            'dr.IsEmail = IIf(dr.Balance > 0, 1, 0)
-            'dr.Table.Rows.Add(dr)
-            ' =========================================================
-
             SetApplication()
             oCompany = New SAPbobsCOM.Company
             oCompany = SBO_Application.Company.GetDICompany()
 
             '#If DEBUG Then
-            'global_DBUsername = "SAPB1"
-            'global_DBPassword = "6jL}L\UA?&V7"
-            'global_DBPassword = global_DBPassword.Replace("}", "}}")
+            '            global_DBUsername = "SAPB1"
+            '            global_DBPassword = "6jL}L\UA?&V7"
+            '            global_DBPassword = global_DBPassword.Replace("}", "}}")
 
-            'connStr = "DRIVER={HDBODBC};UID={" & global_DBUsername & "};PWD={" & global_DBPassword & "};SERVERNODE={" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & "};DATABASE={" & oCompany.CompanyDB & "}"
-            'Dim ProviderName As String = "System.Data.Odbc"
-            'Dim dbConn As DbConnection = Nothing
-            'Dim _DbProviderFactoryObject As DbProviderFactory
-            'Dim sQuery As String = ""
-            '_DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
-            'dbConn = _DbProviderFactoryObject.CreateConnection()
-            'dbConn.ConnectionString = connStr
-            'dbConn.Open()
+            '            connStr = "DRIVER={HDBODBC};UID={" & global_DBUsername & "};PWD={" & global_DBPassword & "};SERVERNODE={" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & "};DATABASE={" & oCompany.CompanyDB & "}"
+            '            Dim ProviderName As String = "System.Data.Odbc"
+            '            Dim dbConn As DbConnection = Nothing
+            '            Dim _DbProviderFactoryObject As DbProviderFactory
+            '            Dim sQuery As String = ""
+            '            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+            '            dbConn = _DbProviderFactoryObject.CreateConnection()
+            '            dbConn.ConnectionString = connStr
+            '            dbConn.Open()
             '#Else
-            '            If CheckLicense() = False Then
-            '                SBO_Application.MessageBox("Failed to find license for this add-on.")
-            '            End If 'terminating add on
+            '                        If CheckLicense() = False Then
+            '                            SBO_Application.MessageBox("Failed to find license for this add-on.")
+            '                        End If 'terminating add on
             '#End If
 
             If CheckLicense() = False Then
@@ -361,24 +348,6 @@ Module SubMain
             oFrmPVEmail = New frmPVEmail 'AT Added on 04.05.2019
             oFrmPVSendEmail = New frmPVSendEmail
             oPVEmailParam = New NCM_PV_Email_Param
-
-            'Dim ds As New dsEmail()
-            'Dim dr As dsEmail.PreviewDTRow
-            'dr = ds.PreviewDT.NewPreviewDTRow()
-            'Dim dBalance As Decimal = Math.Round(Convert.ToDecimal("5255.25"), 2)
-            'dr.Attachment = "C:\abc.txt"
-            'dr.Balance = dBalance
-            'dr.CardCode = "C001"
-            'dr.CardName = "C001 Name"
-            'dr.Currency = "SGD"
-            'dr.EmailTo = "erwine.sukardy@beonesolutions.com"
-            'dr.IsEmail = 0
-            'dr.Table.Rows.Add(dr)
-
-            'SBO_Application.StatusBar.SetText("Opening Send Email form...", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning)
-            'SubMain.oFrmSendEmail.StatementAsAtDate = GetDateObject("20240101")
-            'SubMain.oFrmSendEmail.StatementDataTable = ds.PreviewDT
-            'SubMain.oFrmSendEmail.LoadForm()
 
             SBO_Application.StatusBar.SetText("Inecom SDK Reporting Package add-on connected.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success)
             System.Windows.Forms.Application.Run()

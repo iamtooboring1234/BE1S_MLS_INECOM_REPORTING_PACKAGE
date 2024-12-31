@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "OCRD" Desc = "BP Master Data" Type = "1" System="Y">
+		<Field ID = "DimTerrDef">
+			<Description>Territory Code</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "LOB">
+			<Description>Line Of Business</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "ShippingTerms">
+			<Description>Shipping Term</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Status">
+			<Description>Status</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Origin">
+			<Description>Origin</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Grade">
+			<Description>Grade</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Fin_Group">
+			<Description>Financial Group</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Prev_Comp_Name">
+			<Description>Previous Company Name</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "GST_GSTRegNum">
+			<Description>GST Reg.No.</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "GST_BRN">
+			<Description>GST BRN No.</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Delivery_Crew">
+			<Description>Delivery Crew</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "Bank_Info">
+			<Description>Bank Info</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+		<Field ID = "SIC_Country">
+			<Description>SIC Country</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>		
+	</Table>
+</Settings>

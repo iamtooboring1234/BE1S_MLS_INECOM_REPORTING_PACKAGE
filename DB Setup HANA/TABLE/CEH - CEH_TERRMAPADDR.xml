@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+	<Table ID="CEH_TERRMAPADDR" Desc="CEH - Territory Map Address" Type="0" System="N">
+		<Field ID="AddCode">
+			<Description>Address Code</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>100</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+	</Table>
+</Settings>

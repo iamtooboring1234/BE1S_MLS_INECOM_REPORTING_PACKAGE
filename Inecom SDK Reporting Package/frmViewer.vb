@@ -67,7 +67,6 @@ Public Class Hydac_FormViewer
 #End Region
 
     Private CONST_ODBC_SERVER_NAME As String = "TEST_HANA_USER"
-
     Private cBankAccount As String = ""
     Private cBankDate As String = ""
 
@@ -2387,6 +2386,10 @@ Public Class Hydac_FormViewer
                 Me.Text = "Statement of Account - By Due Date"
         End Select
 
+        ' For crystal viewer not to ask you to specify the parameter in a pop up box, you need to do:
+
+
+
         With rpt
             .SetDataSource(cDataset)
             subreport = .OpenSubreport("CH.rpt")
@@ -2405,6 +2408,25 @@ Public Class Hydac_FormViewer
             .DataDefinition.FormulaFields.Item("IsGAT").Text = IsGAT
             .DataDefinition.FormulaFields.Item("IsHAS").Text = IsHAS
             .DataDefinition.FormulaFields.Item("IsHFN").Text = IsHFN
+
+            ' ====================================================================
+            ' start testing
+
+            ''''''Add to button click or something
+
+            '  .SetParameterValue("0", "C:\Users\Erwine.Sukardy\Documents\IRP V910.157.2020 HANA\ncmMenu.jpg") ''' -- Note , "0" is the parameter field name we created before and second param of SetParameterValue is the location + new image  you set to replace the old one
+
+            'Dim paramFields As New CrystalDecisions.Shared.ParameterFields()
+            'Dim paramField As New CrystalDecisions.Shared.ParameterField()
+            'Dim discreteVal As New CrystalDecisions.Shared.ParameterDiscreteValue()
+
+            'paramField.ParameterFieldName = "ABC"  ' again the parameter field name we created
+            'discreteVal.Value = "C:\Users\Erwine.Sukardy\Documents\IRP V910.157.2020 HANA\ncmMenu.jpg"   ' once more the new image name and location
+            'paramField.CurrentValues.Add(discreteVal)
+            'paramFields.Add(paramField)
+            'crViewer.ParameterFieldInfo = paramFields
+
+            ' =====================================================================
 
             If cHideHeader Then
                 .DataDefinition.FormulaFields.Item("HideHeader").Text = 1
@@ -2438,6 +2460,7 @@ Public Class Hydac_FormViewer
             rpt.Export()
             rpt.Close()
         Else
+            'crViewer.ParameterFieldInfo = paramFields
             crViewer.ReportSource = rpt
             crViewer.Show()
         End If

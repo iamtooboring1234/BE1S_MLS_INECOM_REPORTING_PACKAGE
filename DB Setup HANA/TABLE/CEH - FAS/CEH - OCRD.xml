@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Settings>
+	<Table ID = "OCRD" Desc = "BP Master Data" Type = "1" System="Y">
+		<Field ID = "DimTerrDef">
+			<Description>Territory Code</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>		
+		</Field>
+	</Table>
+</Settings>

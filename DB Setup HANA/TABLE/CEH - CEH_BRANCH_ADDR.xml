@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+	<Table ID="CEH_BRANCH_ADDR" Desc="CEH - Branch Address" Type="0" System="N">
+		<Field ID="AddrLine1">
+			<Description>Address Line 1</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="AddrLine2">
+			<Description>Address Line 2</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="AddrLine3">
+			<Description>Address Line 3</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="AddrLine4">
+			<Description>Address Line 4</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Tel">
+			<Description>Telephone No</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID = "Fax">
+			<Description>Fax. No</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+		<Field ID="Email">
+			<Description>Email Address</Description>
+			<Type>0</Type>
+			<SubType>0</SubType>
+			<Length>250</Length>
+			<ValidValues></ValidValues>
+			<DefValue></DefValue>
+		</Field>
+	</Table>
+</Settings>

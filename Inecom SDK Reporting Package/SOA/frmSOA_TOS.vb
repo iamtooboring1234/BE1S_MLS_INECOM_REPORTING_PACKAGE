@@ -384,10 +384,7 @@ Public Class frmSOA_TOS
         Dim Notes As String = ""
         Dim BitmapPath As String = ""
         Dim ImagePath As String = ""
-        Dim Image As Byte()
         Dim sQuery As String
-        Dim FileStrm As FileStream
-        Dim BinReader As BinaryReader
         Dim oRec As SAPbobsCOM.Recordset = oCompany.GetBusinessObject(BoObjectTypes.BoRecordset)
 
         Try

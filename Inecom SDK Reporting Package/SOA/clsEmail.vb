@@ -43,6 +43,7 @@ Public Class clsEmail
     Private _PAYRA As String = ""
     Private _DODEL As String = "" 'SY add on 12112020
     Private _DOUNDEL As String = "" 'SY add on 12112020
+    Private _ARSOA_EmailSubject As String = ""
 
     Public Property ReportType() As String
         Get
@@ -275,18 +276,18 @@ Public Class clsEmail
             sQuery &= " IFNULL(""U_Password"",''), IFNULL(""U_AuthType"",0), IFNULL(""U_PortNum"",0) ""PortNumber"", "
             sQuery &= " IFNULL(""U_LocalIP"",'') ""LocalIPAddress"", IFNULL(""U_EnableSSL"",'N') ""EnableSSL"", "
             sQuery &= " IFNULL(""U_EmailPath"",'') ""EmailPath"", IFNULL(""U_Office365"",'N') ""Office365"", "
-            sQuery &= " IFNULL(""U_Outlook"",'N') ""Outlook"", IFNULL(""U_EmailSub"",'') ""EmailSubject""  "
+            sQuery &= " IFNULL(""U_Outlook"",'N') ""Outlook"", IFNULL(""U_EmailSub"",'') ""EmailSubject"" "
             sQuery &= " FROM ""@NCM_EMAIL_CONFIG"" "
             sQuery &= " WHERE ""Code"" = '" & Code & "'"
 
             oRecord.DoQuery(sQuery)
             If oRecord.RecordCount > 0 Then
-                _EmailFrom = oRecord.Fields.Item(0).Value
-                _SMTP_Server = oRecord.Fields.Item(1).Value
-                _Username = oRecord.Fields.Item(2).Value
-                _Password = oRecord.Fields.Item(3).Value
-                _AuthType = oRecord.Fields.Item(4).Value
-                _PortNum = oRecord.Fields.Item("PortNumber").Value
+                _EmailFrom = oRecord.Fields.Item(0).Value.ToString.Trim
+                _SMTP_Server = oRecord.Fields.Item(1).Value.ToString.Trim
+                _Username = oRecord.Fields.Item(2).Value.ToString.Trim
+                _Password = oRecord.Fields.Item(3).Value.ToString.Trim
+                _AuthType = oRecord.Fields.Item(4).Value.ToString.Trim
+                _PortNum = oRecord.Fields.Item("PortNumber").Value.ToString.Trim
                 _LocalIPAddress = oRecord.Fields.Item("LocalIPAddress").Value.ToString.Trim
                 _EnableSSL = oRecord.Fields.Item("EnableSSL").Value.ToString.Trim
                 _EmailPath = oRecord.Fields.Item("EmailPath").Value.ToString.Trim
@@ -860,17 +861,33 @@ Public Class clsEmail
                         OutlookMessage.CC = _EmailCc
                     End If
 
+                    OutlookMessage.BodyFormat = outlook.OlBodyFormat.olFormatHTML
+                    OutlookMessage.HTMLBody = sOutput2
+                    OutlookMessage.Attachments.Add(_Attachment)
+
+                    If _EmailSubject.Trim <> "" Then
+                        _ARSOA_EmailSubject = _EmailSubject.Trim
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<COMPANYNAME>>", oCompany.CompanyName)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<BPCODE>>", _BPCode)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<BPNAME>>", _BPName)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<TITLE>>", "Statement Of Account")
+                        'OutlookMessage.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account "
+                        OutlookMessage.Subject = _ARSOA_EmailSubject
+                    Else
+                        If _CardOption.Trim.ToUpper = "C" Then
+                            _BPName = _BPCode
+                        Else
+                            _BPName = _BPName
+                        End If
+
+                        OutlookMessage.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account "
+                    End If
+
                     If _CardOption.Trim.ToUpper = "C" Then
                         _BPName = _BPCode
                     Else
                         _BPName = _BPName
                     End If
-
-                    OutlookMessage.BodyFormat = outlook.OlBodyFormat.olFormatHTML
-                    OutlookMessage.HTMLBody = sOutput2
-                    OutlookMessage.Attachments.Add(_Attachment)
-
-                    OutlookMessage.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account "
                     ' ======================================================================
                     ' For LCS - 
                     ' <LCS SOA – APR’22 – {customer full name}> as I had made some editing.
@@ -955,8 +972,33 @@ Public Class clsEmail
                         _BPName = _BPName
                     End If
 
-                    a.Subject = oCompany.CompanyName & " - Statement Of Account - " & _BPName       ' HANA
-                    a.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account "
+                    'a.Subject = oCompany.CompanyName & " - Statement Of Account - " & _BPName       ' HANA
+                    'a.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account "
+
+                    If _EmailSubject.Trim <> "" Then
+                        _ARSOA_EmailSubject = _EmailSubject.Trim
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<COMPANYNAME>>", oCompany.CompanyName)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<BPCODE>>", _BPCode)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<BPNAME>>", _BPName)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<TITLE>>", "Statement Of Account")
+                        'a.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account"
+                        a.Subject = _ARSOA_EmailSubject
+                    Else
+                        If _CardOption.Trim.ToUpper = "C" Then
+                            _BPName = _BPCode
+                        Else
+                            _BPName = _BPName
+                        End If
+
+                        a.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account"
+                    End If
+
+                    If _CardOption.Trim.ToUpper = "C" Then
+                        _BPName = _BPCode
+                    Else
+                        _BPName = _BPName
+                    End If
+
                     ' ====================================================================================
                     ' For LCS - 
                     ' <LCS SOA – APR’22 – {customer full name}> as I had made some editing.
@@ -1288,10 +1330,16 @@ Public Class clsEmail
                     OutlookMessage.HTMLBody = sOutput2
                     OutlookMessage.Attachments.Add(_Attachment)
 
-                    If _EmailSubject.Length > 0 Then
-                        OutlookMessage.Subject = _EmailSubject & " - PV No. " & DocNum & " - " & _BPName
+                    If _EmailSubject.Trim.Length > 0 Then
+                        _EmailSubject = _EmailSubject.Trim.Replace("<<COMPANYNAME>>", oCompany.CompanyName)
+                        _EmailSubject = _EmailSubject.Trim.Replace("<<DOCUMENTNUM>>", DocNum)
+                        _EmailSubject = _EmailSubject.Trim.Replace("<<BPNAME>>", _BPName)
+                        _EmailSubject = _EmailSubject.Trim.Replace("<<BPCODE>>", _BPCode)
+                        _EmailSubject = _EmailSubject.Trim.Replace("<<TITLE>>", "Payment Voucher")
+
+                        OutlookMessage.Subject = _EmailSubject
                     Else
-                        OutlookMessage.Subject = "PV No. " & DocNum & " - " & _BPName
+                        OutlookMessage.Subject = "Payment Voucher No. " & DocNum & " - " & _BPName
                     End If
 
                     OutlookMessage.Send()
@@ -1329,11 +1377,24 @@ Public Class clsEmail
                         Next
                     End If
 
-                    If _EmailSubject.Length > 0 Then
-                        a.Subject = _EmailSubject & " - Payment Voucher No. " & DocNum & " - " & _BPName
+                    'If _EmailSubject.Length > 0 Then
+                    '    a.Subject = _EmailSubject & " - Payment Voucher No. " & DocNum & " - " & _BPName
+                    'Else
+                    '    a.Subject = "Payment Voucher No. " & DocNum & " - " & _BPName       ' HANA
+                    'End If
+
+                    If _EmailSubject.Trim.Length > 0 Then
+                        _EmailSubject = _EmailSubject.Trim.Replace("<<COMPANYNAME>>", oCompany.CompanyName)
+                        _EmailSubject = _EmailSubject.Trim.Replace("<<DOCUMENTNUM>>", DocNum)
+                        _EmailSubject = _EmailSubject.Trim.Replace("<<BPNAME>>", _BPName)
+                        _EmailSubject = _EmailSubject.Trim.Replace("<<BPCODE>>", _BPCode)
+                        _EmailSubject = _EmailSubject.Trim.Replace("<<TITLE>>", "Payment Voucher")
+
+                        a.Subject = _EmailSubject
                     Else
-                        a.Subject = "Payment Voucher No. " & DocNum & " - " & _BPName       ' HANA
+                        a.Subject = "Payment Voucher No. " & DocNum & " - " & _BPName
                     End If
+
 
                     bIsHTML = False
                     Select Case _EmailType
