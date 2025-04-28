@@ -106,6 +106,41 @@ Represents strongly named DataRow class.
 Row event argument class
 </summary>
 </member>
+<member name="T:Inecom_SDK_Reporting_Package.XML_GLL">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Inecom_SDK_Reporting_Package.XML_GLL.CommandDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Inecom_SDK_Reporting_Package.XML_GLL._NCM_BANKRECON_1DataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Inecom_SDK_Reporting_Package.XML_GLL.CommandRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Inecom_SDK_Reporting_Package.XML_GLL._NCM_BANKRECON_1Row">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Inecom_SDK_Reporting_Package.XML_GLL.CommandRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Inecom_SDK_Reporting_Package.XML_GLL._NCM_BANKRECON_1RowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
 <member name="T:Inecom_SDK_Reporting_Package.Dataset_Hydac">
 <summary>
 Represents a strongly typed in-memory cache of data.
@@ -1171,6 +1206,11 @@ Row event argument class
 Represents a strongly typed in-memory cache of data.
 </summary>
 </member>
+<member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__CEH_BRANCH_ADDRDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
 <member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OCRDDataTable">
 <summary>
 Represents the strongly named DataTable class.
@@ -1217,6 +1257,11 @@ Represents the strongly named DataTable class.
 </summary>
 </member>
 <member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OPRJDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__CEH_TERRMAPADDRDataTable">
 <summary>
 Represents the strongly named DataTable class.
 </summary>
@@ -1271,6 +1316,16 @@ Represents strongly named DataRow class.
 Represents strongly named DataRow class.
 </summary>
 </member>
+<member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__CEH_BRANCH_ADDRRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__CEH_TERRMAPADDRRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
 <member name="T:Inecom_SDK_Reporting_Package.DS_SOA.OCRDRowChangeEvent">
 <summary>
 Row event argument class
@@ -1321,37 +1376,12 @@ Row event argument class
 Row event argument class
 </summary>
 </member>
-<member name="T:Inecom_SDK_Reporting_Package.XML_GLL">
-<summary>
-Represents a strongly typed in-memory cache of data.
-</summary>
-</member>
-<member name="T:Inecom_SDK_Reporting_Package.XML_GLL.CommandDataTable">
-<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member>
-<member name="T:Inecom_SDK_Reporting_Package.XML_GLL._NCM_BANKRECON_1DataTable">
-<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member>
-<member name="T:Inecom_SDK_Reporting_Package.XML_GLL.CommandRow">
-<summary>
-Represents strongly named DataRow class.
-</summary>
-</member>
-<member name="T:Inecom_SDK_Reporting_Package.XML_GLL._NCM_BANKRECON_1Row">
-<summary>
-Represents strongly named DataRow class.
-</summary>
-</member>
-<member name="T:Inecom_SDK_Reporting_Package.XML_GLL.CommandRowChangeEvent">
+<member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__CEH_BRANCH_ADDRRowChangeEvent">
 <summary>
 Row event argument class
 </summary>
 </member>
-<member name="T:Inecom_SDK_Reporting_Package.XML_GLL._NCM_BANKRECON_1RowChangeEvent">
+<member name="T:Inecom_SDK_Reporting_Package.DS_SOA.__CEH_TERRMAPADDRRowChangeEvent">
 <summary>
 Row event argument class
 </summary>

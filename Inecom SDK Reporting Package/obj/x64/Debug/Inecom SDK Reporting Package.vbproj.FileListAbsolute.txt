@@ -1866,3 +1866,4 @@ C:\Users\Erwine.Sukardy\Documents\IRP V910.158.2020 HANA\Inecom SDK Reporting Pa
 C:\Users\Erwine.Sukardy\Documents\IRP V910.158.2020 HANA\Inecom SDK Reporting Package\bin\stdole.dll
 C:\Users\Erwine.Sukardy\Documents\IRP V910.158.2020 HANA\Inecom SDK Reporting Package\obj\x64\Debug\en-GB\Inecom SDK Reporting Package.resources.dll
 C:\Users\Erwine.Sukardy\Documents\IRP V910.158.2020 HANA\Inecom SDK Reporting Package\obj\x64\Debug\Inecom SDK Reporting Package.vbproj.CopyComplete
+C:\Users\Erwine.Sukardy\Documents\IRP V910.158.2020 HANA\Inecom SDK Reporting Package\obj\x64\Debug\Inecom SDK Reporting Package.vbproj.AssemblyReference.cache

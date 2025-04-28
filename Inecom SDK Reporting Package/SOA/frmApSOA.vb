@@ -81,7 +81,7 @@ Public Class frmApSOA
             .Add("HAS", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
             .Add("HFN", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
             .Add("EXC", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1)
-            .Add("Notes", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 1000)
+            .Add("Notes", SAPbouiCOM.BoDataType.dt_LONG_TEXT, 1500)
             .Add("txtBPFr", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 20)
             .Add("txtBPTo", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 20)
             .Add("txtBPGFr", SAPbouiCOM.BoDataType.dt_SHORT_TEXT, 100)
