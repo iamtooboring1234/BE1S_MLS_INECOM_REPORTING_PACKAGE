@@ -104,6 +104,8 @@
               <xs:element name="U_IRPBPFIELD3" msprop:Generator_ColumnVarNameInTable="columnU_IRPBPFIELD3" msprop:Generator_ColumnPropNameInRow="U_IRPBPFIELD3" msprop:Generator_ColumnPropNameInTable="U_IRPBPFIELD3Column" msprop:Generator_UserColumnName="U_IRPBPFIELD3" type="xs:string" minOccurs="0" />
               <xs:element name="U_IRPBPFIELD4" msprop:Generator_ColumnVarNameInTable="columnU_IRPBPFIELD4" msprop:Generator_ColumnPropNameInRow="U_IRPBPFIELD4" msprop:Generator_ColumnPropNameInTable="U_IRPBPFIELD4Column" msprop:Generator_UserColumnName="U_IRPBPFIELD4" type="xs:string" minOccurs="0" />
               <xs:element name="U_IRPBPFIELD5" msprop:Generator_ColumnVarNameInTable="columnU_IRPBPFIELD5" msprop:Generator_ColumnPropNameInRow="U_IRPBPFIELD5" msprop:Generator_ColumnPropNameInTable="U_IRPBPFIELD5Column" msprop:Generator_UserColumnName="U_IRPBPFIELD5" type="xs:string" minOccurs="0" />
+              <xs:element name="DIMENSION1" msprop:Generator_ColumnVarNameInTable="columnDIMENSION1" msprop:Generator_ColumnPropNameInRow="DIMENSION1" msprop:Generator_ColumnPropNameInTable="DIMENSION1Column" msprop:Generator_UserColumnName="DIMENSION1" type="xs:string" minOccurs="0" />
+              <xs:element name="DIMENSION2" msprop:Generator_ColumnVarNameInTable="columnDIMENSION2" msprop:Generator_ColumnPropNameInRow="DIMENSION2" msprop:Generator_ColumnPropNameInTable="DIMENSION2Column" msprop:Generator_UserColumnName="DIMENSION2" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

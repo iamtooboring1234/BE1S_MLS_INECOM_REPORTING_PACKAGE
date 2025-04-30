@@ -982,6 +982,10 @@ Partial Public Class DS_AGEING
         
         Private columnU_IRPBPFIELD5 As Global.System.Data.DataColumn
         
+        Private columnDIMENSION1 As Global.System.Data.DataColumn
+        
+        Private columnDIMENSION2 As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -1570,6 +1574,22 @@ Partial Public Class DS_AGEING
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property DIMENSION1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDIMENSION1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property DIMENSION2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDIMENSION2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1675,9 +1695,11 @@ Partial Public Class DS_AGEING
                     ByVal U_IRPBPFIELD2 As String,  _
                     ByVal U_IRPBPFIELD3 As String,  _
                     ByVal U_IRPBPFIELD4 As String,  _
-                    ByVal U_IRPBPFIELD5 As String) As __NCM_AR_AGEINGRow
+                    ByVal U_IRPBPFIELD5 As String,  _
+                    ByVal DIMENSION1 As String,  _
+                    ByVal DIMENSION2 As String) As __NCM_AR_AGEINGRow
             Dim row__NCM_AR_AGEINGRow As __NCM_AR_AGEINGRow = CType(Me.NewRow,__NCM_AR_AGEINGRow)
-            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, PRJNAME, BPPRJCODE, BPPRJNAME, GROUPNUM, PYMNTGROUP, FAKTURPAJAK, REF1, REF2, REF3, REF4, SLPCODE, SLPNAME, MEMO, TRANSID, USERNAME, BRANCH, OFFICE, PAYMENTCUR, PAYMENTAMT, PAYMENTDATE, PHONE1, PHONE2, CONTACTPERSON, LASTRECDATE, SERIES, SERIESNAME, SERIESREMARK, PAYMENTTERM, CREDITLIMIT, SAMPLEINV, U_IRPFIELD1, U_IRPFIELD2, U_IRPFIELD3, U_IRPFIELD4, U_IRPFIELD5, U_IRPBPFIELD1, U_IRPBPFIELD2, U_IRPBPFIELD3, U_IRPBPFIELD4, U_IRPBPFIELD5}
+            Dim columnValuesArray() As Object = New Object() {CANCELLED, CARDCODE, CHECKPT, CHILDCARDCODE, CLOSEPAID, CLOSEPAIDFC, DOCAGEDAYS, DOCAGEMTHS, DOCCUR, DOCDATE, DOCDUEDATE, DOCNUM, DOCRATE, DOCSTATUS, DOCTOTAL, DOCTOTALFC, DOCTYPE, DUEAGEDAYS, DUEAGEMTHS, INSTL_ID, INSTLMNTID, INTRNMATCH, NUMATCARD, OPENAMT, OPENAMTFC, POSAGEDAYS, POSAGEMTHS, POSDATE, PROJECT, PRJNAME, BPPRJCODE, BPPRJNAME, GROUPNUM, PYMNTGROUP, FAKTURPAJAK, REF1, REF2, REF3, REF4, SLPCODE, SLPNAME, MEMO, TRANSID, USERNAME, BRANCH, OFFICE, PAYMENTCUR, PAYMENTAMT, PAYMENTDATE, PHONE1, PHONE2, CONTACTPERSON, LASTRECDATE, SERIES, SERIESNAME, SERIESREMARK, PAYMENTTERM, CREDITLIMIT, SAMPLEINV, U_IRPFIELD1, U_IRPFIELD2, U_IRPFIELD3, U_IRPFIELD4, U_IRPFIELD5, U_IRPBPFIELD1, U_IRPBPFIELD2, U_IRPBPFIELD3, U_IRPBPFIELD4, U_IRPBPFIELD5, DIMENSION1, DIMENSION2}
             row__NCM_AR_AGEINGRow.ItemArray = columnValuesArray
             Me.Rows.Add(row__NCM_AR_AGEINGRow)
             Return row__NCM_AR_AGEINGRow
@@ -1769,6 +1791,8 @@ Partial Public Class DS_AGEING
             Me.columnU_IRPBPFIELD3 = MyBase.Columns("U_IRPBPFIELD3")
             Me.columnU_IRPBPFIELD4 = MyBase.Columns("U_IRPBPFIELD4")
             Me.columnU_IRPBPFIELD5 = MyBase.Columns("U_IRPBPFIELD5")
+            Me.columnDIMENSION1 = MyBase.Columns("DIMENSION1")
+            Me.columnDIMENSION2 = MyBase.Columns("DIMENSION2")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1912,6 +1936,10 @@ Partial Public Class DS_AGEING
             MyBase.Columns.Add(Me.columnU_IRPBPFIELD4)
             Me.columnU_IRPBPFIELD5 = New Global.System.Data.DataColumn("U_IRPBPFIELD5", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnU_IRPBPFIELD5)
+            Me.columnDIMENSION1 = New Global.System.Data.DataColumn("DIMENSION1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDIMENSION1)
+            Me.columnDIMENSION2 = New Global.System.Data.DataColumn("DIMENSION2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDIMENSION2)
             Me.columnSERIESNAME.DefaultValue = CType("",String)
             Me.columnPAYMENTTERM.DefaultValue = CType("",String)
             Me.ExtendedProperties.Add("Generator_TableVarName", "_table_NCM_AR_AGEING")
@@ -5155,6 +5183,36 @@ Partial Public Class DS_AGEING
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property DIMENSION1() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.DIMENSION1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DIMENSION1' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.DIMENSION1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property DIMENSION2() As String
+            Get
+                Try 
+                    Return CType(Me(Me._table_NCM_AR_AGEING.DIMENSION2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DIMENSION2' in table '@NCM_AR_AGEING' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._table_NCM_AR_AGEING.DIMENSION2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsCANCELLEDNull() As Boolean
             Return Me.IsNull(Me._table_NCM_AR_AGEING.CANCELLEDColumn)
         End Function
@@ -5979,6 +6037,30 @@ Partial Public Class DS_AGEING
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetU_IRPBPFIELD5Null()
             Me(Me._table_NCM_AR_AGEING.U_IRPBPFIELD5Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsDIMENSION1Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.DIMENSION1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetDIMENSION1Null()
+            Me(Me._table_NCM_AR_AGEING.DIMENSION1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsDIMENSION2Null() As Boolean
+            Return Me.IsNull(Me._table_NCM_AR_AGEING.DIMENSION2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetDIMENSION2Null()
+            Me(Me._table_NCM_AR_AGEING.DIMENSION2Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     
