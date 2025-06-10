@@ -273,29 +273,29 @@ Module SubMain
             oCompany = New SAPbobsCOM.Company
             oCompany = SBO_Application.Company.GetDICompany()
 
-#If DEBUG Then
-            global_DBUsername = "SAPB1"
-            global_DBPassword = "6jL}L\UA?&V7"
-            global_DBPassword = global_DBPassword.Replace("}", "}}")
+            '#If DEBUG Then
+            '            global_DBUsername = "SAPB1"
+            '            global_DBPassword = "6jL}L\UA?&V7"
+            '            global_DBPassword = global_DBPassword.Replace("}", "}}")
 
-            connStr = "DRIVER={HDBODBC};UID={" & global_DBUsername & "};PWD={" & global_DBPassword & "};SERVERNODE={" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & "};DATABASE={" & oCompany.CompanyDB & "}"
-            Dim ProviderName As String = "System.Data.Odbc"
-            Dim dbConn As DbConnection = Nothing
-            Dim _DbProviderFactoryObject As DbProviderFactory
-            Dim sQuery As String = ""
-            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
-            dbConn = _DbProviderFactoryObject.CreateConnection()
-            dbConn.ConnectionString = connStr
-            dbConn.Open()
-#Else
-                                    If CheckLicense() = False Then
-                                        SBO_Application.MessageBox("Failed to find license for this add-on.")
-                                    End If 'terminating add on
-#End If
+            '            connStr = "DRIVER={HDBODBC};UID={" & global_DBUsername & "};PWD={" & global_DBPassword & "};SERVERNODE={" & oCompany.Server.ToString.Replace(":30013", ":30015").Replace("NDB@", "") & "};DATABASE={" & oCompany.CompanyDB & "}"
+            '            Dim ProviderName As String = "System.Data.Odbc"
+            '            Dim dbConn As DbConnection = Nothing
+            '            Dim _DbProviderFactoryObject As DbProviderFactory
+            '            Dim sQuery As String = ""
+            '            _DbProviderFactoryObject = DbProviderFactories.GetFactory(ProviderName)
+            '            dbConn = _DbProviderFactoryObject.CreateConnection()
+            '            dbConn.ConnectionString = connStr
+            '            dbConn.Open()
+            '#Else
+            '                                    If CheckLicense() = False Then
+            '                                        SBO_Application.MessageBox("Failed to find license for this add-on.")
+            '                                    End If 'terminating add on
+            '#End If
 
-            'If CheckLicense() = False Then
-            '    SBO_Application.MessageBox("Failed to find license for this add-on.")
-            'End If 'terminating add on
+            If CheckLicense() = False Then
+                SBO_Application.MessageBox("Failed to find license for this add-on.")
+            End If 'terminating add on
 
             GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmInecom.bmp").Save("ncmInecom.bmp")
             GetEmbeddedBMP("Inecom_SDK_Reporting_Package.ncmMenu.bmp").Save("ncmMenu.bmp")
