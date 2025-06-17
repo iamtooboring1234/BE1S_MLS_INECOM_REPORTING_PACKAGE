@@ -288,9 +288,9 @@ Module SubMain
             '            dbConn.ConnectionString = connStr
             '            dbConn.Open()
             '#Else
-            '                                    If CheckLicense() = False Then
-            '                                        SBO_Application.MessageBox("Failed to find license for this add-on.")
-            '                                    End If 'terminating add on
+            '                                                            If CheckLicense() = False Then
+            '                                                                SBO_Application.MessageBox("Failed to find license for this add-on.")
+            '                                                            End If 'terminating add on
             '#End If
 
             If CheckLicense() = False Then
@@ -740,8 +740,6 @@ Module SubMain
                 oNewMenuItem.String = "Bank Reconciliation Report"
                 oMenus.AddEx(oNewMenuItem)
             End If
-
-
 
             Return True
         Catch ex As Exception

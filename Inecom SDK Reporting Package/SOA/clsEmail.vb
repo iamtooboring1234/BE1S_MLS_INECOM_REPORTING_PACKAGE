@@ -871,6 +871,63 @@ Public Class clsEmail
                         _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<BPCODE>>", _BPCode)
                         _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<BPNAME>>", _BPName)
                         _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<TITLE>>", "Statement Of Account")
+
+                        'Added 2025
+                        Dim sAsAtDate_Month_MM As String = ""
+                        Dim sAsAtDate_Month_MMM As String = ""
+                        Dim sAsAtDate_Year_YYYY As String = ""
+                        Dim sAsAtDate_Year_YY As String = ""
+                        Dim sAsAtDate_Date As String = ""
+
+                        sAsAtDate_Year_YYYY = AsAtDate.Year.ToString.Trim
+                        sAsAtDate_Year_YY = AsAtDate.Year.ToString.Substring(2, 2).Trim
+                        sAsAtDate_Date = AsAtDate.Date.ToString.Trim
+
+                        Select Case AsAtDate.Month
+                            Case "1", "01"
+                                sAsAtDate_Month_MM = "01"
+                                sAsAtDate_Month_MMM = "JAN"
+                            Case "2", "02"
+                                sAsAtDate_Month_MM = "02"
+                                sAsAtDate_Month_MMM = "FEB"
+                            Case "3", "03"
+                                sAsAtDate_Month_MM = "03"
+                                sAsAtDate_Month_MMM = "MAR"
+                            Case "4", "04"
+                                sAsAtDate_Month_MM = "04"
+                                sAsAtDate_Month_MMM = "APR"
+                            Case "5", "05"
+                                sAsAtDate_Month_MM = "05"
+                                sAsAtDate_Month_MMM = "MAY"
+                            Case "6", "06"
+                                sAsAtDate_Month_MM = "06"
+                                sAsAtDate_Month_MMM = "JUN"
+                            Case "7", "07"
+                                sAsAtDate_Month_MM = "07"
+                                sAsAtDate_Month_MMM = "JUL"
+                            Case "8", "08"
+                                sAsAtDate_Month_MM = "08"
+                                sAsAtDate_Month_MMM = "AUG"
+                            Case "9", "09"
+                                sAsAtDate_Month_MM = "09"
+                                sAsAtDate_Month_MMM = "SEP"
+                            Case "10", "10"
+                                sAsAtDate_Month_MM = "10"
+                                sAsAtDate_Month_MMM = "OCT"
+                            Case "11", "11"
+                                sAsAtDate_Month_MM = "11"
+                                sAsAtDate_Month_MMM = "NOV"
+                            Case "12", "12"
+                                sAsAtDate_Month_MM = "12"
+                                sAsAtDate_Month_MMM = "DEC"
+                        End Select
+
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<DD>>", sAsAtDate_Date)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<MM>>", sAsAtDate_Month_MM)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<MMM>>", sAsAtDate_Month_MMM)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<YYYY>>", sAsAtDate_Year_YYYY)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<YY>>", sAsAtDate_Year_YY)
+
                         'OutlookMessage.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account "
                         OutlookMessage.Subject = _ARSOA_EmailSubject
                     Else
@@ -981,6 +1038,63 @@ Public Class clsEmail
                         _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<BPCODE>>", _BPCode)
                         _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<BPNAME>>", _BPName)
                         _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<TITLE>>", "Statement Of Account")
+
+                        'Added 2025
+                        Dim sAsAtDate_Month_MM As String = ""
+                        Dim sAsAtDate_Month_MMM As String = ""
+                        Dim sAsAtDate_Year_YYYY As String = ""
+                        Dim sAsAtDate_Year_YY As String = ""
+                        Dim sAsAtDate_Date As String = ""
+
+                        sAsAtDate_Year_YYYY = AsAtDate.Year.ToString.Trim
+                        sAsAtDate_Year_YY = AsAtDate.Year.ToString.Substring(2, 2).Trim
+                        sAsAtDate_Date = AsAtDate.Date.ToString.Trim
+
+                        Select Case AsAtDate.Month
+                            Case "1", "01"
+                                sAsAtDate_Month_MM = "01"
+                                sAsAtDate_Month_MMM = "JAN"
+                            Case "2", "02"
+                                sAsAtDate_Month_MM = "02"
+                                sAsAtDate_Month_MMM = "FEB"
+                            Case "3", "03"
+                                sAsAtDate_Month_MM = "03"
+                                sAsAtDate_Month_MMM = "MAR"
+                            Case "4", "04"
+                                sAsAtDate_Month_MM = "04"
+                                sAsAtDate_Month_MMM = "APR"
+                            Case "5", "05"
+                                sAsAtDate_Month_MM = "05"
+                                sAsAtDate_Month_MMM = "MAY"
+                            Case "6", "06"
+                                sAsAtDate_Month_MM = "06"
+                                sAsAtDate_Month_MMM = "JUN"
+                            Case "7", "07"
+                                sAsAtDate_Month_MM = "07"
+                                sAsAtDate_Month_MMM = "JUL"
+                            Case "8", "08"
+                                sAsAtDate_Month_MM = "08"
+                                sAsAtDate_Month_MMM = "AUG"
+                            Case "9", "09"
+                                sAsAtDate_Month_MM = "09"
+                                sAsAtDate_Month_MMM = "SEP"
+                            Case "10", "10"
+                                sAsAtDate_Month_MM = "10"
+                                sAsAtDate_Month_MMM = "OCT"
+                            Case "11", "11"
+                                sAsAtDate_Month_MM = "11"
+                                sAsAtDate_Month_MMM = "NOV"
+                            Case "12", "12"
+                                sAsAtDate_Month_MM = "12"
+                                sAsAtDate_Month_MMM = "DEC"
+                        End Select
+
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<DD>>", sAsAtDate_Date)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<MM>>", sAsAtDate_Month_MM)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<MMM>>", sAsAtDate_Month_MMM)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<YYYY>>", sAsAtDate_Year_YYYY)
+                        _ARSOA_EmailSubject = _ARSOA_EmailSubject.Replace("<<YY>>", sAsAtDate_Year_YY)
+
                         'a.Subject = oCompany.CompanyName & " - " & _BPName & " - Statement Of Account"
                         a.Subject = _ARSOA_EmailSubject
                     Else
